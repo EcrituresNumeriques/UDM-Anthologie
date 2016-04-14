@@ -1,0 +1,367 @@
+{
+    "title": "Epoque",
+    "section": [
+        {
+            "subtitle": "Récuperer les informations sur une époque",
+            "slug": "recuperer-les-informations-sur-une-epoque",
+            "desc": "La methode permet de récuperer une époque. Elle peut être filtré par langue et par groupe de recherche",
+            "url": {
+                "mandatory": "/eras/:idEra",
+                "opt": [ "/lang/:codeLang", "/group/:idGroup"]
+            },
+            "method": "GET",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "idEra",
+                            "type": "int",
+                            "desc": "L'identifiant de l'époque"
+                        }
+                    ],
+                    "opt" : [
+                        {
+                            "field": "codeLang",
+                            "type": "String",
+                            "desc": "Filtre optionnel qui permet de sélectionner une langue ou afficher toutes les langues,<a href='#'>voir la lise des langues</a>"   
+                        },
+                        {
+                            "field": "idGroup",
+                            "type": "int",
+                            "desc": "Filtre optionnel qui permet de sélectionner un groupe ou afficher tous les groupes,<a href='#'>voir la lise des groupes</a>"   
+                        }
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idEra",
+                        "type": "int",
+                        "desc": "L'identifiant de l'époque"
+                    },
+                    {
+                        "field": "name",
+                        "type": "String",
+                        "desc": "Le nom de l'époque"
+                    },
+                    {
+                        "field": "cultureCenters",
+                        "type": "String",
+                        "desc": "Les centres culturels de l'époque"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de l'époque"
+                    },
+                    {
+                        "field": "dateBegin",
+                        "type": "int",
+                        "desc": "La date de début de l'époque"
+                    },
+                    {
+                        "field": "dateEnd",
+                        "type": "String",
+                        "desc": "La date de fin de l'époque"
+                    },
+                    {
+                        "field": "codeLang",
+                        "type": "String",
+                        "desc": "La langue dans laquelle l'époque est récupéré"
+                    },
+                    {
+                        "field": "idGroup",
+                        "type": "Int",
+                        "desc": "L'identifiant du groupe de recherche"
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Lister toutes les époques",
+            "slug": "lister-toutes-les-époques",
+            "desc": "La methode permet de récuperer la liste des époques. Elle peut être filtré par langue et par groupe de recherche",
+            "url": {
+                "mandatory": [
+                    "/eras/"
+                ],
+                "opt": [ 
+                    "/lang/:codeLang",
+                    "/group/:idGroup"
+                ]
+            },
+            "method": "GET",
+            "param": [
+                {
+                    "mandatory" : [
+                    ],
+                    "opt" : [
+                        {
+                            "field": "codeLang",
+                            "type": "String",
+                            "desc": "Filtre optionnel qui permet de sélectionner une langue ou afficher toutes les langues,<a href='#'>voir la lise des langues</a>"   
+                        },
+                        {
+                            "field": "idGroup",
+                            "type": "int",
+                            "desc": "Filtre optionnel qui permet de sélectionner un groupe ou afficher tous les groupes,<a href='#'>voir la lise des groupes</a>"   
+                        }
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idEra",
+                        "type": "int",
+                        "desc": "L'identifiant de l'époque"
+                    },
+                    {
+                        "field": "name",
+                        "type": "String",
+                        "desc": "Le nom historique de l'époque"
+                    },
+                    {
+                        "field": "currentName",
+                        "type": "String",
+                        "desc": "Le nom actuel de l'époque"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de l'époque"
+                    },
+                    {
+                        "field": "GPS",
+                        "type": "String",
+                        "desc": "Les coordonnées GPS de l'époque"
+                    },
+                    {
+                        "field": "codeLang",
+                        "type": "String",
+                        "desc": "La langue dans laquelle l'époque est récupéré"
+                    },
+                    {
+                        "field": "idGroup",
+                        "type": "Int",
+                        "desc": "L'identifiant du groupe de recherche"
+                    } 
+                ]
+            }
+        },
+        {
+            "subtitle": "Créer une époque",
+            "slug": "creer-une-époque",
+            "desc": "La methode permet de créer une époque",
+            "url": {
+                "mandatory": [
+                    "/eras/",
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "POST",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "name",
+                            "type": "String",
+                            "desc": "Le nom historique de l'époque"
+                        },
+                        {
+                            "field": "currentName",
+                            "type": "String",
+                            "desc": "Le nom actuel de l'époque"
+                        },
+                        {
+                            "field": "description",
+                            "type": "String",
+                            "desc": "Une description de l'époque"
+                        },
+                        {
+                            "field": "GPS",
+                            "type": "String",
+                            "desc": "Les coordonnées GPS de l'époque"
+                        },
+                        {
+                            "field": "codeLang",
+                            "type": "String",
+                            "desc": "La langue dans laquelle l'époque est récupéré"
+                        },
+                        {
+                            "field": "idGroup",
+                            "type": "Int",
+                            "desc": "L'identifiant du groupe de recherche"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idEra",
+                        "type": "int",
+                        "desc": "L'identifiant de l'époque"
+                    },
+                    {
+                        "field": "name",
+                        "type": "String",
+                        "desc": "Le nom historique de l'époque"
+                    },
+                    {
+                        "field": "currentName",
+                        "type": "String",
+                        "desc": "Le nom actuel de l'époque"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de l'époque"
+                    },
+                    {
+                        "field": "GPS",
+                        "type": "String",
+                        "desc": "Les coordonnées GPS de l'époque"
+                    },
+                    {
+                        "field": "codeLang",
+                        "type": "String",
+                        "desc": "La langue dans laquelle l'époque est récupéré"
+                    },
+                    {
+                        "field": "idGroup",
+                        "type": "Int",
+                        "desc": "L'identifiant du groupe de recherche"
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Editer une époque",
+            "slug": "editer-une-époque",
+            "desc": "La methode permet d'éditer une époque",
+            "url": {
+                "mandatory": [
+                    "/eras/:id",
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "PUT",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "idEra",
+                            "type": "int",
+                            "desc": "L'identifiant de l'époque"
+                        },
+                        {
+                            "field": "name",
+                            "type": "String",
+                            "desc": "Le nom historique de l'époque"
+                        },
+                        {
+                            "field": "currentName",
+                            "type": "String",
+                            "desc": "Le nom actuel de l'époque"
+                        },
+                        {
+                            "field": "description",
+                            "type": "String",
+                            "desc": "Une description de l'époque"
+                        },
+                        {
+                            "field": "GPS",
+                            "type": "String",
+                            "desc": "Les coordonnées GPS de l'époque"
+                        },
+                        {
+                            "field": "codeLang",
+                            "type": "String",
+                            "desc": "La langue dans laquelle l'époque est récupéré"
+                        },
+                        {
+                            "field": "idGroup",
+                            "type": "Int",
+                            "desc": "L'identifiant du groupe de recherche"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idEra",
+                        "type": "int",
+                        "desc": "L'identifiant de l'époque"
+                    },
+                    {
+                        "field": "name",
+                        "type": "String",
+                        "desc": "Le nom historique de l'époque"
+                    },
+                    {
+                        "field": "currentName",
+                        "type": "String",
+                        "desc": "Le nom actuel de l'époque"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de l'époque"
+                    },
+                    {
+                        "field": "codeLang",
+                        "type": "String",
+                        "desc": "La langue dans laquelle l'époque est récupéré"
+                    },
+                    {
+                        "field": "idGroup",
+                        "type": "Int",
+                        "desc": "L'identifiant du groupe de recherche"
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Supprimer une époque",
+            "slug": "supprimer-une-époque",
+            "desc": "La methode permet de supprimer une époque",
+            "url": {
+                "mandatory": [
+                    "/eras/:id",
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "DELETE",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "idEra",
+                            "type": "int",
+                            "desc": "L'identifiant de l'époque"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                ]
+            }
+        }
+    ]
+}
