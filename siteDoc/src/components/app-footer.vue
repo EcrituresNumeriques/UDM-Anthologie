@@ -2,22 +2,20 @@
     <div class="app-footer">
         <div class="hidden-xs hidden-sm row">
             <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="navbar-header col-md-3">
-                        <a class="navbar-brand" v-link="{ path : '/home' }">Anthologie palatine</a>     
-                    </div>
-                    <ul class="nav navbar-nav list-inline">
-                        <li><a v-link="{ path: '/home' }" v-link-active>Accueil</a></li>
-                        <li><a v-link="{ path: '/documentation' }">Documentation</a></li>
-                        <li><a href="#">Accès API</a></li>
-                        <li><a href="#">Exemple</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right list-inline social">
-                        <li><a target="_blank" href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
-                        <li><a target="_blank" href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
-                        <li><a target="_blank" href="http://github.com"><i class="fa fa-github"></i></a></li>
-                    </ul>
+                <div class="navbar-header col-md-3">
+                    <a class="navbar-brand" v-link="{ path : '/home' }">Anthologie palatine</a>     
                 </div>
+                <ul class="nav navbar-nav list-inline">
+                    <li><a v-link="{ path: '/home' }" v-link-active>Accueil</a></li>
+                    <li><a v-link="{ path: '/documentation' }">Documentation</a></li>
+                    <li><a href="#">Accès API</a></li>
+                    <li><a href="#">Exemple</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right list-inline social">
+                    <li><a target="_blank" href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                    <li><a target="_blank" href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                    <li><a target="_blank" href="http://github.com"><i class="fa fa-github"></i></a></li>
+                </ul>
             </nav>
         </div>
         <div class="row copyright">
@@ -101,7 +99,7 @@ $default-color: #366870;
     }
       
     .copyright{
-        margin-top: 5%;
+        margin: 5% 0 0;
         padding-left: 5%;
           
         p{
@@ -113,8 +111,12 @@ $default-color: #366870;
     
     @media (min-width: 992px){
         
+        .social{
+            margin: 0;
+        }
+        
         .copyright{
-            margin-top: 2%;
+            margin: 2% 0 0;
             padding: 0;
             
             >div{

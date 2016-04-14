@@ -170,7 +170,7 @@ nav.doc-nav{
                             font-weight: 400;
                             color: $default-color;
                             opacity: .4;
-                            
+                             
                             &:hover{
                                 opacity: 1;
                             }
