@@ -1,12 +1,12 @@
 {
-    "title": "Notes",
+    "title": "Scholies",
     "section": [
         {
-            "subtitle": "Récuperer les informations sur une note",
-            "slug": "recuperer-les-informations-sur-une-note",
-            "desc": "La methode permet de récuperer une note Elle peut être filtré par langue et par groupe de recherche",
+            "subtitle": "Récuperer les informations sur une scholie",
+            "slug": "recuperer-les-informations-sur-une-scholie",
+            "desc": "La methode permet de récuperer une scholie. Elle peut être filtré par langue et par groupe de recherche",
             "url": {
-                "mandatory": "/notes/:idNote",
+                "mandatory": "/scholies/:idScholie",
                 "opt": [ "/lang/:codeLang", "/group/:idGroup"]
             },
             "method": "GET",
@@ -14,9 +14,9 @@
                 {
                     "mandatory" : [
                         {
-                            "field": "idNote",
+                            "field": "idScholie",
                             "type": "int",
-                            "desc": "L'identifiant de la note"
+                            "desc": "L'identifiant de la scholie"
                         }
                     ],
                     "opt" : [
@@ -38,17 +38,17 @@
                     {
                         "field": "id",
                         "type": "int",
-                        "desc": "L'identifiant de la note"
+                        "desc": "L'identifiant de la scholie"
                     },
                     {
                         "field": "name",
                         "type": "Strong",
-                        "desc": "Le nom de la note"
+                        "desc": "Le nom de la scholie"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle la note est récupéré"
+                        "desc": "La langue dans laquelle la scholie est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -59,12 +59,12 @@
             }
         },
         {
-            "subtitle": "Lister toutes les notes",
-            "slug": "lister-toutes-les-notes",
-            "desc": "La methode permet de récuperer la liste des notes Elle peut être filtré par langue et par groupe de recherche",
+            "subtitle": "Lister toutes les scholies",
+            "slug": "lister-toutes-les-scholies",
+            "desc": "La methode permet de récuperer la liste des scholies. Elle peut être filtré par langue et par groupe de recherche",
             "url": {
                 "mandatory": [
-                    "/notes/"
+                    "/scholies/"
                 ],
                 "opt": [ 
                     "/lang/:codeLang",
@@ -95,17 +95,17 @@
                     {
                         "field": "id",
                         "type": "int",
-                        "desc": "L'identifiant de la note"
+                        "desc": "L'identifiant de la scholie"
                     },
                     {
                         "field": "name",
                         "type": "Strong",
-                        "desc": "Le nom de la note"
+                        "desc": "Le nom de la scholie"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle la note est récupéré"
+                        "desc": "La langue dans laquelle la scholie est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -116,12 +116,12 @@
             }
         },
         {
-            "subtitle": "Créer une note",
-            "slug": "creer-une-note",
-            "desc": "La methode permet de créer une note",
+            "subtitle": "Créer une scholie",
+            "slug": "creer-une-scholie",
+            "desc": "La methode permet de créer une scholie",
             "url": {
                 "mandatory": [
-                    "/notes/"
+                    "/scholies/"
                 ],
                 "opt": [ 
                     
@@ -134,12 +134,12 @@
                         {
                             "field": "name",
                             "type": "Strong",
-                            "desc": "Le nom de la note"
+                            "desc": "Le nom de la scholie"
                         },
                         {
                             "field": "codeLang",
                             "type": "String",
-                            "desc": "La langue dans laquelle la note est récupéré"
+                            "desc": "La langue dans laquelle la scholie est récupéré"
                         },
                         {
                             "field": "idGroup",
@@ -156,17 +156,17 @@
                     {
                         "field": "id",
                         "type": "int",
-                        "desc": "L'identifiant de la note"
+                        "desc": "L'identifiant de la scholie"
                     },
                     {
                         "field": "name",
                         "type": "Strong",
-                        "desc": "Le nom de la note"
+                        "desc": "Le nom de la scholie"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle la note est récupéré"
+                        "desc": "La langue dans laquelle la scholie est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -177,12 +177,12 @@
             }
         },
         {
-            "subtitle": "Editer une note",
-            "slug": "editer-une-note",
-            "desc": "La methode permet d'éditer une note",
+            "subtitle": "Editer une scholie",
+            "slug": "editer-une-scholie",
+            "desc": "La methode permet d'éditer une scholie",
             "url": {
                 "mandatory": [
-                    "/notes/:id"
+                    "/scholies/:id"
                 ],
                 "opt": [ 
                     
@@ -195,17 +195,17 @@
                         {
                             "field": "id",
                             "type": "int",
-                            "desc": "L'identifiant de la note"
+                            "desc": "L'identifiant de la scholie"
                         },
                         {
                             "field": "name",
                             "type": "Strong",
-                            "desc": "Le nom de la note"
+                            "desc": "Le nom de la scholie"
                         },
                         {
                             "field": "codeLang",
                             "type": "String",
-                            "desc": "La langue dans laquelle la note est récupéré"
+                            "desc": "La langue dans laquelle la scholie est récupéré"
                         },
                         {
                             "field": "idGroup",
@@ -222,17 +222,17 @@
                     {
                         "field": "id",
                         "type": "int",
-                        "desc": "L'identifiant de la note"
+                        "desc": "L'identifiant de la scholie"
                     },
                     {
                         "field": "name",
                         "type": "Strong",
-                        "desc": "Le nom de la note"
+                        "desc": "Le nom de la scholie"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle la note est récupéré"
+                        "desc": "La langue dans laquelle la scholie est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -243,12 +243,12 @@
             }
         },
         {
-            "subtitle": "Supprimer une note",
-            "slug": "supprimer-une-note",
-            "desc": "La methode permet de supprimer une note",
+            "subtitle": "Supprimer une scholie",
+            "slug": "supprimer-une-scholie",
+            "desc": "La methode permet de supprimer une scholie",
             "url": {
                 "mandatory": [
-                    "/notes/:id"
+                    "/scholies/:id"
                 ],
                 "opt": [ 
                     
@@ -261,7 +261,7 @@
                         {
                             "field": "id",
                             "type": "int",
-                            "desc": "L'identifiant de la note"
+                            "desc": "L'identifiant de la scholie"
                         }
                     ],
                     "opt" : [

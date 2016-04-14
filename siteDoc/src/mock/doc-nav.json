@@ -161,6 +161,33 @@
                     "slug": "supprimer-une-traduction"
                 }
             ]
+        },
+        {
+            "title": "Scholies",
+            "link": "scholies.json",
+            "slug": "scholies",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur une scholie",
+                    "slug": "recuperer-les-informations-sur-une-scholie"
+                },
+                {
+                    "name": "Lister toutes les scholies",
+                    "slug": "lister-toutes-les-scholies"
+                },
+                {
+                    "name": "Créer une scholie",
+                    "slug": "creer-une-scholie"
+                },
+                {
+                    "name": "Editer une scholie",
+                    "slug": "editer-une-scholie"
+                },
+                {
+                    "name": "Supprimer une scholie",
+                    "slug": "supprimer-une-scholie"
+                }
+            ]
         }
     ]
 }
