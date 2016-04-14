@@ -4,7 +4,7 @@
         {
             "subtitle": "Récuperer les informations sur une note",
             "slug": "recuperer-les-informations-sur-une-note",
-            "desc": "La methode permet de récuperer une note Elle peut être filtré par langue et par groupe de recherche",
+            "desc": "La methode permet de récuperer une note. Elle peut être filtré par langue et par groupe de recherche",
             "url": {
                 "mandatory": "/notes/:idNote",
                 "opt": [ "/lang/:codeLang", "/group/:idGroup"]
@@ -36,7 +36,7 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "id",
+                        "field": "idNote",
                         "type": "int",
                         "desc": "L'identifiant de la note"
                     },
@@ -48,7 +48,7 @@
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le note est récupéré"
+                        "desc": "La langue dans laquelle la note est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -93,7 +93,7 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "id",
+                        "field": "idNote",
                         "type": "int",
                         "desc": "L'identifiant de la note"
                     },
@@ -105,7 +105,7 @@
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le note est récupéré"
+                        "desc": "La langue dans laquelle la note est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -139,7 +139,7 @@
                         {
                             "field": "codeLang",
                             "type": "String",
-                            "desc": "La langue dans laquelle le note est récupéré"
+                            "desc": "La langue dans laquelle la note est récupéré"
                         },
                         {
                             "field": "idGroup",
@@ -154,7 +154,7 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "id",
+                        "field": "idNote",
                         "type": "int",
                         "desc": "L'identifiant de la note"
                     },
@@ -166,7 +166,7 @@
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le note est récupéré"
+                        "desc": "La langue dans laquelle la note est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -193,7 +193,7 @@
                 {
                     "mandatory" : [
                         {
-                            "field": "id",
+                            "field": "idNote",
                             "type": "int",
                             "desc": "L'identifiant de la note"
                         },
@@ -205,7 +205,7 @@
                         {
                             "field": "codeLang",
                             "type": "String",
-                            "desc": "La langue dans laquelle le note est récupéré"
+                            "desc": "La langue dans laquelle la note est récupéré"
                         },
                         {
                             "field": "idGroup",
@@ -220,7 +220,7 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "id",
+                        "field": "idNote",
                         "type": "int",
                         "desc": "L'identifiant de la note"
                     },
@@ -232,7 +232,7 @@
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le note est récupéré"
+                        "desc": "La langue dans laquelle la note est récupéré"
                     },
                     {
                         "field": "idGroup",
@@ -259,7 +259,7 @@
                 {
                     "mandatory" : [
                         {
-                            "field": "id",
+                            "field": "idNote",
                             "type": "int",
                             "desc": "L'identifiant de la note"
                         }

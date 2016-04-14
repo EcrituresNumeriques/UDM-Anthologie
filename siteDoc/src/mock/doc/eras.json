@@ -120,12 +120,12 @@
                     {
                         "field": "name",
                         "type": "String",
-                        "desc": "Le nom historique de l'époque"
+                        "desc": "Le nom de l'époque"
                     },
                     {
-                        "field": "currentName",
+                        "field": "cultureCenters",
                         "type": "String",
-                        "desc": "Le nom actuel de l'époque"
+                        "desc": "Les centres culturels de l'époque"
                     },
                     {
                         "field": "description",
@@ -133,9 +133,14 @@
                         "desc": "Une description de l'époque"
                     },
                     {
-                        "field": "GPS",
+                        "field": "dateBegin",
+                        "type": "int",
+                        "desc": "La date de début de l'époque"
+                    },
+                    {
+                        "field": "dateEnd",
                         "type": "String",
-                        "desc": "Les coordonnées GPS de l'époque"
+                        "desc": "La date de fin de l'époque"
                     },
                     {
                         "field": "codeLang",
@@ -152,7 +157,7 @@
         },
         {
             "subtitle": "Créer une époque",
-            "slug": "creer-une-époque",
+            "slug": "creer-une-epoque",
             "desc": "La methode permet de créer une époque",
             "url": {
                 "mandatory": [
@@ -167,25 +172,20 @@
                 {
                     "mandatory" : [
                         {
-                            "field": "name",
-                            "type": "String",
-                            "desc": "Le nom historique de l'époque"
-                        },
-                        {
-                            "field": "currentName",
-                            "type": "String",
-                            "desc": "Le nom actuel de l'époque"
-                        },
-                        {
-                            "field": "description",
-                            "type": "String",
-                            "desc": "Une description de l'époque"
-                        },
-                        {
-                            "field": "GPS",
-                            "type": "String",
-                            "desc": "Les coordonnées GPS de l'époque"
-                        },
+	                        "field": "name",
+	                        "type": "String",
+	                        "desc": "Le nom de l'époque"
+	                    },
+	                    {
+	                        "field": "dateBegin",
+	                        "type": "int",
+	                        "desc": "La date de début de l'époque"
+	                    },
+	                    {
+	                        "field": "dateEnd",
+	                        "type": "String",
+	                        "desc": "La date de fin de l'époque"
+	                    },
                         {
                             "field": "codeLang",
                             "type": "String",
@@ -198,6 +198,16 @@
                         }
                     ],
                     "opt" : [
+                    	{
+	                        "field": "cultureCenters",
+	                        "type": "String",
+	                        "desc": "Les centres culturels de l'époque"
+	                    },
+	                    {
+	                        "field": "description",
+	                        "type": "String",
+	                        "desc": "Une description de l'époque"
+	                    },
                     ]
                 }
             ], 
@@ -211,12 +221,12 @@
                     {
                         "field": "name",
                         "type": "String",
-                        "desc": "Le nom historique de l'époque"
+                        "desc": "Le nom de l'époque"
                     },
                     {
-                        "field": "currentName",
+                        "field": "cultureCenters",
                         "type": "String",
-                        "desc": "Le nom actuel de l'époque"
+                        "desc": "Les centres culturels de l'époque"
                     },
                     {
                         "field": "description",
@@ -224,9 +234,14 @@
                         "desc": "Une description de l'époque"
                     },
                     {
-                        "field": "GPS",
+                        "field": "dateBegin",
+                        "type": "int",
+                        "desc": "La date de début de l'époque"
+                    },
+                    {
+                        "field": "dateEnd",
                         "type": "String",
-                        "desc": "Les coordonnées GPS de l'époque"
+                        "desc": "La date de fin de l'époque"
                     },
                     {
                         "field": "codeLang",
@@ -237,7 +252,7 @@
                         "field": "idGroup",
                         "type": "Int",
                         "desc": "L'identifiant du groupe de recherche"
-                    }
+                    } 
                 ]
             }
         },
@@ -257,43 +272,48 @@
             "param": [
                 {
                     "mandatory" : [
-                        {
-                            "field": "idEra",
-                            "type": "int",
-                            "desc": "L'identifiant de l'époque"
-                        },
-                        {
-                            "field": "name",
-                            "type": "String",
-                            "desc": "Le nom historique de l'époque"
-                        },
-                        {
-                            "field": "currentName",
-                            "type": "String",
-                            "desc": "Le nom actuel de l'époque"
-                        },
-                        {
-                            "field": "description",
-                            "type": "String",
-                            "desc": "Une description de l'époque"
-                        },
-                        {
-                            "field": "GPS",
-                            "type": "String",
-                            "desc": "Les coordonnées GPS de l'époque"
-                        },
-                        {
-                            "field": "codeLang",
-                            "type": "String",
-                            "desc": "La langue dans laquelle l'époque est récupéré"
-                        },
-                        {
-                            "field": "idGroup",
-                            "type": "Int",
-                            "desc": "L'identifiant du groupe de recherche"
-                        }
+	                    {
+	                        "field": "idEra",
+	                        "type": "int",
+	                        "desc": "L'identifiant de l'époque"
+	                    }
                     ],
                     "opt" : [
+                    	{
+	                        "field": "name",
+	                        "type": "String",
+	                        "desc": "Le nom de l'époque"
+	                    },
+	                    {
+	                        "field": "cultureCenters",
+	                        "type": "String",
+	                        "desc": "Les centres culturels de l'époque"
+	                    },
+	                    {
+	                        "field": "description",
+	                        "type": "String",
+	                        "desc": "Une description de l'époque"
+	                    },
+	                    {
+	                        "field": "dateBegin",
+	                        "type": "int",
+	                        "desc": "La date de début de l'époque"
+	                    },
+	                    {
+	                        "field": "dateEnd",
+	                        "type": "String",
+	                        "desc": "La date de fin de l'époque"
+	                    },
+	                    {
+	                        "field": "codeLang",
+	                        "type": "String",
+	                        "desc": "La langue dans laquelle l'époque est récupéré"
+	                    },
+	                    {
+	                        "field": "idGroup",
+	                        "type": "Int",
+	                        "desc": "L'identifiant du groupe de recherche"
+	                    }
                     ]
                 }
             ], 
@@ -307,17 +327,27 @@
                     {
                         "field": "name",
                         "type": "String",
-                        "desc": "Le nom historique de l'époque"
+                        "desc": "Le nom de l'époque"
                     },
                     {
-                        "field": "currentName",
+                        "field": "cultureCenters",
                         "type": "String",
-                        "desc": "Le nom actuel de l'époque"
+                        "desc": "Les centres culturels de l'époque"
                     },
                     {
                         "field": "description",
                         "type": "String",
                         "desc": "Une description de l'époque"
+                    },
+                    {
+                        "field": "dateBegin",
+                        "type": "int",
+                        "desc": "La date de début de l'époque"
+                    },
+                    {
+                        "field": "dateEnd",
+                        "type": "String",
+                        "desc": "La date de fin de l'époque"
                     },
                     {
                         "field": "codeLang",
