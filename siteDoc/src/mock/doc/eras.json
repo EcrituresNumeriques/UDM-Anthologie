@@ -1,5 +1,5 @@
 {
-    "title": "Epoque",
+    "title": "Epoques",
     "section": [
         {
             "subtitle": "Récuperer les informations sur une époque",
@@ -80,7 +80,7 @@
         },
         {
             "subtitle": "Lister toutes les époques",
-            "slug": "lister-toutes-les-époques",
+            "slug": "lister-toutes-les-epoques",
             "desc": "La methode permet de récuperer la liste des époques. Elle peut être filtré par langue et par groupe de recherche",
             "url": {
                 "mandatory": [
@@ -152,11 +152,11 @@
         },
         {
             "subtitle": "Créer une époque",
-            "slug": "creer-une-époque",
+            "slug": "creer-une-epoque",
             "desc": "La methode permet de créer une époque",
             "url": {
                 "mandatory": [
-                    "/eras/",
+                    "/eras/"
                 ],
                 "opt": [ 
                     
@@ -243,11 +243,11 @@
         },
         {
             "subtitle": "Editer une époque",
-            "slug": "editer-une-époque",
+            "slug": "editer-une-epoque",
             "desc": "La methode permet d'éditer une époque",
             "url": {
                 "mandatory": [
-                    "/eras/:id",
+                    "/eras/:id"
                 ],
                 "opt": [ 
                     
@@ -334,11 +334,11 @@
         },
         {
             "subtitle": "Supprimer une époque",
-            "slug": "supprimer-une-époque",
+            "slug": "supprimer-une-epoque",
             "desc": "La methode permet de supprimer une époque",
             "url": {
                 "mandatory": [
-                    "/eras/:id",
+                    "/eras/:id"
                 ],
                 "opt": [ 
                     

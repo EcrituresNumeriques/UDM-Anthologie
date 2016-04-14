@@ -151,7 +151,7 @@
             "desc": "La methode permet de créer une ville",
             "url": {
                 "mandatory": [
-                    "/cities/",
+                    "/cities/"
                 ],
                 "opt": [ 
                     
@@ -242,7 +242,7 @@
             "desc": "La methode permet d'éditer une ville",
             "url": {
                 "mandatory": [
-                    "/cities/:id",
+                    "/cities/:id"
                 ],
                 "opt": [ 
                     
@@ -333,7 +333,7 @@
             "desc": "La methode permet de supprimer une ville",
             "url": {
                 "mandatory": [
-                    "/cities/:id",
+                    "/cities/:id"
                 ],
                 "opt": [ 
                     
