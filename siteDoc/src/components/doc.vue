@@ -42,7 +42,7 @@ export default {
         return {
         data: {},
         dataContent : {},
-        url: 'users.json'
+        url: 'notes.json'
         }
     },
   
@@ -54,7 +54,6 @@ export default {
             Vue.resource(api.baseUrl+url).get().then(function(response){
                 
                 self.dataContent = response.data
-                console.log("wesh " + response.data)
                     
                 }, function(response){console.log(response.status)
             })

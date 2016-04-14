@@ -3,7 +3,7 @@
         {
             "title": "Notes",
             "link": "notes.json",
-            "clean": "notes",
+            "slug": "notes",
             "subtitle": [
                 {
                     "name": "Récuperer les informations sur une note",
@@ -24,6 +24,33 @@
                 {
                     "name": "Supprimer une note",
                     "slug": "supprimer-une-note"
+                }
+            ]
+        },
+        {
+            "title": "Langues",
+            "link": "languages.json",
+            "slug": "langues",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur une langue",
+                    "slug": "recuperer-les-informations-sur-une-langue"
+                },
+                {
+                    "name": "Lister toutes les langues",
+                    "slug": "lister-toutes-les-langues"
+                },
+                {
+                    "name": "Créer une langue",
+                    "slug": "creer-une-langue"
+                },
+                {
+                    "name": "Editer une langue",
+                    "slug": "editer-une-langue"
+                },
+                {
+                    "name": "Supprimer une langue",
+                    "slug": "supprimer-une-langue"
                 }
             ]
         }

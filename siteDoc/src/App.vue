@@ -13,7 +13,7 @@ import AppHeader from './components/app-header.vue'
 import AppFooter from './components/app-footer.vue'
 import Home from './components/home.vue'
 import Doc from './components/doc.vue'
-import DocContent from './components/doc-content.vue'
+import DocContent from './components/doc-content.vue' 
 
 export default {
     
