@@ -28,16 +28,16 @@
                                         <td>{{ mandatory.type }}</td>
                                         <td>{{ mandatory.desc }}</td>
                                     </tr>
-                                    <tr v-for="opt in param.opt">
+                                    <tr v-for="opt in param.opt" class="table-opt">
                                         <td>{{ opt.field }}</td>
                                         <td>{{ opt.type }}</td>
-                                        <td>{{{ opt.desc }}}</td>
+                                        <td>(facultatif) {{{ opt.desc }}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-if="section.reponses.success.length">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <caption>Success</cpation>
@@ -53,27 +53,6 @@
                                         <td>{{ success.field }}</td>
                                         <td>{{ success.type }}</td>
                                         <td>{{ success.desc }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <caption>Errors</cpation>
-                                <thead>
-                                    <tr>
-                                        <th>Number</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="error in section.reponses.errors">
-                                        <td>{{ error.number }}</td>
-                                        <td>{{ error.title }}</td>
-                                        <td>{{ error.desc }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -191,7 +170,7 @@ nav.doc-nav{
                             font-weight: 400;
                             color: $default-color;
                             opacity: .4;
-                            
+                             
                             &:hover{
                                 opacity: 1;
                             }
@@ -241,6 +220,12 @@ nav.doc-nav{
         td{
             opacity: .6;
         }
+        
+            
+            tr.table-opt{
+                color: #4c949f;
+                opacity: 1;
+            }
     }
     
     .text-container{

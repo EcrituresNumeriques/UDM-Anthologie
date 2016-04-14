@@ -2,23 +2,21 @@
     <div class="app-header">
         <div class="row">
             <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="hidden-xs hidden-sm navbar-header">
-                        <a class="navbar-brand" v-link="{ path : '/home' }">Anthologie palatine</a>
-                    </div>
-                    <div class="nav navbar-nav navbar-right">
-                        <ul class="list-inline col-xs-9 col-md-10 text-right">
-                            <li><a v-link="{ path : '/home' }" v-link-active>Accueil</a></li>
-                            <li><a v-link="{ path : '/documentation' }">Documentation</a></li>
-                            <li class="hidden-xs hidden-sm"><a href="#">Accès API</a></li>
-                            <li class="hidden-xs hidden-sm"><a href="#">Exemple</a></li>
-                        </ul>
-                        <div class="col-xs-3 col-md-2">
-                            <select name="lang" id="lang" class="form-control">
-                                <option value="fr">Fr</option>
-                                <option value="en">En</option>
-                            </select>
-                        </div>
+                <div class="hidden-xs hidden-sm navbar-header">
+                    <a class="navbar-brand" v-link="{ path : '/home' }">Anthologie palatine</a>
+                </div>
+                <div class="nav navbar-nav navbar-right">
+                    <ul class="list-inline col-xs-9 col-md-10 text-right">
+                        <li><a v-link="{ path : '/home' }" v-link-active>Accueil</a></li>
+                        <li><a v-link="{ path : '/documentation' }">Documentation</a></li>
+                        <li class="hidden-xs hidden-sm"><a href="#">Accès API</a></li>
+                        <li class="hidden-xs hidden-sm"><a href="#">Exemple</a></li>
+                    </ul>
+                    <div class="col-xs-3 col-md-2">
+                        <select name="lang" id="lang" class="form-control">
+                            <option value="fr">Fr</option>
+                            <option value="en">En</option>
+                        </select>
                     </div>
                 </div>
             </nav>

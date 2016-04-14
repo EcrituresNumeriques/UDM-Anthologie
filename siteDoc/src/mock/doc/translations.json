@@ -1,12 +1,12 @@
 {
-    "title": "Livres",
+    "title": "Traductions",
     "section": [
         {
-            "subtitle": "Récuperer les informations sur un livre",
-            "slug": "recuperer-les-informations-sur-un-livre",
-            "desc": "La methode permet de récuperer un livre. Elle peut être filtré par langue et par groupe de recherche",
+            "subtitle": "Récuperer les informations sur une traduction",
+            "slug": "recuperer-les-informations-sur-une-traduction",
+            "desc": "La methode permet de récuperer une traduction. Elle peut être filtré par langue et par groupe de recherche",
             "url": {
-                "mandatory": "/books/:idBook",
+                "mandatory": "/translations/:idTranslation",
                 "opt": [ "/lang/:codeLang", "/group/:idGroup"]
             },
             "method": "GET",
@@ -14,10 +14,15 @@
                 {
                     "mandatory" : [
                         {
-                            "field": "idBook",
+                            "field": "idTranslation",
                             "type": "int",
-                            "desc": "L'identifiant du livre"
-                        }
+                            "desc": "L'identifiant de la traduction"
+                        },
+                        {
+                                "field": "text",
+                                "type": "int",
+                                "desc": "Le texte de la traduction"
+                        }                        
                     ],
                     "opt" : [
                         {
@@ -36,35 +41,40 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "idBook",
+                        "field": "idTranslation",
                         "type": "int",
-                        "desc": "L'identifiant du livre"
+                        "desc": "L'identifiant de la traduction"
                     },
                     {
                         "field": "name",
-                        "type": "Strong",
-                        "desc": "Le nom du livre"
+                        "type": "String",
+                        "desc": "Le nom de la traduction"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de la traduction"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le livre est récupéré"
+                        "desc": "La langue dans laquelle la traduction est écrite"
                     },
                     {
-                        "field": "idGroup",
+                        "field": "idUser",
                         "type": "Int",
-                        "desc": "L'identifiant du groupe de recherche"
+                        "desc": "L'identifiant de l'utilisateur qui a créé la traduction"
                     }
                 ]
             }
         },
         {
-            "subtitle": "Lister tous les livres",
-            "slug": "lister-tous-les-livres",
-            "desc": "La methode permet de récuperer la liste des livres. Elle peut être filtré par langue et par groupe de recherche",
+            "subtitle": "Lister toutes les traductions",
+            "slug": "lister-toutes-les-traductions",
+            "desc": "La methode permet de récuperer la liste des traductions. Elle peut être filtré par langue et par groupe de recherche",
             "url": {
                 "mandatory": [
-                    "/books/"
+                    "/translations/"
                 ],
                 "opt": [ 
                     "/lang/:codeLang",
@@ -93,35 +103,40 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "idBook",
+                        "field": "idTranslation",
                         "type": "int",
-                        "desc": "L'identifiant du livre"
+                        "desc": "L'identifiant de la traduction"
                     },
                     {
                         "field": "name",
-                        "type": "Strong",
-                        "desc": "Le nom du livre"
+                        "type": "String",
+                        "desc": "Le nom de la traduction"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de la traduction"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le livre est récupéré"
+                        "desc": "La langue dans laquelle la traduction est écrite"
                     },
                     {
-                        "field": "idGroup",
+                        "field": "idUser",
                         "type": "Int",
-                        "desc": "L'identifiant du groupe de recherche"
+                        "desc": "L'identifiant de l'utilisateur qui a créé la traduction"
                     }
                 ]
             }
         },
         {
-            "subtitle": "Créer un livre",
-            "slug": "creer-un-livre",
-            "desc": "La methode permet de créer un livre",
+            "subtitle": "Créer une traduction",
+            "slug": "creer-une-traduction",
+            "desc": "La methode permet de créer une traduction",
             "url": {
                 "mandatory": [
-                    "/books/"
+                    "/translations/"
                 ],
                 "opt": [ 
                     
@@ -133,13 +148,23 @@
                     "mandatory" : [
                         {
                             "field": "name",
-                            "type": "Strong",
-                            "desc": "Le nom du livre"
+                            "type": "String",
+                            "desc": "Le nom historique de la traduction"
+                        },
+                        {
+                            "field": "description",
+                            "type": "String",
+                            "desc": "Une description de l'époque"
+                        },
+                        {
+                            "field": "text",
+                            "type": "int",
+                            "desc": "Le texte de la traduction"
                         },
                         {
                             "field": "codeLang",
                             "type": "String",
-                            "desc": "La langue dans laquelle le livre est récupéré"
+                            "desc": "La langue dans laquelle l'époque est récupéré"
                         },
                         {
                             "field": "idGroup",
@@ -154,35 +179,40 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "idBook",
+                        "field": "idTranslation",
                         "type": "int",
-                        "desc": "L'identifiant du livre"
+                        "desc": "L'identifiant de la traduction"
                     },
                     {
                         "field": "name",
-                        "type": "Strong",
-                        "desc": "Le nom du livre"
+                        "type": "String",
+                        "desc": "Le nom de la traduction"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de la traduction"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le livre est récupéré"
+                        "desc": "La langue dans laquelle la traduction est écrite"
                     },
                     {
-                        "field": "idGroup",
+                        "field": "idUser",
                         "type": "Int",
-                        "desc": "L'identifiant du groupe de recherche"
+                        "desc": "L'identifiant de l'utilisateur qui a créé la traduction"
                     }
                 ]
             }
         },
         {
-            "subtitle": "Editer un livre",
-            "slug": "editer-un-livre",
-            "desc": "La methode permet d'éditer un livre",
+            "subtitle": "Editer une traduction",
+            "slug": "editer-une-traduction",
+            "desc": "La methode permet d'éditer une traduction",
             "url": {
                 "mandatory": [
-                    "/books/:id"
+                    "/translations/:id"
                 ],
                 "opt": [ 
                     
@@ -193,19 +223,24 @@
                 {
                     "mandatory" : [
                         {
-                            "field": "idBook",
-                            "type": "int",
-                            "desc": "L'identifiant du livre"
+                            "field": "name",
+                            "type": "String",
+                            "desc": "Le nom historique de la traduction"
                         },
                         {
-                            "field": "name",
-                            "type": "Strong",
-                            "desc": "Le nom du livre"
+                            "field": "description",
+                            "type": "String",
+                            "desc": "Une description de l'époque"
+                        },
+                        {
+                            "field": "text",
+                            "type": "int",
+                            "desc": "Le texte de la traduction"
                         },
                         {
                             "field": "codeLang",
                             "type": "String",
-                            "desc": "La langue dans laquelle le livre est récupéré"
+                            "desc": "La langue dans laquelle l'époque est récupéré"
                         },
                         {
                             "field": "idGroup",
@@ -220,35 +255,40 @@
             "reponses": {
                 "success": [
                     {
-                        "field": "idBook",
+                        "field": "idTranslation",
                         "type": "int",
-                        "desc": "L'identifiant du livre"
+                        "desc": "L'identifiant de la traduction"
                     },
                     {
                         "field": "name",
-                        "type": "Strong",
-                        "desc": "Le nom du livre"
+                        "type": "String",
+                        "desc": "Le nom de la traduction"
+                    },
+                    {
+                        "field": "description",
+                        "type": "String",
+                        "desc": "Une description de la traduction"
                     },
                     {
                         "field": "codeLang",
                         "type": "String",
-                        "desc": "La langue dans laquelle le livre est récupéré"
+                        "desc": "La langue dans laquelle la traduction est écrite"
                     },
                     {
-                        "field": "idGroup",
+                        "field": "idUser",
                         "type": "Int",
-                        "desc": "L'identifiant du groupe de recherche"
+                        "desc": "L'identifiant de l'utilisateur qui a créé la traduction"
                     }
                 ]
             }
         },
         {
-            "subtitle": "Supprimer un livre",
-            "slug": "supprimer-un-livre",
-            "desc": "La methode permet de supprimer un livre",
+            "subtitle": "Supprimer une traduction",
+            "slug": "supprimer-une-traduction",
+            "desc": "La methode permet de supprimer une traduction",
             "url": {
                 "mandatory": [
-                    "/books/:id"
+                    "/translatinos/:id"
                 ],
                 "opt": [ 
                     
@@ -259,9 +299,9 @@
                 {
                     "mandatory" : [
                         {
-                            "field": "idBook",
+                            "field": "idTranslations",
                             "type": "int",
-                            "desc": "L'identifiant du livre"
+                            "desc": "L'identifiant de la traduction"
                         }
                     ],
                     "opt" : [

@@ -1,0 +1,236 @@
+{
+    "title": "Langues",
+    "section": [
+        {
+            "subtitle": "Récuperer les informations sur une langue",
+            "slug": "recuperer-les-informations-sur-une-langue",
+            "desc": "La methode permet de récuperer une langue.",
+            "url": {
+                "mandatory": "/lang/:idLang",
+                "opt": [ "/lang/:familyLang"]
+            },
+            "method": "GET",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "idLang",
+                            "type": "int",
+                            "desc": "L'identifiant de la langue"
+                        }
+                    ],
+                    "opt" : [
+                        {
+                            "field": "familyLang",
+                            "type": "String",
+                            "desc": "Filtre optionnel qui permet de sélectionner une langue ou afficher toutes les langues selon la famille de langue dans laquelle elle se trouve"   
+                        }
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "id",
+                        "type": "int",
+                        "desc": "L'identifiant de la langue"
+                    },
+                    {
+                        "field": "name",
+                        "type": "Strong",
+                        "desc": "Le nom de la langue"
+                    },
+                    {
+                        "field": "familyLang",
+                        "type": "String",
+                        "desc": "Le groupe de langue"
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Lister toutes les langues",
+            "slug": "lister-toutes-les-langues",
+            "desc": "La methode permet de récuperer la liste des langues.",
+            "url": {
+                "mandatory": [
+                    "/lang/"
+                ],
+                "opt": [ 
+                    "/lang/:familyLang"
+                ]
+            },
+            "method": "GET",
+            "param": [
+                {
+                    "mandatory" : [
+                    ],
+                    "opt" : [
+                        {
+                            "field": "familyLang",
+                            "type": "String",
+                            "desc": "Filtre optionnel qui permet de sélectionner une langue ou afficher toutes les langues selon la famille de langue dans laquelle elle se trouve"  
+                        }
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "id",
+                        "type": "int",
+                        "desc": "L'identifiant de la langue"
+                    },
+                    {
+                        "field": "name",
+                        "type": "Strong",
+                        "desc": "Le nom de la langue"
+                    },
+                    {
+                        "field": "familyLang",
+                        "type": "String",
+                        "desc": "Le groupe de la langue"
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Créer une langue",
+            "slug": "creer-une-langue",
+            "desc": "La methode permet de créer une langue",
+            "url": {
+                "mandatory": [
+                    "/lang/"
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "POST",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "name",
+                            "type": "Strong",
+                            "desc": "Le nom de la langue"
+                        },
+                        {
+                            "field": "familyLang",
+                            "type": "String",
+                            "desc": "Le groupe de la langue"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "id",
+                        "type": "int",
+                        "desc": "L'identifiant de la langue"
+                    },
+                    {
+                        "field": "name",
+                        "type": "Strong",
+                        "desc": "Le nom de la langue"
+                    },
+                    {
+                        "field": "familyLang",
+                        "type": "String",
+                        "desc": "Le groupe de la langue"
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Editer une langue",
+            "slug": "editer-une-langue",
+            "desc": "La methode permet d'éditer une langue",
+            "url": {
+                "mandatory": [
+                    "/lang/:id"
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "PUT",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "id",
+                            "type": "int",
+                            "desc": "L'identifiant de la langue"
+                        },
+                        {
+                            "field": "name",
+                            "type": "Strong",
+                            "desc": "Le nom de la langue"
+                        },
+                        {
+                            "field": "familyLang",
+                            "type": "String",
+                            "desc": "Le groupe de la langue"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "id",
+                        "type": "int",
+                        "desc": "L'identifiant de la langue"
+                    },
+                    {
+                        "field": "name",
+                        "type": "Strong",
+                        "desc": "Le nom de la langue"
+                    },
+                    {
+                        "field": "familyLang",
+                        "type": "String",
+                        "desc": "Le groupe de la langue"
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Supprimer une langue",
+            "slug": "supprimer-une-langue",
+            "desc": "La methode permet de supprimer une langue",
+            "url": {
+                "mandatory": [
+                    "/lang/:id"
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "DELETE",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "id",
+                            "type": "int",
+                            "desc": "L'identifiant de la langue"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                ]
+            }
+        }
+    ]
+}

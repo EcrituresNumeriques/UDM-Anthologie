@@ -3,7 +3,7 @@
         {
             "title": "Notes",
             "link": "notes.json",
-            "clean": "notes",
+            "slug": "notes",
             "subtitle": [
                 {
                     "name": "Récuperer les informations sur une note",
@@ -24,6 +24,168 @@
                 {
                     "name": "Supprimer une note",
                     "slug": "supprimer-une-note"
+                }
+            ]
+        },
+        {
+            "title": "Langues",
+            "link": "languages.json",
+            "slug": "langues",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur une langue",
+                    "slug": "recuperer-les-informations-sur-une-langue"
+                },
+                {
+                    "name": "Lister toutes les langues",
+                    "slug": "lister-toutes-les-langues"
+                },
+                {
+                    "name": "Créer une langue",
+                    "slug": "creer-une-langue"
+                },
+                {
+                    "name": "Editer une langue",
+                    "slug": "editer-une-langue"
+                },
+                {
+                    "name": "Supprimer une langue",
+                    "slug": "supprimer-une-langue"
+                }
+            ]
+        },
+        {
+            "title": "Livres",
+            "link": "books.json",
+            "slug": "livres",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur un livre",
+                    "slug": "recuperer-les-informations-sur-un-livre"
+                },
+                {
+                    "name": "Lister tous les livres",
+                    "slug": "lister-tous-les-livres"
+                },
+                {
+                    "name": "Créer un livre",
+                    "slug": "creer-un-livre"
+                },
+                {
+                    "name": "Editer un livre",
+                    "slug": "editer-un-livre"
+                },
+                {
+                    "name": "Supprimer un livre",
+                    "slug": "supprimer-un-livre"
+                }
+            ]
+        },
+        {
+            "title": "Villes",
+            "link": "cities.json",
+            "slug": "villes",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur une ville",
+                    "slug": "recuperer-les-informations-sur-une-ville"
+                },
+                {
+                    "name": "Lister toutes les villes",
+                    "slug": "lister-toutes-les-villes"
+                },
+                {
+                    "name": "Créer une ville",
+                    "slug": "creer-une-ville"
+                },
+                {
+                    "name": "Editer une ville",
+                    "slug": "editer-une-ville"
+                },
+                {
+                    "name": "Supprimer une ville",
+                    "slug": "supprimer-une-ville"
+                }
+            ]
+        },
+        {
+            "title": "Epoques",
+            "link": "eras.json",
+            "slug": "epoques",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur une époque",
+                    "slug": "recuperer-les-informations-sur-une-epoque"
+                },
+                {
+                    "name": "Lister toutes les époques",
+                    "slug": "lister-toutes-les-epoques"
+                },
+                {
+                    "name": "Créer une époque",
+                    "slug": "creer-une-epoque"
+                },
+                {
+                    "name": "Editer une époque",
+                    "slug": "editer-une-epoque"
+                },
+                {
+                    "name": "Supprimer une époque",
+                    "slug": "supprimer-une-epoque"
+                }
+            ]
+        },
+        {
+            "title": "Traductions",
+            "link": "translations.json",
+            "slug": "traductions",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur une traduction",
+                    "slug": "recuperer-les-informations-sur-une-traduction"
+                },
+                {
+                    "name": "Lister toutes les traductions",
+                    "slug": "lister-toutes-les-traductions"
+                },
+                {
+                    "name": "Créer une traduction",
+                    "slug": "creer-une-traduction"
+                },
+                {
+                    "name": "Editer une traduction",
+                    "slug": "editer-une-traduction"
+                },
+                {
+                    "name": "Supprimer une traduction",
+                    "slug": "supprimer-une-traduction"
+                }
+            ]
+        },
+        {
+            "title": "Scholies",
+            "link": "scholies.json",
+            "slug": "scholies",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations sur une scholie",
+                    "slug": "recuperer-les-informations-sur-une-scholie"
+                },
+                {
+                    "name": "Lister toutes les scholies",
+                    "slug": "lister-toutes-les-scholies"
+                },
+                {
+                    "name": "Créer une scholie",
+                    "slug": "creer-une-scholie"
+                },
+                {
+                    "name": "Editer une scholie",
+                    "slug": "editer-une-scholie"
+                },
+                {
+                    "name": "Supprimer une scholie",
+                    "slug": "supprimer-une-scholie"
                 }
             ]
         }
