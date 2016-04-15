@@ -186,7 +186,7 @@
                             "field": "description",
                             "type": "String",
                             "desc": "Une description du personnage"
-                        },
+                        }
                     ]
                 }
             ], 

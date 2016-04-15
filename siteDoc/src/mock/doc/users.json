@@ -127,11 +127,11 @@
         },
         {
             "subtitle": "Créer un utilisateur",
-            "slug": "creer-un-livre",
+            "slug": "creer-un-utilisateur",
             "desc": "La methode permet de créer un livre",
             "url": {
                 "mandatory": [
-                    "/books/",
+                    "/books/"
                 ],
                 "opt": [ 
                     
@@ -212,7 +212,7 @@
             "desc": "La methode permet d'éditer un utilisateur",
             "url": {
                 "mandatory": [
-                    "/users/:id",
+                    "/users/:id"
                 ],
                 "opt": [ 
                     
@@ -298,7 +298,7 @@
             "desc": "La methode permet de supprimer de l'utilisateur",
             "url": {
                 "mandatory": [
-                    "/users/:id",
+                    "/users/:id"
                 ],
                 "opt": [ 
                     

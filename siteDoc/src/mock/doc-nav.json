@@ -188,6 +188,87 @@
                     "slug": "supprimer-une-scholie"
                 }
             ]
+        },
+        {
+            "title": "Images",
+            "link": "images.json",
+            "slug": "images",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations d'une image",
+                    "slug": "recuperer-les-informations-d-une-image"
+                },
+                {
+                    "name": "Lister toutes les images",
+                    "slug": "lister-toutes-les-images"
+                },
+                {
+                    "name": "Créer une image",
+                    "slug": "creer-une-image"
+                },
+                {
+                    "name": "Editer une image",
+                    "slug": "editer-une-image"
+                },
+                {
+                    "name": "Supprimer une image",
+                    "slug": "supprimer-une-image"
+                }
+            ]
+        },
+        {
+            "title": "Personnages",
+            "link": "characters.json",
+            "slug": "personnages",
+            "subtitle": [
+                {
+                    "name": "Récuperer les informations d'un personnage",
+                    "slug": "recuperer-les-informations-d-un-personnage"
+                },
+                {
+                    "name": "Lister toutes les personnages",
+                    "slug": "lister-toutes-les-personnages"
+                },
+                {
+                    "name": "Créer un personnage",
+                    "slug": "creer-un-personnage"
+                },
+                {
+                    "name": "Editer un personnage",
+                    "slug": "editer-un-personnage"
+                },
+                {
+                    "name": "Supprimer un personnage",
+                    "slug": "supprimer-un-personnage"
+                }
+            ]
+        },
+        {
+            "title": "Utilisateurs",
+            "link": "users.json",
+            "slug": "utilisateurs",
+            "subtitle": [
+                {
+                    "name": "Lire les informations utilisateurs",
+                    "slug": "Lire-les-informations-utilisateurs"
+                },
+                {
+                    "name": "Lister tous les utilisateurs",
+                    "slug": "lister-tous-les-utilisateurs"
+                },
+                {
+                    "name": "Créer un utilisateur",
+                    "slug": "creer-un-utilisateur"
+                },
+                {
+                    "name": "Editer un utilisateur",
+                    "slug": "editer-un-utilisateur"
+                },
+                {
+                    "name": "Supprimer un utilisateur",
+                    "slug": "supprimer-un-utilisateur"
+                }
+            ]
         }
     ]
 }
