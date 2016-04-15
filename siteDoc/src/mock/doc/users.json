@@ -1,0 +1,327 @@
+{
+    "title": "Utilisateurs",
+    "section": [
+        {
+            "subtitle": "Lire les informations utilisateurs",
+            "slug": "Lire-les-informations-utilisateurs",
+            "desc": "La methode permet de récuperer les informations utilisateur",
+            "url": {
+                "mandatory": "/users/:idUser",
+                "opt": [ ]
+            },
+            "method": "GET",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "idUser",
+                            "type": "int",
+                            "desc": "L'identifiant de l'utilisateur"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idUser",
+                        "type": "int",
+                        "desc": "L'identifiant de l'utilisateur"
+                    },
+                    {
+                        "field": "firstName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "lastName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "email",
+                        "type": "String",
+                        "desc": "le mail de l'utilisateur."
+                    },
+                    {
+                        "field": "lang",
+                        "type": "int",
+                        "desc": "Langue de l'utilisateur, se refère à <a href='#'>la page langue</a>."
+                    },
+                    {
+                        "field": "country",
+                        "type": "String",
+                        "desc": "Pays d'origine de l'utilisateur."
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Lister tous les utilisateurs",
+            "slug": "lister-tous-les-utilisateurs",
+            "desc": "La methode permet de récuperer la liste des utilisateurs. Elle peut être filtré par langue et par groupe de recherche",
+            "url": {
+                "mandatory": [
+                    "/users/"
+                ],
+                "opt": [ 
+                    "/lang/:codeLang",
+                    "/group/:idGroup"
+                ]
+            },
+            "method": "GET",
+            "param": [
+                {
+                    "mandatory" : [
+                    ],
+                    "opt" : [
+                        {
+                            "field": "codeLang",
+                            "type": "String",
+                            "desc": "Filtre optionnel qui permet de sélectionner une langue ou afficher toutes les langues,<a href='#'>voir la lise des langues</a>"   
+                        },
+                        {
+                            "field": "idGroup",
+                            "type": "int",
+                            "desc": "Filtre optionnel qui permet de sélectionner un groupe ou afficher tous les groupes,<a href='#'>voir la lise des groupes</a>"   
+                        }
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idUser",
+                        "type": "int",
+                        "desc": "l'identifiant de l'utilisateur."
+                    }, 
+                    {
+                        "field": "firstName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "lastName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "mail",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "lang",
+                        "type": "int",
+                        "desc": "Langue de l'utilisateur, se refère à <a href='#'>la page langue</a>."
+                    },
+                    {
+                        "field": "country",
+                        "type": "String",
+                        "desc": "Pays d'origine de l'utilisateur."
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Créer un utilisateur",
+            "slug": "creer-un-livre",
+            "desc": "La methode permet de créer un livre",
+            "url": {
+                "mandatory": [
+                    "/books/",
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "POST",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                        	"field": "mail",
+                        	"type": "String",
+                        	"desc": "Nom de l'utilisateur."
+                    	},
+                        {
+                            "field": "codeLang",
+                            "type": "String",
+                            "desc": "La langue dans laquelle le livre est récupéré"
+                        },
+                        {
+                            "field": "idGroup",
+                            "type": "Int",
+                            "desc": "L'identifiant du groupe de recherche"
+                        }
+                    ],
+                    "opt" : [
+                    	{
+	                        "field": "firstName",
+	                        "type": "String",
+	                        "desc": "Nom de l'utilisateur."
+	                    },
+	                    {
+	                        "field": "lastName",
+	                        "type": "String",
+	                        "desc": "Nom de l'utilisateur."
+	                    }
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idUser",
+                        "type": "int",
+                        "desc": "l'identifiant de l'utilisateur."
+                    }, 
+                    {
+                        "field": "firstName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "lastName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "mail",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "lang",
+                        "type": "int",
+                        "desc": "Langue de l'utilisateur, se refère à <a href='#'>la page langue</a>."
+                    },
+                    {
+                        "field": "country",
+                        "type": "String",
+                        "desc": "Pays d'origine de l'utilisateur."
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Editer un utilisateur",
+            "slug": "editer-un-utilisateur",
+            "desc": "La methode permet d'éditer un utilisateur",
+            "url": {
+                "mandatory": [
+                    "/users/:id",
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "PUT",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+	                        "field": "idUser",
+	                        "type": "int",
+	                        "desc": "l'identifiant de l'utilisateur."
+	                    }, 
+	                    {
+	                        "field": "firstName",
+	                        "type": "String",
+	                        "desc": "Nom de l'utilisateur."
+	                    },
+	                    {
+	                        "field": "lastName",
+	                        "type": "String",
+	                        "desc": "Nom de l'utilisateur."
+	                    },
+	                    {
+	                        "field": "mail",
+	                        "type": "String",
+	                        "desc": "Nom de l'utilisateur."
+	                    },
+	                    {
+	                        "field": "lang",
+	                        "type": "int",
+	                        "desc": "Langue de l'utilisateur, se refère à <a href='#'>la page langue</a>."
+	                    },
+	                    {
+	                        "field": "country",
+	                        "type": "String",
+	                        "desc": "Pays d'origine de l'utilisateur."
+	                    }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                    {
+                        "field": "idUser",
+                        "type": "int",
+                        "desc": "l'identifiant de l'utilisateur."
+                    }, 
+                    {
+                        "field": "firstName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "lastName",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "mail",
+                        "type": "String",
+                        "desc": "Nom de l'utilisateur."
+                    },
+                    {
+                        "field": "lang",
+                        "type": "int",
+                        "desc": "Langue de l'utilisateur, se refère à <a href='#'>la page langue</a>."
+                    },
+                    {
+                        "field": "country",
+                        "type": "String",
+                        "desc": "Pays d'origine de l'utilisateur."
+                    }
+                ]
+            }
+        },
+        {
+            "subtitle": "Supprimer un utilisateur",
+            "slug": "supprimer-un-utilisateur",
+            "desc": "La methode permet de supprimer de l'utilisateur",
+            "url": {
+                "mandatory": [
+                    "/users/:id",
+                ],
+                "opt": [ 
+                    
+                ]
+            },
+            "method": "DELETE",
+            "param": [
+                {
+                    "mandatory" : [
+                        {
+                            "field": "idUser",
+                            "type": "int",
+                            "desc": "L'identifiant de l'utilisateur"
+                        }
+                    ],
+                    "opt" : [
+                    ]
+                }
+            ], 
+            "reponses": {
+                "success": [
+                ]
+            }
+        }
+    ]
+}
