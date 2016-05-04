@@ -46,102 +46,76 @@ export default {
 <style lang="sass">
 $default-color: #366870;
 
-    .title-container,
-    .subtitle-container,
-    .link-container,
-    .desc-container{
-        margin: 15% 0;
-    }
+home
+  margin: 0 -15px
 
-    .title-container{
-        
-        h1{
-            font-weight: bold;  
-            padding: 0 2%;
-        }
-    }
+.title-container,
+.subtitle-container,
+.link-container,
+.desc-container
+  margin: 15% 0
+
+.title-container
+  h1
+    font-weight: bold
+    padding: 0 2%
+
+.subtitle-container
+  h2
+   font-size: 24px
+   opacity: .6;padding: 0 5%
+
+.link-container
+  a
+    display: block
+    background: $default-color
+    color: #fff
+    font-size: 18px
+    font-weight: bold
+    padding: 3.5% 0%
+    border: 3px solid $default-color
+    transition: .2s all linear
+    width: 72%
+    text-align: center
+    margin: 0 auto
     
-    .subtitle-container{
-        
-        h2{
-            font-size: 24px;
-            opacity: .6;
-            padding: 0 5%;
-        }
-    }
+    &:hover,
+    &:focus
+      text-decoration: none
+      background: #fff
+      color: $default-color
+
+.desc-container
+  p
+    padding: 0 5%
+    color: #000
+    line-height: 2em
+
+@media (min-width: 992px)
+
+  .title-container,
+  .subtitle-container,
+  .link-container,
+  .desc-container
+    margin: 11% 0
     
-    .link-container{
+  .title-container
+    h1
+      font-size: 66px
+      padding: 0
+      
+  .subtitle-container
+    h2
+      font-size: 44px
         
-        a{
-            display: inline-block;
-            background: $default-color;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 5% 0%;
-            border: 3px solid $default-color;
-            transition: .2s all linear;
-            width: 50%;
-            text-align: center;
-            margin: 0 25%;
-            
-            &:hover,
-            &:focus{
-                text-decoration: none;
-                background: #fff;
-                color: $default-color;
-            }
-        }
-    }
-    
-    .desc-container{
-        
-        p{
-            padding: 0 5%;
-            color: #000;
-            line-height: 2em;
-        }
-    }
-    
-    @media (min-width: 992px){
-        
-        .title-container,
-        .subtitle-container,
-        .link-container,
-        .desc-container{
-            margin: 5% 0;
-        }
-        
-        .title-container{
-                        
-            h1{
-                font-size: 72px;
-                padding: 0;
-            }
-        }
-        
-        .subtitle-container{
-            
-            h2{
-                font-size: 48px;
-            }
-        }
-        
-        .link-container{
-            
-            a{
-                font-size: 36px;
-                width: 60%;
-                margin: 0;
-            }
-        }
-        
-        .desc-container{
-            
-            p{
-                font-size: 28px;
-            }
-        }
-    }
+  .link-container
+    a
+      font-size: 34px
+      margin: 0
+      display: inline-block
+          
+  .desc-container
+    p
+      font-size: 24px
     
 </style>

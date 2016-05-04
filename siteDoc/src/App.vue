@@ -9,15 +9,16 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import AppHeader from './components/app-header.vue'
 import AppFooter from './components/app-footer.vue'
 import Home from './components/home.vue'
 import Doc from './components/doc.vue'
-import DocContent from './components/doc-content.vue' 
+import DocContent from './components/doc-content.vue'
 
 export default {
     
-  name: 'App',
+  name: 'app',
   components: {
     AppHeader,
     AppFooter,
@@ -29,11 +30,9 @@ export default {
 </script>
 
 <style lang="sass">
-$default-color: #366870;
 
-body {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: $default-color;
-    overflow-x: hidden;
-}
+body
+  font-family: 'Source Sans Pro', sans-serif
+  overflow-x: hidden
+
 </style>

@@ -30,99 +30,76 @@
 <style lang="sass">
 $default-color: #366870;
 
-.app-footer{
-    border-top: 1px solid $default-color;
-    padding-bottom: 50px;
-    margin: 0 -15px;
-    background: #fff;
+.app-footer
+  border-top: 1px solid $default-color
+  padding-bottom: 50px
+  margin: 0 -15px
+  background: #fff
+  
+  >.row
+    &:first-child
+      padding-top: 30px
       
-    >.row{
-                  
-        &:first-child{
-            padding-top: 30px;
-        }
-    }
+  .navbar-header
+    padding-left: 50px
     
-    .navbar-header{
-        padding-left: 50px;
-          
-        .navbar-brand{
-            color: $default-color;
-            font-weight: 700;
-            transition: .2 all linear;
-            font-size: 28px;
-              
-            &:hover,
-            &:focus{
-                text-decoration: none;
-                opacity: .8;
-            }
-        }
-    }
+    .navbar-brand
+      color: $default-color
+      font-weight: 700
+      transition: .2 all linear
+      font-size: 28px
       
-    ul{
+      &:hover,
+      &:focus
+        text-decoration: none
+        opacity: .8
+        
+  ul
+    li
+      a
+        opacity: 0.5
+        font-size: 24px
+        color: #000
+        transition: .2s all linear
+        
+        &:hover,
+        &:focus,
+        &.v-link-active
+          opacity: 1
+          color: $default-color
+          text-decoration: none
           
-        li{
-              
-            a{                  
-                opacity: 0.5;
-                font-size: 24px;
-                color: #000;
-                transition: .2s all linear;
-                
-                &:hover,
-                &:focus,
-                &.v-link-active{
-                    opacity: 1;
-                    color: $default-color;
-                    text-decoration: none;
-                }
-            }
-        }
+    &.social
+      a
+        opacity: 1
+        margin: 0 5px
+        
+        i.fa
+          color: #000
           
-        &.social{
-              
-            a{
-                opacity: 1;  
-                margin: 0 5px;  
-                                  
-                i.fa{
-                    color: #000;
-                }
-                    
-                &:hover,
-                &:focus{
-                    opacity: .5;
-                }              
-            }              
-        }
-    }
-      
-    .copyright{
-        margin: 5% 0 0;
-        padding-left: 5%;
+        &:hover,
+        &:focus
+          opacity: .5
           
-        p{
-            color: rgba(0, 0, 0, .5);
-            font-size: 14px;     
-            margin: 0;       
-        }          
-    }
+          
+  .copyright
+    margin: 5% 0 0
+    padding-left: 5%
     
-    @media (min-width: 992px){
+    p
+      color: rgba(0, 0, 0, .5)
+      font-size: 14px
+      margin: 0
+      
+  @media (min-width: 992px)
+    .social
+      margin: 0
+    
+    .copyright
+      margin: 2% 0 0
+      padding: 0
+      
+      >div
+        padding: 25px
         
-        .social{
-            margin: 0;
-        }
-        
-        .copyright{
-            margin: 2% 0 0;
-            padding: 0;
-            
-            >div{
-                padding: 25px;
-            }
-        }
-    }
-}
 </style>

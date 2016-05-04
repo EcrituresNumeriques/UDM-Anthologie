@@ -207,7 +207,7 @@
 	                        "field": "description",
 	                        "type": "String",
 	                        "desc": "Une description de l'époque"
-	                    },
+	                    }
                     ]
                 }
             ], 

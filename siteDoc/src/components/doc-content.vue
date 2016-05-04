@@ -78,182 +78,114 @@ export default {
       data: {}
     }
   }
-
 }
 </script>
 
 <style lang="sass">
-$default-color: #366870;
-$bg-code: #434343;
-$grey: #848484;
+$default-color: #366870
+$bg-code: #434343
+$grey: #848484
 
-.doc{
-    position: relative;
-    margin: 0 -15px;
-    
-    >.row{
-        padding-top: 5%;
-    }
-}
+.doc
+  position: relative
+  margin: 0 -15px    
+  >.row
+    padding-top: 5%
 
-nav.doc-nav{
-    margin: 0;
+nav.doc-nav
+  margin: 0    
+  .navbar-header        
+    button            
+      .glyphicon
+        font-size: 30px           
+      .glyphicon-menu-down
+        display: initial   
+      .glyphicon-menu-up
+        display: none  
+      &[aria-expanded="true"]
+        .glyphicon-menu-down
+          display: none
+        .glyphicon-menu-up
+          display: initial
     
-    .navbar-header{
-        
-        button{
-            
-            .glyphicon{
-                font-size: 30px;              
-            }
-            
-            .glyphicon-menu-down{
-                display: initial;
-            }
-            
-            .glyphicon-menu-up{
-                display: none;
-            }
-            
-            &[aria-expanded="true"]{               
+  .navbar-collapse
+    border-bottom: 1px solid $default-color
+    padding: 0 10% 10%
+    margin-bottom: 10%        
+    ul            
+      li
+        margin: 5% 0
+        padding: 0                
+        a
+          font-size: 24px
+          font-weight: 700
+          color: $grey
+          transition: .2s all linear                    
+          &:hover,
+          &.v-link-active
+            color: $default-color
+            text-decoration: none   
+          &.v-link-active
+            ~ul
+              display: block
+        ul
+          list-style: none
+          display: none
+          li
+            a
+              font-size: 15px
+              font-weight: 400
+              color: $default-color
+              opacity: .4
+              &:hover
+                opacity: 1
                 
-                .glyphicon-menu-down{
-                    display: none;
-                }
+  @media (min-width: 768px)
+    .navbar-collapse
+      border: none
+      
+.content-container
+  padding: 0 10%
+  margin-bottom: 50px    
+  .subtitle-container,
+  .text-container
+    margin: 5% 0
+  .title-container
+    margin: 0 0 10%
+    h3
+      font-size: 36px
+      font-weight: 700
+      margin-top: 0
+    
+  .subtitle-container
+    h4
+      font-size: 24px  
                 
-                .glyphicon-menu-up{
-                    display: initial;
-                }
-            }
-        }
-    }
-    
-    .navbar-collapse{
-        border-bottom: 1px solid $default-color;
-        padding: 0 10% 10%;
-        margin-bottom: 10%;
+  table
+    td
+      opacity: .6
+      tr.table-opt
+        color: #4c949f
+        opacity: 1
         
-        ul{
-            
-            li{
-                margin: 5% 0;
-                padding: 0;
-                
-                a{
-                    font-size: 24px;
-                    font-weight: 700;
-                    color: $grey;
-                    transition: .2s all linear;
-                    
-                    &:hover,
-                    &.v-link-active{
-                        color: $default-color;
-                        text-decoration: none;
-                    }
-                    
-                    &.v-link-active{
-                        
-                        ~ul{
-                            display: block;
-                        }
-                    }
-                }
-                
-                ul{
-                    list-style: none;
-                    display: none;
-                    
-                    li{
-                        
-                        a{
-                            font-size: 15px;
-                            font-weight: 400;
-                            color: $default-color;
-                            opacity: .4;
-                             
-                            &:hover{
-                                opacity: 1;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    @media (min-width: 768px){
-        
-        .navbar-collapse{
-            border: none;
-        }
-    }
-}
-
-.content-container{
-    padding: 0 10%;
-    margin-bottom: 50px;
-    
-    .subtitle-container,
-    .text-container{
-        margin: 5% 0;
-    }
-    
-    .title-container{
-        margin: 0 0 10%;
-        
-        h3{
-            font-size: 36px;
-            font-weight: 700;
-            margin-top: 0;
-        }
-    }
-    
-    .subtitle-container{
-        
-        h4{
-            font-size: 24px;            
-        }        
-    }
-    
-    table{
-        
-        td{
-            opacity: .6;
-        }
-        
-            
-            tr.table-opt{
-                color: #4c949f;
-                opacity: 1;
-            }
-    }
-    
-    .text-container{
-        
-        p{
-            font-size: 16px;
-            color: #000;
-            line-height: 1.6;
-            margin: 5% 0 10%;
-        }
-        
-        code{
-            background: $bg-code;
-            border-radius: 0;
-            color: #fff;
-            padding: 2% 5%;
-            font-family: 'Inconsolata', sans-serif;
-            width: 100%;
-            display: inline-block;
-            overflow-x: scroll;
-            white-space: nowrap;
-            font-size: 18px;
-            
-            .opt{
-                color: #4c949f;
-            }
-        }
-    }
-}
+  .text-container        
+    p
+      font-size: 16px
+      color: #000
+      line-height: 1.6
+      margin: 5% 0 10%      
+    code
+      background: $bg-code
+      border-radius: 0
+      color: #fff
+      padding: 2% 5%
+      font-family: 'Inconsolata', sans-serif
+      width: 100%
+      display: inline-block
+      overflow-x: scroll
+      white-space: nowrap
+      font-size: 18px      
+      .opt
+        color: #4c949f
 
 </style>
