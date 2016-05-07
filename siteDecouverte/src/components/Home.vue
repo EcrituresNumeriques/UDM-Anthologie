@@ -2,6 +2,7 @@
   <div class="home">
     <div class="row">
         <div class="col-md-6 col-md-offset-1 left-column">
+            <main-nav></main-nav>
             <nav class="navbar navbar-default">
                 <ul class="nav">
                     <li><a href="#"><span class="dash"></span>Mélé / Contraste<sup>I</sup></a></li>
@@ -18,7 +19,7 @@
                 <h1>L’Anthologie<br> Palatine & découverte.</h1>
             </div>
         </div>
-        <div class="col-md-5 pull-right right-column">
+        <div class="col-md-5 right-column">
             <img src="~assets/img/img.png">
         </div>
     </div>
@@ -26,7 +27,13 @@
 </template>
 
 <script>
+import MainNav from './MainNav'
+
 export default {
+  components: {
+    MainNav
+  },
+  name: 'home',
   data () {
     return {
       msg: 'accueil'
@@ -60,6 +67,7 @@ $hover: .2s all linear
   img
     min-width: 80%
     max-width: 100%
+    max-height: 95%
   
 .dash
   background: #000
@@ -100,7 +108,7 @@ ul
 .title-container
   display: flex
   align-items: center
-  margin: 5% 0 15%
+  margin: 5% 0 10%
   
   .dash
     width: 24px
