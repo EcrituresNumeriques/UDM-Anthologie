@@ -6,6 +6,7 @@ import App from './App'
 
 // import components
 import Home from './components/Home.vue'
+import Credits from './components/Credits'
 
 // install router
 Vue.use(Router)
@@ -23,6 +24,10 @@ router.map({
   '/accueil': {
     component: Home,
     name: 'home'
+  },
+  '/credits': {
+    component: Credits,
+    name: 'credits'
   }
 })
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="main-nav">
+    <div class="main-nav col-md-6 col-md-offset-1">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header col-md-2">
@@ -8,7 +8,7 @@
                     </a>
                 </div>
                 <div class="navbar-link col-md-2">
-                    <a href="#">Crédits</a>
+                    <a v-link="{ name: 'credits' }">Crédits</a>
                 </div>
                 <form class="navbar-form navbar-left col-md-4" role="search">
                     <div class="form-group col-md-6">
@@ -40,6 +40,9 @@ $hover: .2s all linear
 
 .main-nav
   font-family: $raleway
+  position: fixed
+  top: 40px
+  z-index: 1
 
 .navbar-header
   a

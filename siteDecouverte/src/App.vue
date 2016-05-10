@@ -1,15 +1,27 @@
 <template>
   <div id="app" class="container-fluid">
-    <router-view></router-view>
+    <div class="hidden-xs hidden-sm">
+      <main-nav></main-nav>
+      <router-view></router-view>
+    </div>
+    <div class="hidden-md hidden-lg">
+      <responsive></responsive>
+    </div>
   </div>
 </template>
 
 <script>
+import Responsive from './components/Responsive'
+import MainNav from './components/MainNav'
 import Home from './components/Home'
+import Credits from './components/Credits'
 
 export default {
   components: {
-    Home
+    Responsive,
+    MainNav,
+    Home,
+    Credits
   }
 }
 </script>
@@ -30,4 +42,10 @@ body
 #app
   width: 100%
   height: 100%    
+  padding: 19px 17px
+  
+  >div
+    width: 100%
+    height: 100%
+  
 </style>

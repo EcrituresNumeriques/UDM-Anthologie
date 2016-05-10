@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <div class="row">
         <div class="col-md-6 col-md-offset-1 left-column">
-            <main-nav></main-nav>
             <nav class="navbar navbar-default">
                 <ul class="nav">
                     <li><a href="#"><span class="dash"></span>Mélé / Contraste<sup>I</sup></a></li>
@@ -22,7 +20,7 @@
         <div class="col-md-5 right-column">
             <img src="~assets/img/img.png">
         </div>
-    </div>
+        <div class="clearfix">
   </div>
 </template>
 
@@ -63,11 +61,11 @@ $hover: .2s all linear
   
 .right-column
   align-items: center
+  justify-content: flex-end
+  padding-right: 0
   
   img
-    min-width: 80%
-    max-width: 100%
-    max-height: 95%
+    height: 100%
   
 .dash
   background: #000
@@ -84,6 +82,7 @@ ul
       color: rgba(0, 0, 0, 0.5)
       align-items: center
       transition: $hover
+      padding-left: 0!important
       
       .dash
         width: 0
@@ -108,7 +107,7 @@ ul
 .title-container
   display: flex
   align-items: center
-  margin: 5% 0 10%
+  margin: 5% 0 5%
   
   .dash
     width: 24px
