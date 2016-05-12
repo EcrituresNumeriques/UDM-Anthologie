@@ -47,5 +47,9 @@ body
   >div
     width: 100%
     height: 100%
+      
+.navbar-default
+  background: #fff
+  border: none
   
 </style>

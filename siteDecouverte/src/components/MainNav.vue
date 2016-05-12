@@ -18,6 +18,8 @@
                             <label for="keywords">Mots clès</label>
                             <input type="radio" name="list" value="authors" id="authors">
                             <label for="authors">Auteurs</label>
+                            <input type="radio" name="list" value="characters" id="characters">
+                            <label for="characters">Personnages</label>
                         </fieldset>
                     </div>
                     <div class="form-group search-container col-md-6">
@@ -58,7 +60,7 @@ $hover: .2s all linear
     
       span
         font-weight: 300
- 
+
 .navbar-link   
   float: left
          
@@ -70,9 +72,15 @@ $hover: .2s all linear
     text-decoration: none
     vertical-align: top
     display: inline-block
+    opacity: .7
+    
+    &.v-link-active
+      text-decoration: underline
+      opacity: 1
         
 form
   margin: 0
+  opacity: .7  
   
 .form-group
   vertical-align: top
@@ -102,10 +110,12 @@ fieldset
   [type="radio"]:hover + label,
   [type="radio"]:focus + label
     opacity: 1
+    transform: translateX(10px)
     
   label
     transition: $hover
     opacity: 0.7
+    transform: translateX(0)
     
 .search-container
   position: relative    
