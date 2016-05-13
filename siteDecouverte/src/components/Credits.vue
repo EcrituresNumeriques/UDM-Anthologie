@@ -15,8 +15,7 @@ export default {
 }
 
 $(document).ready(function () {
-  $('.back').click(function (e) {
-    $('#credits').css('background', 'red')
+  $('body').on('click', '.back', function (e) {
     e.preventDefault()
     window.history.back()
   })
