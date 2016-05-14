@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <div class="row">
         <div class="col-md-6 col-md-offset-1 left-column">
             <nav class="navbar navbar-default">
                 <ul class="nav">
@@ -20,7 +21,7 @@
         <div class="col-md-5 right-column">
             <img src="~assets/img/img.png">
         </div>
-        <div class="clearfix">
+     </div>
   </div>
 </template>
 
@@ -58,11 +59,12 @@ $hover: .2s all linear
 .left-column
   flex-direction: column
   justify-content: flex-end
+  padding-right: 0
   
 .right-column
   align-items: center
   justify-content: flex-end
-  padding-right: 0
+  padding: 0 17px 0 0
   
   img
     height: 100%

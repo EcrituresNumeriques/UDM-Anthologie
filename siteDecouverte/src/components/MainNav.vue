@@ -1,34 +1,34 @@
 <template>
     <div class="main-nav col-md-6 col-md-offset-1">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header col-md-2">
-                    <a class="navbar-brand" v-link="{ name : 'home' }">
-                        <h1>Antho<span>logie</span></h1>
-                    </a>
-                </div>
-                <div class="navbar-link col-md-2">
-                    <a v-link="{ name: 'credits' }">Crédits</a>
-                </div>
-                <form class="navbar-form navbar-left col-md-4" role="search">
-                    <div class="form-group col-md-6">
-                        <fieldset>
-                            <legend>Listes :</legend>
-                            <input type="radio" name="list" value="keywords" id="keywords">
-                            <label for="keywords">Mots clès</label>
-                            <input type="radio" name="list" value="authors" id="authors">
-                            <label for="authors">Auteurs</label>
-                            <input type="radio" name="list" value="characters" id="characters">
-                            <label for="characters">Personnages</label>
-                        </fieldset>
-                    </div>
-                    <div class="form-group search-container col-md-6">
-                        <input type="search" class="form-control" placeholder="Recherche">                        
-                        <button type="submit"><img src="~assets/img/search.png" alt="Recherche"></button>
-                    </div>
-                </form>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header col-md-2">
+            <a class="navbar-brand" v-link="{ name : 'home' }">
+              <h1>Antho<span>logie</span></h1>
+            </a>
+          </div>
+          <div class="navbar-link col-md-2">
+            <a v-link="{ name: 'credits' }">Crédits</a>
+          </div>
+          <form class="navbar-form navbar-left col-md-4" role="search">
+            <div class="form-group col-md-6">
+              <fieldset>
+                <legend>Listes :</legend>
+                <input type="radio" name="list" value="keywords" id="keywords">
+                <label for="keywords">Mots clès</label>
+                <input type="radio" name="list" value="authors" id="authors">
+                <label for="authors">Auteurs</label>
+                <input type="radio" name="list" value="characters" id="characters">
+                <label for="characters">Personnages</label>
+              </fieldset>
             </div>
-        </nav>
+            <div class="form-group search-container col-md-6">
+              <input type="search" class="form-control" placeholder="Recherche">                        
+              <button type="submit"><img src="~assets/img/search.png" alt="Recherche"></button>
+            </div>
+          </form>
+        </div>
+      </nav>
     </div>
 </template>
 
@@ -44,7 +44,9 @@ $hover: .2s all linear
   font-family: $raleway
   position: fixed
   top: 40px
+  left: 0
   z-index: 1
+  padding-left: 0
 
 .navbar-header
   a
