@@ -7,6 +7,7 @@ import App from './App'
 // import components
 import Home from './components/Home.vue'
 import Credits from './components/Credits'
+import Summary from './components/Summary'
 
 // install router
 Vue.use(Router)
@@ -28,6 +29,10 @@ router.map({
   '/credits': {
     component: Credits,
     name: 'credits'
+  },
+  '/sommaire/:theme': {
+    component: Summary,
+    name: 'summary'
   }
 })
 

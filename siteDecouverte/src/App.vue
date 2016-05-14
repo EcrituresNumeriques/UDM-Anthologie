@@ -15,18 +15,22 @@ import Responsive from './components/Responsive'
 import MainNav from './components/MainNav'
 import Home from './components/Home'
 import Credits from './components/Credits'
+import Summary from './components/Summary'
 
 export default {
   components: {
     Responsive,
     MainNav,
     Home,
-    Credits
+    Credits,
+    Summary
   }
 }
 </script>
 
 <style lang="sass">
+$hover: .2s all linear
+
 @font-face
   font-family: 'times'
   src: url(~assets/fonts/times/Times-Roman.ttf)
@@ -51,5 +55,36 @@ body
 .navbar-default
   background: #fff
   border: none
+  
+span.bg
+  width: 20px
+  height: 20px
+  background: #e4e4e4
+  position: absolute
+  left: 0
+  top: 50%
+  transform: translateY(-50%)
+  z-index: -1
+  transition: $hover
+
+.dash
+  background: #000
+  display: inline-block
+  vertical-align: middle  
+          
+.page-title-container
+  display: flex
+  align-items: center
+  margin: 5% 0 5%
+  
+  .dash
+    width: 24px
+    height: 2px
+    margin-right: 100px
+    
+  h1
+    display: inline-block
+    font-size: 30px
+    font-style: italic
   
 </style>

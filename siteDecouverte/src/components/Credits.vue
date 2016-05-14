@@ -2,9 +2,7 @@
   <div id="credits">
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
-        <div class="back-container">
-          <a href="#" class="back"><span class="bg"></span>Retour</a>
-        </div>
+        <back-btn></back-btn>
       </div>
     </div>
     <div class="row">
@@ -29,7 +27,7 @@
     </div>
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
-        <div class="title-container">
+        <div class="page-title-container">
             <span class="dash"></span>
             <h1>L’Université de<br> Montréal & Hétic.</h1>
         </div>
@@ -39,24 +37,18 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import BackBtn from './BackBtn'
 
 export default {
   components: {
+    BackBtn
   },
   name: 'credits'
 }
 
-$(document).ready(function () {
-  $('body').on('click', '.back', function (e) {
-    e.preventDefault()
-    window.history.back()
-  })
-})
-
 </script>
 
-<style lang="sass">  
+<style lang="sass" scoped>  
 $hover: .2s all linear
 $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
@@ -66,36 +58,6 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
   display: flex
   flex-direction: column
   justify-content: flex-end
-  
-span.bg
-  width: 20px
-  height: 20px
-  background: #e4e4e4
-  position: absolute
-  left: 0
-  top: 50%
-  transform: translateY(-50%)
-  z-index: -1
-  transition: $hover
-
-.back-container
-  margin-bottom: 50px
-
-  .back
-    font-family: $raleway
-    font-weight: 600
-    font-size: 12px
-    color: #5c5c5c
-    transition: $hover
-    position: relative
-  
-    &:hover,
-    &:focus
-      color: #000
-      text-decoration: none
-    
-      span
-        width: 100%
     
 .desc-container
   color: #2c2c2c
@@ -135,8 +97,7 @@ span.bg
     font-family: $raleway
     position: relative
     margin-top: 0
-    
-    
+    text-transform: uppercase
     
     sup
       font-size: 8px

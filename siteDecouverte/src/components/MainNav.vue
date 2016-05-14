@@ -117,7 +117,6 @@ fieldset
   label
     transition: $hover
     opacity: 0.7
-    transform: translateX(0)
     
 .search-container
   position: relative    
