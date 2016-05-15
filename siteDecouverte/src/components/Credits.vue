@@ -1,5 +1,8 @@
 <template>
   <div id="credits">
+    <div class="page-title-container">
+      <h1>Crédits</h1>
+    </div>
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
         <back-btn></back-btn>
@@ -27,9 +30,9 @@
     </div>
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
-        <div class="page-title-container">
+        <div class="page-subtitle-container">
             <span class="dash"></span>
-            <h1>L’Université de<br> Montréal & Hétic.</h1>
+            <h2>L’Université de<br> Montréal & Hétic.</h2>
         </div>
       </div>
     </div>

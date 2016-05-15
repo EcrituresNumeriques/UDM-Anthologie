@@ -16,6 +16,9 @@ import MainNav from './components/MainNav'
 import Home from './components/Home'
 import Credits from './components/Credits'
 import Summary from './components/Summary'
+import Keywords from './components/Keywords'
+import Authors from './components/Authors'
+import Characters from './components/Characters'
 
 export default {
   components: {
@@ -23,13 +26,17 @@ export default {
     MainNav,
     Home,
     Credits,
-    Summary
+    Summary,
+    Keywords,
+    Authors,
+    Characters
   }
 }
 </script>
 
 <style lang="sass">
 $hover: .2s all linear
+$raleway: 'Raileway', Helvetica, Arial, sans-serif
 
 @font-face
   font-family: 'times'
@@ -71,8 +78,21 @@ span.bg
   background: #000
   display: inline-block
   vertical-align: middle  
-          
+         
 .page-title-container
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate3d(-50%, -50%, 0)
+  font-family: $raleway
+  opacity: .04
+
+  h1     
+    text-transform: uppercase
+    font-size: 100px
+    font-weight: 800
+          
+.page-subtitle-container
   display: flex
   align-items: center
   margin: 5% 0 5%
@@ -82,7 +102,7 @@ span.bg
     height: 2px
     margin-right: 100px
     
-  h1
+  h2
     display: inline-block
     font-size: 30px
     font-style: italic

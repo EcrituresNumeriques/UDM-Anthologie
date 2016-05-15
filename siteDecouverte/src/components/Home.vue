@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-1 left-column">
             <discover-nav></discover-nav>
-            <div class="page-title-container">
+            <div class="page-subtitle-container">
                 <span class="dash"></span>
-                <h1>L’Anthologie<br> Palatine & découverte.</h1>
+                <h2>L’Anthologie<br> Palatine & découverte.</h2>
             </div>
         </div>
         <div class="col-md-5 right-column">

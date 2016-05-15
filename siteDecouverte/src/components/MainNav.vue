@@ -8,23 +8,21 @@
             </a>
           </div>
           <div class="navbar-link col-md-2">
-            <a v-link="{ name: 'credits' }">Crédits</a>
+            <a v-link="{ name: 'credits' }">Crédits</span></a>
+          </div>
+          <div class="navbar-list col-md-2">
+            <p>Listes :</p>
+            <ul>
+              <li><a v-link="{ name: 'keywords' }">Mots clès</a></li>
+              <li><a v-link="{ name: 'authors' }">Auteurs</a></li>
+              <li><a v-link="{ name: 'characters' }">Personnages</a></li>
+            </ul>
           </div>
           <form class="navbar-form navbar-left col-md-4" role="search">
-            <div class="form-group col-md-6">
-              <fieldset>
-                <legend>Listes :</legend>
-                <input type="radio" name="list" value="keywords" id="keywords">
-                <label for="keywords">Mots clès</label>
-                <input type="radio" name="list" value="authors" id="authors">
-                <label for="authors">Auteurs</label>
-                <input type="radio" name="list" value="characters" id="characters">
-                <label for="characters">Personnages</label>
-              </fieldset>
-            </div>
-            <div class="form-group search-container col-md-6">
+            <div class="form-group search-container col-md-12">
               <input type="search" class="form-control" placeholder="Recherche">                        
-              <button type="submit"><img src="~assets/img/search.png" alt="Recherche"></button>
+              <button type="submit"><span class="glyphicon glyphicon-search"></button>
+              <button type="reset" class="reset"><span class="reset-cross"></span></button>
             </div>
           </form>
         </div>
@@ -33,6 +31,13 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
+$('.reset').click(function (e) {
+  e.preventDefault()
+  console.log('ok')
+  // $('input[type="search"]').focus()
+})
 </script>
 
 <style lang="sass" scoped>
@@ -63,78 +68,135 @@ $hover: .2s all linear
       span
         font-weight: 300
 
+.navbar-link,
+.navbar-list
+  a
+    font-size: 12px
+    font-weight: 400
+    padding: 5px 0
+    color: $nav-color
+    text-decoration: none
+    display: inline-block
+    opacity: .5
+    transition: $hover
+    
+    &:after
+      content: ""
+      width: 100%
+      height: 1px
+      display: block
+      vertical-align: top
+      background: #000
+      opacity: 0
+      transition: $hover
+    
+    &:hover,
+    &:focus,
+    &.v-link-active
+      opacity: 1
+      
+      &:after
+        opacity: 1
+
 .navbar-link   
   float: left
          
   a
-    font-size: 12px
-    font-weight: 600
-    padding: 0
-    color: $nav-color
-    text-decoration: none
     vertical-align: top
-    display: inline-block
-    opacity: .7
+    font-weight: 600  
+    padding: 0
     
-    &.v-link-active
-      text-decoration: underline
-      opacity: 1
+.navbar-list
+  p
+    font-weight: 700
+    font-size: 10px 
+    color: $nav-color
+    margin-bottom: 15px
+    opacity: .5
+    
+  ul
+    list-style: none
+    padding: 0        
         
 form
   margin: 0
-  opacity: .7  
   
 .form-group
   vertical-align: top
     
-fieldset
-
-  legend
-    font-weight: 700
-    font-size: 10px 
-    color: $nav-color
-    border: none
-    margin-bottom: 15px
-    
-  [type="radio"]:not(:checked),
-  [type="radio"]:checked
-    position: absolute
-    left: -9999px   
-    
-  [type="radio"]:not(:checked) + label,
-  [type="radio"]:checked + label
-    font-weight: 400
-    font-size: 12px
-    display: block
-    cursor: pointer
-    
-  [type="radio"]:checked + label,
-  [type="radio"]:hover + label,
-  [type="radio"]:focus + label
-    opacity: 1
-    transform: translateX(10px)
-    
-  label
-    transition: $hover
-    opacity: 0.7
-    
 .search-container
   position: relative    
   margin-top: -11px
-  padding: 0
   
   input[type="search"]
-    padding: 6px 15px 6px 30px
+    padding: 6px 15px 6px 20px
     font-size: 12px
     font-weight: 600
     border: none
+    border-radius: 0
+    opacity: .5
+    transition: $hover
+    
+    &:focus
+      border-bottom: 1px solid black
+      opacity: 1
+      box-shadow: none
+      
+      ~button[type="submit"]
+        opacity: 1
+      
+      ~button[type="reset"]
+        display: block
   
-  button
+  button[type="submit"]
     transform: translate3d(0, -50%, 0)
     position: absolute
     top: 50%
-    left: 0
+    left: 9px
     border: none
     background: none
+    opacity: .5
+    transition: $hover
+    z-index: 2
+    height: 100%
+    
+    span
+      transform: rotateZ(90deg)
+      font-size: 12px
+      color: #555
+    
+  button[type="reset"]
+    transform: translate3d(0, -50%, 0)
+    position: absolute
+    top: 50%
+    right: 22px
+    background: none
+    border: none
+    display: none
+    opacity: .5
+    transition: $hover
+    z-index: 2
+    height: 100%
+      
+    &:hover
+      opacity: 1
+    
+    .reset-cross
+      width: 7px
+      height: 1px
+      background: #000
+      display: inline-block
+      transform: rotate(45deg)
+      vertical-align: middle
+      
+      &:after
+        content: ""
+        width: 7px
+        height: 1px
+        background: #000
+        transform: rotate(90deg)
+        position: absolute
+        top: 0
+        left: 0   
 
 </style>

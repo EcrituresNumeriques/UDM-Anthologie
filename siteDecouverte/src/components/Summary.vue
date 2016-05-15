@@ -4,9 +4,9 @@
             <div class="col-md-6 col-md-offset-1 left-column">
                 <back-btn></back-btn>
                 <discover-nav></discover-nav>
-                <div class="page-title-container">
+                <div class="page-subtitle-container">
                     <span class="dash"></span>
-                    <h1>L’Anthologie<br> Palatine & découverte.</h1>
+                    <h2>L’Anthologie<br> Palatine & découverte.</h2>
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-1 pull-right summary-right-column">

@@ -8,6 +8,9 @@ import App from './App'
 import Home from './components/Home.vue'
 import Credits from './components/Credits'
 import Summary from './components/Summary'
+import Keywords from './components/Keywords'
+import Authors from './components/Authors'
+import Characters from './components/Characters'
 
 // install router
 Vue.use(Router)
@@ -33,6 +36,18 @@ router.map({
   '/sommaire/:theme': {
     component: Summary,
     name: 'summary'
+  },
+  '/mots-cles': {
+    component: Keywords,
+    name: 'keywords'
+  },
+  '/auteurs': {
+    component: Authors,
+    name: 'authors'
+  },
+  '/personnages': {
+    component: Characters,
+    name: 'characters'
   }
 })
 
