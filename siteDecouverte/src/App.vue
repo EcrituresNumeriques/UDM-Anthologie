@@ -60,7 +60,7 @@ body
     height: 100%
       
 .navbar-default
-  background: #fff
+  background: none
   border: none
   
 span.bg
@@ -86,6 +86,7 @@ span.bg
   transform: translate3d(-50%, -50%, 0)
   font-family: $raleway
   opacity: .04
+  z-index: -1
 
   h1     
     text-transform: uppercase

@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 $hover: .2s all linear
 
 .summary
@@ -56,6 +56,10 @@ $hover: .2s all linear
   display: flex
   flex-direction: column
   justify-content: flex-end
+  
+.row
+  >div:first-child
+    position: initial
   
 .summary-right-column
   .nav

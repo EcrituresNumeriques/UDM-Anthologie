@@ -55,6 +55,10 @@ export default {
 $hover: .2s all linear
 $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
+.row
+  >div:first-child
+    position: initial
+
 #credits
   width: 100%
   height: 100%
@@ -94,6 +98,7 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
      
 .team-container
   h4
+    padding-left: 10px
     font-size: 10px
     font-weight: 700
     color: rgba(44, 44, 44, 0.5)

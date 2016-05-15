@@ -22,10 +22,15 @@ $(document).ready(function () {
 $hover: .2s all linear
 $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
+.back-btn
+  position: absolute
+  top: 200px
+
 .back-container
   margin-bottom: 50px
 
   .back
+    padding-left: 10px
     font-family: $raleway
     font-weight: 600
     font-size: 12px

@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 $hover: .2s all linear
 
 .home
