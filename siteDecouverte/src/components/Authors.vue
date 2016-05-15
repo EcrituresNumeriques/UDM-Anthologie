@@ -8,7 +8,7 @@
                 <back-btn></back-btn>
                 <div class="page-subtitle-container">
                     <span class="dash"></span>
-                    <h2>L’Anthologie<br> Palatine & découverte.</h2>
+                    <h2>Les auteurs de<br> l'Anthologie Palatine</h2>
                 </div>
             </div>
             <div class="col-md-6 pull-right">
@@ -95,8 +95,9 @@
                             <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
                         <ul>
                     </div>
-                        <!--<ul>
-                            <li><h3><span class="bg"></span>Asclépiodote <sup>I</sup></h3></li>
+                    <div class="list-wrapper">
+                        <h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3>
+                        <ul>
                             <li><a href="#">AP 5.177, 37</a></li>
                             <li><a href="#">AP 12.132b, 22</a></li>
                             <li><a href="#">AP 5.152, 34</a></li>
@@ -107,18 +108,11 @@
                             <li><a href="#">AP 5.152, 34</a></li>
                             <li><a href="#">AP 7.417</a></li>
                             <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                            <li><a href="#">AP 5.177, 37</a></li>
-                            <li><a href="#">AP 12.132b, 22</a></li>
-                            <li><h3><span class="bg"></span>Callimaque de Cyrène <sup>II</sup></h3></li>
-                            <li><a href="#">AP 5.177, 37</a></li>
-                            <li><a href="#">AP 12.132b, 22</a></li>
-                            <li><a href="#">AP 5.152, 34</a></li>
-                            <li><a href="#">AP 7.417</a></li>
-                            <li><a href="#">AP 5.177, 37</a></li>
-                            <li><a href="#">AP 12.132b, 22</a></li>
-                            <li><a href="#">AP 5.152, 34</a></li>
-                            <li><a href="#">AP 7.417</a></li>
-                            <li><h3><span class="bg"></span>Démodocos de Léros <sup>III</sup></h3></li>
+                        <ul>
+                    </div>
+                    <div class="list-wrapper">
+                        <h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3>
+                        <ul>
                             <li><a href="#">AP 5.177, 37</a></li>
                             <li><a href="#">AP 12.132b, 22</a></li>
                             <li><a href="#">AP 5.152, 34</a></li>
@@ -129,25 +123,11 @@
                             <li><a href="#">AP 5.152, 34</a></li>
                             <li><a href="#">AP 7.417</a></li>
                             <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                            <li><a href="#">AP 5.177, 37</a></li>
-                            <li><a href="#">AP 12.132b, 22</a></li>
-                            <li><a href="#">AP 5.152, 34</a></li>
-                            <li><a href="#">AP 7.417</a></li>
-                            <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                            <li><h3><span class="bg"></span>Ératosthène <sup>IV</sup></h3></li>
-                            <li><a href="#">AP 5.177, 37</a></li>
-                            <li><a href="#">AP 12.132b, 22</a></li>
-                            <li><a href="#">AP 5.152, 34</a></li>
-                            <li><a href="#">AP 7.417</a></li>
-                            <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                            <li><a href="#">AP 5.177, 37</a></li>
-                            <li><a href="#">AP 12.132b, 22</a></li>
-                            <li><a href="#">AP 5.152, 34</a></li>
-                            <li><a href="#">AP 7.417</a></li>
-                            <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                            <li><a href="#">AP 5.177, 37</a></li>
-                            <li><a href="#">AP 12.132b, 22</a></li>
-                            <li><h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3></li>
+                        <ul>
+                    </div>
+                    <div class="list-wrapper">
+                        <h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3>
+                        <ul>
                             <li><a href="#">AP 5.177, 37</a></li>
                             <li><a href="#">AP 12.132b, 22</a></li>
                             <li><a href="#">AP 5.152, 34</a></li>
@@ -158,7 +138,8 @@
                             <li><a href="#">AP 5.152, 34</a></li>
                             <li><a href="#">AP 7.417</a></li>
                             <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                        </ul>-->
+                        <ul>
+                    </div>
                 </div>
             </div>
         </div>

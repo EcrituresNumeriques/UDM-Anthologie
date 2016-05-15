@@ -48,7 +48,9 @@ html
 body
   display: flex
   height: 100%
-  font-family: 'times', Helvetica, Arial, sans-serif
+  
+  &::-webkit-scrollbar
+    display: none
   
 #app
   width: 100%

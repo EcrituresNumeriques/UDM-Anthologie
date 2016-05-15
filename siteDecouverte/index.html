@@ -17,6 +17,17 @@
   
   <body>
     <app></app>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type='text/javascript' src='static/js/jquery.mousewheel.min.js'></script>
+    <script>
+      $(function() {
+        $("body").mousewheel(function(evt, chg) {
+            this.scrollLeft -= (chg * 100);
+            evt.preventDefault();
+        });
+      });
+     </script>
   </body>
   
 </html>
