@@ -109,5 +109,42 @@ span.bg
     display: inline-block
     font-size: 30px
     font-style: italic
+    
+.vertical-list-container
+  columns: 20em
+  width: 100%
+  height: 70%
+  align-self: center
+     
+.vertical-list-wrapper
+  h3
+    padding-left: 10px
+    position: relative
+    font-family: $raleway
+    font-size: 10px
+    font-weight: 700
+    color: rgba(44,44,44,.5)
+    margin: 0
+    text-transform: uppercase
+    
+    sup
+        font-family: initial
+        font-weight: 700
+        font-size: 8px
+        color: #2c2c2c
+      
+  ul
+    list-style: none
+    padding: 0
+    margin: 30px 0 50px
+    
+    li
+      padding-left: 20px
+      
+      a
+        font-size: 12px
+        color: #000
+        transition: $hover
+        padding: 8px 0
   
 </style>
