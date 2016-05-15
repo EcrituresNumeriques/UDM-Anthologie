@@ -19,6 +19,7 @@ import Summary from './components/Summary'
 import Keywords from './components/Keywords'
 import Authors from './components/Authors'
 import Characters from './components/Characters'
+import NotFound from './components/404'
 
 export default {
   components: {
@@ -29,7 +30,8 @@ export default {
     Summary,
     Keywords,
     Authors,
-    Characters
+    Characters,
+    NotFound
   }
 }
 </script>
@@ -48,6 +50,7 @@ html
 body
   display: flex
   height: 100%
+  font-family: 'times', Helvetica, Arial, sans-serif
   
   &::-webkit-scrollbar
     display: none

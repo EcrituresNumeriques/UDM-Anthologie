@@ -48,7 +48,6 @@ export default {
   },
   name: 'credits'
 }
-
 </script>
 
 <style lang="sass" scoped>  

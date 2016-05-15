@@ -11,6 +11,7 @@ import Summary from './components/Summary'
 import Keywords from './components/Keywords'
 import Authors from './components/Authors'
 import Characters from './components/Characters'
+import NotFound from './components/404'
 
 // install router
 Vue.use(Router)
@@ -48,7 +49,15 @@ router.map({
   '/personnages': {
     component: Characters,
     name: 'characters'
+  },
+  '/404': {
+    component: NotFound,
+    name: 'NotFound'
   }
+})
+
+router.redirect({
+  '*': '/404'
 })
 
 // start the app
