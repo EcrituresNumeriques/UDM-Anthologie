@@ -11,6 +11,7 @@ import Summary from './components/Summary'
 import Keywords from './components/Keywords'
 import Authors from './components/Authors'
 import Characters from './components/Characters'
+import Epigram from './components/Epigram'
 import NotFound from './components/404'
 
 // install router
@@ -49,6 +50,10 @@ router.map({
   '/personnages': {
     component: Characters,
     name: 'characters'
+  },
+  '/epigramme/:name': {
+    component: Epigram,
+    name: 'epigram'
   },
   '/404': {
     component: NotFound,

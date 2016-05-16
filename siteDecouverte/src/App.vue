@@ -19,6 +19,7 @@ import Summary from './components/Summary'
 import Keywords from './components/Keywords'
 import Authors from './components/Authors'
 import Characters from './components/Characters'
+import Epigram from './components/Epigram'
 import NotFound from './components/404'
 
 export default {
@@ -31,6 +32,7 @@ export default {
     Keywords,
     Authors,
     Characters,
+    Epigram,
     NotFound
   }
 }
@@ -90,6 +92,8 @@ span.bg
   left: 50%
   transform: translate3d(-50%, -50%, 0)
   font-family: $raleway
+  width: 100%
+  text-align: center
   opacity: .04
   z-index: -1
 
