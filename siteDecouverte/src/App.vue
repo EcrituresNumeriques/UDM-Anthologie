@@ -105,7 +105,7 @@ span.bg
 .page-subtitle-container
   display: flex
   align-items: center
-  margin: 5% 0 5%
+  margin: 5% 0 45px
   
   .dash
     width: 24px
@@ -116,6 +116,7 @@ span.bg
     display: inline-block
     font-size: 30px
     font-style: italic
+    margin-bottom: 0
     
 .vertical-list-container
   columns: 20em

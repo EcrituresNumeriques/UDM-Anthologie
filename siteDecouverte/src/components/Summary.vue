@@ -48,14 +48,21 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all linear
+$hover: .2s all ease-out
 
 .summary
   width: 100%
   height: 100%
-  display: flex
-  flex-direction: column
-  justify-content: flex-end
+  
+  >.row
+    height: 100%
+  
+  .left-column,
+  .summary-right-column
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
   
 .row
   >div:first-child
@@ -75,6 +82,6 @@ $hover: .2s all linear
           transform: translateX(10px)
           
 .small-img-container
-  margin: 35px 0 0 30px
+  margin: 35px 0 45px 30px
 
 </style>

@@ -15,7 +15,7 @@
 </template>
 
 <style lang="sass" scoped>
-$hover: .2s all linear
+$hover: .2s all ease-out
 
 .discover-nav
   margin-top: 150px
@@ -48,6 +48,7 @@ ul
       &.v-link-active
         opacity: 1
         color: #000
+        background: none;
         
         .dash
           width: 20px

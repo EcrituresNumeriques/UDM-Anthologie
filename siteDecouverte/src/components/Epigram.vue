@@ -31,6 +31,14 @@
                         <span class="progress"></span>
                     </div>
                 </div>
+                <div class="mute">
+                  <span class="glyphicon glyphicon-volume-up"></span>
+                </div>
+                <div class="sound">
+                    <audio>
+                        <source src="../static/sound/sound.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="text-container">
@@ -49,9 +57,9 @@
                     <div class="text-content">
                         <p>
                         Ame douloureuse, tantôt tu brûles de fièvre,<br>
-                        tantôt tu te refroidis, ayant repris ton souffle.<br> 
-                        Pourquoi pleures-tu? Erôs l’inébranlable, lorsque sur ton sein,<br> 
-                        tu le nourrissais, tu ne savais pas qu’il était nourri contre toi?<br> 
+                        tantôt tu te refroidis, ayant repris ton souffle.<br>
+                        Pourquoi pleures-tu? Erôs l’inébranlable, lorsque sur ton sein,<br>
+                        tu le nourrissais, tu ne savais pas qu’il était nourri contre toi?<br>
                         tu ne savais pas? Maintenant, apprends la récompense des beaux soins, ayant reçu fièvre et eau gelée.<br>
                         Toi-même, tu les as choisis. Supporte ta peine. Tu subis des choses dignes de ce que tu as fait, en étant brûlée par un miel rôti.
                         </p>
@@ -84,12 +92,26 @@
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
-                    <div class="characters-list">
+                    <!--<div class="characters-list">
                         <ul>
                             <li><a href="#"><span class="dash"></span>Eros</a></li>
                             <li><a href="#"><span class="dash"></span>Ulysse</a></li>
                             <li><a href="#"><span class="dash"></span>Odyssey</a></li>
                         </ul>
+                    </div>-->
+                    <div class="characters-text-container">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <div class="characters-text-wrapper">
+                            <div class="characters-text">
+                                <div class="characters-title">
+                                    <h4>Ulysse</h4>
+                                </div>
+                                <div class="characters-desc">
+                                    <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="glyphicon glyphicon-chevron-right"></span>
                     </div>
                 </div>
             </div>
@@ -109,17 +131,48 @@ import $ from 'jquery'
 
 $(document).ready(function () {
   var flag = true
-  $('.control').click(function () {
+  $('body').on('click', '.control', function () {
     if (flag) {
+      $('audio')[0].play()
       $('.control .glyphicon').removeClass('glyphicon-play').addClass('glyphicon-pause')
       flag = false
     } else {
+      $('audio')[0].pause()
       $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
       flag = true
     }
   })
+
+  $('audio').on('timeupdate', function (e) {
+    var currentTime = $('audio')[0].currentTime
+    var duration = $('audio')[0].duration
+
+    var percent = currentTime / duration * 100
+    console.log('timeupdate')
+    $('.progress').css('height', percent + '%')
+  })
+
+  $('audio').on('ended', function () {
+    console.log('ended')
+    $('.progress').css('height', '0')
+    $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+  })
+
+  var muteFlag = true
+  $('body').on('click', '.mute span', function () {
+    if (muteFlag) {
+      $('audio')[0].volume = 0
+      $('.mute span').removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
+      muteFlag = false
+    } else {
+      $('audio')[0].volume = 1
+      $('.mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+      muteFlag = true
+    }
+  })
+
   var heightFlag = true
-  $('.characters').click(function () {
+  $('body').on('click', '.characters', function () {
     if (heightFlag) {
       var charHeight = $('.characters-list ul').height()
       $('.characters-list').css('height', charHeight)
@@ -139,41 +192,41 @@ $hover: .2s all linear
 .epigram
   width: 100%
   height: 100%
-  
+
   >.row
     padding-top: 200px
-  
+
 .themes
   .dash
     width: 19px
     height: 1px
     margin-right: 20px
-    
+
   a
     font-family: $raleway
     font-size: 12px
     font-weight: 600
     color: #000
-    display: inline-block   
+    display: inline-block
 
 .index
   position: relative
-  
+
   p
     position: absolute
     color: #2c2c2c
-  
+
     &.total
       font-weight: 700
       font-size: 16px
       right: 0
       top: 0
-    
-    &.active 
+
+    &.active
       font-size: 48px
       right: 23px
       top: 10px
-      
+
   span.separator
     position: absolute
     right: 5px
@@ -182,7 +235,7 @@ $hover: .2s all linear
     height: 1px
     transform: rotate(45deg)
     background: #2c2c2c
-    
+
 .arrows
   width: 55px
   float: right
@@ -190,32 +243,32 @@ $hover: .2s all linear
   display: flex
   justify-content: space-between
   align-items: center
-  
+
   &:after
     clear: both
-    
+
   .separator
     height: 10px
     width: 1px
     background: #2c2c2c
     display: inline-block
     opacity: 0.15
-  
+
   >span
     a
       font-size: 10px
       color: #2c2c2c
       opacity: 0.6
       transition: $hover
-      
+
       &:hover
         text-decoration: none
         opacity: 1
-        
+
 .player
   width: 38px
   text-align: center
-  
+
   .control
     cursor: pointer
     width: 100%
@@ -225,24 +278,28 @@ $hover: .2s all linear
     display: inline-block
     border: 1px solid #2c2c2c
     text-align: center
-    
+
   .progressbar
     height: 300px
     width: 1px
     display: inline-block
     background: rgba(44, 44, 44, 0.2)
-    
+
     .progress
       display: inline-block
       width: 100%
-      height: 20%
-      background: #2c2c2c    
-      
+      height: 0
+      background: #2c2c2c
+
+.mute
+  span
+    cursor: pointer
+
 .text-container
   .text-theme,
   .text-title
     text-align: center
-      
+
     h2,
     h3,
     select
@@ -253,13 +310,13 @@ $hover: .2s all linear
   .text-theme
     h2
       font-size: 14px
-      
+
   .text-title
     position: relative
-    
+
     h3
       font-size: 12px
-    
+
     .text-lang
       background: url('~assets/img/select-arrow.png') no-repeat right
       width: 34px
@@ -268,7 +325,7 @@ $hover: .2s all linear
       top: 0
       right: 85px
       margin-top: -5px
-      
+
       select
         font-size: 8px
         text-transform: uppercase
@@ -277,27 +334,27 @@ $hover: .2s all linear
         width: 55px
         background: transparent
         outline: none
-      
-      
+
+
   .text-content
     width: 300px
     margin: 0 auto
-    
+
     p
       font-size: 14px
       color: #2c2c2c
       line-height: 1.5em
-      
+
       &::first-letter
         font-size: 36px
-        
+
   .text-author
-    
+
     .dash
       width: 10px
       height: 1px
-      margin-right: 10px 
-    
+      margin-right: 10px
+
     p
       display: inline-block
       margin: 0
@@ -312,7 +369,7 @@ $hover: .2s all linear
   background: #2c2c2c
   display: inline-block
   vertical-align: top
-     
+
 .greek-translation
   p
     cursor: pointer
@@ -320,11 +377,11 @@ $hover: .2s all linear
     font-style: italic
     font-size: 18px
     color: #2c2c2c
-    
+
     span.glyphicon
       font-size: 10px
       margin-left: 14px
-      
+
 .notes,
 .characters
   p
@@ -334,58 +391,58 @@ $hover: .2s all linear
    color: #727272
    cursor: pointer
    display: inline-block
-   
+
    span.glyphicon
       font-size: 10px
       margin-left: 14px
-   
+
 .notes
   margin-top: 60px
-  
+
 .characters
   margin-top: 150px
   position: relative
-  
+
   .characters-list
     position: absolute
     height: 0
     overflow: hidden
     transition: $hover
     z-index: 2
-  
+
     ul
       list-style: none
       padding: 0
-      
+
       li
         a
           font-size: 14px
           opacity: 0.5
           transition: $hover
           color: #2c2c2c
-        
+
           .dash
             width: 0
             height: 1px
             margin-right: 0
             transition: $hover
-        
+
           &:hover
             opacity: 1
             text-decoration: none
-          
+
             .dash
               width: 13px
               margin-right: 15px
-  
+
 .manuscript-image
   margin-top: 25px
-  
+
   p
    font-family: $raleway
    font-size: 12px
    font-weight: 600
    display: inline-block
    cursor: pointer
-   
+
 </style>
