@@ -31,9 +31,6 @@
                         <span class="progress"></span>
                     </div>
                 </div>
-                <div class="mute">
-                  <span class="glyphicon glyphicon-volume-up"></span>
-                </div>
                 <div class="sound">
                     <audio>
                         <source src="../static/sound/sound.mp3" type="audio/mpeg">
@@ -41,6 +38,9 @@
                 </div>
             </div>
             <div class="col-md-3">
+                <div class="mute">
+                  <span class="glyphicon glyphicon-volume-up"></span>
+                </div>
                 <div class="text-container">
                     <div class="text-theme">
                         <h2>Méléagre in love</h2>
@@ -71,47 +71,115 @@
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-1">
-                <div class="greek-translation">
+                <div class="dropdown greek-translation">
                     <p>Traduction grecque
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
+                    <div class="dropdown-drop">
+                      <div class="dropdown-content">
+                        <div class="mute">
+                          <span class="glyphicon glyphicon-volume-up"></span>
+                        </div>
+                        <p>ἆ ψυχὴ βαρύμοχθε, σὺ δ' ἄρτι μὲν ἐκ πυρὸς αἴθῃ,
+                          ἄρτι δ' ἀναψύχεις πνεῦμ' ἀναλεξαμένη.
+                          τί κλαίεις; τὸν ἄτεγκτον ὅτ' ἐν κόλποισιν Ἔρωτα
+                          ἔτρεφες, οὐκ ᾔδεις, ὡς ἐπὶ σοὶ τρέφετο;
+                          οὐκ ᾔδεις; νῦν γνῶθι καλῶν ἄλλαγμα τροφείων,
+                          πῦρ ἅμα καὶ ψυχρὰν δεξαμένη χιόνα.
+                          αὐτὴ ταῦθ' εἵλου· φέρε τὸν πόνον. ἄξια πάσχεις,
+                          ὧν ἔδρας, ὀπτῷ καιομένη μέλιτι.</p>
+                      </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3 col-md-offset-4">
-                <div class="notes">
+                <div class=" dropdown notes">
                     <p>Les notes
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
+                    <div class="dropdown-drop">
+                      <ul>
+                        <li><a data-click="note1" href="#"><span class="dash"></span>Eros</a></li>
+                        <li><a data-click="note2" href="#"><span class="dash"></span>Ulysse</a></li>
+                        <li><a data-click="note3" href="#"><span class="dash"></span>Odyssey</a></li>
+                      </ul>
+                    </div>
+                    <div class="dropdown-text-container">
+                      <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
+                      <div class="dropdown-text-wrapper">
+                        <div class="dropdown-text" id="note1">
+                          <div class="dropdown-title">
+                            <h4>Eros</h4>
+                          </div>
+                          <div class="dropdown-desc">
+                            <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                          </div>
+                        </div>
+                        <div class="dropdown-text" id="note2">
+                          <div class="dropdown-title">
+                            <h4>Ulysse</h4>
+                          </div>
+                          <div class="dropdown-desc">
+                            <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                          </div>
+                        </div>
+                        <div class="dropdown-text" id="note3">
+                          <div class="dropdown-title">
+                            <h4>Odyssey</h4>
+                          </div>
+                          <div class="dropdown-desc">
+                            <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                          </div>
+                        </div>
+                      </div>
+                      <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
+                    </div>
                 </div>
             </div>
             <div class="col-md-5 col-md-offset-2">
-                <div class="characters">
+                <div class="characters dropdown">
                     <p>Les personnages
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
-                    <!--<div class="characters-list">
+                    <div class="dropdown-drop">
                         <ul>
-                            <li><a href="#"><span class="dash"></span>Eros</a></li>
-                            <li><a href="#"><span class="dash"></span>Ulysse</a></li>
-                            <li><a href="#"><span class="dash"></span>Odyssey</a></li>
+                            <li><a data-click="eros" href="#"><span class="dash"></span>Eros</a></li>
+                            <li><a data-click="ulysse" href="#"><span class="dash"></span>Ulysse</a></li>
+                            <li><a data-click="odyssey" href="#"><span class="dash"></span>Odyssey</a></li>
                         </ul>
-                    </div>-->
-                    <div class="characters-text-container">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <div class="characters-text-wrapper">
-                            <div class="characters-text">
-                                <div class="characters-title">
+                    </div>
+                    <div class="dropdown-text-container">
+                        <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
+                        <div class="dropdown-text-wrapper">
+                            <div class="dropdown-text" id="eros">
+                                <div class="dropdown-title">
+                                  <h4>Eros</h4>
+                                </div>
+                                <div class="dropdown-desc">
+                                  <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                                </div>
+                            </div>
+                            <div class="dropdown-text" id="ulysse">
+                                <div class="dropdown-title">
                                     <h4>Ulysse</h4>
                                 </div>
-                                <div class="characters-desc">
+                                <div class="dropdown-desc">
+                                    <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                                </div>
+                            </div>
+                            <div class="dropdown-text" id="odyssey">
+                                <div class="dropdown-title">
+                                    <h4>Odyssey</h4>
+                                </div>
+                                <div class="dropdown-desc">
                                     <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
                                 </div>
                             </div>
                         </div>
-                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
                     </div>
                 </div>
             </div>
@@ -148,17 +216,18 @@ $(document).ready(function () {
     var duration = $('audio')[0].duration
 
     var percent = currentTime / duration * 100
-    console.log('timeupdate')
     $('.progress').css('height', percent + '%')
   })
 
+  var muteFlag = true
+
   $('audio').on('ended', function () {
-    console.log('ended')
     $('.progress').css('height', '0')
     $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+    $('audio')[0].volume = 1
+    $('.mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+    muteFlag = true
   })
-
-  var muteFlag = true
   $('body').on('click', '.mute span', function () {
     if (muteFlag) {
       $('audio')[0].volume = 0
@@ -171,23 +240,93 @@ $(document).ready(function () {
     }
   })
 
-  var heightFlag = true
-  $('body').on('click', '.characters', function () {
-    if (heightFlag) {
-      var charHeight = $('.characters-list ul').height()
-      $('.characters-list').css('height', charHeight)
-      heightFlag = false
+  function onDropdownClick (dropdown) {
+    var self = dropdown
+    var selfArrow = self.children('.glyphicon')
+    var selfParent = self.parent('.dropdown')
+    var selfList = selfParent.children('.dropdown-drop')
+    var selfListChild = selfList.children()
+    var selfTextContainer = selfParent.children('.dropdown-text-container')
+    var selfDropText = selfTextContainer.find('.dropdown-text')
+
+    if (!self.hasClass('droped')) {
+      var charHeight = selfListChild.css('height')
+      self.addClass('droped')
+      selfList.css('height', charHeight)
+      selfArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
     } else {
-      $('.characters-list').css('height', '0')
-      heightFlag = true
+      self.removeClass('droped')
+      selfList.css('height', '0')
+      selfTextContainer.fadeOut('500')
+      selfDropText.fadeOut('500').removeClass('visible')
+      selfArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
     }
+  }
+
+  $('body').on('click', '.dropdown > p', function () {
+    onDropdownClick($(this))
+  })
+
+  $('body').on('click', '.dropdown-drop a', function (e) {
+    e.preventDefault()
+    var self = $(this)
+    var selfData = self.data('click')
+    var selfParent = self.parents('.dropdown-drop')
+    var selfTextContainer = selfParent.siblings('.dropdown-text-container')
+    var selfDropWrapper = selfTextContainer.children('.dropdown-text-wrapper')
+    var selfDropText = selfDropWrapper.children()
+    var selfDropTextLength = selfDropText.length
+    var selfArrowLeft = selfTextContainer.children('.dropdown-arrow-left')
+    var selfArrowRight = selfTextContainer.children('.dropdown-arrow-right')
+    selfTextContainer.css('display', 'flex')
+    $('#' + selfData).fadeIn('500').addClass('visible')
+    var selfDropTextVisible = $('.dropdown-text.visible')
+    var selfDropTextVisibleIndex = selfDropTextVisible.index()
+    selfArrowLeft.show()
+    selfArrowRight.show()
+    if (selfDropTextVisibleIndex === 0) {
+      selfArrowLeft.hide()
+    } else if (selfDropTextVisibleIndex === selfDropTextLength - 1) {
+      selfArrowRight.hide()
+    }
+  })
+
+  function onDropArrowClick (arrow) {
+    var self = arrow
+    var selfDropWrapper = self.siblings('.dropdown-text-wrapper')
+    var selfDropText = selfDropWrapper.children()
+    var selfDropTextLength = selfDropText.length
+    var selfDropTextVisible = selfDropWrapper.children('.dropdown-text.visible')
+    var selfDropTextVisibleIndex = selfDropTextVisible.index()
+
+    self.show()
+    self.siblings('.glyphicon').show()
+    if (arrow.hasClass('dropdown-arrow-left')) {
+      selfDropTextVisible.hide().removeClass('visible').prev().show().addClass('visible')
+      if (selfDropTextVisibleIndex === 1) {
+        self.hide()
+      }
+    } else {
+      selfDropTextVisible.hide().removeClass('visible').next().show().addClass('visible')
+      if (selfDropTextVisibleIndex === selfDropTextLength - 2) {
+        self.hide()
+      }
+    }
+  }
+
+  $('body').on('click', '.dropdown-arrow-left', function () {
+    onDropArrowClick($(this))
+  })
+
+  $('body').on('click', '.dropdown-arrow-right', function () {
+    onDropArrowClick($(this))
   })
 })
 </script>
 
 <style lang="sass" scoped>
 $raleway: 'Raileway', Helvetica, Arial, sans-serif
-$hover: .2s all linear
+$hover: .2s all ease-out
 
 .epigram
   width: 100%
@@ -292,10 +431,20 @@ $hover: .2s all linear
       background: #2c2c2c
 
 .mute
+  display: inline-block
+  vertical-align: top
+  margin-top: 72px
+  margin-right: 15px
+
   span
+    color: #2c2c2c
+    font-size: 16px
     cursor: pointer
 
-.text-container
+.text-container,
+.greek-translation
+  display: inline-block
+
   .text-theme,
   .text-title
     text-align: center
@@ -323,7 +472,7 @@ $hover: .2s all linear
       overflow: hidden
       position: absolute
       top: 0
-      right: 85px
+      right: 65px
       margin-top: -5px
 
       select
@@ -336,7 +485,8 @@ $hover: .2s all linear
         outline: none
 
 
-  .text-content
+  .text-content,
+  .dropdown-drop
     width: 300px
     margin: 0 auto
 
@@ -370,29 +520,46 @@ $hover: .2s all linear
   display: inline-block
   vertical-align: top
 
-.greek-translation
-  p
+.dropdown.greek-translation
+  >p
     cursor: pointer
     display: inline-block
     font-style: italic
     font-size: 18px
     color: #2c2c2c
+    margin: 0
 
     span.glyphicon
       font-size: 10px
       margin-left: 14px
 
+  .dropdown-drop
+    width: 400px
+    margin-left: -35px
+
+    .mute
+      margin-top: 20px
+
+    .dropdown-content
+      >p
+        padding-top: 20px
+        padding-bottom: 10px
+        margin: 0
+        display: inline-block
+        width: 80%
+
 .notes,
 .characters
   p
-   font-style: italic
-   font-weight: 700
-   font-size: 14px
-   color: #727272
-   cursor: pointer
-   display: inline-block
+    font-style: italic
+    font-weight: 700
+    font-size: 14px
+    color: #727272
+    cursor: pointer
+    display: inline-block
+    margin-bottom: 0
 
-   span.glyphicon
+    span.glyphicon
       font-size: 10px
       margin-left: 14px
 
@@ -401,9 +568,12 @@ $hover: .2s all linear
 
 .characters
   margin-top: 150px
+
+.dropdown
   position: relative
 
-  .characters-list
+  .dropdown-drop,
+  .dropdown-text-container
     position: absolute
     height: 0
     overflow: hidden
@@ -434,6 +604,81 @@ $hover: .2s all linear
             .dash
               width: 13px
               margin-right: 15px
+
+  .dropdown-text-container
+    display: none
+    align-items: center
+    height: auto
+    overflow: initial
+    background: #fff
+
+    span.glyphicon
+      opacity: .6
+      font-size: 9px
+      cursor: pointer
+      transition: $hover
+
+      &:first-child
+        margin-right: 10px
+        margin-left: -20px
+
+      &:last-child
+        margin-left: 20px
+
+      &:hover
+        opacity: 1
+
+    .dropdown-text-wrapper
+      display: inline-block
+      width: 250px
+      height: 150px
+      overflow-y: auto
+      position: relative
+      scrollbar-face-color: #2c2c2c;
+      scrollbar-track-color: #fff;
+      scrollbar-arrow-color: #fff
+
+      &::-webkit-scrollbar
+        background: #fff
+        width: 3px
+
+      &::-webkit-scrollbar-button
+        display: none
+
+      &::-webkit-scrollbar-thumb
+        background: rgba(44, 44, 44, .6)
+
+        &:hover
+          background: rgba(44, 44, 44, .8)
+
+        &:active
+          background: rgba(44, 44, 44, 1)
+
+      &::-webkit-scrollbar-track
+        border-bottom: 1px solid #000
+        border-top: 1px solid #000
+
+      .dropdown-text
+        font-size: 14px
+        margin-left: 20px
+        position: absolute
+        display: none
+
+        .dropdown-title
+          h4
+            font-weight: 700
+            font-size: 14px
+
+        .dropdown-desc
+          q
+            quotes: "\201C" "\201D" "\2018" "\2019"
+            position: relative
+
+            &:before
+              font-size: 30px
+              position: absolute
+              top: -40px
+              left: -20px
 
 .manuscript-image
   margin-top: 25px
