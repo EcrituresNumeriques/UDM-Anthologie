@@ -53,21 +53,21 @@ $hover: .2s all ease-out
 .summary
   width: 100%
   height: 100%
-  
+
   >.row
     height: 100%
-  
+
   .left-column,
   .summary-right-column
     height: 100%
     display: flex
     flex-direction: column
     justify-content: flex-end
-  
+
 .row
   >div:first-child
     position: initial
-  
+
 .summary-right-column
   .nav
     li
@@ -76,11 +76,12 @@ $hover: .2s all ease-out
         color: #000
         padding: 8px 0
         transition: $hover
-        
+
         &:hover,
         &:focus
           transform: translateX(10px)
-          
+          background: none
+
 .small-img-container
   margin: 35px 0 45px 30px
 

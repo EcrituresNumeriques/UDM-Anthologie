@@ -20,8 +20,8 @@
           </div>
           <form class="navbar-form navbar-left col-md-4" role="search">
             <div class="form-group search-container col-md-12">
-              <input type="search" class="form-control" placeholder="Recherche">                        
-              <button type="submit"><span class="glyphicon glyphicon-search"></button>
+              <input type="search" class="form-control" placeholder="Recherche">
+              <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               <button type="reset" class="reset"><span class="reset-cross"></span></button>
             </div>
           </form>
@@ -56,7 +56,7 @@ $hover: .2s all linear
 .navbar-header
   a
     padding: 0
-    
+
     h1
       font-size: 12px
       font-weight: 600
@@ -64,7 +64,7 @@ $hover: .2s all linear
       display: inline-block
       margin: 0
       vertical-align: top
-    
+
       span
         font-weight: 300
 
@@ -79,7 +79,7 @@ $hover: .2s all linear
     display: inline-block
     opacity: .5
     transition: $hover
-    
+
     &:after
       content: ""
       width: 100%
@@ -89,45 +89,45 @@ $hover: .2s all linear
       background: #000
       opacity: 0
       transition: $hover
-    
+
     &:hover,
     &:focus,
     &.v-link-active
       opacity: 1
-      
+
       &:after
         opacity: 1
 
-.navbar-link   
+.navbar-link
   float: left
-         
+
   a
     vertical-align: top
-    font-weight: 600  
+    font-weight: 600
     padding: 0
-    
+
 .navbar-list
   p
     font-weight: 700
-    font-size: 10px 
+    font-size: 10px
     color: $nav-color
     margin-bottom: 15px
     opacity: .5
-    
+
   ul
     list-style: none
-    padding: 0        
-        
+    padding: 0
+
 form
   margin: 0
-  
+
 .form-group
   vertical-align: top
-    
+
 .search-container
-  position: relative    
+  position: relative
   margin-top: -11px
-  
+
   input[type="search"]
     padding: 6px 15px 6px 20px
     font-size: 12px
@@ -136,18 +136,19 @@ form
     border-radius: 0
     opacity: .5
     transition: $hover
-    
+    box-shadow: none
+
     &:focus
       border-bottom: 1px solid black
       opacity: 1
       box-shadow: none
-      
+
       ~button[type="submit"]
         opacity: 1
-      
+
       ~button[type="reset"]
         display: block
-  
+
   button[type="submit"]
     transform: translate3d(0, -50%, 0)
     position: absolute
@@ -159,12 +160,12 @@ form
     transition: $hover
     z-index: 2
     height: 100%
-    
+
     span
       transform: rotateZ(90deg)
       font-size: 12px
       color: #555
-    
+
   button[type="reset"]
     transform: translate3d(0, -50%, 0)
     position: absolute
@@ -177,10 +178,10 @@ form
     transition: $hover
     z-index: 2
     height: 100%
-      
+
     &:hover
       opacity: 1
-    
+
     .reset-cross
       width: 7px
       height: 1px
@@ -188,7 +189,7 @@ form
       display: inline-block
       transform: rotate(45deg)
       vertical-align: middle
-      
+
       &:after
         content: ""
         width: 7px
@@ -197,6 +198,6 @@ form
         transform: rotate(90deg)
         position: absolute
         top: 0
-        left: 0   
+        left: 0
 
 </style>

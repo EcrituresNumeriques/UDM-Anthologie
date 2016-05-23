@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-1 col-md-offset-1">
                 <div class="player">
-                    <div class="control">
+                    <div class="control start">
                         <span class="glyphicon glyphicon-play"></span>
                     </div>
                     <div class="progressbar">
@@ -32,18 +32,24 @@
                     </div>
                 </div>
                 <div class="sound">
-                    <audio>
+                    <audio class="french-sound">
                         <source src="../static/sound/sound.mp3" type="audio/mpeg">
+                    </audio>
+                    <audio class="greek-sound">
+                      <source src="../static/sound/sound-greek.mp3" type="audio/mpeg">
                     </audio>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="mute">
+                <div class="mute french-mute">
                   <span class="glyphicon glyphicon-volume-up"></span>
                 </div>
                 <div class="text-container">
                     <div class="text-theme">
-                        <h2>Méléagre in love</h2>
+                        <h2>
+                          <span class="bg"></span>
+                          Méléagre in love
+                        </h2>
                     </div>
                     <div class="text-title">
                         <h3>AP 12.132b, 22</h3>
@@ -71,14 +77,14 @@
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-1">
-                <div class="dropdown greek-translation">
+                <div class="greek-translation dropdown">
                     <p>Traduction grecque
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
                     <div class="dropdown-drop">
                       <div class="dropdown-content">
-                        <div class="mute">
+                        <div class="mute greek-mute">
                           <span class="glyphicon glyphicon-volume-up"></span>
                         </div>
                         <p>ἆ ψυχὴ βαρύμοχθε, σὺ δ' ἄρτι μὲν ἐκ πυρὸς αἴθῃ,
@@ -94,47 +100,33 @@
                 </div>
             </div>
             <div class="col-md-3 col-md-offset-4">
-                <div class=" dropdown notes">
+                <div class="notes dropdown">
                     <p>Les notes
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
                     <div class="dropdown-drop">
-                      <ul>
-                        <li><a data-click="note1" href="#"><span class="dash"></span>Eros</a></li>
-                        <li><a data-click="note2" href="#"><span class="dash"></span>Ulysse</a></li>
-                        <li><a data-click="note3" href="#"><span class="dash"></span>Odyssey</a></li>
-                      </ul>
-                    </div>
-                    <div class="dropdown-text-container">
-                      <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
-                      <div class="dropdown-text-wrapper">
-                        <div class="dropdown-text" id="note1">
-                          <div class="dropdown-title">
-                            <h4>Eros</h4>
-                          </div>
-                          <div class="dropdown-desc">
-                            <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
-                          </div>
+                        <div class="dropdown-text-container">
+                            <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
+                            <div class="dropdown-text-wrapper">
+                                <div class="dropdown-text visible" id="note1">
+                                    <div class="dropdown-desc">
+                                        <q>Méléagre parle à son âme et la réprimande d’avoir fait confiance à Érôs. Érôs est un personnage fréquent dans les épigrammes, en particulier celles de Méléagre....</q>
+                                    </div>
+                                </div>
+                                <div class="dropdown-text" id="note2">
+                                    <div class="dropdown-desc">
+                                        <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                                    </div>
+                                </div>
+                                <div class="dropdown-text" id="note3">
+                                    <div class="dropdown-desc">
+                                        <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
                         </div>
-                        <div class="dropdown-text" id="note2">
-                          <div class="dropdown-title">
-                            <h4>Ulysse</h4>
-                          </div>
-                          <div class="dropdown-desc">
-                            <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
-                          </div>
-                        </div>
-                        <div class="dropdown-text" id="note3">
-                          <div class="dropdown-title">
-                            <h4>Odyssey</h4>
-                          </div>
-                          <div class="dropdown-desc">
-                            <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
-                          </div>
-                        </div>
-                      </div>
-                      <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
                     </div>
                 </div>
             </div>
@@ -191,6 +183,9 @@
                 </div>
             </div>
         </div>
+        <div class="manuscript-popin">
+          <img src="~assets/img/popin/manuscript.png"
+        </div>
     </div>
 </template>
 
@@ -198,46 +193,97 @@
 import $ from 'jquery'
 
 $(document).ready(function () {
-  var flag = true
   $('body').on('click', '.control', function () {
-    if (flag) {
+    if ($(this).hasClass('french-sound-playing')) {
+      if (!$('audio')[0].paused) {
+        $('audio')[0].pause()
+        $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+      } else {
+        $('audio')[0].play()
+        $('.control .glyphicon').removeClass('glyphicon-play').addClass('glyphicon-pause')
+      }
+    } else if ($(this).hasClass('greek-sound-playing')) {
+      if (!$('audio')[1].paused) {
+        $('audio')[1].pause()
+        $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+      } else {
+        $('audio')[1].play()
+        $('.control .glyphicon').removeClass('glyphicon-play').addClass('glyphicon-pause')
+      }
+    } else {
       $('audio')[0].play()
       $('.control .glyphicon').removeClass('glyphicon-play').addClass('glyphicon-pause')
-      flag = false
-    } else {
-      $('audio')[0].pause()
-      $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
-      flag = true
     }
   })
 
+  $('body').on('click', '.french-mute span', function () {
+    if ($('audio')[1].currentTime > 0) {
+      $('audio')[1].pause()
+      $('audio')[1].currentTime = 0
+    }
+    if ($('audio')[0].paused) {
+      $('audio')[0].play()
+      $('.control')
+        .removeClass('greek-sound-playing')
+        .addClass('french-sound-playing')
+      $('.control .glyphicon')
+        .removeClass('glyphicon-play')
+        .addClass('glyphicon-pause')
+    } else {
+      if ($('audio')[0].volume === 1) {
+        $('audio')[0].volume = 0
+        $(this).removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
+      } else {
+        $('audio')[0].volume = 1
+        $(this).removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+      }
+    }
+  })
+
+  $('body').on('click', '.greek-mute span', function () {
+    if ($('audio')[0].currentTime > 0) {
+      $('audio')[0].pause()
+      $('audio')[0].currentTime = 0
+    }
+    if ($('audio')[1].paused) {
+      $('audio')[1].play()
+      $('.control')
+        .removeClass('french-sound-playing')
+        .addClass('greek-sound-playing')
+      $('.control .glyphicon')
+        .removeClass('glyphicon-play')
+        .addClass('glyphicon-pause')
+    } else {
+      if ($('audio')[1].volume === 1) {
+        $('audio')[1].volume = 0
+        $(this).removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
+      } else {
+        $('audio')[1].volume = 1
+        $(this).removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+      }
+    }
+  })
   $('audio').on('timeupdate', function (e) {
-    var currentTime = $('audio')[0].currentTime
-    var duration = $('audio')[0].duration
+    var currentTime, duration
+    if (!$('audio')[0].paused) {
+      currentTime = $('audio')[0].currentTime
+      duration = $('audio')[0].duration
+    } else {
+      currentTime = $('audio')[1].currentTime
+      duration = $('audio')[1].duration
+    }
 
     var percent = currentTime / duration * 100
     $('.progress').css('height', percent + '%')
   })
 
-  var muteFlag = true
-
   $('audio').on('ended', function () {
     $('.progress').css('height', '0')
+    $('.control').removeClass('french-sound-playing').removeClass('greek-sound-playing')
     $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
-    $('audio')[0].volume = 1
     $('.mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-    muteFlag = true
-  })
-  $('body').on('click', '.mute span', function () {
-    if (muteFlag) {
-      $('audio')[0].volume = 0
-      $('.mute span').removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
-      muteFlag = false
-    } else {
-      $('audio')[0].volume = 1
-      $('.mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-      muteFlag = true
-    }
+    $('audio')[0].volume = 1
+    $('audio')[1].volume = 1
   })
 
   function onDropdownClick (dropdown) {
@@ -248,14 +294,16 @@ $(document).ready(function () {
     var selfListChild = selfList.children()
     var selfTextContainer = selfParent.children('.dropdown-text-container')
     var selfDropText = selfTextContainer.find('.dropdown-text')
-
-    if (!self.hasClass('droped')) {
+    if ($('#note1').hasClass('visible')) {
+      $('.notes .glyphicon-chevron-left').hide()
+    }
+    if (!selfParent.hasClass('droped')) {
       var charHeight = selfListChild.css('height')
-      self.addClass('droped')
+      selfParent.addClass('droped')
       selfList.css('height', charHeight)
       selfArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
     } else {
-      self.removeClass('droped')
+      selfParent.removeClass('droped')
       selfList.css('height', '0')
       selfTextContainer.fadeOut('500')
       selfDropText.fadeOut('500').removeClass('visible')
@@ -321,6 +369,14 @@ $(document).ready(function () {
   $('body').on('click', '.dropdown-arrow-right', function () {
     onDropArrowClick($(this))
   })
+
+  $('body').on('click', '.manuscript-image > p', function () {
+    $('.manuscript-popin').fadeIn().css('display', 'flex')
+  })
+
+  $('body').on('click', '.manuscript-popin', function () {
+    $('.manuscript-popin').fadeOut()
+  })
 })
 </script>
 
@@ -334,6 +390,20 @@ $hover: .2s all ease-out
 
   >.row
     padding-top: 200px
+
+.manuscript-popin
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 10
+  display: flex
+  align-items: center
+  justify-content: center
+  background: rgba(0, 0, 0, .5)
+  cursor: pointer
+  display: none
 
 .themes
   .dash
@@ -459,6 +529,11 @@ $hover: .2s all ease-out
   .text-theme
     h2
       font-size: 14px
+      position: relative
+      display: inline-block
+
+      span.bg
+        left: -10px
 
   .text-title
     position: relative
@@ -563,8 +638,29 @@ $hover: .2s all ease-out
       font-size: 10px
       margin-left: 14px
 
-.notes
+.notes.dropdown
   margin-top: 60px
+
+  .dropdown-drop
+    width: 100%
+    padding-left: 20px;
+    margin-left: -20px;
+
+  .dropdown-text-container
+    display: flex
+    background: none
+
+    .dropdown-text-wrapper
+      width: 170px
+
+      .dropdown-text
+        .dropdown-desc
+          q
+            &:before
+              top: -10px
+
+    #note1
+      display: initial
 
 .characters
   margin-top: 150px
@@ -673,6 +769,7 @@ $hover: .2s all ease-out
           q
             quotes: "\201C" "\201D" "\2018" "\2019"
             position: relative
+            padding: 0 10px 10px 0;
 
             &:before
               font-size: 30px

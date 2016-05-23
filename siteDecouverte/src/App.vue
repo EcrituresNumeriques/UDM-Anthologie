@@ -53,23 +53,23 @@ body
   display: flex
   height: 100%
   font-family: 'times', Helvetica, Arial, sans-serif
-  
+
   &::-webkit-scrollbar
     display: none
-  
+
 #app
   width: 100%
-  height: 100%    
+  height: 100%
   padding: 19px 17px
-  
+
   >div
     width: 100%
     height: 100%
-      
+
 .navbar-default
   background: none
   border: none
-  
+
 span.bg
   width: 20px
   height: 20px
@@ -84,8 +84,8 @@ span.bg
 .dash
   background: #000
   display: inline-block
-  vertical-align: middle  
-         
+  vertical-align: middle
+
 .page-title-container
   position: absolute
   top: 50%
@@ -97,34 +97,36 @@ span.bg
   opacity: .04
   z-index: -1
 
-  h1     
+  h1
     text-transform: uppercase
     font-size: 100px
     font-weight: 800
-          
+
 .page-subtitle-container
   display: flex
   align-items: center
   margin: 5% 0 45px
-  
+
   .dash
     width: 24px
     height: 2px
     margin-right: 100px
-    
+
   h2
     display: inline-block
     font-size: 30px
     font-style: italic
     margin-bottom: 0
-    
+
 .vertical-list-container
   columns: 20em
   width: 100%
   height: 70%
   align-self: center
-     
+
 .vertical-list-wrapper
+  padding-top: 10px
+
   h3
     padding-left: 10px
     position: relative
@@ -134,25 +136,25 @@ span.bg
     color: rgba(44,44,44,.5)
     margin: 0
     text-transform: uppercase
-    
+
     sup
         font-family: initial
         font-weight: 700
         font-size: 8px
         color: #2c2c2c
-      
+
   ul
     list-style: none
     padding: 0
     margin: 30px 0 50px
-    
+
     li
       padding-left: 20px
-      
+
       a
         font-size: 12px
         color: #000
         transition: $hover
         padding: 8px 0
-  
+
 </style>
