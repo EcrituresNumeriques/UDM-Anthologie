@@ -3,7 +3,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header col-md-2">
-            <a class="navbar-brand" v-link="{ name : 'home' }">
+            <a class="navbar-brand" v-link="{ path : '/accueil' }">
               <h1>Antho<span>logie</span></h1>
             </a>
           </div>
@@ -13,8 +13,8 @@
           <div class="navbar-list col-md-2">
             <p>Listes :</p>
             <ul>
-              <li><a v-link="{ name: 'keywords' }">Mots clès</a></li>
               <li><a v-link="{ name: 'authors' }">Auteurs</a></li>
+              <li><a v-link="{ name: 'keywords' }">Mots clès</a></li>
               <li><a v-link="{ name: 'characters' }">Personnages</a></li>
             </ul>
           </div>
@@ -33,10 +33,9 @@
 <script>
 import $ from 'jquery'
 
-$('.reset').click(function (e) {
+$('body').on('click', '.reset', function (e) {
   e.preventDefault()
-  console.log('ok')
-  // $('input[type="search"]').focus()
+  $('input[type="search"]').val('').focus()
 })
 </script>
 
@@ -56,6 +55,8 @@ $hover: .2s all linear
 .navbar-header
   a
     padding: 0
+    opacity: 1
+    transition: $hover
 
     h1
       font-size: 12px
@@ -68,6 +69,12 @@ $hover: .2s all linear
       span
         font-weight: 300
 
+    &.v-link-active
+      opacity: .3
+
+    &:hover
+      opacity: 1
+
 .navbar-link,
 .navbar-list
   a
@@ -77,7 +84,7 @@ $hover: .2s all linear
     color: $nav-color
     text-decoration: none
     display: inline-block
-    opacity: .5
+    opacity: .3
     transition: $hover
 
     &:after
@@ -112,7 +119,7 @@ $hover: .2s all linear
     font-size: 10px
     color: $nav-color
     margin-bottom: 15px
-    opacity: .5
+    opacity: .3
 
   ul
     list-style: none
@@ -134,7 +141,7 @@ form
     font-weight: 600
     border: none
     border-radius: 0
-    opacity: .5
+    opacity: .3
     transition: $hover
     box-shadow: none
 
@@ -147,7 +154,7 @@ form
         opacity: 1
 
       ~button[type="reset"]
-        display: block
+        visibility: visible
 
   button[type="submit"]
     transform: translate3d(0, -50%, 0)
@@ -156,7 +163,7 @@ form
     left: 9px
     border: none
     background: none
-    opacity: .5
+    opacity: .3
     transition: $hover
     z-index: 2
     height: 100%
@@ -173,11 +180,12 @@ form
     right: 22px
     background: none
     border: none
-    display: none
-    opacity: .5
+    visibility: hidden
+    opacity: .3
     transition: $hover
     z-index: 2
     height: 100%
+    cursor: pointer
 
     &:hover
       opacity: 1

@@ -1,7 +1,8 @@
 <template>
     <div class="back-btn">
-        <div class="back-container">
-          <a href="#" class="back"><span class="bg"></span>Retour</a>
+        <div class="inner-links">
+          <span class="dash"></span>
+          <a href="#" class="back">Retour</a>
         </div>
     </div>
 </template>
@@ -20,30 +21,11 @@ $(document).ready(function () {
 
 <style lang="sass" scoped>
 $hover: .2s all linear
-$raleway: 'Raileway', Helvetica, Arial, sans-serif
+$raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 .back-btn
   position: absolute
   top: 200px
   z-index: 2
 
-.back-container
-  margin-bottom: 50px
-
-  .back
-    padding-left: 10px
-    font-family: $raleway
-    font-weight: 600
-    font-size: 12px
-    color: #5c5c5c
-    transition: $hover
-    position: relative
-  
-    &:hover,
-    &:focus
-      color: #000
-      text-decoration: none
-    
-      span
-        width: 100%
 </style>

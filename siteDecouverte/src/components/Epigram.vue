@@ -5,7 +5,7 @@
         </div>
         <div class="row">
             <div class="col-md-2 col-md-offset-1">
-                <div class="themes">
+                <div class="inner-links">
                     <span class="dash"></span>
                     <a v-link="{ name: 'summary', params: { theme: 'maleagre-in-love' }}">Les thèmes</a>
                 </div>
@@ -14,7 +14,7 @@
                 <div class="index">
                     <p class="total">09</p>
                     <span class="separator"></span>
-                    <p class="active">02</p>
+                    <p class="active">01</p>
                 </div>
                 <div class="arrows">
                     <span><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></span>
@@ -24,8 +24,13 @@
             </div>
             <div class="col-md-1 col-md-offset-1">
                 <div class="player">
-                    <div class="control start">
-                        <span class="glyphicon glyphicon-play"></span>
+                    <div class="control">
+                        <a class="play-button paused" href="#">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <div class="triangle-1"></div>
+                            <div class="triangle-2"></div>
+                        </a>
                     </div>
                     <div class="progressbar">
                         <span class="progress"></span>
@@ -184,7 +189,7 @@
             </div>
         </div>
         <div class="manuscript-popin">
-          <img src="~assets/img/popin/manuscript.png"
+          <img src="~assets/img/popin/manuscript.png">
         </div>
     </div>
 </template>
@@ -193,97 +198,107 @@
 import $ from 'jquery'
 
 $(document).ready(function () {
-  $('body').on('click', '.control', function () {
+  var body = $('body')
+  var controlBtn = $('.control')
+  var playBtn = controlBtn.children('.play-button')
+  var sound = $('audio')
+  var frenchSound = $('audio')[0]
+  var greekSound = $('audio')[1]
+  var progressBar = $('.progress')
+  var muteBtn = $('.mute span')
+
+//  body.on('click', '.control', function (e) {
+//    e.preventDefault()
+//    playBtn.toggleClass('paused')
+//  })
+
+  body.on('click', '.control', function () {
     if ($(this).hasClass('french-sound-playing')) {
-      if (!$('audio')[0].paused) {
-        $('audio')[0].pause()
-        $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+      if (!frenchSound.paused) {
+        frenchSound.pause()
+        playBtn.addClass('paused')
       } else {
-        $('audio')[0].play()
-        $('.control .glyphicon').removeClass('glyphicon-play').addClass('glyphicon-pause')
+        frenchSound.play()
+        playBtn.removeClass('paused')
       }
     } else if ($(this).hasClass('greek-sound-playing')) {
-      if (!$('audio')[1].paused) {
-        $('audio')[1].pause()
-        $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+      if (!greekSound.paused) {
+        greekSound.pause()
+        playBtn.addClass('paused')
       } else {
-        $('audio')[1].play()
-        $('.control .glyphicon').removeClass('glyphicon-play').addClass('glyphicon-pause')
+        greekSound.play()
+        playBtn.removeClass('paused')
       }
     } else {
-      $('audio')[0].play()
-      $('.control .glyphicon').removeClass('glyphicon-play').addClass('glyphicon-pause')
+      frenchSound.play()
+      playBtn.removeClass('paused')
+      $(this).addClass('french-sound-playing')
     }
   })
 
-  $('body').on('click', '.french-mute span', function () {
-    if ($('audio')[1].currentTime > 0) {
-      $('audio')[1].pause()
-      $('audio')[1].currentTime = 0
+  body.on('click', '.french-mute span', function () {
+    if (greekSound.currentTime > 0) {
+      greekSound.pause()
+      greekSound.currentTime = 0
     }
-    if ($('audio')[0].paused) {
-      $('audio')[0].play()
-      $('.control')
+    if (frenchSound.paused) {
+      frenchSound.play()
+      controlBtn
         .removeClass('greek-sound-playing')
         .addClass('french-sound-playing')
-      $('.control .glyphicon')
-        .removeClass('glyphicon-play')
-        .addClass('glyphicon-pause')
+      playBtn.removeClass('paused')
     } else {
-      if ($('audio')[0].volume === 1) {
-        $('audio')[0].volume = 0
+      if (frenchSound.volume === 1) {
+        frenchSound.volume = 0
         $(this).removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
       } else {
-        $('audio')[0].volume = 1
+        frenchSound.volume = 1
         $(this).removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       }
     }
   })
 
-  $('body').on('click', '.greek-mute span', function () {
-    if ($('audio')[0].currentTime > 0) {
-      $('audio')[0].pause()
-      $('audio')[0].currentTime = 0
+  body.on('click', '.greek-mute span', function () {
+    if (frenchSound.currentTime > 0) {
+      frenchSound.pause()
+      frenchSound.currentTime = 0
     }
-    if ($('audio')[1].paused) {
-      $('audio')[1].play()
-      $('.control')
+    if (greekSound.paused) {
+      greekSound.play()
+      controlBtn
         .removeClass('french-sound-playing')
         .addClass('greek-sound-playing')
-      $('.control .glyphicon')
-        .removeClass('glyphicon-play')
-        .addClass('glyphicon-pause')
+      playBtn.removeClass('paused')
     } else {
-      if ($('audio')[1].volume === 1) {
-        $('audio')[1].volume = 0
+      if (greekSound.volume === 1) {
+        greekSound.volume = 0
         $(this).removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
       } else {
-        $('audio')[1].volume = 1
+        greekSound.volume = 1
         $(this).removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       }
     }
   })
-  $('audio').on('timeupdate', function (e) {
+  sound.on('timeupdate', function (e) {
     var currentTime, duration
-    if (!$('audio')[0].paused) {
-      currentTime = $('audio')[0].currentTime
-      duration = $('audio')[0].duration
+    if (controlBtn.hasClass('french-sound-playing')) {
+      currentTime = frenchSound.currentTime
+      duration = frenchSound.duration
     } else {
-      currentTime = $('audio')[1].currentTime
-      duration = $('audio')[1].duration
+      currentTime = greekSound.currentTime
+      duration = greekSound.duration
     }
-
     var percent = currentTime / duration * 100
-    $('.progress').css('height', percent + '%')
+    progressBar.css('height', percent + '%')
   })
 
-  $('audio').on('ended', function () {
-    $('.progress').css('height', '0')
-    $('.control').removeClass('french-sound-playing').removeClass('greek-sound-playing')
-    $('.control .glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
-    $('.mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-    $('audio')[0].volume = 1
-    $('audio')[1].volume = 1
+  sound.on('ended', function () {
+    progressBar.css('height', '0')
+    controlBtn.removeClass('french-sound-playing').removeClass('greek-sound-playing')
+    playBtn.addClass('paused')
+    muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+    frenchSound.volume = 1
+    greekSound.volume = 1
   })
 
   function onDropdownClick (dropdown) {
@@ -381,7 +396,7 @@ $(document).ready(function () {
 </script>
 
 <style lang="sass" scoped>
-$raleway: 'Raileway', Helvetica, Arial, sans-serif
+$raleway: 'Raleway', Helvetica, Arial, sans-serif
 $hover: .2s all ease-out
 
 .epigram
@@ -389,7 +404,10 @@ $hover: .2s all ease-out
   height: 100%
 
   >.row
-    padding-top: 200px
+    position: absolute
+    bottom: 15%
+    width: 100%
+    z-index: 2
 
 .manuscript-popin
   position: absolute
@@ -404,19 +422,6 @@ $hover: .2s all ease-out
   background: rgba(0, 0, 0, .5)
   cursor: pointer
   display: none
-
-.themes
-  .dash
-    width: 19px
-    height: 1px
-    margin-right: 20px
-
-  a
-    font-family: $raleway
-    font-size: 12px
-    font-weight: 600
-    color: #000
-    display: inline-block
 
 .index
   position: relative
@@ -467,26 +472,95 @@ $hover: .2s all ease-out
     a
       font-size: 10px
       color: #2c2c2c
-      opacity: 0.6
+      opacity: 0.3
       transition: $hover
+      display: block
 
       &:hover
         text-decoration: none
         opacity: 1
 
+    &:first-child,
+    &:last-child
+      flex-grow: 2
+
+    &:first-child
+      a
+        &:hover
+          transform: translateX(-5px)
+
+    &:last-child
+      text-align: right
+
+      a
+        &:hover
+          transform: translateX(5px)
+
 .player
-  width: 38px
+  width: 45px
   text-align: center
 
   .control
     cursor: pointer
     width: 100%
-    height: 38px
-    line-height: 38px
+    height: 45px
+    line-height: 45px
     border-radius: 50%
     display: inline-block
     border: 1px solid #2c2c2c
     text-align: center
+
+    .play-button
+      height: 10px
+      width: 10px
+      display: inline-block
+      overflow: hidden
+      position: relative
+      margin: 0 auto
+
+      .left,
+      .right
+        height: 10px
+        background: #2c2c2c
+        transition: all 0.25s ease
+        width: 3px
+
+      .left
+        float: left
+        overflow: hidden
+
+      .right
+        float: right
+
+      .triangle-1
+        transform: translate(0, -100%)
+
+      .triangle-2
+        transform: translate(0, 100%)
+
+      .triangle-1,
+      .triangle-2
+        position: absolute
+        top: 0
+        right: 0
+        background: transparent
+        width: 0
+        height: 0
+        border-right: 10px solid #fff
+        border-top: 5px solid #2c2c2c
+        border-bottom: 5px solid #2c2c2c
+        transition: transform 0.25s ease
+
+    .paused
+      .left,
+      .right
+        width: 50%
+
+      .triangle-1
+        transform: translate(0, -50%)
+
+      .triangle-2
+        transform: translate(0, 50%)
 
   .progressbar
     height: 300px
@@ -551,7 +625,7 @@ $hover: .2s all ease-out
       margin-top: -5px
 
       select
-        font-size: 8px
+        font-size: 10px
         text-transform: uppercase
         border: none
         color: #2c2c2c
@@ -603,6 +677,7 @@ $hover: .2s all ease-out
     font-size: 18px
     color: #2c2c2c
     margin: 0
+    letter-spacing: 0.02em
 
     span.glyphicon
       font-size: 10px
@@ -730,9 +805,14 @@ $hover: .2s all ease-out
       height: 150px
       overflow-y: auto
       position: relative
-      scrollbar-face-color: #2c2c2c;
-      scrollbar-track-color: #fff;
+      scrollbar-face-color: #2c2c2c
+      scrollbar-track-color: #fff
       scrollbar-arrow-color: #fff
+
+      &:hover
+        &::-webkit-scrollbar-thumb,
+        &::-webkit-scrollbar-track
+          visibility: visible
 
       &::-webkit-scrollbar
         background: #fff
@@ -742,7 +822,8 @@ $hover: .2s all ease-out
         display: none
 
       &::-webkit-scrollbar-thumb
-        background: rgba(44, 44, 44, .6)
+        background: rgba(44, 44, 44, .3)
+        visibility: hidden
 
         &:hover
           background: rgba(44, 44, 44, .8)
@@ -751,8 +832,9 @@ $hover: .2s all ease-out
           background: rgba(44, 44, 44, 1)
 
       &::-webkit-scrollbar-track
-        border-bottom: 1px solid #000
-        border-top: 1px solid #000
+        border-bottom: 1px solid #2c2c2c
+        border-top: 1px solid #2c2c2c
+        visibility: hidden
 
       .dropdown-text
         font-size: 14px

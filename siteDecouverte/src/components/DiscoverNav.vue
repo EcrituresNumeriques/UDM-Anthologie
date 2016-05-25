@@ -3,7 +3,7 @@
         <nav class="navbar navbar-default">
             <ul class="nav">
                 <li><a href="#"><span class="dash"></span>Mélé / Contraste<sup>I</sup></a></li>
-                <li><a v-link="{ name: 'summary', params: { theme: 'maleagre-in-love' }}"><span class="dash"></span>Méléagre in love<sup>II</sup></a></li>
+                <li><a v-link="{ name: 'epigram', params: { id: '1' }}"><span class="dash"></span>Méléagre in love<sup>II</sup></a></li>
                 <li><a href="#"><span class="dash"></span>La Couronne de Méléagre<sup>III</sup></a></li>
                 <li><a href="#"><span class="dash"></span>L'Anthologie de Méléane<sup>IV</sup></a></li>
                 <li><a href="#"><span class="dash"></span>Agis de Méléi<sup>V</sup></a></li>
@@ -22,34 +22,32 @@ $hover: .2s all ease-out
 
 .nav>li>a
   display: flex
-  
+
 ul
   li
     a
-      font-size: 20px
+      font-size: 17px
       color: rgba(0, 0, 0, 0.5)
       align-items: center
       transition: $hover
-      padding-left: 0!important
-      
+      padding: 5px 15px 5px 0
+
       .dash
         width: 0
         height: 1px
         margin-right: 0
         transition: $hover
-        
+
       sup
-        font-weight: bold
         font-size: 9px
-        padding: 0 5px
-      
+
       &:hover,
       &:focus,
       &.v-link-active
         opacity: 1
         color: #000
         background: none;
-        
+
         .dash
           width: 20px
           margin-right: 20px

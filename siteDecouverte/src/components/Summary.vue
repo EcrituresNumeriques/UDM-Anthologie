@@ -12,8 +12,8 @@
             <div class="col-md-4 col-md-offset-1 pull-right summary-right-column">
                 <nav class="navbar navbar-default">
                     <ul class="nav">
+                        <li><a v-link="{ name: 'epigram', params: { id: '1'}}">002	AP 12.132b, 22</a></li>
                         <li><a href="#">001	AP 5.177, 37</a></li>
-                        <li><a v-link="{ name: 'epigram', params: { name: 'ap_12-132b_22'}}">002	AP 12.132b, 22</a></li>
                         <li><a href="#">003	AP 5.152, 34</a></li>
                         <li><a href="#">004	AP 7.417</a></li>
                         <li><a href="#">005	AP 7.421 : Épitaphe «logogriphique»</a></li>

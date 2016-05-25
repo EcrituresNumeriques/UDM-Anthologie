@@ -13,6 +13,7 @@ import Authors from './components/Authors'
 import Characters from './components/Characters'
 import Epigram from './components/Epigram'
 import NotFound from './components/404'
+import Search from './components/Search'
 
 // install router
 Vue.use(Router)
@@ -23,10 +24,6 @@ export var router = new Router({
 })
 
 router.map({
-  '/': {
-    component: Home,
-    name: 'home'
-  },
   '/accueil': {
     component: Home,
     name: 'home'
@@ -51,18 +48,23 @@ router.map({
     component: Characters,
     name: 'characters'
   },
-  '/epigramme/:name': {
+  '/epigramme/:id': {
     component: Epigram,
     name: 'epigram'
   },
   '/404': {
     component: NotFound,
     name: 'NotFound'
+  },
+  '/recherche': {
+    component: Search,
+    name: 'search'
   }
 })
 
 router.redirect({
-  '*': '/404'
+  '*': '/404',
+  '/': '/accueil'
 })
 
 // start the app

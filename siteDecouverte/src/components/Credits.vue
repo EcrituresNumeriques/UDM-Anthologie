@@ -23,8 +23,8 @@
             <li>Nahel Moussi : UX/UI Designer</li>
             <li>Raphaël Aupée : Développeur Back</li>
             <li>Paul Chagnon : UX/UI Designer</li>
-            <li>Valentin Crochemore : Développeur Front</li>  
-          </li>
+            <li>Valentin Crochemore : Développeur Front</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>  
+<style lang="sass" scoped>
 $hover: .2s all linear
 $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
@@ -64,37 +64,38 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
   display: flex
   flex-direction: column
   justify-content: flex-end
-    
+
 .desc-container
   color: #2c2c2c
   margin-top: 40px
   margin-bottom: 150px
-  
+
   h3
     font-style: italic
     font-size: 18px
     padding-left: 100px
     margin-top: 0
-    
+    letter-spacing: 0.02em
+
   q
     font-size: 14px
-    line-height: 1.5em;
+    line-height: 20px;
     margin-top: 80px
     display: inline-block
     quotes: "\201C""\201D""\2018""\2019"
-    
+
     &:before
       font-size: 30px
       margin-bottom: -15px
       vertical-align: bottom
       display: inline-block
-    
+
     &:after
       content: no-close-quote
-      
+
     p
      padding-left: 20px
-     
+
 .team-container
   h4
     padding-left: 10px
@@ -105,21 +106,22 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
     position: relative
     margin-top: 0
     text-transform: uppercase
-    
+    letter-spacing: 0.1em
+
     sup
       font-size: 8px
       color: #2c2c2c
       font-family: initial
       padding-left: 5px
-      
+
   ul
-    list-style: none    
+    list-style: none
     padding-left: 20px
     margin-top: 30px
-    
+
     li
       font-size: 12px
       color: #000
       line-height: 2em
-    
+
 </style>

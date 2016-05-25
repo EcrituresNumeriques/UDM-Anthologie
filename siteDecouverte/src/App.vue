@@ -2,7 +2,7 @@
   <div id="app" class="container-fluid">
     <div class="hidden-xs hidden-sm">
       <main-nav></main-nav>
-      <router-view></router-view>
+      <router-view transition="fade"></router-view>
     </div>
     <div class="hidden-md hidden-lg">
       <responsive></responsive>
@@ -39,8 +39,15 @@ export default {
 </script>
 
 <style lang="sass">
-$hover: .2s all linear
-$raleway: 'Raileway', Helvetica, Arial, sans-serif
+$hover: .2s all ease-out
+$raleway: 'Raleway', Helvetica, Arial, sans-serif
+
+.fade-transition
+  transition: .5s all ease-out
+
+.fade-enter,
+.fade-leave
+  opacity: 0
 
 @font-face
   font-family: 'times'
@@ -53,9 +60,17 @@ body
   display: flex
   height: 100%
   font-family: 'times', Helvetica, Arial, sans-serif
+  overflow: hidden
 
-  &::-webkit-scrollbar
-    display: none
+  .scroll
+    overflow-y: scroll
+
+    &::-webkit-scrollbar
+      display: none
+
+sup
+  padding: 0 8px
+  font-weight: 700
 
 #app
   width: 100%
@@ -77,7 +92,7 @@ span.bg
   position: absolute
   left: 0
   top: 50%
-  transform: translateY(-50%)
+  transform: translate3d(0, -50%, 0)
   z-index: -1
   transition: $hover
 
@@ -101,11 +116,12 @@ span.bg
     text-transform: uppercase
     font-size: 100px
     font-weight: 800
+    letter-spacing: 0.12em
 
 .page-subtitle-container
   display: flex
   align-items: center
-  margin: 5% 0 45px
+  margin: 95px 0 45px
 
   .dash
     width: 24px
@@ -117,6 +133,7 @@ span.bg
     font-size: 30px
     font-style: italic
     margin-bottom: 0
+    line-height: 32px
 
 .vertical-list-container
   columns: 20em
@@ -136,10 +153,10 @@ span.bg
     color: rgba(44,44,44,.5)
     margin: 0
     text-transform: uppercase
+    letter-spacing: 0.1em
 
     sup
         font-family: initial
-        font-weight: 700
         font-size: 8px
         color: #2c2c2c
 
@@ -155,6 +172,24 @@ span.bg
         font-size: 12px
         color: #000
         transition: $hover
-        padding: 8px 0
+        padding: 5px 0
+        display: block
 
+        &:hover
+          padding-left: 10px
+          text-decoration: none
+
+.inner-links
+  .dash
+    width: 19px
+    height: 1px
+    margin-right: 20px
+
+  a
+    font-family: $raleway
+    font-size: 12px
+    font-weight: 600
+    color: #000
+    display: inline-block
+    letter-spacing: 0.04em
 </style>
