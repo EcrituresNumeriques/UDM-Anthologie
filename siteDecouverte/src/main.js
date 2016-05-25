@@ -13,7 +13,6 @@ import Authors from './components/Authors'
 import Characters from './components/Characters'
 import Epigram from './components/Epigram'
 import NotFound from './components/404'
-import Search from './components/Search'
 
 // install router
 Vue.use(Router)
@@ -55,10 +54,6 @@ router.map({
   '/404': {
     component: NotFound,
     name: 'NotFound'
-  },
-  '/recherche': {
-    component: Search,
-    name: 'search'
   }
 })
 
