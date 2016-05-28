@@ -121,7 +121,7 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
     li
       font-size: 12px
-      color: #000
+      color: #2c2c2c
       line-height: 2em
 
 </style>

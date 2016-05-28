@@ -9,7 +9,10 @@
             </div>
         </div>
         <div class="col-md-5 right-column">
-            <img src="~assets/img/img.png">
+            <!--<img src="~assets/img/img.png">-->
+          <div class="img-container">
+            <div class="img"></div>
+          </div>
         </div>
      </div>
   </div>
@@ -34,7 +37,7 @@ $hover: .2s all linear
 .home
   height: 100%
   width: 100%
-  
+
   >.row
     height: 100%
 
@@ -42,17 +45,27 @@ $hover: .2s all linear
 .right-column
   display: inline-flex
   height: 100%
-  
+
 .left-column
   flex-direction: column
   justify-content: flex-end
   padding-right: 0
-  
+
 .right-column
   align-items: center
   justify-content: flex-end
   padding: 0 17px 0 0
-  
-  img
+
+  .img-container
     height: 100%
+    width: 100%
+    background: #2b2b2b
+
+    .img
+      width: 100%
+      height: 100%
+      background: url(~assets/img/img.png)
+      background-size: cover
+      opacity: 0.65
+
 </style>

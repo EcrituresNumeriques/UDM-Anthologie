@@ -1,8 +1,10 @@
 <template>
     <div class="back-btn">
         <div class="inner-links">
-          <span class="dash"></span>
-          <a href="#" class="back">Retour</a>
+          <a href="#" class="back">
+            <span class="dash"></span>
+            Retour
+          </a>
         </div>
     </div>
 </template>

@@ -19,7 +19,7 @@
     flex-direction: column
     height: 100%
     text-align: center
-    
+
     h1, p
       font-family: 'raleway', Helvetica, Arial, sans-serif
 

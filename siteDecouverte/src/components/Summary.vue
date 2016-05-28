@@ -73,7 +73,7 @@ $hover: .2s all ease-out
     li
       a
         font-size: 12px
-        color: #000
+        color: #2c2c2c
         padding: 8px 0
         transition: $hover
 

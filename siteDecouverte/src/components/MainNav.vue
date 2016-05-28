@@ -93,7 +93,7 @@ $hover: .2s all linear
       height: 1px
       display: block
       vertical-align: top
-      background: #000
+      background: #2c2c2c
       opacity: 0
       transition: $hover
 
@@ -193,7 +193,7 @@ form
     .reset-cross
       width: 7px
       height: 1px
-      background: #000
+      background: #2c2c2c
       display: inline-block
       transform: rotate(45deg)
       vertical-align: middle
@@ -202,7 +202,7 @@ form
         content: ""
         width: 7px
         height: 1px
-        background: #000
+        background: #2c2c2c
         transform: rotate(90deg)
         position: absolute
         top: 0

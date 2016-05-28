@@ -6,8 +6,10 @@
         <div class="row">
             <div class="col-md-2 col-md-offset-1">
                 <div class="inner-links">
-                    <span class="dash"></span>
-                    <a v-link="{ name: 'summary', params: { theme: 'maleagre-in-love' }}">Les thèmes</a>
+                    <a v-link="{ name: 'summary', params: { theme: 'maleagre-in-love' }}">
+                      <span class="dash"></span>
+                      Les thèmes
+                    </a>
                 </div>
             </div>
             <div class="col-md-1 col-md-offset-7">
@@ -199,21 +201,15 @@ import $ from 'jquery'
 
 $(document).ready(function () {
   var body = $('body')
-  var controlBtn = $('.control')
-  var playBtn = controlBtn.children('.play-button')
+  var controlBtn, playBtn, frenchSound, greekSound, progressBar, muteBtn
   var sound = $('audio')
-  var frenchSound = $('audio')[0]
-  var greekSound = $('audio')[1]
-  var progressBar = $('.progress')
-  var muteBtn = $('.mute span')
-
-//  body.on('click', '.control', function (e) {
-//    e.preventDefault()
-//    playBtn.toggleClass('paused')
-//  })
 
   body.on('click', '.control', function () {
-    if ($(this).hasClass('french-sound-playing')) {
+    var self = $(this)
+    playBtn = self.children('.play-button')
+    frenchSound = $('audio')[0]
+    greekSound = $('audio')[1]
+    if (self.hasClass('french-sound-playing')) {
       if (!frenchSound.paused) {
         frenchSound.pause()
         playBtn.addClass('paused')
@@ -221,7 +217,7 @@ $(document).ready(function () {
         frenchSound.play()
         playBtn.removeClass('paused')
       }
-    } else if ($(this).hasClass('greek-sound-playing')) {
+    } else if (self.hasClass('greek-sound-playing')) {
       if (!greekSound.paused) {
         greekSound.pause()
         playBtn.addClass('paused')
@@ -232,14 +228,21 @@ $(document).ready(function () {
     } else {
       frenchSound.play()
       playBtn.removeClass('paused')
-      $(this).addClass('french-sound-playing')
+      self.addClass('french-sound-playing')
     }
   })
 
   body.on('click', '.french-mute span', function () {
+    var self = $(this)
+    controlBtn = $('.control')
+    playBtn = controlBtn.children('.play-button')
+    frenchSound = $('audio')[0]
+    greekSound = $('audio')[1]
+    $('.greek-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
     if (greekSound.currentTime > 0) {
       greekSound.pause()
       greekSound.currentTime = 0
+      greekSound.volume = 1
     }
     if (frenchSound.paused) {
       frenchSound.play()
@@ -250,18 +253,25 @@ $(document).ready(function () {
     } else {
       if (frenchSound.volume === 1) {
         frenchSound.volume = 0
-        $(this).removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
+        self.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
       } else {
         frenchSound.volume = 1
-        $(this).removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+        self.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       }
     }
   })
 
   body.on('click', '.greek-mute span', function () {
+    var self = $(this)
+    controlBtn = $('.control')
+    playBtn = controlBtn.children('.play-button')
+    frenchSound = $('audio')[0]
+    greekSound = $('audio')[1]
+    $('.french-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
     if (frenchSound.currentTime > 0) {
       frenchSound.pause()
       frenchSound.currentTime = 0
+      frenchSound.volume = 1
     }
     if (greekSound.paused) {
       greekSound.play()
@@ -272,15 +282,19 @@ $(document).ready(function () {
     } else {
       if (greekSound.volume === 1) {
         greekSound.volume = 0
-        $(this).removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
+        self.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
       } else {
         greekSound.volume = 1
-        $(this).removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+        self.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       }
     }
   })
   sound.on('timeupdate', function (e) {
     var currentTime, duration
+    controlBtn = $('.control')
+    frenchSound = $('audio')[0]
+    greekSound = $('audio')[1]
+    progressBar = $('.progress')
     if (controlBtn.hasClass('french-sound-playing')) {
       currentTime = frenchSound.currentTime
       duration = frenchSound.duration
@@ -293,6 +307,12 @@ $(document).ready(function () {
   })
 
   sound.on('ended', function () {
+    controlBtn = $('.control')
+    playBtn = controlBtn.children('.play-button')
+    muteBtn = $('.mute span')
+    frenchSound = $('audio')[0]
+    greekSound = $('audio')[1]
+    progressBar = $('.progress')
     progressBar.css('height', '0')
     controlBtn.removeClass('french-sound-playing').removeClass('greek-sound-playing')
     playBtn.addClass('paused')
@@ -306,22 +326,19 @@ $(document).ready(function () {
     var selfArrow = self.children('.glyphicon')
     var selfParent = self.parent('.dropdown')
     var selfList = selfParent.children('.dropdown-drop')
-    var selfListChild = selfList.children()
-    var selfTextContainer = selfParent.children('.dropdown-text-container')
-    var selfDropText = selfTextContainer.find('.dropdown-text')
     if ($('#note1').hasClass('visible')) {
       $('.notes .glyphicon-chevron-left').hide()
     }
     if (!selfParent.hasClass('droped')) {
-      var charHeight = selfListChild.css('height')
       selfParent.addClass('droped')
-      selfList.css('height', charHeight)
+      selfList.addClass('visible').next('.dropdown-text-container').addClass('visible')
       selfArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
     } else {
       selfParent.removeClass('droped')
-      selfList.css('height', '0')
-      selfTextContainer.fadeOut('500')
-      selfDropText.fadeOut('500').removeClass('visible')
+      selfList.removeClass('visible')
+        .next('.dropdown-text-container')
+          .removeClass('visible').fadeOut('500')
+            .find('.dropdown-text').removeClass('visible').fadeOut('500')
       selfArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
     }
   }
@@ -342,9 +359,8 @@ $(document).ready(function () {
     var selfArrowLeft = selfTextContainer.children('.dropdown-arrow-left')
     var selfArrowRight = selfTextContainer.children('.dropdown-arrow-right')
     selfTextContainer.css('display', 'flex')
-    $('#' + selfData).fadeIn('500').addClass('visible')
-    var selfDropTextVisible = $('.dropdown-text.visible')
-    var selfDropTextVisibleIndex = selfDropTextVisible.index()
+    $('#' + selfData).addClass('visible').fadeIn('500')
+    var selfDropTextVisibleIndex = $('#' + selfData).index()
     selfArrowLeft.show()
     selfArrowRight.show()
     if (selfDropTextVisibleIndex === 0) {
@@ -377,20 +393,25 @@ $(document).ready(function () {
     }
   }
 
-  $('body').on('click', '.dropdown-arrow-left', function () {
+  body.on('click', '.dropdown-arrow-left', function () {
     onDropArrowClick($(this))
   })
 
-  $('body').on('click', '.dropdown-arrow-right', function () {
+  body.on('click', '.dropdown-arrow-right', function () {
     onDropArrowClick($(this))
   })
 
-  $('body').on('click', '.manuscript-image > p', function () {
-    $('.manuscript-popin').fadeIn().css('display', 'flex')
+  var manuscriptPopin = $('.manuscript-popin')
+  var manuscriptImage = manuscriptPopin.children('img')
+  body.on('click', '.manuscript-image > p', function () {
+    manuscriptPopin.fadeIn(function () {
+      manuscriptImage.addClass('big')
+    }).css('display', 'flex')
   })
 
-  $('body').on('click', '.manuscript-popin', function () {
-    $('.manuscript-popin').fadeOut()
+  body.on('click', '.manuscript-popin', function () {
+    manuscriptImage.removeClass('big')
+    manuscriptPopin.fadeOut()
   })
 })
 </script>
@@ -422,6 +443,13 @@ $hover: .2s all ease-out
   background: rgba(0, 0, 0, .5)
   cursor: pointer
   display: none
+
+  img
+    transform: scale(0.5)
+    transition: .5s
+
+    &.big
+      transform: scale(1)
 
 .index
   position: relative
@@ -740,15 +768,25 @@ $hover: .2s all ease-out
 .characters
   margin-top: 150px
 
+  .dropdown-text-container
+    opacity: 0
+
+    &.visible
+      opacity: 1
+
 .dropdown
   position: relative
+
+  .dropdown-drop
+    opacity: 0
+
+    &.visible
+      opacity: 1
 
   .dropdown-drop,
   .dropdown-text-container
     position: absolute
-    height: 0
-    overflow: hidden
-    transition: $hover
+    transition: .5s all ease-out
     z-index: 2
 
     ul

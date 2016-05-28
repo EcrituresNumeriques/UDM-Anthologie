@@ -45,7 +45,7 @@ ul
       &:focus,
       &.v-link-active
         opacity: 1
-        color: #000
+        color: #2c2c2c
         background: none;
 
         .dash

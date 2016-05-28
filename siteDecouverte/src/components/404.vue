@@ -30,43 +30,43 @@ export default {
 .not-found
   width: 100%
   height: 100%
-    
+
 .content-container
   height: 100%
   display: flex
   justify-content: center
   align-items: center
-  
+
   p
     font-size: 30px
     line-height: 1
     margin-bottom: 0
-    
+
     .error
       vertical-align: top
       display: inline-block
-      
+
       .dash
         height: 2px
         width: 24px
         margin-right: 15px
-      
+
       i
         font-style: italic
-        color: #000
-       
+        color: #2c2c2c
+
     strong
       font-style: italic
       font-size: 200px
       color: #2c2c2c
       margin-left: -50px
-      
+
     &:nth-child(2)
       margin: 0 0 0 145px
-      color: #000
-      
+      color: #2c2c2c
+
     &:last-child
       margin-left: 190px
       opacity: 0.4
-  
+
 </style>

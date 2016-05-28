@@ -97,7 +97,7 @@ span.bg
   transition: $hover
 
 .dash
-  background: #000
+  background: #2c2c2c
   display: inline-block
   vertical-align: middle
 
@@ -170,7 +170,7 @@ span.bg
 
       a
         font-size: 12px
-        color: #000
+        color: #2c2c2c
         transition: $hover
         padding: 5px 0
         display: block
@@ -180,16 +180,55 @@ span.bg
           text-decoration: none
 
 .inner-links
+
   .dash
     width: 19px
     height: 1px
-    margin-right: 20px
+    margin-right: 10px
+    display: inline-block
+    position: relative
+    background: none
+
+    &:before
+      content: ''
+      display: block
+      position: absolute
+      left: 0
+      bottom: 0
+      height: 1px
+      width: 0
+      transition: width 0s ease, background .5s ease
+
+    &:after
+      content: ''
+      display: block
+      position: absolute
+      right: 0
+      bottom: 0
+      height: 1px
+      width: 0
+      background: #2c2c2c
+      transition: width .5s ease
 
   a
     font-family: $raleway
     font-size: 12px
     font-weight: 600
-    color: #000
+    color: #2c2c2c
     display: inline-block
     letter-spacing: 0.04em
+
+    &:hover
+      text-decoration: none
+
+      .dash
+        &:before
+          width: 100%
+          background: #2c2c2c
+          transition: width .5s ease
+
+        &:after
+          width: 100%
+          background: transparent
+          transition: all 0s ease
 </style>
