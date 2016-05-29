@@ -21,7 +21,7 @@ Vue.use(Router)
 Vue.use(Resource)
 
 // configuration Resource
-global.api = require('./service/api.js')
+global.api = require('../service/api.js')
 
 Vue.http.options.root = '/'
 
