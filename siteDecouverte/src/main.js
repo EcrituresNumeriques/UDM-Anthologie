@@ -21,7 +21,7 @@ Vue.use(Router)
 Vue.use(Resource)
 
 // configuration Resource
-global.api = require('../service/api.js')
+global.api = require('./service/api.js')
 
 Vue.http.options.root = '/'
 
@@ -58,6 +58,10 @@ router.map({
   '/epigramme/:id': {
     component: Epigram,
     name: 'epigram'
+  },
+  'theme/:themeId/:theme/:id': {
+    component: Epigram,
+    name: 'theme'
   },
   '/404': {
     component: NotFound,

@@ -2,20 +2,45 @@
     <div class="discover-nav">
         <nav class="navbar navbar-default">
             <ul class="nav">
-                <li><a href="#"><span class="dash"></span>Mélé / Contraste<sup>I</sup></a></li>
-                <li><a v-link="{ name: 'epigram', params: { id: '1' }}"><span class="dash"></span>Méléagre in love<sup>II</sup></a></li>
-                <li><a href="#"><span class="dash"></span>La Couronne de Méléagre<sup>III</sup></a></li>
-                <li><a href="#"><span class="dash"></span>L'Anthologie de Méléane<sup>IV</sup></a></li>
-                <li><a href="#"><span class="dash"></span>Agis de Méléi<sup>V</sup></a></li>
-                <li><a href="#"><span class="dash"></span>Lettre à Méléag l'Égyptien<sup>VI</sup></a></li>
-                <li><a href="#"><span class="dash"></span>Le Thème de Méléagren<sup>VII</sup></a></li>
+                <li class="discover-list" v-for="theme in data.themes" v-if="theme.epigrams">
+                  <a v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}">
+                    <span class="dash"></span>
+                    {{ theme.name }}
+                    <sup></sup>
+                  </a>
+                </li>
             </ul>
         </nav>
     </div>
 </template>
 
 <script>
-// var api = require('../main.js')
+/* global api */
+import $ from 'jquery'
+
+function romanize (num) {
+  if (!+num) { return false }
+  var digits = String(+num).split('')
+  var key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
+    '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC',
+    '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
+  var roman
+  roman = ''
+  var i = 3
+  while (i--) {
+    roman = (key[+digits.pop() + (i * 10)] || '') + roman
+  }
+  return Array(+digits.join('') + 1).join('M') + roman
+}
+
+$('body').click(function () {
+  $('li.discover-list').each(function () {
+    var index = $(this).index() + 1
+    var romanized = romanize(index)
+    $(this).find('sup').text(romanized)
+    console.log(romanized)
+  })
+})
 
 export default {
   data () {
@@ -23,15 +48,14 @@ export default {
       data: {}
     }
   },
-
   ready: function () {
     var self = this
-
     return api.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
     }, function (response) { console.log(response.status) })
   }
 }
+
 </script>
 
 <style lang="sass" scoped>

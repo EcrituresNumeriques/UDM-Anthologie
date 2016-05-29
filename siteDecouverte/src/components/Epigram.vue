@@ -1,7 +1,7 @@
 <template>
     <div class="epigram">
         <div class="page-title-container">
-            <h1>AP 12.132b, 22</h1>
+            <h1>{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].title }}</h1>
         </div>
         <div class="row">
             <div class="col-md-2 col-md-offset-1">
@@ -14,18 +14,26 @@
             </div>
             <div class="col-md-1 col-md-offset-7">
                 <div class="index">
-                    <p class="total">09</p>
+                    <p class="total">{{ data.themes[$route.params.themeId-1].epigrams.length | numberize }}</p>
                     <span class="separator"></span>
-                    <p class="active">01</p>
+                    <p class="active">{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].id | numberize }}</p>
                 </div>
                 <div class="arrows">
-                    <span><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></span>
+                    <span>
+                      <a v-show="!($route.params.id == 1)" v-link="{ name: 'theme', params: { theme: $route.params.theme, themeId: $route.params.themeId, id: $route.params.id-1 }}">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                      </a>
+                    </span>
                     <span class="separator"></span>
-                    <span><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></span>
+                    <span>
+                      <a v-show="!($route.params.id == data.themes[$route.params.themeId-1].epigrams.length)" v-link="{ name: 'theme', params: { theme: $route.params.theme, themeId: $route.params.themeId, id: data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].id+1 }}">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                      </a>
+                    </span>
                 </div>
             </div>
             <div class="col-md-1 col-md-offset-1">
-                <div class="player">
+                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds" class="player">
                     <div class="control">
                         <a class="play-button paused" href="#">
                             <div class="left"></div>
@@ -40,26 +48,26 @@
                 </div>
                 <div class="sound">
                     <audio class="french-sound">
-                        <source src="../static/sound/sound.mp3" type="audio/mpeg">
+                        <source src="{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.french }}" type="audio/mpeg">
                     </audio>
                     <audio class="greek-sound">
-                      <source src="../static/sound/sound-greek.mp3" type="audio/mpeg">
+                      <source src="{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.greek }}" type="audio/mpeg">
                     </audio>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="mute french-mute">
+                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.french" class="mute french-mute">
                   <span class="glyphicon glyphicon-volume-up"></span>
                 </div>
                 <div class="text-container">
                     <div class="text-theme">
                         <h2>
                           <span class="bg"></span>
-                          Méléagre in love
+                          {{ data.themes[$route.params.themeId-1].name }}
                         </h2>
                     </div>
                     <div class="text-title">
-                        <h3>AP 12.132b, 22</h3>
+                        <h3>{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].title }}</h3>
                         <div class="text-lang">
                             <select>
                                 <option value="fr">Fr</option>
@@ -69,12 +77,7 @@
                     </div>
                     <div class="text-content">
                         <p>
-                        Ame douloureuse, tantôt tu brûles de fièvre,<br>
-                        tantôt tu te refroidis, ayant repris ton souffle.<br>
-                        Pourquoi pleures-tu? Erôs l’inébranlable, lorsque sur ton sein,<br>
-                        tu le nourrissais, tu ne savais pas qu’il était nourri contre toi?<br>
-                        tu ne savais pas? Maintenant, apprends la récompense des beaux soins, ayant reçu fièvre et eau gelée.<br>
-                        Toi-même, tu les as choisis. Supporte ta peine. Tu subis des choses dignes de ce que tu as fait, en étant brûlée par un miel rôti.
+                        {{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].texts.french }}}
                         </p>
                     </div>
                     <div class="text-author">
@@ -91,23 +94,18 @@
                     </p>
                     <div class="dropdown-drop">
                       <div class="dropdown-content">
-                        <div class="mute greek-mute">
+                        <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.french" class="mute greek-mute">
                           <span class="glyphicon glyphicon-volume-up"></span>
                         </div>
-                        <p>ἆ ψυχὴ βαρύμοχθε, σὺ δ' ἄρτι μὲν ἐκ πυρὸς αἴθῃ,
-                          ἄρτι δ' ἀναψύχεις πνεῦμ' ἀναλεξαμένη.
-                          τί κλαίεις; τὸν ἄτεγκτον ὅτ' ἐν κόλποισιν Ἔρωτα
-                          ἔτρεφες, οὐκ ᾔδεις, ὡς ἐπὶ σοὶ τρέφετο;
-                          οὐκ ᾔδεις; νῦν γνῶθι καλῶν ἄλλαγμα τροφείων,
-                          πῦρ ἅμα καὶ ψυχρὰν δεξαμένη χιόνα.
-                          αὐτὴ ταῦθ' εἵλου· φέρε τὸν πόνον. ἄξια πάσχεις,
-                          ὧν ἔδρας, ὀπτῷ καιομένη μέλιτι.</p>
+                        <p>
+                          {{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].texts.greek }}}
+                        </p>
                       </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-md-offset-4">
-                <div class="notes dropdown">
+                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].notes" class="notes dropdown">
                     <p>Les notes
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
@@ -116,19 +114,9 @@
                         <div class="dropdown-text-container">
                             <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
                             <div class="dropdown-text-wrapper">
-                                <div class="dropdown-text visible" id="note1">
+                                <div v-for="note in data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].notes" class="dropdown-text" id="note{{ note.id }}">
                                     <div class="dropdown-desc">
-                                        <q>Méléagre parle à son âme et la réprimande d’avoir fait confiance à Érôs. Érôs est un personnage fréquent dans les épigrammes, en particulier celles de Méléagre....</q>
-                                    </div>
-                                </div>
-                                <div class="dropdown-text" id="note2">
-                                    <div class="dropdown-desc">
-                                        <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
-                                    </div>
-                                </div>
-                                <div class="dropdown-text" id="note3">
-                                    <div class="dropdown-desc">
-                                        <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                                        <q>{{ note.content }}</q>
                                     </div>
                                 </div>
                             </div>
@@ -138,43 +126,27 @@
                 </div>
             </div>
             <div class="col-md-5 col-md-offset-2">
-                <div class="characters dropdown">
+                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].characters" class="characters dropdown">
                     <p>Les personnages
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
                     <div class="dropdown-drop">
                         <ul>
-                            <li><a data-click="eros" href="#"><span class="dash"></span>Eros</a></li>
-                            <li><a data-click="ulysse" href="#"><span class="dash"></span>Ulysse</a></li>
-                            <li><a data-click="odyssey" href="#"><span class="dash"></span>Odyssey</a></li>
+                            <li v-for="character in data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].characters">
+                              <a data-click="{{ character.name }}" href="#"><span class="dash"></span>{{ character.name | capitalize }}</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="dropdown-text-container">
                         <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
                         <div class="dropdown-text-wrapper">
-                            <div class="dropdown-text" id="eros">
+                            <div v-for="character in data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].characters" class="dropdown-text" id="{{ character.name }}">
                                 <div class="dropdown-title">
-                                  <h4>Eros</h4>
+                                  <h4>{{ character.name | capitalize }}</h4>
                                 </div>
                                 <div class="dropdown-desc">
-                                  <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
-                                </div>
-                            </div>
-                            <div class="dropdown-text" id="ulysse">
-                                <div class="dropdown-title">
-                                    <h4>Ulysse</h4>
-                                </div>
-                                <div class="dropdown-desc">
-                                    <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
-                                </div>
-                            </div>
-                            <div class="dropdown-text" id="odyssey">
-                                <div class="dropdown-title">
-                                    <h4>Odyssey</h4>
-                                </div>
-                                <div class="dropdown-desc">
-                                    <q>Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort.</q>
+                                  <q>{{ character.desc }}</q>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +155,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-offset-3">
-                <div class="manuscript-image">
+                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].imageUrl" class="manuscript-image">
                     <p>Image du manuscrit
                         <span class="border-bottom"></span>
                     </p>
@@ -191,13 +163,37 @@
             </div>
         </div>
         <div class="manuscript-popin">
-          <img src="~assets/img/popin/manuscript.png">
+          <img src="{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].imageUrl }}">
         </div>
     </div>
 </template>
 
 <script>
+/* global api */
+import Vue from 'vue'
 import $ from 'jquery'
+
+Vue.filter('numberize', function (value) {
+  if (value < 10) {
+    value = '0' + value
+  }
+  return value
+})
+
+export default {
+  name: 'epigram',
+  data () {
+    return {
+      data: {}
+    }
+  },
+  ready: function () {
+    var self = this
+    return api.dataDiscover.get().then(function (response) {
+      self.$set('data', response.data)
+    }, function (response) { console.log(response.status) })
+  }
+}
 
 $(document).ready(function () {
   var body = $('body')

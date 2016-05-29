@@ -1,45 +1,165 @@
 {
-  "theme": "meleagre-in-love",
-  "epigrams": [
+  "themes": [
     {
-      "id": 1,
-      "title": "AP 12.132b, 22",
-      "texts": {
-        "french": "Ame douloureuse, tantôt tu brûles de fièvre,<br>tantôt tu te refroidis, ayant repris ton souffle.<br>Pourquoi pleures-tu? Erôs l’inébranlable, lorsque sur ton sein,<br>tu le nourrissais, tu ne savais pas qu’il était nourri contre toi?<br>tu ne savais pas? Maintenant, apprends la récompense des beaux soins, ayant reçu fièvre et eau gelée.<br>Toi-même, tu les as choisis. Supporte ta peine. Tu subis des choses dignes de ce que tu as fait, en étant brûlée par un miel rôti.",
-        "greek": "ἆ ψυχὴ βαρύμοχθε, σὺ δ' ἄρτι μὲν ἐκ πυρὸς αἴθῃ, ἄρτι δ' ἀναψύχεις πνεῦμ' ἀναλεξαμένη. τί κλαίεις; τὸν ἄτεγκτον ὅτ' ἐν κόλποισιν Ἔρωτα ἔτρεφες, οὐκ ᾔδεις, ὡς ἐπὶ σοὶ τρέφετο; οὐκ ᾔδεις; νῦν γνῶθι καλῶν ἄλλαγμα τροφείων, πῦρ ἅμα καὶ ψυχρὰν δεξαμένη χιόνα. αὐτὴ ταῦθ' εἵλου· φέρε τὸν πόνον. ἄξια πάσχεις, ὧν ἔδρας, ὀπτῷ καιομένη μέλιτι."
-      },
-      "image-url": "/static/img/manuscript.png",
-      "notes": [
+      "id": "1",
+      "name": "Méléagre in love",
+      "slug": "meleagre-in-love",
+      "img-url": "~assets/img/meleagre-in-love.png",
+      "epigrams": [
         {
           "id": 1,
-          "content": "Méléagre parle à son âme et la réprimande d’avoir fait confiance à Érôs. Érôs est un personnage fréquent dans les épigrammes, en particulier celles de Méléagre...."
+          "title": "AP 12.132b, 22 GP",
+          "texts": {
+            "french": "Ame douloureuse, tantôt tu brûles de fièvre,<br>tantôt tu te refroidis, ayant repris ton souffle.<br>Pourquoi pleures-tu? Erôs l’inébranlable, lorsque sur ton sein,<br>tu le nourrissais, tu ne savais pas qu’il était nourri contre toi?<br>tu ne savais pas? Maintenant, apprends la récompense des beaux soins, ayant reçu fièvre et eau gelée.<br>Toi-même, tu les as choisis. Supporte ta peine. Tu subis des choses dignes de ce que tu as fait, en étant brûlée par un miel rôti.",
+            "greek": "ἆ ψυχὴ βαρύμοχθε, σὺ δ' ἄρτι μὲν ἐκ πυρὸς αἴθῃ,<br>ἄρτι δ' ἀναψύχεις πνεῦμ' ἀναλεξαμένη.<br>τί κλαίεις; τὸν ἄτεγκτον ὅτ' ἐν κόλποισιν Ἔρωτα<br>ἔτρεφες, οὐκ ᾔδεις, ὡς ἐπὶ σοὶ τρέφετο;<br>οὐκ ᾔδεις; νῦν γνῶθι καλῶν ἄλλαγμα τροφείων,<br>πῦρ ἅμα καὶ ψυχρὰν δεξαμένη χιόνα.<br>αὐτὴ ταῦθ' εἵλου· φέρε τὸν πόνον. ἄξια πάσχεις,<br>ὧν ἔδρας, ὀπτῷ καιομένη μέλιτι."
+          },
+          "sounds": {
+            "french": "/static/sound/french-sound.mp3",
+            "greek": "/static/sound/greek-sound.mp3"
+          },
+          "imageUrl": "/static/img/popin/manuscript.png",
+          "notes": [
+            {
+              "id": 1,
+              "content": "Méléagre parle à son âme et la réprimande d’avoir fait confiance à Érôs. Érôs est un personnage fréquent dans les épigrammes, en particulier celles de Méléagre...."
+            }
+          ],
+          "characters": [
+            {
+              "id": 1,
+              "name": "eros",
+              "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+            },
+            {
+              "id": 2,
+              "name": "ulysse",
+              "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+            },
+            {
+              "id": 3,
+              "name": "odyssey",
+              "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+            }
+          ]
         },
         {
           "id": 2,
-          "content": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+          "title": "AP 5.177, 37 GP",
+          "texts": {
+            "french": "Je lance un appel concernant Éros le sauvage. Tout juste<br>à l’aube il a quitté son lit en prenant son envol.<br>L’enfant est producteur de larmes douces, babilleur, rapide, sans peur,<br>rieur impudent, ailé au dos, porteur de carquois.<br> Je ne peux rien dire sur de quel père il est. Ce n’est pas l’éther,<br>ni la terre, qui disent avoir engendré cet audacieux, ni la mer.<br> Car il est ennemi partout et pour tous ; prenez garde<br>qu’il ne place d’autres filets pour les âmes.<br>Mais regarde, c’est lui, près de sa tanière. Tu ne m’as pas échappé,<br>archer, bien que caché par les yeux de Zénophila.",
+            "greek": "Κηρύσσω τὸν Ἔρωτα τὸν ἄγριον· ἄρτι γὰρ ἄρτι<br>ὀρθρινὸς ἐκ κοίτας ᾤχετ' ἀποπτάμενος.<br>ἔστι δ' ὁ παῖς γλυκύδακρυς, ἀείλαλος, ὠκύς, ἀθαμβής,<br>σιμὰ γελῶν, πτερόεις νῶτα φαρετροφόρος.<br>πατρὸς δ' οὐκέτ' ἔχω φράζειν τίνος· οὔτε γὰρ αἰθήρ,<br>οὐ χθών φησι τεκεῖν τὸν θρασύν, οὐ πέλαγος.<br>πάντῃ γὰρ καὶ πᾶσιν ἀπέχθεται. ἀλλ' ἐσορᾶτε<br>μή που νῦν ψυχαῖς ἄλλα τίθησι λίνα.<br>καίτοι κεῖνος, ἰδού, περὶ φωλεόν. οὔ με λέληθας,<br>τοξότα, Ζηνοφίλας ὄμμασι κρυπτόμενος.    "
+          },
+          "imageUrl": "/static/img/manuscript.png"
         },
         {
           "id": 3,
-          "content": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
-        }
-      ],
-      "characters": [
-        {
-          "id": 1,
-          "name": "Eros",
-          "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+          "title": "AP 5.152, 34 GP",
+          "texts": {
+            "french": "Vole pour moi, moustique, messager rapide, touche Zénophila<br>au bout des oreilles et murmure ceci :<br>‘Il t’attend sans dormir et toi, oublieuse des amants,<br>tu dors’. Allez, vole ! Oui, ami des Muses, vole.<br>Parle doucement, de peur que tu ne réveilles aussi son partenaire<br>et excite contre moi les douleurs de l’envie.<br>Si tu ramènes la fille, je t’honorerai d’une peau de lion,<br>moustique, et te donnerai une massue à porter en mains.",
+            "greek": "Πταίης μοι, κώνωψ, ταχὺς ἄγγελος, οὔασι δ' ἄκροις<br>Ζηνοφίλας ψαύσας προσψιθύριζε τάδε·<br>“Ἄγρυπνος μίμνει σε· σὺ δ', ὦ λήθαργε φιλούντων,<br>εὕδεις.” εἶα, πέτευ· ναί, φιλόμουσε, πέτευ·<br>ἥσυχα δὲ φθέγξαι, μὴ καὶ σύγκοιτον ἐγείρας<br>κινήσῃς ἐπ' ἐμοὶ ζηλοτύπους ὀδύνας.<br>ἢν δ' ἀγάγῃς τὴν παῖδα, δορᾷ στέψω σε λέοντος,<br>κώνωψ, καὶ δώσω χειρὶ φέρειν ῥόπαλον."
+          },
+          "imageUrl": "/static/img/manuscript.png"
         },
         {
-          "id": 2,
-          "name": "Ulysse",
-          "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+          "id": 4,
+          "title": "AP 7.196, 13 GP",
+          "texts": {
+            "french": "Cigale retentissante, ivre de gouttes de rosée,<br>tu chantes une chanson sauvage, qui parle seule.<br>Assise en haut sur des feuilles, avec tes membres coupants et ton corps couleur de feu, tu lances un chant de lyre.<br>Ami, dis quelque nouveauté aux nymphes des arbres, un jouet, faisant un chant contre Pan, afin que<br>fuyant Eros je trouve un sommeil méridien,<br>couché ici sous un platane ombreux.",
+            "greek": "ἀγρονόμαν μέλπεις μοῦσαν ἐρημολάλον·<br>ἄκρα δ' ἐφεζόμενος πετάλοις πριονώδεσι κώλοις<br>αἰθίοπι κλάζεις χρωτὶ μέλισμα λύρας.<br>ἀλλά, φίλος, φθέγγου τι νέον δενδρώδεσι Νύμφαις<br>παίγνιον, ἀντῳδὸν Πανὶ κρέκων κέλαδον,<br>ὄφρα φυγὼν τὸν Ἔρωτα μεσημβρινὸν ὕπνον ἀγρεύσω<br>ἐνθάδ' ὑπὸ σκιερῇ κεκλιμένος πλατάνῳ."
+          },
+          "imageUrl": "/static/img/manuscript.png"
         },
         {
-          "id": 3,
-          "name": "Odyssey",
-          "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+          "id": 5,
+          "title": "AP 7.417: Méléagre, un Grec d’Orient",
+          "texts": {
+            "french": "L’île de Tyr fut ma nourrice. La patrie qui m’a engendré, attique bien que se trouvant en Syrie, est Gadara.<br>D’Eucratès que je suis né, moi Méléagre, qui avec les Muses ai d’abord couru auprès des Grâces ménipéennes*.<br>Si je suis syrien, quoi d’étonnant ? Étranger, nous vivons dans un seul pays, l’univers ; seul, Chaos engendra tous les mortels.<br>Fort âgé, j’ai inscrit ces mots sur des tablettes, avant mon enterrement, car la vieillesse est proche voisine de l’Hadès.<br>Mais toi, salue-moi, qui suis un vieux bavard, et puisses-tu ensuite toi aussi atteindre la vieillesse bavarde.",
+            "greek": "Νᾶσος ἐμὰ θρέπτειρα Τύρος· πάτρα δέ με τεκνοῖ<br>Ἀτθὶς ἐν Ἀσσυρίοις ναιομένα Γάδαρα·<br>Εὐκράτεω δ' ἔβλαστον ὁ σὺν Μούσαις Μελέαγρος<br>πρῶτα Μενιππείοις συντροχάσας Χάρισιν.<br>εἰ δὲ Σύρος, τί τὸ θαῦμα; μίαν, ξένε, πατρίδα κόσμον<br>ναίομεν, ἓν θνατοὺς πάντας ἔτικτε Χάος.<br>πουλυετὴς δ' ἐχάραξα τάδ' ἐν δέλτοισι πρὸ τύμβου·<br>γήρως γὰρ γείτων ἐγγύθεν Ἀίδεω.<br>ἀλλά με τὸν λαλιὸν καὶ πρεσβύτην πάρος εἰπὼν<br>χαίρειν εἰς γῆρας καὐτὸς ἵκοιο λάλον."
+          },
+          "imageUrl": "/static/img/manuscript.png"
+        },
+        {
+          "id": 6,
+          "title": "AP 7.418",
+          "texts": {
+            "french": "Ma première patrie fut l’illustre cité des Gadaréens, puis la sainte Tyr me reçut et fit de moi un homme.<br>Lorsque j’ai atteint la vieillesse, Côs, qui a aussi élevé Zeus**, soigna mon vieil âge comme citoyen admis des Méropiens***. Parmi peu d’autres, moi Méléagre fils d’Eucratès, les Muses m’ont gratifié des Grâces ménipéennes.",
+            "greek": "Πρώτα μοι Γαδάρων κλεινὰ πόλις ἔπλετο πάτρα,<br>ἤνδρωσεν δ' ἱερὰ δεξαμένα με Τύρος·<br>εἰς γῆρας δ' ὅτ' ἔβην, ἁ καὶ Δία θρεψαμένα Κῶς<br>κἀμὲ θετὸν Μερόπων ἀστὸν ἐγηροτρόφει.<br>Μοῦσαι δ' εἰν ὀλίγοις με, τὸν Εὐκράτεω Μελέαγρον<br>παῖδα, Μενιππείοις ἠγλάισαν Χάρισιν.  "
+          },
+          "notes": [
+            {
+              "id": 1,
+              "content": "Entendre : Ptolémée Philadelphe…"
+            }
+          ],
+          "characters": [
+            {
+              "id": 1,
+              "name": "merops",
+              "desc": "Roi légendaire de Côs."
+            }
+          ],
+          "imageUrl": "/static/img/manuscript.png"
+        },
+        {
+          "id": 7,
+          "title": "AP 7.419",
+          "texts": {
+            "french": "Passe doucement, étranger, car parmi les pieux le vieil homme repose, dormant le sommeil inéluctable.<br>C’est Méléagre, fils d’Eucratès, qui, aux Grâces joyeuses, a uni Eros aux douces larmes et les Muses.<br>Tyr aux divins garçons et la terre sainte des Gadaréens en ont fait un homme ; l’aimable Côs des Méropiens a soigné le vieillard pendant ses dernières années.<br>Si tu es syrien, ‘Salam !’ ; si tu es phénicien, ‘Naidios !’ ; et si tu es grec, ‘Sois heureux !’ (C’est la même chose que tu dirais.)",
+            "greek": "Ἀτρέμας, ὦ ξένε, βαῖνε· παρ' εὐσεβέσιν γὰρ ὁ πρέσβυς<br>εὕδει κοιμηθεὶς ὕπνον ὀφειλόμενον,<br>Εὐκράτεω Μελέαγρος, ὁ τὸν γλυκύδακρυν Ἔρωτα<br>καὶ Μούσας ἱλαραῖς συστολίσας Χάρισιν·<br>ὃν θεόπαις ἤνδρωσε Τύρος Γαδάρων θ' ἱερὰ χθών·<br>Κῶς δ' ἐρατὴ Μερόπων πρέσβυν ἐγηροτρόφει.<br>ἀλλ' εἰ μὲν Σύρος ἐσσί, “Σαλάμ”, εἰ δ' οὖν σύ γε Φοῖνιξ,<br>“Ναίδιος”, εἰ δ' Ἕλλην, “Χαῖρε”, τὸ δ' αὐτὸ φράσεις."
+          },
+          "imageUrl": "/static/img/manuscript.png"
+        },
+        {
+          "id": 8,
+          "title": "AP 7.421 : Épitaphe « logogriphique »",
+          "texts": {
+            "french": "Être ailé, pourquoi te plaisent la lance et la peau de sanglier ? Qui es-tu, de la stèle de qui es-tu le symbole ?<br>Je ne pense pas que tu es Eros, car pourquoi le désir serait-il voisin des morts ? Cet audacieux n’a pas appris à gémir. Tu n’es pas non plus Chronos aux pieds rapides ; lui est triplement vieux, toi au contraire tes membres sont vigoureux.<br>Ah voilà, oui je sais ! celui qui est sous terre est un savant, et toi, le mot ailé, tu es son nom.<br>Tu portes l’insigne double de la fille de Lêtô en référence à la combinaison rire et sérieux, peut-être au mètre parlant d’amour.<br>Oui, et c’est Méléagre, l’homonyme du fils d’Oïnée,<br>que désignent ces symboles du meurtre du sanglier.<br>Sois heureux, même parmi les morts, car tu as ajusté la Muse d’Eros et les Grâces en un seul talent.",
+            "greek": "Πτανέ, τί σοι σιβύνας, τί δὲ καὶ συὸς εὔαδε δέρμα,<br>καὶ τίς ἐὼν στάλας σύμβολον ἐσσὶ τίνος;<br>οὐ γὰρ Ἔρωτ' ἐνέπω σε· τί γὰρ, νεκύεσσι πάροικος<br>Ἵμερος; αἰάζειν ὁ θρασὺς οὐκ ἔμαθεν·<br>οὐδὲ μὲν οὐδ' αὐτὸν ταχύπουν Χρόνον· ἔμπαλι γὰρ δὴ<br>κεῖνος μὲν τριγέρων, σοὶ δὲ τέθηλε μέλη.<br>ἀλλ' ἄρα, ναί, δοκέω γάρ, ὁ γᾶς ὑπένερθε σοφιστὰς<br>ἐστί, σὺ δ' ὁ πτερόεις τοὔνομα τοῦδε λόγος.<br>Λατῴας δ' ἄμφηκες ἔχεις γέρας ἔς τε γέλωτα<br>καὶ σπουδὰν καί που μέτρον ἐρωτογράφον.<br>ναὶ μὲν δὴ Μελέαγρον ὁμώνυμον Οἰνέος υἱῷ<br>σύμβολα σημαίνει ταῦτα συοκτασίας.<br>χαῖρε καὶ ἐν φθιμένοισιν, ἐπεὶ καὶ Μοῦσαν Ἔρωτος<br>καὶ Χάριτας σοφίαν εἰς μίαν ἡρμόσαο."
+          },
+          "imageUrl": "/static/img/manuscript.png"
         }
       ]
+    },
+    {
+      "id": "2",
+      "name": "Les serments trahis",
+      "slug": "les-serments-trahis",
+      "img-url": "~assets/img/meleagre-in-love.png"
+    },
+    {
+      "id": "3",
+      "name": "Les lampes sont des témoins",
+      "slug": "les-lampes-sont-des-temoins",
+      "img-url": "~assets/img/meleagre-in-love.png",
+      "epigrams": []
+    },
+    {
+      "id": "4",
+      "name": "Le Banquet",
+      "slug": "le-banquet",
+      "img-url": "~assets/img/meleagre-in-love.png",
+      "epigrams": []
+    },
+    {
+      "id": "5",
+      "name": "La vieillesse",
+      "slug": "la-vieillesse",
+      "img-url": "~assets/img/meleagre-in-love.png",
+      "epigrams": []
+    },
+    {
+      "id": "6",
+      "name": "Amour et fuite",
+      "slug": "amour-et-fuite",
+      "img-url": "~assets/img/meleagre-in-love.png",
+      "epigrams": []
+    },
+    {
+      "id": "7",
+      "name": "Ne me fais pas dormir dehors!",
+      "slug": "ne-me-fais-pas-dormir-dehors",
+      "img-url": "~assets/img/meleagre-in-love.png",
+      "epigrams": []
     }
   ]
 }

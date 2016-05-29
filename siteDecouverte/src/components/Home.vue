@@ -64,7 +64,7 @@ $hover: .2s all linear
     .img
       width: 100%
       height: 100%
-      background: url(~assets/img/img.png)
+      background: url(~assets/img/meleagre-in-love.png)
       background-size: cover
       opacity: 0.65
 
