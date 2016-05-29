@@ -14,6 +14,30 @@
     </div>
 </template>
 
+<script>
+// var api = require('../service/api.js')
+var resource = this.$resource('mock/discover.json')
+
+export default {
+  data () {
+    return {
+      data: {}
+    }
+  },
+
+  ready: function () {
+    return resource.get().then(function (response) {
+//      self.$set('data', response.data)
+      console.log(response.data)
+    }, function (response) { console.log(response.status) })
+//    this.$http.get('localhost:8080/src/mock/discover.json').then(function (response) {
+//      console.log(response.data)
+//    }, function (response) {})
+  }
+
+}
+</script>
+
 <style lang="sass" scoped>
 $hover: .2s all ease-out
 

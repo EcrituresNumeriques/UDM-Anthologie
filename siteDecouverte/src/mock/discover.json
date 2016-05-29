@@ -1,0 +1,45 @@
+{
+  "theme": "meleagre-in-love",
+  "epigrams": [
+    {
+      "id": 1,
+      "title": "AP 12.132b, 22",
+      "texts": {
+        "french": "Ame douloureuse, tantôt tu brûles de fièvre,<br>tantôt tu te refroidis, ayant repris ton souffle.<br>Pourquoi pleures-tu? Erôs l’inébranlable, lorsque sur ton sein,<br>tu le nourrissais, tu ne savais pas qu’il était nourri contre toi?<br>tu ne savais pas? Maintenant, apprends la récompense des beaux soins, ayant reçu fièvre et eau gelée.<br>Toi-même, tu les as choisis. Supporte ta peine. Tu subis des choses dignes de ce que tu as fait, en étant brûlée par un miel rôti.",
+        "greek": "ἆ ψυχὴ βαρύμοχθε, σὺ δ' ἄρτι μὲν ἐκ πυρὸς αἴθῃ, ἄρτι δ' ἀναψύχεις πνεῦμ' ἀναλεξαμένη. τί κλαίεις; τὸν ἄτεγκτον ὅτ' ἐν κόλποισιν Ἔρωτα ἔτρεφες, οὐκ ᾔδεις, ὡς ἐπὶ σοὶ τρέφετο; οὐκ ᾔδεις; νῦν γνῶθι καλῶν ἄλλαγμα τροφείων, πῦρ ἅμα καὶ ψυχρὰν δεξαμένη χιόνα. αὐτὴ ταῦθ' εἵλου· φέρε τὸν πόνον. ἄξια πάσχεις, ὧν ἔδρας, ὀπτῷ καιομένη μέλιτι."
+      },
+      "image-url": "/static/img/manuscript.png",
+      "notes": [
+        {
+          "id": 1,
+          "content": "Méléagre parle à son âme et la réprimande d’avoir fait confiance à Érôs. Érôs est un personnage fréquent dans les épigrammes, en particulier celles de Méléagre...."
+        },
+        {
+          "id": 2,
+          "content": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+        },
+        {
+          "id": 3,
+          "content": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+        }
+      ],
+      "characters": [
+        {
+          "id": 1,
+          "name": "Eros",
+          "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+        },
+        {
+          "id": 2,
+          "name": "Ulysse",
+          "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+        },
+        {
+          "id": 3,
+          "name": "Odyssey",
+          "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
+        }
+      ]
+    }
+  ]
+}

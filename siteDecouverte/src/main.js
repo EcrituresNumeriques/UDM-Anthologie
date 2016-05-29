@@ -1,4 +1,6 @@
 import Vue from 'vue'
+// vue-resource for web requests
+import Resource from 'vue-resource'
 // vue-router for routing ...
 import Router from 'vue-router'
 // import app component
@@ -14,8 +16,14 @@ import Characters from './components/Characters'
 import Epigram from './components/Epigram'
 import NotFound from './components/404'
 
-// install router
+// install router & resource
 Vue.use(Router)
+Vue.use(Resource)
+
+// configuration Resource
+global.api = require('./service/api.js')
+
+Vue.http.options.root = '/'
 
 // routing
 export var router = new Router({

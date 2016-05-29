@@ -4,6 +4,18 @@
             <h1>Auteurs</h1>
         </div>
         <div class="row scroll">
+            <span class="scroll-progress-bar">
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+              <span class="scroll-dot"></span>
+            </span>
             <div class="col-md-5 col-md-offset-1">
                 <back-btn></back-btn>
                 <div class="page-subtitle-container">
@@ -140,6 +152,133 @@
                             <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
                         </ul>
                     </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Asclépiodote <sup>I</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                    </ul>
+                  </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Callimaque de Cyrène <sup>II</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                    </ul>
+                  </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Démodocos de Léros <sup>III</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                    </ul>
+                  </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Ératosthène <sup>IV</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                    </ul>
+                  </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                    </ul>
+                  </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                    </ul>
+                  </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                    </ul>
+                  </div>
+                  <div class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>Honestus de Byzance <sup>V</sup></h3>
+                    <ul>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                      <li><a href="#">AP 5.177, 37</a></li>
+                      <li><a href="#">AP 12.132b, 22</a></li>
+                      <li><a href="#">AP 5.152, 34</a></li>
+                      <li><a href="#">AP 7.417</a></li>
+                      <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
+                    </ul>
+                  </div>
                 </div>
             </div>
         </div>
@@ -148,12 +287,19 @@
 
 <script>
 import BackBtn from './BackBtn'
+import $ from 'jquery'
 
 export default {
   components: {
     BackBtn
   }
 }
+
+$(document).ready(function () {
+//  var scrollProgressBar = $('.scroll-progress-bar')
+//  var max = $(document).width() - $(window).width()
+//  var value = $(window).scrollLeft()
+})
 </script>
 
 <style lang="sass" scoped>
@@ -166,6 +312,26 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 .row
   height: 100%
+
+  .scroll-progress-bar
+    position: fixed
+    right: 300px
+    top: 44px
+    display: inline-block
+
+    .scroll-dot
+      width: 4px
+      height: 4px
+      border-radius: 50%
+      display: inline-block
+      background: #d4d4d4
+      opacity: .5
+      margin: 0 10px
+      transition: $hover
+
+      &.active
+        background: #2c2c2c
+        opacity: 1
 
   >div:first-child
     position: initial
