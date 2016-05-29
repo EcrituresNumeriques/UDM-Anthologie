@@ -2,3 +2,5 @@
 node_modules
 dist/build.js
 npm-debug.log
+.idea
+siteDecouverte
