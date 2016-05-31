@@ -20,6 +20,9 @@ import NotFound from './components/404'
 Vue.use(Router)
 Vue.use(Resource)
 
+// VUe Config
+Vue.config.silent = true // Supress all Vue.js logs and warnings -> because of strange and useless warnings when loading an epigram
+
 // configuration Resource
 global.api = require('./service/api.js')
 

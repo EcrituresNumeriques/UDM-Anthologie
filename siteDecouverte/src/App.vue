@@ -2,7 +2,7 @@
   <div id="app" class="container-fluid">
     <div class="hidden-xs hidden-sm">
       <main-nav></main-nav>
-      <router-view transition="fade"></router-view>
+      <router-view transition="fade" :data-theme-id="dataThemeId"></router-view>
     </div>
     <div class="hidden-md hidden-lg">
       <responsive></responsive>

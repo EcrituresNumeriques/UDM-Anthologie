@@ -3,7 +3,7 @@
         <nav class="navbar navbar-default">
             <ul class="nav">
                 <li class="discover-list" v-for="theme in data.themes" v-if="theme.epigrams">
-                  <a v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}">
+                  <a data-id="{{ theme.id }}" v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}">
                     <span class="dash"></span>
                     {{ theme.name }}
                     <sup></sup>
@@ -16,6 +16,7 @@
 
 <script>
 /* global api */
+import Epigram from './Epigram'
 import $ from 'jquery'
 
 function romanize (num) {
@@ -33,26 +34,42 @@ function romanize (num) {
   return Array(+digits.join('') + 1).join('M') + roman
 }
 
-$('body').click(function () {
+$(window).load(function () {
   $('li.discover-list').each(function () {
     var index = $(this).index() + 1
     var romanized = romanize(index)
     $(this).find('sup').text(romanized)
-    console.log(romanized)
   })
 })
 
 export default {
+  components: {
+    Epigram
+  },
   data () {
     return {
-      data: {}
+      data: {},
+      dataThemeId: {}
     }
   },
   ready: function () {
+    this.getCurrentId()
     var self = this
     return api.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
     }, function (response) { console.log(response.status) })
+  },
+  methods: {
+    getCurrentId: function () {
+      var self = this
+      $('body').on('click', '.discover-list a', function (e) {
+        e.preventDefault()
+        var dataId = $(this).data('id')
+        return api.dataDiscover.get().then(function (response) {
+          self.$set('dataThemeId', response.data.themes[dataId - 1])
+        }, function (response) { console.log(response.status) })
+      })
+    }
   }
 }
 

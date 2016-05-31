@@ -1,7 +1,7 @@
 <template>
-    <div class="epigram">
+    <div class="epigram" :theme="theme" :epigram="epigram">
         <div class="page-title-container">
-            <h1>{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].title }}</h1>
+            <h1>{{ data.themes[theme].epigrams[epigram].title }}</h1>
         </div>
         <div class="row">
             <div class="col-md-2 col-md-offset-1">
@@ -14,26 +14,26 @@
             </div>
             <div class="col-md-1 col-md-offset-7">
                 <div class="index">
-                    <p class="total">{{ data.themes[$route.params.themeId-1].epigrams.length | numberize }}</p>
+                    <p class="total">{{ data.themes[theme].epigrams.length | numberize }}</p>
                     <span class="separator"></span>
-                    <p class="active">{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].id | numberize }}</p>
+                    <p class="active">{{ data.themes[theme].epigrams[epigram].id | numberize }}</p>
                 </div>
                 <div class="arrows">
                     <span>
-                      <a v-show="!($route.params.id == 1)" v-link="{ name: 'theme', params: { theme: $route.params.theme, themeId: $route.params.themeId, id: $route.params.id-1 }}">
+                      <a v-show="!(epigram == 0)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                       </a>
                     </span>
                     <span class="separator"></span>
                     <span>
-                      <a v-show="!($route.params.id == data.themes[$route.params.themeId-1].epigrams.length)" v-link="{ name: 'theme', params: { theme: $route.params.theme, themeId: $route.params.themeId, id: data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].id+1 }}">
+                      <a v-show="!(epigram+1 == data.themes[theme].epigrams.length)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}">
                         <span class="glyphicon glyphicon-chevron-right"></span>
                       </a>
                     </span>
                 </div>
             </div>
-            <div class="col-md-1 col-md-offset-1">
-                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds" class="player">
+            <div v-if="data.themes[theme].epigrams[epigram].sounds" class="col-md-1 col-md-offset-1">
+                <div class="player">
                     <div class="control">
                         <a class="play-button paused" href="#">
                             <div class="left"></div>
@@ -48,26 +48,26 @@
                 </div>
                 <div class="sound">
                     <audio class="french-sound">
-                        <source src="{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.french }}" type="audio/mpeg">
+                        <source :src="data.themes[theme].epigrams[epigram].sounds.french" type="audio/mpeg">
                     </audio>
                     <audio class="greek-sound">
-                      <source src="{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.greek }}" type="audio/mpeg">
+                      <source :src="data.themes[theme].epigrams[epigram].sounds.greek" type="audio/mpeg">
                     </audio>
                 </div>
             </div>
             <div class="col-md-3">
-                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.french" class="mute french-mute">
+                <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute french-mute">
                   <span class="glyphicon glyphicon-volume-up"></span>
                 </div>
                 <div class="text-container">
                     <div class="text-theme">
                         <h2>
                           <span class="bg"></span>
-                          {{ data.themes[$route.params.themeId-1].name }}
+                          {{ data.themes[theme].name }}
                         </h2>
                     </div>
                     <div class="text-title">
-                        <h3>{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].title }}</h3>
+                        <h3>{{ data.themes[theme].epigrams[epigram].title }}</h3>
                         <div class="text-lang">
                             <select>
                                 <option value="fr">Fr</option>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="text-content">
                         <p>
-                        {{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].texts.french }}}
+                        {{{ data.themes[theme].epigrams[epigram].texts.french }}}
                         </p>
                     </div>
                     <div class="text-author">
@@ -94,18 +94,18 @@
                     </p>
                     <div class="dropdown-drop">
                       <div class="dropdown-content">
-                        <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].sounds.french" class="mute greek-mute">
+                        <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute greek-mute">
                           <span class="glyphicon glyphicon-volume-up"></span>
                         </div>
                         <p>
-                          {{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].texts.greek }}}
+                          {{{ data.themes[theme].epigrams[epigram].texts.greek }}}
                         </p>
                       </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-md-offset-4">
-                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].notes" class="notes dropdown">
+                <div v-if="data.themes[theme].epigrams[epigram].notes" class="notes dropdown">
                     <p>Les notes
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
@@ -114,7 +114,7 @@
                         <div class="dropdown-text-container">
                             <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
                             <div class="dropdown-text-wrapper">
-                                <div v-for="note in data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].notes" class="dropdown-text" id="note{{ note.id }}">
+                                <div v-for="note in data.themes[theme].epigrams[epigram].notes" class="dropdown-text" id="note{{ note.id }}">
                                     <div class="dropdown-desc">
                                         <q>{{ note.content }}</q>
                                     </div>
@@ -126,14 +126,14 @@
                 </div>
             </div>
             <div class="col-md-5 col-md-offset-2">
-                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].characters" class="characters dropdown">
+                <div v-if="data.themes[theme].epigrams[epigram].characters" class="characters dropdown">
                     <p>Les personnages
                         <span class="glyphicon glyphicon-chevron-right"></span>
                         <span class="border-bottom"></span>
                     </p>
                     <div class="dropdown-drop">
                         <ul>
-                            <li v-for="character in data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].characters">
+                            <li v-for="character in data.themes[theme].epigrams[epigram].characters">
                               <a data-click="{{ character.name }}" href="#"><span class="dash"></span>{{ character.name | capitalize }}</a>
                             </li>
                         </ul>
@@ -141,7 +141,7 @@
                     <div class="dropdown-text-container">
                         <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
                         <div class="dropdown-text-wrapper">
-                            <div v-for="character in data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].characters" class="dropdown-text" id="{{ character.name }}">
+                            <div v-for="character in data.themes[theme].epigrams[epigram].characters" class="dropdown-text" id="{{ character.name }}">
                                 <div class="dropdown-title">
                                   <h4>{{ character.name | capitalize }}</h4>
                                 </div>
@@ -155,7 +155,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-offset-3">
-                <div v-if="data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].imageUrl" class="manuscript-image">
+                <div v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-image">
                     <p>Image du manuscrit
                         <span class="border-bottom"></span>
                     </p>
@@ -163,7 +163,7 @@
             </div>
         </div>
         <div class="manuscript-popin">
-          <img src="{{ data.themes[$route.params.themeId-1].epigrams[$route.params.id-1].imageUrl }}">
+          <img :src="data.themes[theme].epigrams[epigram].imageUrl">
         </div>
     </div>
 </template>
@@ -182,9 +182,19 @@ Vue.filter('numberize', function (value) {
 
 export default {
   name: 'epigram',
+  route: {
+    data: function (transition) {
+      transition.next({
+        theme: transition.to.params.themeId - 1,
+        epigram: transition.to.params.id - 1
+      })
+    }
+  },
   data () {
     return {
-      data: {}
+      data: {},
+      theme: this.theme,
+      epigram: this.epigram
     }
   },
   ready: function () {
@@ -198,7 +208,6 @@ export default {
 $(document).ready(function () {
   var body = $('body')
   var controlBtn, playBtn, frenchSound, greekSound, progressBar, muteBtn
-  var sound = $('audio')
 
   body.on('click', '.control', function () {
     var self = $(this)
@@ -285,36 +294,38 @@ $(document).ready(function () {
       }
     }
   })
-  sound.on('timeupdate', function (e) {
-    var currentTime, duration
-    controlBtn = $('.control')
-    frenchSound = $('audio')[0]
-    greekSound = $('audio')[1]
-    progressBar = $('.progress')
-    if (controlBtn.hasClass('french-sound-playing')) {
-      currentTime = frenchSound.currentTime
-      duration = frenchSound.duration
-    } else {
-      currentTime = greekSound.currentTime
-      duration = greekSound.duration
-    }
-    var percent = currentTime / duration * 100
-    progressBar.css('height', percent + '%')
-  })
+  $(window).load(function () {
+    $('audio').on('timeupdate', function () {
+      var currentTime, duration
+      controlBtn = $('.control')
+      frenchSound = $('audio')[0]
+      greekSound = $('audio')[1]
+      progressBar = $('.progress')
+      if (controlBtn.hasClass('french-sound-playing')) {
+        currentTime = frenchSound.currentTime
+        duration = frenchSound.duration
+      } else {
+        currentTime = greekSound.currentTime
+        duration = greekSound.duration
+      }
+      var percent = currentTime / duration * 100
+      progressBar.css('height', percent + '%')
+    })
 
-  sound.on('ended', function () {
-    controlBtn = $('.control')
-    playBtn = controlBtn.children('.play-button')
-    muteBtn = $('.mute span')
-    frenchSound = $('audio')[0]
-    greekSound = $('audio')[1]
-    progressBar = $('.progress')
-    progressBar.css('height', '0')
-    controlBtn.removeClass('french-sound-playing').removeClass('greek-sound-playing')
-    playBtn.addClass('paused')
-    muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-    frenchSound.volume = 1
-    greekSound.volume = 1
+    $('audio').on('ended', function () {
+      controlBtn = $('.control')
+      playBtn = controlBtn.children('.play-button')
+      muteBtn = $('.mute span')
+      frenchSound = $('audio')[0]
+      greekSound = $('audio')[1]
+      progressBar = $('.progress')
+      progressBar.css('height', '0')
+      controlBtn.removeClass('french-sound-playing').removeClass('greek-sound-playing')
+      playBtn.addClass('paused')
+      muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+      frenchSound.volume = 1
+      greekSound.volume = 1
+    })
   })
 
   function onDropdownClick (dropdown) {
