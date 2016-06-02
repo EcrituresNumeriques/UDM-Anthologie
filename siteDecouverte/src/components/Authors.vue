@@ -4,18 +4,7 @@
             <h1>Auteurs</h1>
         </div>
         <div class="row scroll">
-            <span class="scroll-progress-bar">
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-              <span class="scroll-dot"></span>
-            </span>
+            <scroll-progress-bar></scroll-progress-bar>
             <div class="col-md-5 col-md-offset-1">
                 <back-btn></back-btn>
                 <div class="page-subtitle-container">
@@ -287,19 +276,15 @@
 
 <script>
 import BackBtn from './BackBtn'
-import $ from 'jquery'
+import ScrollProgressBar from './ProgressBar'
 
 export default {
   components: {
-    BackBtn
-  }
+    BackBtn,
+    ScrollProgressBar
+  },
+  name: 'Authors'
 }
-
-$(document).ready(function () {
-//  var scrollProgressBar = $('.scroll-progress-bar')
-//  var max = $(document).width() - $(window).width()
-//  var value = $(window).scrollLeft()
-})
 </script>
 
 <style lang="sass" scoped>
@@ -312,26 +297,6 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 .row
   height: 100%
-
-  .scroll-progress-bar
-    position: fixed
-    right: 300px
-    top: 44px
-    display: inline-block
-
-    .scroll-dot
-      width: 4px
-      height: 4px
-      border-radius: 50%
-      display: inline-block
-      background: #d4d4d4
-      opacity: .5
-      margin: 0 10px
-      transition: $hover
-
-      &.active
-        background: #2c2c2c
-        opacity: 1
 
   >div:first-child
     position: initial

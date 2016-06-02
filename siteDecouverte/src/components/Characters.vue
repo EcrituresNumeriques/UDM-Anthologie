@@ -4,7 +4,8 @@
             <h1>Personnages</h1>
         </div>
         <div class="row scroll">
-            <div class="col-md-5 col-md-offset-1">
+          <scroll-progress-bar></scroll-progress-bar>
+          <div class="col-md-5 col-md-offset-1">
                 <back-btn></back-btn>
                 <div class="page-subtitle-container">
                     <span class="dash"></span>
@@ -148,11 +149,14 @@
 
 <script>
 import BackBtn from './BackBtn'
+import ScrollProgressBar from './ProgressBar'
 
 export default {
   components: {
-    BackBtn
-  }
+    BackBtn,
+    ScrollProgressBar
+  },
+  name: 'Characters'
 }
 </script>
 
