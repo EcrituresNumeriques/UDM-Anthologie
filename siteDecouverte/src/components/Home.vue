@@ -9,9 +9,8 @@
             </div>
         </div>
         <div class="col-md-5 right-column">
-            <!--<img src="~assets/img/img.png">-->
           <div class="img-container">
-            <div class="img"></div>
+            <img src="{{ data }}">
           </div>
         </div>
      </div>
@@ -19,15 +18,36 @@
 </template>
 
 <script>
+/* global api */
 import MainNav from './MainNav'
 import DiscoverNav from './DiscoverNav'
+import $ from 'jquery'
 
 export default {
   components: {
     MainNav,
     DiscoverNav
   },
-  name: 'home'
+  name: 'home',
+  data () {
+    return {
+      data: '/static/img/home/meleagre-in-love.png'
+    }
+  },
+  ready: function () {
+    this.getCurrentThemeImg()
+  },
+  methods: {
+    getCurrentThemeImg: function () {
+      var self = this
+      $('body').on('mouseenter', '.discover-list a', function () {
+        var dataId = $(this).data('id')
+        return api.dataDiscover.get().then(function (response) {
+          self.$set('data', response.data.themes[dataId - 1].imgUrl)
+        }, function (response) { console.log(response.status) })
+      })
+    }
+  }
 }
 </script>
 
@@ -61,11 +81,9 @@ $hover: .2s all linear
     width: 100%
     background: #2b2b2b
 
-    .img
+    img
       width: 100%
       height: 100%
-      background: url(~assets/img/meleagre-in-love.png)
-      background-size: cover
       opacity: 0.65
 
 </style>

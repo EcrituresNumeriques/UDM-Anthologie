@@ -4,7 +4,8 @@
       "id": "1",
       "name": "Méléagre in love",
       "slug": "meleagre-in-love",
-      "img-url": "~assets/img/meleagre-in-love.png",
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
       "epigrams": [
         {
           "id": 1,
@@ -17,7 +18,7 @@
             "french": "/static/sound/french-sound.mp3",
             "greek": "/static/sound/greek-sound.mp3"
           },
-          "imageUrl": "/static/img/popin/manuscript.png",
+          "imageUrl": "/static/img/popin/meleagre-in-love/1.png",
           "notes": [
             {
               "id": 1,
@@ -48,8 +49,7 @@
           "texts": {
             "french": "Je lance un appel concernant Éros le sauvage. Tout juste<br>à l’aube il a quitté son lit en prenant son envol.<br>L’enfant est producteur de larmes douces, babilleur, rapide, sans peur,<br>rieur impudent, ailé au dos, porteur de carquois.<br> Je ne peux rien dire sur de quel père il est. Ce n’est pas l’éther,<br>ni la terre, qui disent avoir engendré cet audacieux, ni la mer.<br> Car il est ennemi partout et pour tous ; prenez garde<br>qu’il ne place d’autres filets pour les âmes.<br>Mais regarde, c’est lui, près de sa tanière. Tu ne m’as pas échappé,<br>archer, bien que caché par les yeux de Zénophila.",
             "greek": "Κηρύσσω τὸν Ἔρωτα τὸν ἄγριον· ἄρτι γὰρ ἄρτι<br>ὀρθρινὸς ἐκ κοίτας ᾤχετ' ἀποπτάμενος.<br>ἔστι δ' ὁ παῖς γλυκύδακρυς, ἀείλαλος, ὠκύς, ἀθαμβής,<br>σιμὰ γελῶν, πτερόεις νῶτα φαρετροφόρος.<br>πατρὸς δ' οὐκέτ' ἔχω φράζειν τίνος· οὔτε γὰρ αἰθήρ,<br>οὐ χθών φησι τεκεῖν τὸν θρασύν, οὐ πέλαγος.<br>πάντῃ γὰρ καὶ πᾶσιν ἀπέχθεται. ἀλλ' ἐσορᾶτε<br>μή που νῦν ψυχαῖς ἄλλα τίθησι λίνα.<br>καίτοι κεῖνος, ἰδού, περὶ φωλεόν. οὔ με λέληθας,<br>τοξότα, Ζηνοφίλας ὄμμασι κρυπτόμενος.    "
-          },
-          "imageUrl": "/static/img/manuscript.png"
+          }
         },
         {
           "id": 3,
@@ -58,7 +58,7 @@
             "french": "Vole pour moi, moustique, messager rapide, touche Zénophila<br>au bout des oreilles et murmure ceci :<br>‘Il t’attend sans dormir et toi, oublieuse des amants,<br>tu dors’. Allez, vole ! Oui, ami des Muses, vole.<br>Parle doucement, de peur que tu ne réveilles aussi son partenaire<br>et excite contre moi les douleurs de l’envie.<br>Si tu ramènes la fille, je t’honorerai d’une peau de lion,<br>moustique, et te donnerai une massue à porter en mains.",
             "greek": "Πταίης μοι, κώνωψ, ταχὺς ἄγγελος, οὔασι δ' ἄκροις<br>Ζηνοφίλας ψαύσας προσψιθύριζε τάδε·<br>“Ἄγρυπνος μίμνει σε· σὺ δ', ὦ λήθαργε φιλούντων,<br>εὕδεις.” εἶα, πέτευ· ναί, φιλόμουσε, πέτευ·<br>ἥσυχα δὲ φθέγξαι, μὴ καὶ σύγκοιτον ἐγείρας<br>κινήσῃς ἐπ' ἐμοὶ ζηλοτύπους ὀδύνας.<br>ἢν δ' ἀγάγῃς τὴν παῖδα, δορᾷ στέψω σε λέοντος,<br>κώνωψ, καὶ δώσω χειρὶ φέρειν ῥόπαλον."
           },
-          "imageUrl": "/static/img/manuscript.png"
+          "imageUrl": "/static/img/popin/meleagre-in-love/3.png"
         },
         {
           "id": 4,
@@ -66,8 +66,7 @@
           "texts": {
             "french": "Cigale retentissante, ivre de gouttes de rosée,<br>tu chantes une chanson sauvage, qui parle seule.<br>Assise en haut sur des feuilles, avec tes membres coupants et ton corps couleur de feu, tu lances un chant de lyre.<br>Ami, dis quelque nouveauté aux nymphes des arbres, un jouet, faisant un chant contre Pan, afin que<br>fuyant Eros je trouve un sommeil méridien,<br>couché ici sous un platane ombreux.",
             "greek": "ἀγρονόμαν μέλπεις μοῦσαν ἐρημολάλον·<br>ἄκρα δ' ἐφεζόμενος πετάλοις πριονώδεσι κώλοις<br>αἰθίοπι κλάζεις χρωτὶ μέλισμα λύρας.<br>ἀλλά, φίλος, φθέγγου τι νέον δενδρώδεσι Νύμφαις<br>παίγνιον, ἀντῳδὸν Πανὶ κρέκων κέλαδον,<br>ὄφρα φυγὼν τὸν Ἔρωτα μεσημβρινὸν ὕπνον ἀγρεύσω<br>ἐνθάδ' ὑπὸ σκιερῇ κεκλιμένος πλατάνῳ."
-          },
-          "imageUrl": "/static/img/manuscript.png"
+          }
         },
         {
           "id": 5,
@@ -75,8 +74,7 @@
           "texts": {
             "french": "L’île de Tyr fut ma nourrice. La patrie qui m’a engendré, attique bien que se trouvant en Syrie, est Gadara.<br>D’Eucratès que je suis né, moi Méléagre, qui avec les Muses ai d’abord couru auprès des Grâces ménipéennes*.<br>Si je suis syrien, quoi d’étonnant ? Étranger, nous vivons dans un seul pays, l’univers ; seul, Chaos engendra tous les mortels.<br>Fort âgé, j’ai inscrit ces mots sur des tablettes, avant mon enterrement, car la vieillesse est proche voisine de l’Hadès.<br>Mais toi, salue-moi, qui suis un vieux bavard, et puisses-tu ensuite toi aussi atteindre la vieillesse bavarde.",
             "greek": "Νᾶσος ἐμὰ θρέπτειρα Τύρος· πάτρα δέ με τεκνοῖ<br>Ἀτθὶς ἐν Ἀσσυρίοις ναιομένα Γάδαρα·<br>Εὐκράτεω δ' ἔβλαστον ὁ σὺν Μούσαις Μελέαγρος<br>πρῶτα Μενιππείοις συντροχάσας Χάρισιν.<br>εἰ δὲ Σύρος, τί τὸ θαῦμα; μίαν, ξένε, πατρίδα κόσμον<br>ναίομεν, ἓν θνατοὺς πάντας ἔτικτε Χάος.<br>πουλυετὴς δ' ἐχάραξα τάδ' ἐν δέλτοισι πρὸ τύμβου·<br>γήρως γὰρ γείτων ἐγγύθεν Ἀίδεω.<br>ἀλλά με τὸν λαλιὸν καὶ πρεσβύτην πάρος εἰπὼν<br>χαίρειν εἰς γῆρας καὐτὸς ἵκοιο λάλον."
-          },
-          "imageUrl": "/static/img/manuscript.png"
+          }
         },
         {
           "id": 6,
@@ -97,8 +95,7 @@
               "name": "merops",
               "desc": "Roi légendaire de Côs."
             }
-          ],
-          "imageUrl": "/static/img/manuscript.png"
+          ]
         },
         {
           "id": 7,
@@ -106,8 +103,7 @@
           "texts": {
             "french": "Passe doucement, étranger, car parmi les pieux le vieil homme repose, dormant le sommeil inéluctable.<br>C’est Méléagre, fils d’Eucratès, qui, aux Grâces joyeuses, a uni Eros aux douces larmes et les Muses.<br>Tyr aux divins garçons et la terre sainte des Gadaréens en ont fait un homme ; l’aimable Côs des Méropiens a soigné le vieillard pendant ses dernières années.<br>Si tu es syrien, ‘Salam !’ ; si tu es phénicien, ‘Naidios !’ ; et si tu es grec, ‘Sois heureux !’ (C’est la même chose que tu dirais.)",
             "greek": "Ἀτρέμας, ὦ ξένε, βαῖνε· παρ' εὐσεβέσιν γὰρ ὁ πρέσβυς<br>εὕδει κοιμηθεὶς ὕπνον ὀφειλόμενον,<br>Εὐκράτεω Μελέαγρος, ὁ τὸν γλυκύδακρυν Ἔρωτα<br>καὶ Μούσας ἱλαραῖς συστολίσας Χάρισιν·<br>ὃν θεόπαις ἤνδρωσε Τύρος Γαδάρων θ' ἱερὰ χθών·<br>Κῶς δ' ἐρατὴ Μερόπων πρέσβυν ἐγηροτρόφει.<br>ἀλλ' εἰ μὲν Σύρος ἐσσί, “Σαλάμ”, εἰ δ' οὖν σύ γε Φοῖνιξ,<br>“Ναίδιος”, εἰ δ' Ἕλλην, “Χαῖρε”, τὸ δ' αὐτὸ φράσεις."
-          },
-          "imageUrl": "/static/img/manuscript.png"
+          }
         },
         {
           "id": 8,
@@ -115,8 +111,7 @@
           "texts": {
             "french": "Être ailé, pourquoi te plaisent la lance et la peau de sanglier ? Qui es-tu, de la stèle de qui es-tu le symbole ?<br>Je ne pense pas que tu es Eros, car pourquoi le désir serait-il voisin des morts ? Cet audacieux n’a pas appris à gémir. Tu n’es pas non plus Chronos aux pieds rapides ; lui est triplement vieux, toi au contraire tes membres sont vigoureux.<br>Ah voilà, oui je sais ! celui qui est sous terre est un savant, et toi, le mot ailé, tu es son nom.<br>Tu portes l’insigne double de la fille de Lêtô en référence à la combinaison rire et sérieux, peut-être au mètre parlant d’amour.<br>Oui, et c’est Méléagre, l’homonyme du fils d’Oïnée,<br>que désignent ces symboles du meurtre du sanglier.<br>Sois heureux, même parmi les morts, car tu as ajusté la Muse d’Eros et les Grâces en un seul talent.",
             "greek": "Πτανέ, τί σοι σιβύνας, τί δὲ καὶ συὸς εὔαδε δέρμα,<br>καὶ τίς ἐὼν στάλας σύμβολον ἐσσὶ τίνος;<br>οὐ γὰρ Ἔρωτ' ἐνέπω σε· τί γὰρ, νεκύεσσι πάροικος<br>Ἵμερος; αἰάζειν ὁ θρασὺς οὐκ ἔμαθεν·<br>οὐδὲ μὲν οὐδ' αὐτὸν ταχύπουν Χρόνον· ἔμπαλι γὰρ δὴ<br>κεῖνος μὲν τριγέρων, σοὶ δὲ τέθηλε μέλη.<br>ἀλλ' ἄρα, ναί, δοκέω γάρ, ὁ γᾶς ὑπένερθε σοφιστὰς<br>ἐστί, σὺ δ' ὁ πτερόεις τοὔνομα τοῦδε λόγος.<br>Λατῴας δ' ἄμφηκες ἔχεις γέρας ἔς τε γέλωτα<br>καὶ σπουδὰν καί που μέτρον ἐρωτογράφον.<br>ναὶ μὲν δὴ Μελέαγρον ὁμώνυμον Οἰνέος υἱῷ<br>σύμβολα σημαίνει ταῦτα συοκτασίας.<br>χαῖρε καὶ ἐν φθιμένοισιν, ἐπεὶ καὶ Μοῦσαν Ἔρωτος<br>καὶ Χάριτας σοφίαν εἰς μίαν ἡρμόσαο."
-          },
-          "imageUrl": "/static/img/manuscript.png"
+          }
         }
       ]
     },
@@ -124,42 +119,185 @@
       "id": "2",
       "name": "Les serments trahis",
       "slug": "les-serments-trahis",
-      "img-url": "~assets/img/meleagre-in-love.png"
+      "imgUrl": "/static/img/home/les-serments-trahis.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "6",
+          "imageUrl": "/static/img/popin/les-serments-trahis/1.png",
+          "texts": {
+            "french": "Callignote a juré à Ionis que jamais<br>il n’aimera quelqu’un - homme ou femme - plus qu’elle.<br>Il l’a juré ; mais ce que les gens disent est vrai : les serments en amour<br>n’atteignent pas les oreilles des immortels.<br>Maintenant le feu qui le réchauffe, c’est un jeune homme : sa pauvre<br>jeune épouse, tout comme les Mégariens, il n’en tient plus compte.",
+            "greek": "ὤμοσε Καλλίγνωτος Ἰωνίδι, μήποτε κείνης<br>ἕξειν μήτε φίλον κρέσσονα μήτε φίλην.<br>ὤμοσεν : ἀλλὰ λέγουσιν ἀληθέα, τοὺς ἐν ἔρωτι<br>ὅρκους.μὴ δύνειν οὔατ᾽ ἐς ἀθανάτων.<br>νῦν δ᾽ ὁ μὲν ἀρσενικῷ θέρεται πυρί : τῆς δὲ ταλαίνης<br>νύμφης, ὡς Μεγαρέων, οὐ λόγος οὐδ᾽ ἀριθμός."
+          },
+          "notes": [
+            {
+              "id": 1,
+              "content": "Pour l’allusion aux Mégariens, Philippe Renault nous dit que : \"C’est une allusion à la réponse de l’oracle de Delphes aux Mégariens qui désiraient savoir à quel rang le dieu les plaçait. Les Scholies de Théocrite (XIV, 73) nous rapportent que le dieu leur répondit ceci : « Le peuple buvant l’eau de l’Aréthuse est au-dessus de tout ; ensuite il y a les gens de Tyrinthe, les Arcadiens et les Argiens. En revanche, vous, Mégariens, vous ne comptez pour rien. » En fait l’expression « compter comme pour des Mégariens » est l’équivalent de notre moderne « compter pour du beurre » !\""
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "7",
+          "imageUrl": "/static/img/popin/les-serments-trahis/2.png",
+          "texts": {
+            "french": "Lampe, devant toi Héraclée a juré trois fois<br>qu’elle viendrait et elle ne vient pas : lampe, si tu es un dieu,<br>punis cette traitresse, pendant qu’elle batifole avec un amant à la maison<br>éteins-toi et ne fais plus de lumière.",
+            "greek": "λύχνε, σὲ γὰρ παρεοῦσα τρὶς ὤμοσεν Ἡράκλεια<br>ἥξειν, κοὐχ ἥκει : λύχνε, σὺ δ᾽, εἰ θεὸς εἶ,<br>τὴν δολίην ἀπάμυνον ὅταν φίλον ἔνδον ἔχουσα<br>παίζῃ, ἀποσβεσθεὶς μηκέτι φῶς πάρεχε."
+          },
+          "notes": [
+            {
+              "id": 1,
+              "content": "\"Lampe, si tu es un dieu\" : la superstition selon laquelle les lampes étaient des divinités était courante."
+            },
+            {
+              "id": 2,
+              "content": "Je décide de traduire σὲ γὰρ παρεοῦσα τρὶς ὤμοσεν Ἡράκλεια avec \"devant toi\". L’accusatif σὲ peut dépendre du verbe ομνυμι ou du verbe παρειμι (passer à côté de + accusatif). La seconde possibilité me semble la plus probable - justement si l’on pense à la lampe comme à une divinité. La lampe est un témoin - comme c’est le cas dans plusieurs épigrammes."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "52",
+          "texts": {
+            "french": "Ô nuit sacrée, ô lampe, tous deux nous n’avons voulu<br>aucun autre témoin de nos serments que vous<br>et nous avons juré lui qu’il m’aimerait, et moi que je ne le quitterais jamais,<br>ensemble vous en détenez la preuve.<br>Mais maintenant lui dit que ces serments sont écrits dans l’eau,<br>et toi, lampe, tu le vois dans les bras d’autres personnes.",
+            "greek": "νὺξ ἱερὴ καὶ λύχνε, συνίστορας οὔτινας ἄλλους<br>ὅρκοις, ἀλλ᾽ ὑμέας, εἱλόμεθ᾽ ἀμφότεροι<br>χὠ μὲν ἐμὲ στέρξειν, κεῖνον δ᾽ ἐγὼ οὔ ποτε λείψειν<br>ὠμόσαμεν κοινὴν δ᾽ εἴχετε μαρτυρίην.<br>νῦν δ᾽ ὁ μὲν μὲν ὅρκια φησιν ἐν ὕδατι κεῖνα φέρεσθαι,<br>λύχνε, σὺ δ᾽ ἐν κόλποις αὐτὸν ὁρᾷς ἑτέρων."
+          }
+        },
+        {
+          "id": 4,
+          "title": "8",
+          "imageUrl": "/static/img/popin/les-serments-trahis/3.png",
+          "texts": {
+            "french": "Nous avons fait un serment commun au nom d'Éros, ce serments<br>c'est ce qui assurait à Soustrate l'amour fidèle d'Arsinoée.<br>Mais elle est menteuse et les serments sont vains ; mais pour lui<br>le désir pour elle est intact. La force des dieux on ne la voit pas<br>Ô Iménée, puisse-tu entendre des chants funèbres<br>derrière les portes d'Arsinoée, après avoir puni la chambre traîtresse",
+            "greek": "ὅρκον κοινὸν Ἔρωτ᾽ ἀνεθήκαμεν ὅρκος ὁ πιστὴν<br>Ἀρσινόης θέμενος Σωσιπάτρῳ φιλίην.<br>ἀλλ᾽ ἡ μὲν ψευδὴς κενὰ δ᾽ ὅρκια, τῷ δ᾽ ἐφυλάχθη<br>ἵμερος: ἡ δὲ θεῶν οὐ φανερὴ δύναμις.<br>θρήνους, ὦ Ὑμέναιε, παρὰ κληῖσιν ἀΰσαις<br>Ἀρσινόης, παστῷ μεμψάμενος προδότῃ]."
+          }
+        }
+      ]
     },
     {
       "id": "3",
       "name": "Les lampes sont des témoins",
       "slug": "les-lampes-sont-des-temoins",
-      "img-url": "~assets/img/meleagre-in-love.png",
-      "epigrams": []
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "4",
+          "imageUrl": "/static/img/popin/les-lampes-sont-des-temoins/1.png",
+          "texts": {
+            "french": "Philénis, enivre la lampe qui connait mais garde secrètes les choses qu’on ne peut dire<br>d’une liqueur huileuse,<br>et va-t-en : car l’Amour solitaire n’apprécie pas les témoins<br>vivants, et ferme bien la porte, Philénis.<br>Et toi, embrasse-moi, Xantho : quant à toi, ô lit qui aime les aimants,<br>apprends maintenant ce qu’il faut savoir d’Aphrodite.",
+            "greek": "τὸν σιγῶντα, Φιλαινί, συνίστορα τῶν ἀλαλήτων<br>λύχνον ἐλαιηρῆς ἐκμεθύσασα δρόσου,<br>ἔξιθι : μαρτυρίην γὰρ Ἔρως μόνος οὐκ ἐφίλησεν<br>ἔμπνουν καὶ πηκτὴν κλεῖε, Φιλαινί, θύρην.<br>καὶ σύ, φίλη Ξανθώ, με : σὺ δ᾽, ὦ φιλεράστρια κοίτη,<br>ἤδη τῆς Παφίης ἴσθι τὰ λειπόμενα."
+          },
+          "notes": [
+            {
+              "id": 1,
+              "content": "J’ai un problème de traduction au cinquième vers. Ma traduction ne fonctionne pas si l’on accepte la ponctuation du texte.<br>καὶ σύ, φίλη Ξανθώ, με :<br>il faudrait traduire, comme le fait Paton : \"et toi, cher Xantho, moi\". Il n’y a pas de verbe, φίλη est l’adjectif (cher). Je préfère penser que le φίλη est le verbe et que la virgule est mal placée<br>καὶ σύ, φίλη Ξανθώ με :<br>Je ne crois pas que ce με puisse dépendre d’un autre verbe."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "5",
+          "imageUrl": "/static/img/popin/les-lampes-sont-des-temoins/2.png",
+          "texts": {
+            "french": "Moi, lampe en argent, fidèle témoin des amours nocturnes,<br>Flaccus m’a donnée à l’infidèle Nape,<br>maintenant je me consomme à côté de son lit,<br>pendant que je regarde toutes les horreurs insupportables de cette fille parjure.<br>Toi, Flaccus, réveillé, de troublantes angoisses t’accablent :<br>tous deux, nous brûlons, chacun de notre côté.",
+            "greek": "ἀργύρεον νυχίων με συνίστορα πιστὸν ἐρώτων<br>οὐ πιστῇ λύχνον Φλάκκος ἔδωκε Νάπῃ,<br>ἧς παρὰ νῦν λεχέεσσι μαραίνομαι, εἰς ἐπιόρκου<br>παντοπαθῆ κούρης αἴσχεα δερκόμενος.<br>Φλάκκε, σὲ δ᾽ ἄγρυπνον χαλεπαὶ τείρουσι μέριμναι :<br>ἄμφω δ᾽ ἀλλήλων ἄνδιχα καιόμεθα."
+          }
+        },
+        {
+          "id": 3,
+          "title": "7",
+          "imageUrl": "/static/img/popin/les-lampes-sont-des-temoins/2.png",
+          "texts": {
+            "french": "Lampe, devant toi Héraclée a juré trois fois<br>qu’elle viendrait et elle ne vient pas : lampe, si tu es un dieu,<br>punis cette traitresse, pendant qu’elle batifole avec un amant à la maison<br>éteins-toi et ne fais plus de lumière.",
+            "greek": "λύχνε, σὲ γὰρ παρεοῦσα τρὶς ὤμοσεν Ἡράκλεια<br>ἥξειν, κοὐχ ἥκει : λύχνε, σὺ δ᾽, εἰ θεὸς εἶ,<br>τὴν δολίην ἀπάμυνον ὅταν φίλον ἔνδον ἔχουσα<br>παίζῃ, ἀποσβεσθεὶς μηκέτι φῶς πάρεχε."
+          },
+          "notes": [
+            {
+              "id": 1,
+              "content": "\"Lampe, si tu es un dieu\" : la superstition selon laquelle les lampes étaient des divinités était courante."
+            },
+            {
+              "id": 2,
+              "content": "Je décide de traduire σὲ γὰρ παρεοῦσα τρὶς ὤμοσεν Ἡράκλεια avec \"devant toi\". L’accusatif σὲ peut dépendre du verbe ομνυμι ou du verbe παρειμι (passer à côté de + accusatif). La seconde possibilité me semble la plus probable - justement si l’on pense à la lampe comme à une divinité. La lampe est un témoin - comme c’est le cas dans plusieurs épigrammes."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "4",
       "name": "Le Banquet",
       "slug": "le-banquet",
-      "img-url": "~assets/img/meleagre-in-love.png",
-      "epigrams": []
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png"
     },
     {
       "id": "5",
       "name": "La vieillesse",
       "slug": "la-vieillesse",
-      "img-url": "~assets/img/meleagre-in-love.png",
-      "epigrams": []
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "?",
+          "texts": {
+            "french": "Charito vient d’achever sa soixantième année,<br>mais encore elle porte une chroma de cheveu noirs<br>et sur sa poitrine s’érigent encore ses seins comme des cônes en marbre<br>sans qu’une ceinture le soutienne<br>et sa peau sans rides prodigue encore de l’Ambroise, encore<br>tous ses charmes, encore mille grâces,<br>mais vous, aimants qui ne fuyez pas les désirs ardents<br>venez ici, oubliant le nombre de ses décennies.",
+            "greek": "ἑξήκοντα τελεῖ Χαριτὼ λυκαβαντίδας ὥρας,<br>ἀλλ᾽ ἔτι κυανέων σύρμα μένει πλοκάμων,<br>κἠν στέρνοις ἔτι κεῖνα τὰ λύγδινα κώνια μαστῶν<br>ἕστηκεν, μίτρης γυμνὰ περιδρομάδος,<br>καὶ χρὼς ἀρρυτίδωτος ἔτ᾽ ἀμβροσίην, ἔτι πειθὼ<br>πᾶσαν, ἔτι στάζει μυριάδας χαρίτων.<br>ἀλλὰ πόθους ὀργῶντας ὅσοι μὴ φεύγετ᾽ ἐρασταί,<br>δεῦρ᾽ ἴτε, τῆς ἐτέων ληθόμενοι δεκάδος."
+          }
+        }
+      ]
     },
     {
       "id": "6",
       "name": "Amour et fuite",
       "slug": "amour-et-fuite",
-      "img-url": "~assets/img/meleagre-in-love.png",
-      "epigrams": []
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "?",
+          "texts": {
+            "french": "Lune au corne d’or, tu le voit, et vous aussi<br>astres brillants qu’Océan reçoit dans ses bras,<br>voyez-vous que Ariste parfumée s’en est allée en me laissant seul<br>et que, depuis six jours, je ne peux pas retrouver cette sorcière ?<br>Mais nous la rattraperons en tout cas, quand j’enverrai à sa poursuite<br>les chiens de chasse argentés de Cypris.",
+            "greek": "μήνη χρυσόκερως, δέρκευ τάδε, καὶ περιλαμπεῖς<br>ἀστέρες, οὓς κόλποις Ὠκεανὸς δέχεται,<br>ὥς με μόνον προλιποῦσα μυρόπνοος ᾤχετ᾽ Ἀρίστη :<br>ἑκταίην δ᾽ εὑρεῖν τὴν μάγον οὐ δύναμαι.<br>ἀλλ᾽ ἔμπης αὐτὴν ζωγρήσομεν, ἢν ἐπιπέμψω<br>Κύπριδος ἰχνευτὰς ἀργυρέους σκύλακας."
+          },
+          "notes": [
+            {
+              "id": 1,
+              "content": "Les chiens de chasse dont il est question sont probablement des monnaies d’argent. Le poète est en train de dire qu’il ramènera sa maîtresse en la payant."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "24",
+          "texts": {
+            "french": "Mon âme me prévient de fuir le désir d'Héliodora<br>parce qu'elle connaît les larmes et les souffrances d'avant<br>Elle dit, mais je n'ai pas la force de fuir ; car elle l'éhontée<br>elle-même me prévient et m'embrasse en me prévenant",
+            "greek": "ψυχή μοι προλέγει φεύγειν πόθον Ἡλιοδώρας,<br>δάκρυα καὶ ζήλους τοὺς πρὶν ἐπισταμένη.<br>φησὶ μὲν ἀλλὰ φυγεῖν οὔ μοι σθένος: ἡ γὰρ ἀναιδὴς<br>αὐτὴ καὶ προλέγει, καὶ προλέγουσα φιλεῖ."
+          }
+        }
+      ]
     },
     {
       "id": "7",
       "name": "Ne me fais pas dormir dehors!",
       "slug": "ne-me-fais-pas-dormir-dehors",
-      "img-url": "~assets/img/meleagre-in-love.png",
-      "epigrams": []
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "23",
+          "texts": {
+            "french": "Que tu puisses dormir comme tu me fait<br>coucher devant ces portes froides<br>que tu puisses dormir, ô injuste, comme tu fais dormir ton amant,<br>sans être touchée par la pitié même pas en rêve<br>les voisins ont de la compassion, toi même pas en rêve. Mais ta chevelure grise<br>plus tard te rappellera tout ça.",
+            "greek": "οὕτως ὑπνώσαις, Κωνώπιον, ὡς ἐμὲ ποιεῖς<br>κοιμᾶσθαι ψυχροῖς τοῖσδε παρὰ προθύροις<br>οὕτως ὑπνώσαις, ἀδικωτάτη, ὡς τὸν ἐραστὴν<br>κοιμίζεις: ἐλέου δ᾽ οὐδ᾽ ὄναρ ἠντίασας.<br>γείτονες οἰκτείρουσι: σὺ δ᾽ οὐδ᾽ ὄναρ . ἡ πολιὴ δὲ<br>αὐτίκ᾽ ἀναμνήσει ταῦτά σε πάντα κόμη. "
+          }
+        }
+      ]
     }
   ]
 }

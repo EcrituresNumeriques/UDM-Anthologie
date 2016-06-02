@@ -42,7 +42,7 @@ router.map({
     component: Credits,
     name: 'credits'
   },
-  '/sommaire/:theme': {
+  '/sommaire': {
     component: Summary,
     name: 'summary'
   },

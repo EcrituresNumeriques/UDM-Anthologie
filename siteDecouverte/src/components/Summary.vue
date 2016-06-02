@@ -12,22 +12,13 @@
             <div class="col-md-4 col-md-offset-1 pull-right summary-right-column">
                 <nav class="navbar navbar-default">
                     <ul class="nav">
-                        <li><a v-link="{ name: 'epigram', params: { id: '1'}}">002	AP 12.132b, 22</a></li>
-                        <li><a href="#">001	AP 5.177, 37</a></li>
-                        <li><a href="#">003	AP 5.152, 34</a></li>
-                        <li><a href="#">004	AP 7.417</a></li>
-                        <li><a href="#">005	AP 7.421 : Épitaphe «logogriphique»</a></li>
-                        <li><a href="#">006	AP 5.177, 37</a></li>
-                        <li><a href="#">007	AP 12.132b, 22</a></li>
-                        <li><a href="#">008	AP 5.152, 34</a></li>
-                        <li><a href="#">009	AP 7.417</a></li>
-                        <li><a href="#">010	AP 7.421 : Épitaphe «logogriphique»</a></li>
-                        <li><a href="#">011	AP 5.152, 34</a></li>
-                        <li><a href="#">012	AP 7.417</a></li>
+                        <li v-for="epigram in data.epigrams">
+                          <a v-link="{ name: 'theme', params: { theme: data.slug, themeId: data.id, id: epigram.id }}">{{ epigram.title }}</a>
+                        </li>
                     </ul>
                 </nav>
                 <div class="small-img-container">
-                    <img src="~assets/img/small-img.png">
+                    <img :src="data.summaryImgUrl">
                 </div>
             </div>
         </div>
@@ -35,15 +26,36 @@
 </template>
 
 <script>
+/* global api */
 import BackBtn from './BackBtn'
 import DiscoverNav from './DiscoverNav'
+import $ from 'jquery'
 
 export default {
   components: {
     BackBtn,
     DiscoverNav
   },
-  name: 'summary'
+  name: 'summary',
+  data () {
+    return {
+      data: {}
+    }
+  },
+  ready: function () {
+    this.getCurrentThemeId()
+  },
+  methods: {
+    getCurrentThemeId: function () {
+      var self = this
+      $('body').on('mouseenter', '.discover-list a', function () {
+        var dataId = $(this).data('id')
+        return api.dataDiscover.get().then(function (response) {
+          self.$set('data', response.data.themes[dataId - 1])
+        }, function (response) { console.log(response.status) })
+      })
+    }
+  }
 }
 </script>
 

@@ -1,169 +1,175 @@
 <template>
     <div class="epigram" :theme="theme" :epigram="epigram">
-        <div class="page-title-container">
-            <h1>{{ data.themes[theme].epigrams[epigram].title }}</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-1">
-                <div class="inner-links">
-                    <a v-link="{ name: 'summary', params: { theme: 'maleagre-in-love' }}">
-                      <span class="dash"></span>
-                      Les thèmes
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-1 col-md-offset-7">
-                <div class="index">
-                    <p class="total">{{ data.themes[theme].epigrams.length | numberize }}</p>
-                    <span class="separator"></span>
-                    <p class="active">{{ data.themes[theme].epigrams[epigram].id | numberize }}</p>
-                </div>
-                <div class="arrows">
-                    <span>
-                      <a v-show="!(epigram == 0)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                      </a>
-                    </span>
-                    <span class="separator"></span>
-                    <span>
-                      <a v-show="!(epigram+1 == data.themes[theme].epigrams.length)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                      </a>
-                    </span>
-                </div>
-            </div>
-            <div v-if="data.themes[theme].epigrams[epigram].sounds" class="col-md-1 col-md-offset-1">
-                <div class="player">
-                    <div class="control">
-                        <a class="play-button paused" href="#">
-                            <div class="left"></div>
-                            <div class="right"></div>
-                            <div class="triangle-1"></div>
-                            <div class="triangle-2"></div>
-                        </a>
-                    </div>
-                    <div class="progressbar">
-                        <span class="progress"></span>
-                    </div>
-                </div>
-                <div class="sound">
-                    <audio class="french-sound">
-                        <source :src="data.themes[theme].epigrams[epigram].sounds.french" type="audio/mpeg">
-                    </audio>
-                    <audio class="greek-sound">
-                      <source :src="data.themes[theme].epigrams[epigram].sounds.greek" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute french-mute">
-                  <span class="glyphicon glyphicon-volume-up"></span>
-                </div>
-                <div class="text-container">
-                    <div class="text-theme">
-                        <h2>
-                          <span class="bg"></span>
-                          {{ data.themes[theme].name }}
-                        </h2>
-                    </div>
-                    <div class="text-title">
-                        <h3>{{ data.themes[theme].epigrams[epigram].title }}</h3>
-                        <div class="text-lang">
-                            <select>
-                                <option value="fr">Fr</option>
-                                <option value="gr">Gr</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="text-content">
-                        <p>
-                        {{{ data.themes[theme].epigrams[epigram].texts.french }}}
-                        </p>
-                    </div>
-                    <div class="text-author">
+        <div v-if="data.themes[theme].epigrams[epigram]">
+          <div class="page-title-container">
+              <h1>{{ data.themes[theme].epigrams[epigram].title }}</h1>
+          </div>
+          <div class="row epigram-row">
+              <div class="col-md-2 col-md-offset-1">
+                  <div class="inner-links">
+                      <a v-link="{ name: 'summary' }">
                         <span class="dash"></span>
-                        <p>Méléagre</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-md-offset-1">
-                <div class="greek-translation dropdown">
-                    <p>Traduction grecque
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="border-bottom"></span>
-                    </p>
-                    <div class="dropdown-drop">
-                      <div class="dropdown-content">
-                        <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute greek-mute">
-                          <span class="glyphicon glyphicon-volume-up"></span>
-                        </div>
-                        <p>
-                          {{{ data.themes[theme].epigrams[epigram].texts.greek }}}
-                        </p>
+                        Les thèmes
+                      </a>
+                  </div>
+              </div>
+              <div class="col-md-1 col-md-offset-7">
+                  <div class="index">
+                      <p class="total">{{ data.themes[theme].epigrams.length | numberize }}</p>
+                      <span class="separator"></span>
+                      <p class="active">{{ data.themes[theme].epigrams[epigram].id | numberize }}</p>
+                  </div>
+                  <div class="arrows">
+                      <span>
+                        <a v-show="!(epigram == 0)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                      </span>
+                      <span class="separator"></span>
+                      <span>
+                        <a v-show="!(epigram+1 == data.themes[theme].epigrams.length)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                      </span>
+                  </div>
+              </div>
+              <div class="col-md-1 col-md-offset-1">
+                  <div v-if="data.themes[theme].epigrams[epigram].sounds" class="player">
+                      <div class="control">
+                          <a class="play-button paused" href="#">
+                              <div class="left"></div>
+                              <div class="right"></div>
+                              <div class="triangle-1"></div>
+                              <div class="triangle-2"></div>
+                          </a>
                       </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-md-offset-4">
-                <div v-if="data.themes[theme].epigrams[epigram].notes" class="notes dropdown">
-                    <p>Les notes
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="border-bottom"></span>
-                    </p>
-                    <div class="dropdown-drop">
-                        <div class="dropdown-text-container">
-                            <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
-                            <div class="dropdown-text-wrapper">
-                                <div v-for="note in data.themes[theme].epigrams[epigram].notes" class="dropdown-text" id="note{{ note.id }}">
-                                    <div class="dropdown-desc">
-                                        <q>{{ note.content }}</q>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
+                      <div class="progressbar">
+                          <span class="progress"></span>
+                      </div>
+                  </div>
+                  <div v-if="data.themes[theme].epigrams[epigram].sounds" class="sound">
+                      <audio class="french-sound">
+                          <source :src="data.themes[theme].epigrams[epigram].sounds.french" type="audio/mpeg">
+                      </audio>
+                      <audio class="greek-sound">
+                        <source :src="data.themes[theme].epigrams[epigram].sounds.greek" type="audio/mpeg">
+                      </audio>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute french-mute">
+                    <span class="glyphicon glyphicon-volume-up"></span>
+                  </div>
+                  <div class="text-container">
+                      <div class="text-theme">
+                          <h2>
+                            <span class="bg"></span>
+                            {{ data.themes[theme].name }}
+                          </h2>
+                      </div>
+                      <div class="text-title">
+                          <h3>{{ data.themes[theme].epigrams[epigram].title }}</h3>
+                          <div class="text-lang">
+                              <select>
+                                  <option value="fr">Fr</option>
+                                  <option value="gr">Gr</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="text-content">
+                          <p>
+                          {{{ data.themes[theme].epigrams[epigram].texts.french }}}
+                          </p>
+                      </div>
+                      <div class="text-author">
+                          <span class="dash"></span>
+                          <p>Méléagre</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-md-offset-1">
+                  <div class="greek-translation dropdown">
+                      <p>Traduction grecque
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <span class="border-bottom"></span>
+                      </p>
+                      <div class="dropdown-drop">
+                        <div class="dropdown-content">
+                          <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute greek-mute">
+                            <span class="glyphicon glyphicon-volume-up"></span>
+                          </div>
+                          <p>
+                            {{{ data.themes[theme].epigrams[epigram].texts.greek }}}
+                          </p>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5 col-md-offset-2">
-                <div v-if="data.themes[theme].epigrams[epigram].characters" class="characters dropdown">
-                    <p>Les personnages
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="border-bottom"></span>
-                    </p>
-                    <div class="dropdown-drop">
-                        <ul>
-                            <li v-for="character in data.themes[theme].epigrams[epigram].characters">
-                              <a data-click="{{ character.name }}" href="#"><span class="dash"></span>{{ character.name | capitalize }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="dropdown-text-container">
-                        <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
-                        <div class="dropdown-text-wrapper">
-                            <div v-for="character in data.themes[theme].epigrams[epigram].characters" class="dropdown-text" id="{{ character.name }}">
-                                <div class="dropdown-title">
-                                  <h4>{{ character.name | capitalize }}</h4>
-                                </div>
-                                <div class="dropdown-desc">
-                                  <q>{{ character.desc }}</q>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9 col-md-offset-3">
-                <div v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-image">
-                    <p>Image du manuscrit
-                        <span class="border-bottom"></span>
-                    </p>
-                </div>
-            </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3 col-md-offset-4">
+                  <div v-if="data.themes[theme].epigrams[epigram].notes" class="notes dropdown">
+                      <p>Les notes
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <span class="border-bottom"></span>
+                      </p>
+                      <div class="dropdown-drop">
+                          <div class="dropdown-text-container">
+                              <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
+                              <div class="dropdown-text-wrapper">
+                                  <div v-for="note in data.themes[theme].epigrams[epigram].notes" class="dropdown-text" id="note{{ note.id }}">
+                                      <div class="dropdown-desc">
+                                          <q>{{ note.content }}</q>
+                                      </div>
+                                  </div>
+                              </div>
+                              <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-5 col-md-offset-2">
+                  <div v-if="data.themes[theme].epigrams[epigram].characters" class="characters dropdown">
+                      <p>Les personnages
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <span class="border-bottom"></span>
+                      </p>
+                      <div class="dropdown-drop">
+                          <ul>
+                              <li v-for="character in data.themes[theme].epigrams[epigram].characters">
+                                <a data-click="{{ character.name }}" href="#"><span class="dash"></span>{{ character.name | capitalize }}</a>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="dropdown-text-container">
+                          <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
+                          <div class="dropdown-text-wrapper">
+                              <div v-for="character in data.themes[theme].epigrams[epigram].characters" class="dropdown-text" id="{{ character.name }}">
+                                  <div class="dropdown-title">
+                                    <h4>{{ character.name | capitalize }}</h4>
+                                  </div>
+                                  <div class="dropdown-desc">
+                                    <q>{{ character.desc }}</q>
+                                  </div>
+                              </div>
+                          </div>
+                          <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-9 col-md-offset-3">
+                  <div v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-image">
+                      <p>Image du manuscrit
+                          <span class="border-bottom"></span>
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-popin">
+            <img :src="data.themes[theme].epigrams[epigram].imageUrl">
+          </div>
         </div>
-        <div class="manuscript-popin">
-          <img :src="data.themes[theme].epigrams[epigram].imageUrl">
+        <div v-else class="notExist">
+            <p>L'épigramme que vous cherchez n'existe pas</p>
+            <back-btn></back-btn>
         </div>
     </div>
 </template>
@@ -171,6 +177,8 @@
 <script>
 /* global api */
 import Vue from 'vue'
+
+import BackBtn from './BackBtn'
 import $ from 'jquery'
 
 Vue.filter('numberize', function (value) {
@@ -182,6 +190,9 @@ Vue.filter('numberize', function (value) {
 
 export default {
   name: 'epigram',
+  components: {
+    BackBtn
+  },
   route: {
     data: function (transition) {
       transition.next({
@@ -326,6 +337,17 @@ $(document).ready(function () {
       frenchSound.volume = 1
       greekSound.volume = 1
     })
+
+    body.on('click', '.manuscript-image > p', function () {
+      $('.manuscript-popin').fadeIn(function () {
+        $('.manuscript-popin img').addClass('big')
+      }).css('display', 'flex')
+    })
+
+    body.on('click', '.manuscript-popin', function () {
+      $('.manuscript-popin img').removeClass('big')
+      $('.manuscript-popin').fadeOut()
+    })
   })
 
   function onDropdownClick (dropdown) {
@@ -407,19 +429,6 @@ $(document).ready(function () {
   body.on('click', '.dropdown-arrow-right', function () {
     onDropArrowClick($(this))
   })
-
-  var manuscriptPopin = $('.manuscript-popin')
-  var manuscriptImage = manuscriptPopin.children('img')
-  body.on('click', '.manuscript-image > p', function () {
-    manuscriptPopin.fadeIn(function () {
-      manuscriptImage.addClass('big')
-    }).css('display', 'flex')
-  })
-
-  body.on('click', '.manuscript-popin', function () {
-    manuscriptImage.removeClass('big')
-    manuscriptPopin.fadeOut()
-  })
 })
 </script>
 
@@ -431,9 +440,9 @@ $hover: .2s all ease-out
   width: 100%
   height: 100%
 
-  >.row
+  .epigram-row
     position: absolute
-    bottom: 15%
+    top: 20%
     width: 100%
     z-index: 2
 
@@ -913,5 +922,20 @@ $hover: .2s all ease-out
    font-weight: 600
    display: inline-block
    cursor: pointer
+
+.notExist
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+
+  p
+    font-size: 30px
+    color: #2c2c2c
+
+  .back-btn
+    left: 0
 
 </style>

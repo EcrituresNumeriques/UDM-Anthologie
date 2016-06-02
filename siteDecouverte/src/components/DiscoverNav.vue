@@ -6,7 +6,7 @@
                   <a data-id="{{ theme.id }}" v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}">
                     <span class="dash"></span>
                     {{ theme.name }}
-                    <sup></sup>
+                    <sup>{{ theme.id | romanize }}</sup>
                   </a>
                 </li>
             </ul>
@@ -16,10 +16,10 @@
 
 <script>
 /* global api */
+import Vue from 'vue'
 import Epigram from './Epigram'
-import $ from 'jquery'
 
-function romanize (num) {
+Vue.filter('romanize', function (num) {
   if (!+num) { return false }
   var digits = String(+num).split('')
   var key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
@@ -32,14 +32,6 @@ function romanize (num) {
     roman = (key[+digits.pop() + (i * 10)] || '') + roman
   }
   return Array(+digits.join('') + 1).join('M') + roman
-}
-
-$(window).load(function () {
-  $('li.discover-list').each(function () {
-    var index = $(this).index() + 1
-    var romanized = romanize(index)
-    $(this).find('sup').text(romanized)
-  })
 })
 
 export default {
@@ -48,28 +40,14 @@ export default {
   },
   data () {
     return {
-      data: {},
-      dataThemeId: {}
+      data: {}
     }
   },
   ready: function () {
-    this.getCurrentId()
     var self = this
     return api.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
     }, function (response) { console.log(response.status) })
-  },
-  methods: {
-    getCurrentId: function () {
-      var self = this
-      $('body').on('click', '.discover-list a', function (e) {
-        e.preventDefault()
-        var dataId = $(this).data('id')
-        return api.dataDiscover.get().then(function (response) {
-          self.$set('dataThemeId', response.data.themes[dataId - 1])
-        }, function (response) { console.log(response.status) })
-      })
-    }
   }
 }
 
