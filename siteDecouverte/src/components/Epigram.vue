@@ -69,16 +69,20 @@
                       </div>
                       <div class="text-title">
                           <h3>{{ data.themes[theme].epigrams[epigram].title }}</h3>
-                          <div class="text-lang">
-                              <select>
-                                  <option value="fr">Fr</option>
-                                  <option value="gr">Gr</option>
+                          <div v-if="data.themes[theme].epigrams[epigram].langs" class="text-lang">
+                              <select v-model="data.themes[theme].epigrams[epigram].langs.selected">
+                                  <option v-for="lang in data.themes[theme].epigrams[epigram].langs.options" value="{{ lang.id - 1 }}">
+                                    {{ lang.text }}
+                                  </option>
                               </select>
                           </div>
                       </div>
                       <div class="text-content">
-                          <p>
-                          {{{ data.themes[theme].epigrams[epigram].texts.french }}}
+                          <p v-if="data.themes[theme].epigrams[epigram].langs">
+                            {{{ data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].langs.selected].content }}}
+                          </p>
+                          <p v-else>
+                            {{{ data.themes[theme].epigrams[epigram].texts[0].content }}}
                           </p>
                       </div>
                       <div class="text-author">
@@ -99,7 +103,7 @@
                             <span class="glyphicon glyphicon-volume-up"></span>
                           </div>
                           <p>
-                            {{{ data.themes[theme].epigrams[epigram].texts.greek }}}
+                            {{{ data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].texts.length - 1].content }}}
                           </p>
                         </div>
                       </div>
@@ -355,26 +359,43 @@ $(document).ready(function () {
     var selfArrow = self.children('.glyphicon')
     var selfParent = self.parent('.dropdown')
     var selfList = selfParent.children('.dropdown-drop')
-    if ($('#note1').hasClass('visible')) {
-      $('.notes .glyphicon-chevron-left').hide()
-    }
     if (!selfParent.hasClass('droped')) {
       selfParent.addClass('droped')
-      selfList.addClass('visible').next('.dropdown-text-container').addClass('visible')
+      selfList.addClass('visible')
+        .next('.dropdown-text-container').addClass('visible')
+          .find('#note1').addClass('visible')
       selfArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
     } else {
       selfParent.removeClass('droped')
       selfList.removeClass('visible')
-        .next('.dropdown-text-container')
-          .removeClass('visible').fadeOut('500')
-            .find('.dropdown-text').removeClass('visible').fadeOut('500')
+        .next('.dropdown-text-container').removeClass('visible').fadeOut('500')
+          .find('.dropdown-text').removeClass('visible').fadeOut('500')
       selfArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+    }
+    if ($('#note1').hasClass('visible')) {
+      $('.notes .glyphicon-chevron-left').hide()
     }
   }
 
   $('body').on('click', '.dropdown > p', function () {
     onDropdownClick($(this))
   })
+
+//  $('body').on('click', '.notes.dropdown > p', function () {
+//    if (!$('.notes').hasClass('droped')) {
+//      $('.notes').addClass('droped')
+//      $('.notes').children('.dropdown-drop').addClass('visible').find('#note1').addClass('visible')
+//      $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
+//    } else {
+//      $('.notes').removeClass('droped')
+//      $('.notes').children('.dropdown-drop').removeClass('visible').find('.dropdown-text').removeClass('visible').fadeOut('500')
+//      $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+//    }
+//    $('.dropdown-text-container .glyphicon-chevron-left').hide()
+//    if ($('.notes .dropdown-text').length === 1) {
+//      $('.dropdown-text-container .glyphicon-chevron-right').hide()
+//    }
+//  })
 
   $('body').on('click', '.dropdown-drop a', function (e) {
     e.preventDefault()
@@ -912,6 +933,9 @@ $hover: .2s all ease-out
               position: absolute
               top: -40px
               left: -20px
+
+            &:after
+              display: none
 
 .manuscript-image
   margin-top: 25px
