@@ -11,16 +11,16 @@
 </template>
 
 <script>
-import Responsive from './components/Responsive'
-import MainNav from './components/MainNav'
-import Home from './components/Home'
-import Credits from './components/Credits'
-import Summary from './components/Summary'
-import Keywords from './components/Keywords'
-import Authors from './components/Authors'
-import Characters from './components/Characters'
-import Epigram from './components/Epigram'
-import NotFound from './components/404'
+import Responsive from './components/ResponsiveComponent'
+import MainNav from './components/partials/MainNav'
+import Home from './components/HomeComponent'
+import Credits from './components/CreditsComponent'
+import Summary from './components/SummaryComponent'
+import Keywords from './components/KeywordsComponent'
+import Authors from './components/AuthorsComponent'
+import Characters from './components/CharactersComponent'
+import Epigram from './components/EpigramComponent'
+import NotFound from './components/404Component'
 
 export default {
   components: {

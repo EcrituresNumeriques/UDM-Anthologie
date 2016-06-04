@@ -19,8 +19,8 @@
 
 <script>
 /* global api */
-import MainNav from './MainNav'
-import DiscoverNav from './DiscoverNav'
+import MainNav from './partials/MainNav'
+import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'
 
 export default {

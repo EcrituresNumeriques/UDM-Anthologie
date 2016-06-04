@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import BackBtn from './BackBtn'
+import BackBtn from './partials/BackBtn'
 
 export default {
   components: {

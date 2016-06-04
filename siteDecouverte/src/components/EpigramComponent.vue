@@ -35,7 +35,7 @@
               </div>
               <div class="col-md-1 col-md-offset-1">
                   <div v-if="data.themes[theme].epigrams[epigram].sounds" class="player">
-                      <div class="control">
+                      <div @click="onControlClick" class="control">
                           <a class="play-button paused" href="#">
                               <div class="left"></div>
                               <div class="right"></div>
@@ -48,16 +48,16 @@
                       </div>
                   </div>
                   <div v-if="data.themes[theme].epigrams[epigram].sounds" class="sound">
-                      <audio class="french-sound">
+                      <audio @timeupdate="onAudioTimeUpdate" @ended="onAudioEnded" class="french-sound">
                           <source :src="data.themes[theme].epigrams[epigram].sounds.french" type="audio/mpeg">
                       </audio>
-                      <audio class="greek-sound">
+                      <audio @timeupdate="onAudioTimeUpdate" @ended="onAudioEnded" class="greek-sound">
                         <source :src="data.themes[theme].epigrams[epigram].sounds.greek" type="audio/mpeg">
                       </audio>
                   </div>
               </div>
               <div class="col-md-3">
-                  <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute french-mute">
+                  <div @click="onFrenchMuteClick" v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute french-mute">
                     <span class="glyphicon glyphicon-volume-up"></span>
                   </div>
                   <div class="text-container">
@@ -93,13 +93,13 @@
               </div>
               <div class="col-md-6 col-md-offset-1">
                   <div class="greek-translation dropdown">
-                      <p>Traduction grecque
+                      <p @click="onGreekDropdownClick">Traduction grecque
                           <span class="glyphicon glyphicon-chevron-right"></span>
                           <span class="border-bottom"></span>
                       </p>
                       <div class="dropdown-drop">
                         <div class="dropdown-content">
-                          <div v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute greek-mute">
+                          <div @click="onGreekMuteClick" v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute greek-mute">
                             <span class="glyphicon glyphicon-volume-up"></span>
                           </div>
                           <p>
@@ -111,7 +111,7 @@
               </div>
               <div class="col-md-3 col-md-offset-4">
                   <div v-if="data.themes[theme].epigrams[epigram].notes" class="notes dropdown">
-                      <p>Les notes
+                      <p @click="onNotesDropdownClick">Les notes
                           <span class="glyphicon glyphicon-chevron-right"></span>
                           <span class="border-bottom"></span>
                       </p>
@@ -132,14 +132,14 @@
               </div>
               <div class="col-md-5 col-md-offset-2">
                   <div v-if="data.themes[theme].epigrams[epigram].characters" class="characters dropdown">
-                      <p>Les personnages
+                      <p @click="onCharactersDropdownClick">Les personnages
                           <span class="glyphicon glyphicon-chevron-right"></span>
                           <span class="border-bottom"></span>
                       </p>
                       <div class="dropdown-drop">
                           <ul>
                               <li v-for="character in data.themes[theme].epigrams[epigram].characters">
-                                <a data-click="{{ character.name }}" href="#"><span class="dash"></span>{{ character.name | capitalize }}</a>
+                                <a @click="onCharactersListClick" id="{{ character.name }}-list" data-click="{{ character.name }}" href="#"><span class="dash"></span>{{ character.name | capitalize }}</a>
                               </li>
                           </ul>
                       </div>
@@ -161,13 +161,13 @@
               </div>
               <div class="col-md-9 col-md-offset-3">
                   <div v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-image">
-                      <p>Image du manuscrit
+                      <p @click="onImageTextClick">Image du manuscrit
                           <span class="border-bottom"></span>
                       </p>
                   </div>
               </div>
           </div>
-          <div v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-popin">
+          <div @click="onImagePopinClick" v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-popin">
             <img :src="data.themes[theme].epigrams[epigram].imageUrl">
           </div>
         </div>
@@ -182,7 +182,7 @@
 /* global api */
 import Vue from 'vue'
 
-import BackBtn from './BackBtn'
+import BackBtn from './partials/BackBtn'
 import $ from 'jquery'
 
 Vue.filter('numberize', function (value) {
@@ -217,101 +217,101 @@ export default {
     return api.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
     }, function (response) { console.log(response.status) })
-  }
-}
-
-$(document).ready(function () {
-  var body = $('body')
-  var controlBtn, playBtn, frenchSound, greekSound, progressBar, muteBtn
-
-  body.on('click', '.control', function () {
-    var self = $(this)
-    playBtn = self.children('.play-button')
-    frenchSound = $('audio')[0]
-    greekSound = $('audio')[1]
-    if (self.hasClass('french-sound-playing')) {
-      if (!frenchSound.paused) {
-        frenchSound.pause()
-        playBtn.addClass('paused')
+  },
+  destroyed: function () {
+    this.$off()
+  },
+  methods: {
+    onControlClick: function () {
+      var playBtn, frenchSound, greekSound
+      var controlBtn = $('.control')
+      playBtn = controlBtn.children('.play-button')
+      frenchSound = $('audio')[0]
+      greekSound = $('audio')[1]
+      if (controlBtn.hasClass('french-sound-playing')) {
+        if (!frenchSound.paused) {
+          frenchSound.pause()
+          playBtn.addClass('paused')
+        } else {
+          frenchSound.play()
+          playBtn.removeClass('paused')
+        }
+      } else if (controlBtn.hasClass('greek-sound-playing')) {
+        if (!greekSound.paused) {
+          greekSound.pause()
+          playBtn.addClass('paused')
+        } else {
+          greekSound.play()
+          playBtn.removeClass('paused')
+        }
       } else {
         frenchSound.play()
         playBtn.removeClass('paused')
+        controlBtn.addClass('french-sound-playing')
       }
-    } else if (self.hasClass('greek-sound-playing')) {
-      if (!greekSound.paused) {
+    },
+    onFrenchMuteClick: function () {
+      var controlBtn, playBtn, frenchSound, greekSound, greekMute
+      var frenchMute = $('.french-mute .glyphicon')
+      controlBtn = $('.control')
+      playBtn = controlBtn.children('.play-button')
+      frenchSound = $('audio')[0]
+      greekSound = $('audio')[1]
+      greekMute = $('.greek-mute .glyphicon')
+      greekMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+      if (greekSound.currentTime > 0) {
         greekSound.pause()
-        playBtn.addClass('paused')
-      } else {
-        greekSound.play()
-        playBtn.removeClass('paused')
-      }
-    } else {
-      frenchSound.play()
-      playBtn.removeClass('paused')
-      self.addClass('french-sound-playing')
-    }
-  })
-
-  body.on('click', '.french-mute span', function () {
-    var self = $(this)
-    controlBtn = $('.control')
-    playBtn = controlBtn.children('.play-button')
-    frenchSound = $('audio')[0]
-    greekSound = $('audio')[1]
-    $('.greek-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-    if (greekSound.currentTime > 0) {
-      greekSound.pause()
-      greekSound.currentTime = 0
-      greekSound.volume = 1
-    }
-    if (frenchSound.paused) {
-      frenchSound.play()
-      controlBtn
-        .removeClass('greek-sound-playing')
-        .addClass('french-sound-playing')
-      playBtn.removeClass('paused')
-    } else {
-      if (frenchSound.volume === 1) {
-        frenchSound.volume = 0
-        self.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
-      } else {
-        frenchSound.volume = 1
-        self.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-      }
-    }
-  })
-
-  body.on('click', '.greek-mute span', function () {
-    var self = $(this)
-    controlBtn = $('.control')
-    playBtn = controlBtn.children('.play-button')
-    frenchSound = $('audio')[0]
-    greekSound = $('audio')[1]
-    $('.french-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-    if (frenchSound.currentTime > 0) {
-      frenchSound.pause()
-      frenchSound.currentTime = 0
-      frenchSound.volume = 1
-    }
-    if (greekSound.paused) {
-      greekSound.play()
-      controlBtn
-        .removeClass('french-sound-playing')
-        .addClass('greek-sound-playing')
-      playBtn.removeClass('paused')
-    } else {
-      if (greekSound.volume === 1) {
-        greekSound.volume = 0
-        self.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
-      } else {
+        greekSound.currentTime = 0
         greekSound.volume = 1
-        self.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       }
-    }
-  })
-  $(window).load(function () {
-    $('audio').on('timeupdate', function () {
-      var currentTime, duration
+      if (frenchSound.paused) {
+        frenchSound.play()
+        controlBtn
+          .removeClass('greek-sound-playing')
+          .addClass('french-sound-playing')
+        playBtn.removeClass('paused')
+      } else {
+        if (frenchSound.volume === 1) {
+          frenchSound.volume = 0
+          frenchMute.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
+        } else {
+          frenchSound.volume = 1
+          frenchMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+        }
+      }
+    },
+    onGreekMuteClick: function () {
+      var controlBtn, playBtn, frenchSound, greekSound, frenchMute
+      var greekMute = $('.greek-mute .glyphicon')
+      controlBtn = $('.control')
+      playBtn = controlBtn.children('.play-button')
+      frenchSound = $('audio')[0]
+      frenchMute = $('.french-mute .glyphicon')
+      greekSound = $('audio')[1]
+      frenchMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+      if (frenchSound.currentTime > 0) {
+        frenchSound.pause()
+        frenchSound.currentTime = 0
+        frenchSound.volume = 1
+      }
+      if (greekSound.paused) {
+        greekSound.play()
+        controlBtn
+          .removeClass('french-sound-playing')
+          .addClass('greek-sound-playing')
+        playBtn.removeClass('paused')
+      } else {
+        if (greekSound.volume === 1) {
+          greekSound.volume = 0
+          greekMute.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
+        } else {
+          greekSound.volume = 1
+          greekMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+        }
+      }
+    },
+    onAudioTimeUpdate: function () {
+      var currentTime, duration, frenchSound, greekSound, progressBar, controlBtn
       controlBtn = $('.control')
       frenchSound = $('audio')[0]
       greekSound = $('audio')[1]
@@ -325,9 +325,9 @@ $(document).ready(function () {
       }
       var percent = currentTime / duration * 100
       progressBar.css('height', percent + '%')
-    })
-
-    $('audio').on('ended', function () {
+    },
+    onAudioEnded: function () {
+      var controlBtn, playBtn, frenchSound, greekSound, muteBtn, progressBar
       controlBtn = $('.control')
       playBtn = controlBtn.children('.play-button')
       muteBtn = $('.mute span')
@@ -340,85 +340,105 @@ $(document).ready(function () {
       muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       frenchSound.volume = 1
       greekSound.volume = 1
-    })
-
-    body.on('click', '.manuscript-image > p', function () {
+    },
+    onGreekDropdownClick: function () {
+      var greekContainer = $('.greek-translation')
+      var greekDropdown = greekContainer.children('.dropdown-drop')
+      var greekDropdownArrow = greekContainer.children('p').children('.glyphicon')
+      if (!greekContainer.hasClass('droped')) {
+        greekContainer.addClass('droped')
+        greekDropdownArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
+        greekDropdown.addClass('visible')
+      } else {
+        greekContainer.removeClass('droped')
+        greekDropdownArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+        greekContainer.children('.dropdown-drop').removeClass('visible')
+      }
+    },
+    onNotesDropdownClick: function () {
+      var notesContainer = $('.notes')
+      var notesDropdown = notesContainer.children('.dropdown-drop')
+      var notesDropdownText = notesDropdown.find('.dropdown-text')
+      var notesDropdownArrow = notesContainer.children('p').children('.glyphicon')
+      var notesTextArrows = notesDropdown.find('.glyphicon')
+      var notesTextArrowLeft = notesDropdown.find('.glyphicon-chevron-left')
+      var notesTextArrowRight = notesDropdown.find('.glyphicon-chevron-right')
+      if (!notesContainer.hasClass('droped')) {
+        notesContainer.addClass('droped')
+        notesDropdownArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
+        notesDropdown.addClass('visible')
+        notesDropdownText.first().addClass('visible').fadeIn('500')
+        notesTextArrowRight.show()
+        notesTextArrowLeft.hide()
+        if (notesDropdownText.length === 1) {
+          notesTextArrowRight.hide()
+        }
+      } else {
+        notesContainer.removeClass('droped')
+        notesDropdownArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+        notesDropdown.removeClass('visible')
+        notesDropdownText.removeClass('visible').fadeOut('500')
+        notesTextArrows.fadeOut('500')
+      }
+    },
+    onCharactersDropdownClick: function () {
+      var charactersContainer = $('.characters')
+      var charactersDropdown = charactersContainer.children('.dropdown-drop')
+      var charactersTextContainer = charactersContainer.children('.dropdown-text-container')
+      var charactersText = charactersTextContainer.find('.dropdown-text')
+      var charactersDropdownArrow = charactersContainer.children('p').children('.glyphicon')
+      var charactersTextArrows = charactersTextContainer.children('.glyphicon')
+      if (!charactersContainer.hasClass('droped')) {
+        charactersContainer.addClass('droped')
+        charactersDropdownArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
+        charactersDropdown.addClass('visible')
+        charactersTextContainer.addClass('visible')
+      } else {
+        charactersContainer.removeClass('droped')
+        charactersDropdownArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+        charactersDropdown.removeClass('visible')
+        charactersTextContainer.removeClass('visible').fadeOut('500')
+        charactersTextArrows.fadeOut('500')
+        charactersText.removeClass('visible').fadeOut('500')
+      }
+    },
+    onCharactersListClick: function (e) {
+      e.preventDefault()
+      var targetId = e.target.id
+      var thisListClicked = $('.dropdown-drop a#' + targetId)
+      var thisListClickedData = e.target.dataset.click
+      var thisListClickedParent = thisListClicked.parents('.dropdown-drop')
+      var thisListClickedTextContainer = thisListClickedParent.siblings('.dropdown-text-container')
+      var thisListClickedDropWrapper = thisListClickedTextContainer.children('.dropdown-text-wrapper')
+      var thisListClickedDropText = thisListClickedDropWrapper.children('.dropdown-text')
+      var thisListClickedDropTextLength = thisListClickedDropText.length
+      var thisListClickedArrowLeft = thisListClickedTextContainer.children('.dropdown-arrow-left')
+      var thisListClickedArrowRight = thisListClickedTextContainer.children('.dropdown-arrow-right')
+      thisListClickedTextContainer.css('display', 'flex')
+      $('#' + thisListClickedData).addClass('visible').fadeIn('500')
+      var thisListClickedDropTextVisibleIndex = $('#' + thisListClickedData).index()
+      thisListClickedArrowLeft.show()
+      thisListClickedArrowRight.show()
+      if (thisListClickedDropTextVisibleIndex === 0) {
+        thisListClickedArrowLeft.hide()
+      } else if (thisListClickedDropTextVisibleIndex === thisListClickedDropTextLength - 1) {
+        thisListClickedArrowRight.hide()
+      }
+    },
+    onImageTextClick: function () {
       $('.manuscript-popin').fadeIn(function () {
         $('.manuscript-popin img').addClass('big')
       }).css('display', 'flex')
-    })
-
-    body.on('click', '.manuscript-popin', function () {
+    },
+    onImagePopinClick: function () {
       $('.manuscript-popin img').removeClass('big')
       $('.manuscript-popin').fadeOut()
-    })
-  })
-
-  function onDropdownClick (dropdown) {
-    var self = dropdown
-    var selfArrow = self.children('.glyphicon')
-    var selfParent = self.parent('.dropdown')
-    var selfList = selfParent.children('.dropdown-drop')
-    if (!selfParent.hasClass('droped')) {
-      selfParent.addClass('droped')
-      selfList.addClass('visible')
-        .next('.dropdown-text-container').addClass('visible')
-          .find('#note1').addClass('visible')
-      selfArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
-    } else {
-      selfParent.removeClass('droped')
-      selfList.removeClass('visible')
-        .next('.dropdown-text-container').removeClass('visible').fadeOut('500')
-          .find('.dropdown-text').removeClass('visible').fadeOut('500')
-      selfArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
-    }
-    if ($('#note1').hasClass('visible')) {
-      $('.notes .glyphicon-chevron-left').hide()
     }
   }
+}
 
-  $('body').on('click', '.dropdown > p', function () {
-    onDropdownClick($(this))
-  })
-
-//  $('body').on('click', '.notes.dropdown > p', function () {
-//    if (!$('.notes').hasClass('droped')) {
-//      $('.notes').addClass('droped')
-//      $('.notes').children('.dropdown-drop').addClass('visible').find('#note1').addClass('visible')
-//      $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
-//    } else {
-//      $('.notes').removeClass('droped')
-//      $('.notes').children('.dropdown-drop').removeClass('visible').find('.dropdown-text').removeClass('visible').fadeOut('500')
-//      $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
-//    }
-//    $('.dropdown-text-container .glyphicon-chevron-left').hide()
-//    if ($('.notes .dropdown-text').length === 1) {
-//      $('.dropdown-text-container .glyphicon-chevron-right').hide()
-//    }
-//  })
-
-  $('body').on('click', '.dropdown-drop a', function (e) {
-    e.preventDefault()
-    var self = $(this)
-    var selfData = self.data('click')
-    var selfParent = self.parents('.dropdown-drop')
-    var selfTextContainer = selfParent.siblings('.dropdown-text-container')
-    var selfDropWrapper = selfTextContainer.children('.dropdown-text-wrapper')
-    var selfDropText = selfDropWrapper.children()
-    var selfDropTextLength = selfDropText.length
-    var selfArrowLeft = selfTextContainer.children('.dropdown-arrow-left')
-    var selfArrowRight = selfTextContainer.children('.dropdown-arrow-right')
-    selfTextContainer.css('display', 'flex')
-    $('#' + selfData).addClass('visible').fadeIn('500')
-    var selfDropTextVisibleIndex = $('#' + selfData).index()
-    selfArrowLeft.show()
-    selfArrowRight.show()
-    if (selfDropTextVisibleIndex === 0) {
-      selfArrowLeft.hide()
-    } else if (selfDropTextVisibleIndex === selfDropTextLength - 1) {
-      selfArrowRight.hide()
-    }
-  })
+$(document).ready(function () {
+  var body = $('body')
 
   function onDropArrowClick (arrow) {
     var self = arrow
@@ -443,7 +463,7 @@ $(document).ready(function () {
     }
   }
 
-  body.on('click', '.dropdown-arrow-left', function () {
+  body.on('click', '.dropdown-arrow-left', function (e) {
     onDropArrowClick($(this))
   })
 
@@ -569,11 +589,11 @@ $hover: .2s all ease-out
     cursor: pointer
     width: 100%
     height: 45px
-    line-height: 45px
     border-radius: 50%
-    display: inline-block
+    display: flex
     border: 1px solid #2c2c2c
-    text-align: center
+    justify-content: center
+    align-items: center
 
     .play-button
       height: 10px
@@ -581,7 +601,6 @@ $hover: .2s all ease-out
       display: inline-block
       overflow: hidden
       position: relative
-      margin: 0 auto
 
       .left,
       .right
@@ -843,7 +862,8 @@ $hover: .2s all ease-out
             margin-right: 0
             transition: $hover
 
-          &:hover
+          &:hover,
+          &:focus
             opacity: 1
             text-decoration: none
 

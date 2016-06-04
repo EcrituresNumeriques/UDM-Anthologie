@@ -148,8 +148,8 @@
 </template>
 
 <script>
-import BackBtn from './BackBtn'
-import ScrollProgressBar from './ProgressBar'
+import BackBtn from './partials/BackBtn'
+import ScrollProgressBar from './partials/ProgressBar'
 
 export default {
   components: {

@@ -17,7 +17,6 @@
 <script>
 /* global api */
 import Vue from 'vue'
-import Epigram from './Epigram'
 
 Vue.filter('romanize', function (num) {
   if (!+num) { return false }
@@ -35,9 +34,6 @@ Vue.filter('romanize', function (num) {
 })
 
 export default {
-  components: {
-    Epigram
-  },
   data () {
     return {
       data: {}
