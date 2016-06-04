@@ -89,12 +89,12 @@ $hover: .2s all linear
 
     &:after
       content: ""
-      width: 100%
+      width: 0
       height: 1px
+      margin: 0 auto
       display: block
       vertical-align: top
       background: #2c2c2c
-      opacity: 0
       transition: $hover
 
     &:hover,
@@ -103,7 +103,7 @@ $hover: .2s all linear
       opacity: 1
 
       &:after
-        opacity: 1
+        width: 100%
 
 .navbar-link
   float: left

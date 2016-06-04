@@ -13,162 +13,33 @@
                       </a>
                   </div>
               </div>
-              <div class="col-md-1 col-md-offset-7">
-                  <div class="index">
-                      <p class="total">{{ data.themes[theme].epigrams.length | numberize }}</p>
-                      <span class="separator"></span>
-                      <p class="active">{{ data.themes[theme].epigrams[epigram].id | numberize }}</p>
-                  </div>
-                  <div class="arrows">
-                      <span>
-                        <a v-show="!(epigram == 0)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}">
-                          <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                      </span>
-                      <span class="separator"></span>
-                      <span>
-                        <a v-show="!(epigram+1 == data.themes[theme].epigrams.length)" v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}">
-                          <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                      </span>
-                  </div>
-              </div>
-              <div class="col-md-1 col-md-offset-1">
-                  <div v-if="data.themes[theme].epigrams[epigram].sounds" class="player">
-                      <div @click="onControlClick" class="control">
-                          <a class="play-button paused" href="#">
-                              <div class="left"></div>
-                              <div class="right"></div>
-                              <div class="triangle-1"></div>
-                              <div class="triangle-2"></div>
-                          </a>
-                      </div>
-                      <div class="progressbar">
-                          <span class="progress"></span>
-                      </div>
-                  </div>
-                  <div v-if="data.themes[theme].epigrams[epigram].sounds" class="sound">
-                      <audio @timeupdate="onAudioTimeUpdate" @ended="onAudioEnded" class="french-sound">
-                          <source :src="data.themes[theme].epigrams[epigram].sounds.french" type="audio/mpeg">
-                      </audio>
-                      <audio @timeupdate="onAudioTimeUpdate" @ended="onAudioEnded" class="greek-sound">
-                        <source :src="data.themes[theme].epigrams[epigram].sounds.greek" type="audio/mpeg">
-                      </audio>
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <div @click="onFrenchMuteClick" v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute french-mute">
-                    <span class="glyphicon glyphicon-volume-up"></span>
-                  </div>
-                  <div class="text-container">
-                      <div class="text-theme">
-                          <h2>
-                            <span class="bg"></span>
-                            {{ data.themes[theme].name }}
-                          </h2>
-                      </div>
-                      <div class="text-title">
-                          <h3>{{ data.themes[theme].epigrams[epigram].title }}</h3>
-                          <div v-if="data.themes[theme].epigrams[epigram].langs" class="text-lang">
-                              <select v-model="data.themes[theme].epigrams[epigram].langs.selected">
-                                  <option v-for="lang in data.themes[theme].epigrams[epigram].langs.options" value="{{ lang.id - 1 }}">
-                                    {{ lang.text }}
-                                  </option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="text-content">
-                          <p v-if="data.themes[theme].epigrams[epigram].langs">
-                            {{{ data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].langs.selected].content }}}
-                          </p>
-                          <p v-else>
-                            {{{ data.themes[theme].epigrams[epigram].texts[0].content }}}
-                          </p>
-                      </div>
-                      <div class="text-author">
-                          <span class="dash"></span>
-                          <p>Méléagre</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-6 col-md-offset-1">
-                  <div class="greek-translation dropdown">
-                      <p @click="onGreekDropdownClick">Traduction grecque
-                          <span class="glyphicon glyphicon-chevron-right"></span>
-                          <span class="border-bottom"></span>
-                      </p>
-                      <div class="dropdown-drop">
-                        <div class="dropdown-content">
-                          <div @click="onGreekMuteClick" v-if="data.themes[theme].epigrams[epigram].sounds.french" class="mute greek-mute">
-                            <span class="glyphicon glyphicon-volume-up"></span>
-                          </div>
-                          <p>
-                            {{{ data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].texts.length - 1].content }}}
-                          </p>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-md-offset-4">
-                  <div v-if="data.themes[theme].epigrams[epigram].notes" class="notes dropdown">
-                      <p @click="onNotesDropdownClick">Les notes
-                          <span class="glyphicon glyphicon-chevron-right"></span>
-                          <span class="border-bottom"></span>
-                      </p>
-                      <div class="dropdown-drop">
-                          <div class="dropdown-text-container">
-                              <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
-                              <div class="dropdown-text-wrapper">
-                                  <div v-for="note in data.themes[theme].epigrams[epigram].notes" class="dropdown-text" id="note{{ note.id }}">
-                                      <div class="dropdown-desc">
-                                          <q>{{ note.content }}</q>
-                                      </div>
-                                  </div>
-                              </div>
-                              <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-5 col-md-offset-2">
-                  <div v-if="data.themes[theme].epigrams[epigram].characters" class="characters dropdown">
-                      <p @click="onCharactersDropdownClick">Les personnages
-                          <span class="glyphicon glyphicon-chevron-right"></span>
-                          <span class="border-bottom"></span>
-                      </p>
-                      <div class="dropdown-drop">
-                          <ul>
-                              <li v-for="character in data.themes[theme].epigrams[epigram].characters">
-                                <a @click="onCharactersListClick" id="{{ character.name }}-list" data-click="{{ character.name }}" href="#"><span class="dash"></span>{{ character.name | capitalize }}</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div class="dropdown-text-container">
-                          <span class="glyphicon glyphicon-chevron-left dropdown-arrow dropdown-arrow-left"></span>
-                          <div class="dropdown-text-wrapper">
-                              <div v-for="character in data.themes[theme].epigrams[epigram].characters" class="dropdown-text" id="{{ character.name }}">
-                                  <div class="dropdown-title">
-                                    <h4>{{ character.name | capitalize }}</h4>
-                                  </div>
-                                  <div class="dropdown-desc">
-                                    <q>{{ character.desc }}</q>
-                                  </div>
-                              </div>
-                          </div>
-                          <span class="glyphicon glyphicon-chevron-right dropdown-arrow dropdown-arrow-right"></span>
-                      </div>
-                  </div>
-              </div>
+              <pagination :data="data" :theme="theme" :epigram="epigram"></pagination>
+              <player :data="data" :theme="theme" :epigram="epigram"></player>
+              <translation :data="data" :theme="theme" :epigram="epigram"></translation>
+              <greek-text :data="data" :theme="theme" :epigram="epigram"></greek-text>
+              <notes :data="data" :theme="theme" :epigram="epigram"></notes>
+              <characters :data="data" :theme="theme" :epigram="epigram"></characters>
               <div class="col-md-9 col-md-offset-3">
-                  <div v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-image">
-                      <p @click="onImageTextClick">Image du manuscrit
-                          <span class="border-bottom"></span>
+                  <div
+                    v-if="data.themes[theme].epigrams[epigram].imageUrl"
+                    class="manuscript-image"
+                  >
+                      <p @click="onImageTextClick">
+                        Image du manuscrit
+                        <span class="border-bottom"></span>
                       </p>
                   </div>
               </div>
           </div>
-          <div @click="onImagePopinClick" v-if="data.themes[theme].epigrams[epigram].imageUrl" class="manuscript-popin">
-            <img :src="data.themes[theme].epigrams[epigram].imageUrl">
+          <div
+            @click="onImagePopinClick"
+            v-if="data.themes[theme].epigrams[epigram].imageUrl"
+            class="manuscript-popin"
+          >
+            <img
+              :src="data.themes[theme].epigrams[epigram].imageUrl"
+              alt="{{ data.themes[theme].epigrams[epigram].title }}"
+            >
           </div>
         </div>
         <div v-else class="notExist">
@@ -183,6 +54,13 @@
 import Vue from 'vue'
 
 import BackBtn from './partials/BackBtn'
+import Pagination from './partials/epigram/Pagination'
+import Player from './partials/epigram/Player'
+import Translation from './partials/epigram/Translation'
+import GreekText from './partials/epigram/GreekText'
+import Notes from './partials/epigram/Notes'
+import Characters from './partials/epigram/Characters'
+
 import $ from 'jquery'
 
 Vue.filter('numberize', function (value) {
@@ -195,7 +73,13 @@ Vue.filter('numberize', function (value) {
 export default {
   name: 'epigram',
   components: {
-    BackBtn
+    BackBtn,
+    Pagination,
+    Player,
+    Translation,
+    GreekText,
+    Notes,
+    Characters
   },
   route: {
     data: function (transition) {
@@ -222,209 +106,6 @@ export default {
     this.$off()
   },
   methods: {
-    onControlClick: function () {
-      var playBtn, frenchSound, greekSound
-      var controlBtn = $('.control')
-      playBtn = controlBtn.children('.play-button')
-      frenchSound = $('audio')[0]
-      greekSound = $('audio')[1]
-      if (controlBtn.hasClass('french-sound-playing')) {
-        if (!frenchSound.paused) {
-          frenchSound.pause()
-          playBtn.addClass('paused')
-        } else {
-          frenchSound.play()
-          playBtn.removeClass('paused')
-        }
-      } else if (controlBtn.hasClass('greek-sound-playing')) {
-        if (!greekSound.paused) {
-          greekSound.pause()
-          playBtn.addClass('paused')
-        } else {
-          greekSound.play()
-          playBtn.removeClass('paused')
-        }
-      } else {
-        frenchSound.play()
-        playBtn.removeClass('paused')
-        controlBtn.addClass('french-sound-playing')
-      }
-    },
-    onFrenchMuteClick: function () {
-      var controlBtn, playBtn, frenchSound, greekSound, greekMute
-      var frenchMute = $('.french-mute .glyphicon')
-      controlBtn = $('.control')
-      playBtn = controlBtn.children('.play-button')
-      frenchSound = $('audio')[0]
-      greekSound = $('audio')[1]
-      greekMute = $('.greek-mute .glyphicon')
-      greekMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-      if (greekSound.currentTime > 0) {
-        greekSound.pause()
-        greekSound.currentTime = 0
-        greekSound.volume = 1
-      }
-      if (frenchSound.paused) {
-        frenchSound.play()
-        controlBtn
-          .removeClass('greek-sound-playing')
-          .addClass('french-sound-playing')
-        playBtn.removeClass('paused')
-      } else {
-        if (frenchSound.volume === 1) {
-          frenchSound.volume = 0
-          frenchMute.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
-        } else {
-          frenchSound.volume = 1
-          frenchMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-        }
-      }
-    },
-    onGreekMuteClick: function () {
-      var controlBtn, playBtn, frenchSound, greekSound, frenchMute
-      var greekMute = $('.greek-mute .glyphicon')
-      controlBtn = $('.control')
-      playBtn = controlBtn.children('.play-button')
-      frenchSound = $('audio')[0]
-      frenchMute = $('.french-mute .glyphicon')
-      greekSound = $('audio')[1]
-      frenchMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-      if (frenchSound.currentTime > 0) {
-        frenchSound.pause()
-        frenchSound.currentTime = 0
-        frenchSound.volume = 1
-      }
-      if (greekSound.paused) {
-        greekSound.play()
-        controlBtn
-          .removeClass('french-sound-playing')
-          .addClass('greek-sound-playing')
-        playBtn.removeClass('paused')
-      } else {
-        if (greekSound.volume === 1) {
-          greekSound.volume = 0
-          greekMute.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off')
-        } else {
-          greekSound.volume = 1
-          greekMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-        }
-      }
-    },
-    onAudioTimeUpdate: function () {
-      var currentTime, duration, frenchSound, greekSound, progressBar, controlBtn
-      controlBtn = $('.control')
-      frenchSound = $('audio')[0]
-      greekSound = $('audio')[1]
-      progressBar = $('.progress')
-      if (controlBtn.hasClass('french-sound-playing')) {
-        currentTime = frenchSound.currentTime
-        duration = frenchSound.duration
-      } else {
-        currentTime = greekSound.currentTime
-        duration = greekSound.duration
-      }
-      var percent = currentTime / duration * 100
-      progressBar.css('height', percent + '%')
-    },
-    onAudioEnded: function () {
-      var controlBtn, playBtn, frenchSound, greekSound, muteBtn, progressBar
-      controlBtn = $('.control')
-      playBtn = controlBtn.children('.play-button')
-      muteBtn = $('.mute span')
-      frenchSound = $('audio')[0]
-      greekSound = $('audio')[1]
-      progressBar = $('.progress')
-      progressBar.css('height', '0')
-      controlBtn.removeClass('french-sound-playing').removeClass('greek-sound-playing')
-      playBtn.addClass('paused')
-      muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-      frenchSound.volume = 1
-      greekSound.volume = 1
-    },
-    onGreekDropdownClick: function () {
-      var greekContainer = $('.greek-translation')
-      var greekDropdown = greekContainer.children('.dropdown-drop')
-      var greekDropdownArrow = greekContainer.children('p').children('.glyphicon')
-      if (!greekContainer.hasClass('droped')) {
-        greekContainer.addClass('droped')
-        greekDropdownArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
-        greekDropdown.addClass('visible')
-      } else {
-        greekContainer.removeClass('droped')
-        greekDropdownArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
-        greekContainer.children('.dropdown-drop').removeClass('visible')
-      }
-    },
-    onNotesDropdownClick: function () {
-      var notesContainer = $('.notes')
-      var notesDropdown = notesContainer.children('.dropdown-drop')
-      var notesDropdownText = notesDropdown.find('.dropdown-text')
-      var notesDropdownArrow = notesContainer.children('p').children('.glyphicon')
-      var notesTextArrows = notesDropdown.find('.glyphicon')
-      var notesTextArrowLeft = notesDropdown.find('.glyphicon-chevron-left')
-      var notesTextArrowRight = notesDropdown.find('.glyphicon-chevron-right')
-      if (!notesContainer.hasClass('droped')) {
-        notesContainer.addClass('droped')
-        notesDropdownArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
-        notesDropdown.addClass('visible')
-        notesDropdownText.first().addClass('visible').fadeIn('500')
-        notesTextArrowRight.show()
-        notesTextArrowLeft.hide()
-        if (notesDropdownText.length === 1) {
-          notesTextArrowRight.hide()
-        }
-      } else {
-        notesContainer.removeClass('droped')
-        notesDropdownArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
-        notesDropdown.removeClass('visible')
-        notesDropdownText.removeClass('visible').fadeOut('500')
-        notesTextArrows.fadeOut('500')
-      }
-    },
-    onCharactersDropdownClick: function () {
-      var charactersContainer = $('.characters')
-      var charactersDropdown = charactersContainer.children('.dropdown-drop')
-      var charactersTextContainer = charactersContainer.children('.dropdown-text-container')
-      var charactersText = charactersTextContainer.find('.dropdown-text')
-      var charactersDropdownArrow = charactersContainer.children('p').children('.glyphicon')
-      var charactersTextArrows = charactersTextContainer.children('.glyphicon')
-      if (!charactersContainer.hasClass('droped')) {
-        charactersContainer.addClass('droped')
-        charactersDropdownArrow.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
-        charactersDropdown.addClass('visible')
-        charactersTextContainer.addClass('visible')
-      } else {
-        charactersContainer.removeClass('droped')
-        charactersDropdownArrow.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
-        charactersDropdown.removeClass('visible')
-        charactersTextContainer.removeClass('visible').fadeOut('500')
-        charactersTextArrows.fadeOut('500')
-        charactersText.removeClass('visible').fadeOut('500')
-      }
-    },
-    onCharactersListClick: function (e) {
-      e.preventDefault()
-      var targetId = e.target.id
-      var thisListClicked = $('.dropdown-drop a#' + targetId)
-      var thisListClickedData = e.target.dataset.click
-      var thisListClickedParent = thisListClicked.parents('.dropdown-drop')
-      var thisListClickedTextContainer = thisListClickedParent.siblings('.dropdown-text-container')
-      var thisListClickedDropWrapper = thisListClickedTextContainer.children('.dropdown-text-wrapper')
-      var thisListClickedDropText = thisListClickedDropWrapper.children('.dropdown-text')
-      var thisListClickedDropTextLength = thisListClickedDropText.length
-      var thisListClickedArrowLeft = thisListClickedTextContainer.children('.dropdown-arrow-left')
-      var thisListClickedArrowRight = thisListClickedTextContainer.children('.dropdown-arrow-right')
-      thisListClickedTextContainer.css('display', 'flex')
-      $('#' + thisListClickedData).addClass('visible').fadeIn('500')
-      var thisListClickedDropTextVisibleIndex = $('#' + thisListClickedData).index()
-      thisListClickedArrowLeft.show()
-      thisListClickedArrowRight.show()
-      if (thisListClickedDropTextVisibleIndex === 0) {
-        thisListClickedArrowLeft.hide()
-      } else if (thisListClickedDropTextVisibleIndex === thisListClickedDropTextLength - 1) {
-        thisListClickedArrowRight.hide()
-      }
-    },
     onImageTextClick: function () {
       $('.manuscript-popin').fadeIn(function () {
         $('.manuscript-popin img').addClass('big')
@@ -440,7 +121,7 @@ export default {
 $(document).ready(function () {
   var body = $('body')
 
-  function onDropArrowClick (arrow) {
+  function onTextArrowClick (arrow) {
     var self = arrow
     var selfDropWrapper = self.siblings('.dropdown-text-wrapper')
     var selfDropText = selfDropWrapper.children()
@@ -450,7 +131,7 @@ $(document).ready(function () {
 
     self.show()
     self.siblings('.glyphicon').show()
-    if (arrow.hasClass('dropdown-arrow-left')) {
+    if (arrow.hasClass('glyphicon-chevron-left')) {
       selfDropTextVisible.hide().removeClass('visible').prev().show().addClass('visible')
       if (selfDropTextVisibleIndex === 1) {
         self.hide()
@@ -463,17 +144,17 @@ $(document).ready(function () {
     }
   }
 
-  body.on('click', '.dropdown-arrow-left', function (e) {
-    onDropArrowClick($(this))
+  body.on('click', '.glyphicon-chevron-left', function (e) {
+    onTextArrowClick($(this))
   })
 
-  body.on('click', '.dropdown-arrow-right', function () {
-    onDropArrowClick($(this))
+  body.on('click', '.glyphicon-chevron-right', function () {
+    onTextArrowClick($(this))
   })
 })
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $hover: .2s all ease-out
 
@@ -487,177 +168,6 @@ $hover: .2s all ease-out
     width: 100%
     z-index: 2
 
-.manuscript-popin
-  position: absolute
-  width: 100%
-  height: 100%
-  top: 0
-  left: 0
-  z-index: 10
-  display: flex
-  align-items: center
-  justify-content: center
-  background: rgba(0, 0, 0, .5)
-  cursor: pointer
-  display: none
-
-  img
-    transform: scale(0.5)
-    transition: .5s
-
-    &.big
-      transform: scale(1)
-
-.index
-  position: relative
-
-  p
-    position: absolute
-    color: #2c2c2c
-
-    &.total
-      font-weight: 700
-      font-size: 16px
-      right: 0
-      top: 0
-
-    &.active
-      font-size: 48px
-      right: 23px
-      top: 10px
-
-  span.separator
-    position: absolute
-    right: 5px
-    top: 18px
-    width: 30px
-    height: 1px
-    transform: rotate(45deg)
-    background: #2c2c2c
-
-.arrows
-  width: 55px
-  float: right
-  margin-top: 90px
-  display: flex
-  justify-content: space-between
-  align-items: center
-
-  &:after
-    clear: both
-
-  .separator
-    height: 10px
-    width: 1px
-    background: #2c2c2c
-    display: inline-block
-    opacity: 0.15
-
-  >span
-    a
-      font-size: 10px
-      color: #2c2c2c
-      opacity: 0.3
-      transition: $hover
-      display: block
-
-      &:hover
-        text-decoration: none
-        opacity: 1
-
-    &:first-child,
-    &:last-child
-      flex-grow: 2
-
-    &:first-child
-      a
-        &:hover
-          transform: translateX(-5px)
-
-    &:last-child
-      text-align: right
-
-      a
-        &:hover
-          transform: translateX(5px)
-
-.player
-  width: 45px
-  text-align: center
-
-  .control
-    cursor: pointer
-    width: 100%
-    height: 45px
-    border-radius: 50%
-    display: flex
-    border: 1px solid #2c2c2c
-    justify-content: center
-    align-items: center
-
-    .play-button
-      height: 10px
-      width: 10px
-      display: inline-block
-      overflow: hidden
-      position: relative
-
-      .left,
-      .right
-        height: 10px
-        background: #2c2c2c
-        transition: all 0.25s ease
-        width: 3px
-
-      .left
-        float: left
-        overflow: hidden
-
-      .right
-        float: right
-
-      .triangle-1
-        transform: translate(0, -100%)
-
-      .triangle-2
-        transform: translate(0, 100%)
-
-      .triangle-1,
-      .triangle-2
-        position: absolute
-        top: 0
-        right: 0
-        background: transparent
-        width: 0
-        height: 0
-        border-right: 10px solid #fff
-        border-top: 5px solid #2c2c2c
-        border-bottom: 5px solid #2c2c2c
-        transition: transform 0.25s ease
-
-    .paused
-      .left,
-      .right
-        width: 50%
-
-      .triangle-1
-        transform: translate(0, -50%)
-
-      .triangle-2
-        transform: translate(0, 50%)
-
-  .progressbar
-    height: 300px
-    width: 1px
-    display: inline-block
-    background: rgba(44, 44, 44, 0.2)
-
-    .progress
-      display: inline-block
-      width: 100%
-      height: 0
-      background: #2c2c2c
-
 .mute
   display: inline-block
   vertical-align: top
@@ -669,118 +179,12 @@ $hover: .2s all ease-out
     font-size: 16px
     cursor: pointer
 
-.text-container,
-.greek-translation
-  display: inline-block
-
-  .text-theme,
-  .text-title
-    text-align: center
-
-    h2,
-    h3,
-    select
-      font-family: $raleway
-      font-weight: 600
-      color: #5e5e5e
-
-  .text-theme
-    h2
-      font-size: 14px
-      position: relative
-      display: inline-block
-
-      span.bg
-        left: -10px
-
-  .text-title
-    position: relative
-
-    h3
-      font-size: 12px
-
-    .text-lang
-      background: url('~assets/img/select-arrow.png') no-repeat right
-      width: 34px
-      overflow: hidden
-      position: absolute
-      top: 0
-      right: 65px
-      margin-top: -5px
-
-      select
-        font-size: 10px
-        text-transform: uppercase
-        border: none
-        color: #2c2c2c
-        width: 55px
-        background: transparent
-        outline: none
-
-
-  .text-content,
-  .dropdown-drop
-    width: 300px
-    margin: 0 auto
-
-    p
-      font-size: 14px
-      color: #2c2c2c
-      line-height: 1.5em
-
-      &::first-letter
-        font-size: 36px
-
-  .text-author
-
-    .dash
-      width: 10px
-      height: 1px
-      margin-right: 10px
-
-    p
-      display: inline-block
-      margin: 0
-      font-style: italic
-      font-size: 14px
-      color: #2c2c2c
-      font-family: "Times New Roman"
-
 .border-bottom
   width: 100%
   height: 2px
   background: #2c2c2c
   display: inline-block
   vertical-align: top
-
-.dropdown.greek-translation
-  >p
-    cursor: pointer
-    display: inline-block
-    font-style: italic
-    font-size: 18px
-    color: #2c2c2c
-    margin: 0
-    letter-spacing: 0.02em
-
-    span.glyphicon
-      font-size: 10px
-      margin-left: 14px
-
-  .dropdown-drop
-    width: 400px
-    margin-left: -35px
-
-    .mute
-      margin-top: 20px
-
-    .dropdown-content
-      >p
-        padding-top: 20px
-        padding-bottom: 10px
-        margin: 0
-        display: inline-block
-        width: 80%
 
 .notes,
 .characters
@@ -797,39 +201,6 @@ $hover: .2s all ease-out
       font-size: 10px
       margin-left: 14px
 
-.notes.dropdown
-  margin-top: 60px
-
-  .dropdown-drop
-    width: 100%
-    padding-left: 20px;
-    margin-left: -20px;
-
-  .dropdown-text-container
-    display: flex
-    background: none
-
-    .dropdown-text-wrapper
-      width: 170px
-
-      .dropdown-text
-        .dropdown-desc
-          q
-            &:before
-              top: -10px
-
-    #note1
-      display: initial
-
-.characters
-  margin-top: 150px
-
-  .dropdown-text-container
-    opacity: 0
-
-    &.visible
-      opacity: 1
-
 .dropdown
   position: relative
 
@@ -845,32 +216,6 @@ $hover: .2s all ease-out
     transition: .5s all ease-out
     z-index: 2
 
-    ul
-      list-style: none
-      padding: 0
-
-      li
-        a
-          font-size: 14px
-          opacity: 0.5
-          transition: $hover
-          color: #2c2c2c
-
-          .dash
-            width: 0
-            height: 1px
-            margin-right: 0
-            transition: $hover
-
-          &:hover,
-          &:focus
-            opacity: 1
-            text-decoration: none
-
-            .dash
-              width: 13px
-              margin-right: 15px
-
   .dropdown-text-container
     display: none
     align-items: center
@@ -880,16 +225,22 @@ $hover: .2s all ease-out
 
     span.glyphicon
       opacity: .6
+      width: 30px
       font-size: 9px
       cursor: pointer
       transition: $hover
 
       &:first-child
-        margin-right: 10px
-        margin-left: -20px
+        margin-left: -30px
+
+        &:hover
+          transform: translateX(-5px)
 
       &:last-child
-        margin-left: 20px
+        text-align: right
+
+        &:hover
+          transform: translateX(5px)
 
       &:hover
         opacity: 1
@@ -966,6 +317,27 @@ $hover: .2s all ease-out
    font-weight: 600
    display: inline-block
    cursor: pointer
+
+.manuscript-popin
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 10
+  display: flex
+  align-items: center
+  justify-content: center
+  background: rgba(0, 0, 0, .5)
+  cursor: pointer
+  display: none
+
+  img
+    transform: scale(0.5)
+    transition: .5s
+
+    &.big
+      transform: scale(1)
 
 .notExist
   width: 100%
