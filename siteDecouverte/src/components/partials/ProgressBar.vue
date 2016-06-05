@@ -34,7 +34,6 @@ export default {
       var percentage = value / max * 100
       var dotIndex = Math.ceil(percentage / 10) - 1
       if (dotIndex < 1) dotIndex = 0
-      console.log(dotIndex)
       var dot = $('.scroll').find('.scroll-dot')
       dot.eq(dotIndex).addClass('active')
       dot.eq(dotIndex).prevAll().addClass('active')

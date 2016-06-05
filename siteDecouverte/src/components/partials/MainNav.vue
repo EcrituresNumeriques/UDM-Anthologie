@@ -20,9 +20,9 @@
           </div>
           <form class="navbar-form navbar-left col-md-4" role="search">
             <div class="form-group search-container col-md-12">
-              <input type="search" class="form-control" placeholder="Recherche">
+              <input @focus="onSearchFocus" type="search" class="form-control" placeholder="Recherche">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
-              <button type="reset" class="reset"><span class="reset-cross"></span></button>
+              <button @click="onResetClick" type="reset" class="reset"><span class="reset-cross"></span></button>
             </div>
           </form>
         </div>
@@ -33,10 +33,17 @@
 <script>
 import $ from 'jquery'
 
-$('body').on('click', '.reset', function (e) {
-  e.preventDefault()
-  $('input[type="search"]').val('').focus()
-})
+export default {
+  methods: {
+    onSearchFocus: function () {
+      $('.search-partial').addClass('active')
+    },
+    onResetClick: function (e) {
+      e.preventDefault()
+      $('input[type="search"]').val('').focus()
+    }
+  }
+}
 </script>
 
 <style lang="sass" scoped>
@@ -51,6 +58,9 @@ $hover: .2s all linear
   left: 0
   z-index: 1
   padding-left: 0
+
+.navbar-default
+  margin: 0
 
 .navbar-header
   a
@@ -71,6 +81,9 @@ $hover: .2s all linear
 
     &.v-link-active
       opacity: .3
+
+      &:hover
+        opacity: .3
 
     &:hover
       opacity: 1
@@ -124,6 +137,7 @@ $hover: .2s all linear
   ul
     list-style: none
     padding: 0
+    margin: 0
 
 form
   margin: 0
@@ -187,8 +201,10 @@ form
     height: 100%
     cursor: pointer
 
-    &:hover
+    &:hover,
+    &:focus
       opacity: 1
+      outline: none
 
     .reset-cross
       width: 7px

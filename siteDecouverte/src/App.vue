@@ -7,6 +7,7 @@
     <div class="hidden-md hidden-lg">
       <responsive></responsive>
     </div>
+    <search></search>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import Authors from './components/AuthorsComponent'
 import Characters from './components/CharactersComponent'
 import Epigram from './components/EpigramComponent'
 import NotFound from './components/404Component'
+import Search from './components/partials/Search'
 
 export default {
   components: {
@@ -33,7 +35,8 @@ export default {
     Authors,
     Characters,
     Epigram,
-    NotFound
+    NotFound,
+    Search
   }
 }
 </script>
@@ -80,6 +83,10 @@ sup
   >div
     width: 100%
     height: 100%
+
+.v-link-active
+  &:hover
+    cursor: default
 
 .navbar-default
   background: none
@@ -138,7 +145,7 @@ span.bg
 .vertical-list-container
   columns: 20em
   width: 100%
-  height: 70%
+  height: 50%
   align-self: center
 
 .vertical-list-wrapper

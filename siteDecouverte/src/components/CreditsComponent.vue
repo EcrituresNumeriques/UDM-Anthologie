@@ -3,16 +3,16 @@
     <div class="page-title-container">
       <h1>Crédits</h1>
     </div>
-    <div class="row">
-      <div class="col-md-11 col-md-offset-1">
+    <div class="row back-btn-container">
+      <div class="col-md-12 col-md-offset-1">
         <back-btn></back-btn>
       </div>
     </div>
-    <div class="row">
+    <div class="row content-container">
       <div class="col-md-3 col-md-offset-1">
         <div class="desc-container">
           <h3>Un projet collaboratif</h3>
-          <q><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae mi venenatis, tempus erat non, scelerisque odio. Morbi ultricies felis ut quam pretium, at sodales lacus posuere. Aenean feugiat tincidunt magna id lacinia. Morbi consequat, magna in dapibus porttitor, augue metus pulvinar.</p></q>
+          <q><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae mi venenatis, tempus erat non, scelerisque odio. Morbi ultricies felis ut quam pretium, at sodales lacus posuere. Aenean feugiat tincidunt magna id lacinia. Morbi consequat, magna in dapibus porttitor, augue metus pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae mi venenatis, tempus erat non, scelerisque odio. Morbi ultricies felis ut quam pretium, at sodales lacus posuere. Aenean feugiat tincidunt magna id lacinia. Morbi consequat, magna in dapibus porttitor, augue metus pulvinar.</p></q>
         </div>
       </div>
       <div class="col-md-6 col-md-offset-2">
@@ -58,6 +58,11 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
   >div:first-child
     position: initial
 
+.content-container
+  position: absolute
+  top: 50%
+  transform: translate3d(0, -50%, 0)
+
 #credits
   width: 100%
   height: 100%
@@ -68,7 +73,6 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 .desc-container
   color: #2c2c2c
   margin-top: 40px
-  margin-bottom: 150px
 
   h3
     font-style: italic
@@ -123,5 +127,8 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
       font-size: 12px
       color: #2c2c2c
       line-height: 2em
+
+.page-subtitle-container
+  margin-top: 0
 
 </style>

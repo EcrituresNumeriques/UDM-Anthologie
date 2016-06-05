@@ -62,7 +62,7 @@ ul
   li
     a
       font-size: 17px
-      color: rgba(0, 0, 0, 0.5)
+      color: rgba(44, 44, 44, 0.5)
       align-items: center
       transition: $hover
       padding: 5px 15px 5px 0

@@ -102,7 +102,7 @@ export default {
 
 
   .dropdown-drop
-    width: 400px
+    width: 350px
     margin-left: -35px
 
     .mute
@@ -117,8 +117,41 @@ export default {
         padding-bottom: 10px
         margin: 0
         display: inline-block
-        width: 80%
+        word-wrap: break-word;
+        width: 90%;
+        height: 228px;
+        overflow-y: auto
+        scrollbar-face-color: #2c2c2c
+        scrollbar-track-color: #fff
+        scrollbar-arrow-color: #fff
 
         &::first-letter
           font-size: 36px
+
+        &:hover
+          &::-webkit-scrollbar-thumb,
+          &::-webkit-scrollbar-track
+            visibility: visible
+
+        &::-webkit-scrollbar
+          background: #fff
+          width: 3px
+
+        &::-webkit-scrollbar-button
+          display: none
+
+        &::-webkit-scrollbar-thumb
+          background: rgba(44, 44, 44, .3)
+          visibility: hidden
+
+          &:hover
+            background: rgba(44, 44, 44, .8)
+
+          &:active
+            background: rgba(44, 44, 44, 1)
+
+        &::-webkit-scrollbar-track
+          border-bottom: 1px solid #2c2c2c
+          border-top: 1px solid #2c2c2c
+          visibility: hidden
 </style>

@@ -67,6 +67,8 @@ export default {
         if (!frenchSound.paused) {
           frenchSound.pause()
           playBtn.addClass('paused')
+          $('.french-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+          frenchSound.volume = 1
         } else {
           frenchSound.play()
           playBtn.removeClass('paused')
@@ -75,6 +77,8 @@ export default {
         if (!greekSound.paused) {
           greekSound.pause()
           playBtn.addClass('paused')
+          $('.greek-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+          greekSound.volume = 1
         } else {
           greekSound.play()
           playBtn.removeClass('paused')
@@ -124,6 +128,7 @@ export default {
 .player
   width: 45px
   text-align: center
+  margin-right: 50px
 
   .control
     cursor: pointer
