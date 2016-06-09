@@ -1,18 +1,17 @@
 <?php
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Books
+ * City
  *
- * @ORM\Table(name="books")
+ * @ORM\Table(name="cities")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EraRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CityRepository")
  */
-class Books
+class City
 {
     /**
      * @var int
@@ -25,16 +24,30 @@ class Books
 
     /**
      * @var string
+     * @ORM\Column(name="name", type="string", length=45)
+     */
+    private $gps;
+
+    /**
+     * @var string
      * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="Lang")
-     * @ORM\JoinColumn(name="lang_id", referencedColumnName="id")
+     * @var string
+     * @Gedmo\Translatable
+     * @ORM\Column(name="current_name", type="string", length=255)
      */
-    private $lang;
+    private $currentName;
+
+    /**
+     * @var string
+     * @Gedmo\Translatable
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
@@ -59,9 +72,5 @@ class Books
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $deletedAt;
+    
 }

@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="authors")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EraRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
  */
 class Author
 {
@@ -78,6 +78,24 @@ class Author
      * @ORM\Column(name="activityRange", type="smallint")
      */
     private $activityRange;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColunm(name="city_id, referencedColumnName="id")
+     */
+    private $bornCity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColunm(name="city_id, referencedColumnName="id")
+     */
+    private $diedCity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Era")
+     * @ORM\JoinColunm(name="era_id, referencedColumnName="id")
+     */
+    private $era;
 
     /**
      * @ORM\ManyToOne(targetEntity="Lang")
