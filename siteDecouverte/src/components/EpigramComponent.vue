@@ -24,7 +24,7 @@
                     v-if="data.themes[theme].epigrams[epigram].imageUrl"
                     class="manuscript-image"
                   >
-                      <p @click="onImageTextClick">
+                      <p @click="showPopin">
                         Image du manuscrit
                         <span class="border-bottom"></span>
                       </p>
@@ -32,10 +32,17 @@
               </div>
           </div>
           <div
-            @click="onImagePopinClick"
+            tabindex="0"
+            @keyup.esc="hidePopin"
             v-if="data.themes[theme].epigrams[epigram].imageUrl"
             class="manuscript-popin"
           >
+            <div
+              @click="hidePopin"
+              class="popin-cross-container"
+            >
+              <div class="popin-cross"></div>
+            </div>
             <img
               :src="data.themes[theme].epigrams[epigram].imageUrl"
               alt="{{ data.themes[theme].epigrams[epigram].title }}"
@@ -106,12 +113,12 @@ export default {
     this.$off()
   },
   methods: {
-    onImageTextClick: function () {
+    showPopin: function () {
       $('.manuscript-popin').fadeIn(function () {
         $('.manuscript-popin img').addClass('big')
-      }).css('display', 'flex')
+      }).css('display', 'flex').focus()
     },
-    onImagePopinClick: function () {
+    hidePopin: function () {
       $('.manuscript-popin img').removeClass('big')
       $('.manuscript-popin').fadeOut()
     }
@@ -293,21 +300,6 @@ $hover: .2s all ease-out
             font-weight: 700
             font-size: 14px
 
-        .dropdown-desc
-          q
-            quotes: "\201C" "\201D" "\2018" "\2019"
-            position: relative
-            padding: 0 10px 10px 0;
-
-            &:before
-              font-size: 30px
-              position: absolute
-              top: -40px
-              left: -20px
-
-            &:after
-              display: none
-
 .manuscript-image
   margin-top: 25px
 
@@ -324,13 +316,38 @@ $hover: .2s all ease-out
   height: 100%
   top: 0
   left: 0
-  z-index: 10
+  z-index: 30
   display: flex
   align-items: center
   justify-content: center
   background: rgba(0, 0, 0, .5)
-  cursor: pointer
   display: none
+
+  .popin-cross-container
+    position: absolute
+    width: 50px
+    height: 50px
+    top: 30px
+    right: 30px
+    cursor: pointer
+    display: flex
+    align-items: center
+    justify-content: center
+
+    .popin-cross
+      display: inline-block
+      width: 100%
+      height: 1px
+      background: #fff
+      transform: rotate(45deg)
+
+      &:after
+        content: ""
+        width: 100%
+        height: 1px
+        position: absolute
+        background: #fff
+        transform: rotate(90deg)
 
   img
     transform: scale(0.5)

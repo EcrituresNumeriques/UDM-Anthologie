@@ -21,6 +21,7 @@ import Keywords from './components/KeywordsComponent'
 import Authors from './components/AuthorsComponent'
 import Characters from './components/CharactersComponent'
 import Epigram from './components/EpigramComponent'
+import SearchComponent from './components/SearchComponent'
 import NotFound from './components/404Component'
 import Search from './components/partials/Search'
 
@@ -35,6 +36,7 @@ export default {
     Authors,
     Characters,
     Epigram,
+    SearchComponent,
     NotFound,
     Search
   }
@@ -92,6 +94,20 @@ sup
   background: none
   border: none
 
+q
+  quotes: "\201C" "\201D" "\2018" "\2019"
+  position: relative
+  padding: 0 10px 10px 0;
+
+  &:before
+    font-size: 30px
+    position: absolute
+    top: -40px
+    left: -20px
+
+  &:after
+    display: none
+
 span.bg
   width: 20px
   height: 20px
@@ -139,7 +155,7 @@ span.bg
     display: inline-block
     font-size: 30px
     font-style: italic
-    margin-bottom: 0
+    margin: 0
     line-height: 32px
 
 .vertical-list-container
@@ -150,8 +166,10 @@ span.bg
 
 .vertical-list-wrapper
   padding-top: 10px
+  height: 100%
 
-  h3
+  h3,
+  h4
     padding-left: 10px
     position: relative
     font-family: $raleway
@@ -171,6 +189,7 @@ span.bg
     list-style: none
     padding: 0
     margin: 30px 0 50px
+    height: 100%
 
     li
       padding-left: 20px
@@ -238,4 +257,18 @@ span.bg
           width: 100%
           background: transparent
           transition: all 0s ease
+
+.type-text-bg
+  position: absolute
+  top: 50%
+  left: 0
+  transform: translate3d(0, -50%, 0)
+  text-transform: uppercase
+  font-family: $raleway
+  font-size: 36px
+  font-weight: 800
+  color: rgba(44, 44, 44, .08)
+  opacity: 0
+  transition: $hover
+  z-index: -1
 </style>

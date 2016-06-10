@@ -9,7 +9,7 @@
       "epigrams": [
         {
           "id": 1,
-          "title": "AP 12.132b, 22 GP",
+          "title": "AP 12.132b",
           "texts": [
             {
               "lang": "fr",
@@ -21,8 +21,8 @@
             }
           ],
           "sounds": {
-            "french": "/static/sound/french-sound.mp3",
-            "greek": "/static/sound/greek-sound.mp3"
+            "french": "/static/sounds/french-sound.mp3",
+            "greek": "/static/sounds/greek-sound.mp3"
           },
           "imageUrl": "/static/img/popin/meleagre-in-love/1.png",
           "notes": [
@@ -59,7 +59,7 @@
         },
         {
           "id": 2,
-          "title": "AP 5.177, 37 GP",
+          "title": "AP 5.177",
           "texts": [
             {
               "lang": "fr",
@@ -73,7 +73,7 @@
         },
         {
           "id": 3,
-          "title": "AP 5.152, 34 GP",
+          "title": "AP 5.152",
           "texts": [
             {
               "lang": "fr",
@@ -83,12 +83,11 @@
               "lang": "greek",
               "content": "Πταίης μοι, κώνωψ, ταχὺς ἄγγελος, οὔασι δ' ἄκροις<br>Ζηνοφίλας ψαύσας προσψιθύριζε τάδε·<br>“Ἄγρυπνος μίμνει σε· σὺ δ', ὦ λήθαργε φιλούντων,<br>εὕδεις.” εἶα, πέτευ· ναί, φιλόμουσε, πέτευ·<br>ἥσυχα δὲ φθέγξαι, μὴ καὶ σύγκοιτον ἐγείρας<br>κινήσῃς ἐπ' ἐμοὶ ζηλοτύπους ὀδύνας.<br>ἢν δ' ἀγάγῃς τὴν παῖδα, δορᾷ στέψω σε λέοντος,<br>κώνωψ, καὶ δώσω χειρὶ φέρειν ῥόπαλον."
             }
-          ],
-          "imageUrl": "/static/img/popin/meleagre-in-love/3.png"
+          ]
         },
         {
           "id": 4,
-          "title": "AP 7.196, 13 GP",
+          "title": "AP 7.196",
           "texts": [
             {
               "lang": "fr",
@@ -102,7 +101,7 @@
         },
         {
           "id": 5,
-          "title": "AP 7.417: Méléagre, un Grec d’Orient",
+          "title": "AP 7.417 : Méléagre, un Grec d’Orient",
           "texts": [
             {
               "lang": "fr",
@@ -180,7 +179,7 @@
       "epigrams": [
         {
           "id": 1,
-          "title": "6",
+          "title": "AP 5.6",
           "imageUrl": "/static/img/popin/les-serments-trahis/1.png",
           "langs": {
             "selected": 0,
@@ -226,7 +225,7 @@
         },
         {
           "id": 2,
-          "title": "7",
+          "title": "AP 5.7",
           "imageUrl": "/static/img/popin/les-serments-trahis/2.png",
           "langs": {
             "selected": 0,
@@ -276,7 +275,7 @@
         },
         {
           "id": 3,
-            "title": "52",
+            "title": "AP 5.8",
             "langs": {
               "selected": 0,
               "options": [
@@ -315,8 +314,7 @@
         },
         {
           "id": 4,
-          "title": "8",
-          "imageUrl": "/static/img/popin/les-serments-trahis/3.png",
+          "title": "AP 5.52 Dioscoride",
           "langs": {
             "selected": 0,
             "options": [
@@ -344,6 +342,22 @@
               "content": "ὅρκον κοινὸν Ἔρωτ᾽ ἀνεθήκαμεν ὅρκος ὁ πιστὴν<br>Ἀρσινόης θέμενος Σωσιπάτρῳ φιλίην.<br>ἀλλ᾽ ἡ μὲν ψευδὴς κενὰ δ᾽ ὅρκια, τῷ δ᾽ ἐφυλάχθη<br>ἵμερος: ἡ δὲ θεῶν οὐ φανερὴ δύναμις.<br>θρήνους, ὦ Ὑμέναιε, παρὰ κληῖσιν ἀΰσαις<br>Ἀρσινόης, παστῷ μεμψάμενος προδότῃ]."
             }
           ]
+        },
+        {
+          "id": 5,
+          "title": "AP 12.43 Callimaque",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Je déteste le poème cyclique ; un chemin<br>ne me réjouit pas s’il porte la foule ici et là.<br>Je hais aussi l’aimé libertin, et de la fontaine publique<br>je ne bois pas. Je méprise tout ce qui est vulgaire.<br>Lysaniès, tu es beau, oui, tu es beau ; mais avant d’avoir dit<br>ces mots clairement, un écho retentit : « Il est à un autre. »"
+            },
+            {
+              "lang": "greek",
+              "content": "Ἐχθαίρω τὸ ποίημα τὸ κυκλικόν, οὐδὲ κελεύθῳ<br>χαίρω, τίς πολλοὺς ὧδε καὶ ὧδε φέρει·<br>μισέω καὶ περίφοιτον ἐρώμενον, οὐδ' ἀπὸ κρήνης<br>πίνω· σικχαίνω πάντα τὰ δημόσια.<br>Λυσανίη, σὺ δὲ ναίχι καλὸς καλός – ἀλλὰ πρὶν εἰπεῖν<br>τοῦτο σαφῶς, ἠχώ φησί τις· ‘ἄλλος ἔχει.’"           }
+          ],
+          "sounds": {
+            "greek": "/static/sounds/les-serments-trahis/5_greek.mp3"
+          }
         }
       ]
     },
@@ -356,7 +370,7 @@
       "epigrams": [
         {
           "id": 1,
-          "title": "4",
+          "title": "AP 4.4 Philodème",
           "imageUrl": "/static/img/popin/les-lampes-sont-des-temoins/1.png",
           "langs": {
             "selected": 0,
@@ -402,7 +416,7 @@
         },
         {
           "id": 2,
-          "title": "5",
+          "title": "AP 5.5 Statillius Flaccus",
           "imageUrl": "/static/img/popin/les-lampes-sont-des-temoins/2.png",
           "langs": {
             "selected": 0,
@@ -442,8 +456,8 @@
         },
         {
           "id": 3,
-          "title": "7",
-          "imageUrl": "/static/img/popin/les-lampes-sont-des-temoins/2.png",
+          "title": "AP 5.7 Asclépiade de Samos",
+          "imageUrl": "/static/img/popin/les-lampes-sont-des-temoins/3.png",
           "langs": {
             "selected": 0,
             "options": [
@@ -497,7 +511,54 @@
       "name": "Le Banquet",
       "slug": "le-banquet",
       "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png"
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "AP 12.135 Asclépiade",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Le vin dénonce l’amour. Il nous disait ne pas être amoureux,<br>Nicagore, mais il fut confondu par ses nombreux toasts ;<br>car il s’est mis à pleurer et dodeliner, plutôt morne dans<br>son regard, et, bien qu’attachée, sa couronne ne tenait pas."
+            },
+            {
+              "lang": "greek",
+              "content": "Οἶνος ἔρωτος ἔλεγχος· ἐρᾶν ἀρνεύμενον ἡμῖν<br>ἤτασαν αἱ πολλαὶ Νικαγόρην προπόσεις·<br>καὶ γὰρ ἐδάκρυσεν καὶ ἐνύστασε καί τι κατηφὲς<br>ἔβλεπε, χὠ σφιγχθεὶς οὐκ ἔμενε στέφανος."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "AP 12.134 Callimaque",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "L’étranger avait une blessure invisible. Combien pénible était<br>le souffle qui montait à travers sa poitrine (tu as vu ?),<br>pendant sa troisième lampée ; et les roses, dont les pétales tombaient de ses couronnes, se<br> retrouvaient toutes par terre. Oui, il est vraiment cuit. Par les dieux, ce n’est pas par hasard que je le devine : du voleur je connais les traces, moi le voleur !"
+            },
+            {
+              "lang": "greek",
+              "content": "Ἕλκος ἔχων ὁ ξεῖνος ἐλάνθανεν· ὡς ἀνιηρόν<br>πνεῦμα διὰ στηθέων (εἶδες;) ἀνηγάγετο,<br>τὸ τρίτον ἡνίκ' ἔπινε, τὰ δὲ ῥόδα φυλλοβολεῦντα<br>τὠνδρὸς ἀπὸ στεφάνων πάντ' ἐγένοντο χαμαί.<br>ὤπτηται μέγα δή τι· μὰ δαίμονας, οὐκ ἀπὸ ῥυσμοῦ<br>εἰκάζω, φωρὸς δ' ἴχνια φὼρ ἔμαθον."
+            }
+          ],
+          "sounds": {
+            "greek": "/static/sounds/le-banquet/2_greek.mp3"
+          }
+        },
+        {
+          "id": 3,
+          "title": "AP 5.64 Asclépiade",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Neige, grêle, assombris le ciel, enflamme ton tonnerre, secoue tous les nuages sombres vers la terre.<br>Si tu me tues, je m’arrêterai. Mais si tu me laisses vivre, même si tu fais pire que ça, j’irai fêter en cortège. Car<br>il me tire, ce dieu qui te domine toi aussi. Lui cédant jadis, Zeus, tu t’es infiltré, tout en or, dans des murs de bronze."
+            },
+            {
+              "lang": "greek",
+              "content": "Νεῖφε, χαλαζοβόλει, ποίει σκότος, αἶθε κεραυνούς,<br>πάντα τὰ πορφύροντ' ἐν χθονὶ σεῖε νέφη·<br>ἢν γάρ με κτείνῃς, τότε παύσομαι· ἢν δέ μ' ἀφῇς ζῆν,<br>κἂν διαθῇς τούτων χείρονα, κωμάσομαι·<br>ἕλκει γάρ μ' ὁ κρατῶν καὶ σοῦ θεός, ᾧ ποτε πεισθείς,<br>Ζεῦ, διὰ χαλκείων χρυσὸς ἔδυς θαλάμων."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "5",
@@ -508,7 +569,7 @@
       "epigrams": [
         {
           "id": 1,
-          "title": "?",
+          "title": "AP 5.13 Philodemus",
           "langs": {
             "selected": 0,
             "options": [
@@ -556,7 +617,7 @@
       "epigrams": [
         {
           "id": 1,
-          "title": "?",
+          "title": "AP 5.16 Marcus Argentarius",
           "langs": {
             "selected": 0,
             "options": [
@@ -601,7 +662,7 @@
         },
         {
           "id": 2,
-          "title": "24",
+          "title": "AP 5.24 Méléagre",
           "langs": {
             "selected": 0,
             "options": [
@@ -649,7 +710,7 @@
       "epigrams": [
         {
           "id": 1,
-          "title": "23",
+          "title": "AP 5.23 Callimaque",
           "langs": {
             "selected": 0,
             "options": [

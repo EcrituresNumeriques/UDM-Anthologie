@@ -10,7 +10,7 @@
         <div class="dropdown-content">
           <div
             @click="onGreekMuteClick"
-            v-if="data.themes[theme].epigrams[epigram].sounds.french"
+            v-if="data.themes[theme].epigrams[epigram].sounds.greek"
             class="mute greek-mute"
           >
             <span class="glyphicon glyphicon-volume-up"></span>
@@ -51,12 +51,15 @@ export default {
     onGreekMuteClick: function () {
       var controlBtn, playBtn, frenchSound, greekSound, frenchMute
       var greekMute = $('.greek-mute .glyphicon')
+      var audioLength = $('audio').length - 1
       controlBtn = $('.control')
       playBtn = controlBtn.children('.play-button')
-      frenchSound = $('audio')[0]
       frenchMute = $('.french-mute .glyphicon')
-      greekSound = $('audio')[1]
+      greekSound = $('audio')[audioLength]
       frenchMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
+      if (audioLength !== 0) {
+        frenchSound = $('audio')[0]
+      }
       if (frenchSound.currentTime > 0) {
         frenchSound.pause()
         frenchSound.currentTime = 0

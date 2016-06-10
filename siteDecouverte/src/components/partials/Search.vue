@@ -1,6 +1,6 @@
 <template>
-  <div class="search-partial active">
-    <div @click="onCrossClick" class="cross-container">
+  <div class="search-partial">
+    <div @click="closeSearchPartial" class="cross-container">
       <div class="cross"></div>
     </div>
     <div class="row">
@@ -12,15 +12,15 @@
                 <span class="dash"></span>
                 Mélé / Contraste
                 <sup>I</sup>
-                <span class="text-bg">Auteur</span>
+                <span class="type-text-bg">Auteur</span>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a @click="closeSearchPartial" v-link="{ name: 'search', params: { type: 'theme', name: 'meleagre-in-love' }}">
                 <span class="dash"></span>
                 Méléagre in love
                 <sup>II</sup>
-                <span class="text-bg">Thème</span>
+                <span class="type-text-bg">Thème</span>
               </a>
             </li>
             <li>
@@ -28,7 +28,7 @@
                 <span class="dash"></span>
                 La Couronne de Méléagre
                 <sup>III</sup>
-                <span class="text-bg">épigramme</span>
+                <span class="type-text-bg">épigramme</span>
               </a>
             </li>
             <li>
@@ -36,7 +36,7 @@
                 <span class="dash"></span>
                 L'Anthologie de Méléane
                 <sup>IV</sup>
-                <span class="text-bg">Thème</span>
+                <span class="type-text-bg">Thème</span>
               </a>
             </li>
             <li>
@@ -44,7 +44,7 @@
                 <span class="dash"></span>
                 Agis de Méléi
                 <sup>V</sup>
-                <span class="text-bg">Auteur</span>
+                <span class="type-text-bg">Auteur</span>
               </a>
             </li>
             <li>
@@ -52,7 +52,7 @@
                 <span class="dash"></span>
                 Lettre à Méléag l'Égyptien
                 <sup>VI</sup>
-                <span class="text-bg">épigramme</span>
+                <span class="type-text-bg">épigramme</span>
               </a>
             </li>
             <li>
@@ -60,7 +60,7 @@
                 <span class="dash"></span>
                 Le Thème de Méléagre
                 <sup>VII</sup>
-                <span class="text-bg">Thème</span>
+                <span class="type-text-bg">Thème</span>
               </a>
             </li>
           </ul>
@@ -83,7 +83,7 @@ import $ from 'jquery'
 
 export default {
   methods: {
-    onCrossClick: function () {
+    closeSearchPartial: function () {
       $('.search-partial').removeClass('active')
     }
   }
@@ -104,6 +104,7 @@ $hover: .2s all ease-out
   justify-content: flex-end
   transition: $hover
   transform: translateY(-100%)
+  z-index: 10
 
   &.active
    transform: translateY(0)
@@ -165,19 +166,6 @@ $hover: .2s all ease-out
         sup
           font-size: 9px
 
-        .text-bg
-          position: absolute
-          top: 50%
-          left: 0
-          transform: translate3d(0, -50%, 0)
-          text-transform: uppercase
-          font-family: $raleway
-          font-size: 36px
-          font-weight: 800
-          color: rgba(44, 44, 44, .08)
-          opacity: 0
-          transition: $hover
-
         &:hover,
         &:focus
           opacity: 1
@@ -189,7 +177,7 @@ $hover: .2s all ease-out
             width: 20px
             margin-right: 20px
 
-          .text-bg
+          .type-text-bg
             opacity: 1
             left: 12%
 </style>

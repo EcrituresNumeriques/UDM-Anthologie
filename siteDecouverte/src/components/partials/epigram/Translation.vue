@@ -130,7 +130,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
         overflow: hidden
         position: absolute
         top: 0
-        right: 65px
+        right: 0
         margin-top: -5px
 
         select

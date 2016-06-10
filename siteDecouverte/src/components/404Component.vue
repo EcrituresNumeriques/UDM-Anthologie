@@ -9,7 +9,7 @@
             <div>
                 <p><span class="error"><span class="dash"></span><i>Erreur</i></span><strong>404</strong></p>
                 <p>La page demandée n’existe pas</p>
-                <p>ζητούμενη σελίδα δεν έχει βρεθεί</p>
+                <p>οὐκ ἔστιν ἡ σελὶς ἡ διεζητημένη</p>
             </div>
         </div>
     </div>

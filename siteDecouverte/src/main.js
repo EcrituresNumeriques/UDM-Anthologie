@@ -14,6 +14,7 @@ import Keywords from './components/KeywordsComponent'
 import Authors from './components/AuthorsComponent'
 import Characters from './components/CharactersComponent'
 import Epigram from './components/EpigramComponent'
+import SearchComponent from './components/SearchComponent'
 import NotFound from './components/404Component'
 
 // install router & resource
@@ -65,6 +66,10 @@ router.map({
   'theme/:themeId/:theme/:id': {
     component: Epigram,
     name: 'theme'
+  },
+  'recherche/:type/:name': {
+    component: SearchComponent,
+    name: 'search'
   },
   '/404': {
     component: NotFound,

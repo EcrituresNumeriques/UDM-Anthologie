@@ -24,6 +24,7 @@
       class="sound"
     >
       <audio
+        v-if="data.themes[theme].epigrams[epigram].sounds.french"
         @timeupdate="onAudioTimeUpdate"
         @ended="onAudioEnded"
         class="french-sound"
@@ -34,6 +35,7 @@
         >
       </audio>
       <audio
+        v-if="data.themes[theme].epigrams[epigram].sounds.greek"
         @timeupdate="onAudioTimeUpdate"
         @ended="onAudioEnded"
         class="greek-sound"
