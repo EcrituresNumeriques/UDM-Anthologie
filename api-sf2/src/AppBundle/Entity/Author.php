@@ -80,6 +80,18 @@ class Author
     private $activityRange;
 
     /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\ManyToOne(targetEntity="City")
      * @ORM\JoinColunm(name="city_id, referencedColumnName="id")
      */
@@ -116,15 +128,27 @@ class Author
     private $ownerGroup;
 
     /**
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $createdAt;
+    private $ownerUser;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="update")
+     * @ORM\ManyToMany(targetEntity="Images")
+     * @ORM\JoinTable(name="authors_images",
+     *      joinColumns={@ORM\JoinColumn(name="author_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id")}
+     *      )
      */
-    private $updatedAt;
+    private $images;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Entity", inversedBy="entities")
+     * @ORM\JoinTable(name="authors_entities")
+     */
+    private $entities;
+
+    public function __construct() {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 }
