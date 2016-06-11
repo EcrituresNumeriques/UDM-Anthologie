@@ -24,7 +24,7 @@ class City
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="string", length=45)
+     * @ORM\Column(name="gps", type="string", length=45)
      */
     private $gps;
 
@@ -50,6 +50,18 @@ class City
     private $description;
 
     /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -62,15 +74,9 @@ class City
     private $ownerGroup;
 
     /**
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToMany(targetEntity="Entity", inversedBy="entities")
+     * @ORM\JoinTable(name="cities_entities")
      */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updatedAt;
+    private $entities;
     
 }
