@@ -59,11 +59,11 @@ export default {
       frenchMute.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       if (audioLength !== 0) {
         frenchSound = $('audio')[0]
-      }
-      if (frenchSound.currentTime > 0) {
-        frenchSound.pause()
-        frenchSound.currentTime = 0
-        frenchSound.volume = 1
+        if (frenchSound.currentTime > 0) {
+          frenchSound.pause()
+          frenchSound.currentTime = 0
+          frenchSound.volume = 1
+        }
       }
       if (greekSound.paused) {
         greekSound.play()

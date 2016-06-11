@@ -63,8 +63,10 @@ export default {
       var playBtn, frenchSound, greekSound
       var controlBtn = $('.control')
       playBtn = controlBtn.children('.play-button')
-      frenchSound = $('audio')[0]
-      greekSound = $('audio')[1]
+      if ($('audio').length !== 1) {
+        frenchSound = $('audio')[0]
+      }
+      greekSound = $('audio')[$('audio').length - 1]
       if (controlBtn.hasClass('french-sound-playing')) {
         if (!frenchSound.paused) {
           frenchSound.pause()
@@ -86,16 +88,22 @@ export default {
           playBtn.removeClass('paused')
         }
       } else {
-        frenchSound.play()
+        $('audio')[0].play()
         playBtn.removeClass('paused')
-        controlBtn.addClass('french-sound-playing')
+        if ($('audio').length === 1) {
+          controlBtn.addClass('greek-sound-playing')
+        } else {
+          controlBtn.addClass('french-sound-playing')
+        }
       }
     },
     onAudioTimeUpdate: function () {
       var currentTime, duration, frenchSound, greekSound, progressBar, controlBtn
       controlBtn = $('.control')
-      frenchSound = $('audio')[0]
-      greekSound = $('audio')[1]
+      if ($('audio').length !== 1) {
+        frenchSound = $('audio')[0]
+      }
+      greekSound = $('audio')[$('audio').length - 1]
       progressBar = $('.progress')
       if (controlBtn.hasClass('french-sound-playing')) {
         currentTime = frenchSound.currentTime
@@ -112,14 +120,16 @@ export default {
       controlBtn = $('.control')
       playBtn = controlBtn.children('.play-button')
       muteBtn = $('.mute span')
-      frenchSound = $('audio')[0]
-      greekSound = $('audio')[1]
+      if ($('audio').length !== 1) {
+        frenchSound = $('audio')[0]
+        frenchSound.volume = 1
+      }
+      greekSound = $('audio')[$('audio').length - 1]
       progressBar = $('.progress')
       progressBar.css('height', '0')
       controlBtn.removeClass('french-sound-playing').removeClass('greek-sound-playing')
       playBtn.addClass('paused')
       muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
-      frenchSound.volume = 1
       greekSound.volume = 1
     }
   }

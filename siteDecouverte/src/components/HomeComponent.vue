@@ -78,11 +78,10 @@ $hover: .2s all linear
 
   .img-container
     height: 100%
-    width: 100%
     background: #2b2b2b
 
     img
-      width: 100%
+      max-width: 100%
       height: 100%
       opacity: 0.65
 

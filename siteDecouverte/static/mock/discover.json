@@ -743,7 +743,141 @@
             },
             {
               "lang": "greek",
-              "content": "οὕτως ὑπνώσαις, Κωνώπιον, ὡς ἐμὲ ποιεῖς<br>κοιμᾶσθαι ψυχροῖς τοῖσδε παρὰ προθύροις<br>οὕτως ὑπνώσαις, ἀδικωτάτη, ὡς τὸν ἐραστὴν<br>κοιμίζεις: ἐλέου δ᾽ οὐδ᾽ ὄναρ ἠντίασας.<br>γείτονες οἰκτείρουσι: σὺ δ᾽ οὐδ᾽ ὄναρ . ἡ πολιὴ δὲ<br>αὐτίκ᾽ ἀναμνήσει ταῦτά σε πάντα κόμη. "
+              "content": "οὕτως ὑπνώσαις, Κωνώπιον, ὡς ἐμὲ ποιεῖς<br>κοιμᾶσθαι ψυχροῖς τοῖσδε παρὰ προθύροις<br>οὕτως ὑπνώσαις, ἀδικωτάτη, ὡς τὸν ἐραστὴν<br>κοιμίζεις: ἐλέου δ᾽ οὐδ᾽ ὄναρ ἠντίασας.<br>γείτονες οἰκτείρουσι: σὺ δ᾽ οὐδ᾽ ὄναρ . ἡ πολιὴ δὲ<br>αὐτίκ᾽ ἀναμνήσει ταῦτά σε πάντα κόμη."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Épitaphes",
+      "slug": "epitaphes",
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "AP 7.451 Callimaque",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Ici Saôn fils de Dikôn, né à Acanthe, d’un sommeil sacré<br>repose. – Mourir ? non, ne dis pas que cela arrive aux braves."
+            },
+            {
+              "lang": "greek",
+              "content": "Τῇδε Σάων ὁ Δίκωνος Ἀκάνθιος ἱερὸν ὕπνον<br>κοιμᾶται· θνῄσκειν μὴ λέγε τοὺς ἀγαθούς."
+            }
+          ],
+          "sounds": {
+            "greek": "/static/sounds/epitaphes/1.mp3"
+          }
+        },
+        {
+          "id": 2,
+          "title": "AP 7.520 Callimaque",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Si tu cherches Timarque dans l’Hadès pour en apprendre<br>sur l’âme, ou sur la façon dont tu vivras à nouveau,<br>cherche celui de la tribu Ptolémaïque, dont le père est<br>Pausanias. Tu le trouveras chez les pieux."
+            },
+            {
+              "lang": "greek",
+              "content": "Ἢν δίζῃ Τίμαρχον ἐν Ἄϊδος, ὄφρα πύθηαι<br>ἤ τι περὶ ψυχῆς ἢ πάλι πῶς ἔσεαι,<br>δίζεσθαι φυλῆς Πτολεμαΐδος υἱέα πατρός<br>Παυσανίου· δήεις δ' αὐτὸν ἐν εὐσεβέων."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "AP 7.522 Callimaque",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "‘Timonoè’. Qui es-tu? Par les dieux, je ne t’aurais pas reconnue, s’il n’y avait le nom de ton père Timothée<br>sur la stèle, et Mèthymna, ta cité. Je le dis haut et fort:<br>un veuf souffre, ton époux Euthymène."
+            },
+            {
+              "lang": "greek",
+              "content": "‘Τιμονόη.’ τίς δ' ἐσσί; μὰ δαίμονας, οὔ σ' ἂν ἐπέγνων,<br>εἰ μὴ Τιμοθέου πατρὸς ἐπῆν ὄνομα<br>στήλῃ καὶ Μήθυμνα, τεὴ πόλις. ἦ μέγα φημί<br>χῆρον ἀνιᾶσθαι σὸν πόσιν Εὐθυμένη."
+            }
+          ],
+          "sounds": {
+            "greek": "/static/sounds/epitaphes/3.mp3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Offrandes",
+      "slug": "offrandes",
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "Callimaque ep. 5 Pfeiffer",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "J’étais autrefois un coquillage, ô Zéphyriote. Maintenant,<br>Cypris, tu me tiens, moi la première offrande de Selènai.<br>Nautile, je voguais sur les mers : avec les vents,<br>je tendais la voile de mes propres étais ;<br>avec Galènaia, déesse brillante, je ramais, vigoureux,<br>de mes pieds – vois comme mon nom convient à ce rôle –<br>jusqu’au jour où j’ai échoué sur les côtes de Ioulis pour<br>devenir ton jouet admiré, à toi Arsinoé,<br>et que dans dans mes cavités (n’étant plus sur mer) l’oeuf de l’humide alcyon ne soit plus engendré comme avant.<br>Mais à la fille de Clinias, sache gré ; car elle sait bien<br>se comporter, et elle est loin de Smyrne d’Éolide."
+            },
+            {
+              "lang": "greek",
+              "content": "Κόγχος ἐγώ, Ζεφυρῖτι, παλαίτερον, ἀλλὰ σὺ νῦν με,<br>Κύπρι, Σεληναίης ἄνθεμα πρῶτον ἔχεις,<br>ναυτίλος ὃς πελάγεσσιν ἐπέπλεον, εἰ μὲν ἀῆται,<br>τείνας οἰκείων λαῖφος ἀπὸ προτόνων,<br>εἰ δὲ Γαληναίη, λιπαρὴ θεός, οὖλος ἐρέσσων<br>ποσσὶν - ἴδ’ ὡς τὤργῳ τοὔνομα συμφέρεται -<br>ἔστ' ἔπεσον παρὰ θῖνας Ἰουλίδος, ὄφρα γένωμαι<br>σοὶ τὸ περίσκεπτον παίγνιον, Ἀρσινόη,<br>μηδέ μοι ἐν θαλάμῃσιν ἔθ' ὡς πάρος (εἰμὶ γὰρ ἄπλους)<br>τίκτηται νοτερῆς ὤεον ἁλκυόνος.<br>Κλεινίου ἀλλὰ θυγατρὶ δίδου χάριν· οἶδε γὰρ ἐσθλά<br>ῥέζειν, καὶ Σμύρνης ἐστὶν ἀπ' Αἰολίδος."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "AP 5.202 Asclépiade",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Un fouet pourpre et des rênes luisants, c’est ce que<br>Plangôn a déposés sur le porche aux beaux chevaux,<br>ayant vaincu avec son coursier la belliqueuse Philainis<br>juste au moment où les poulains du soir hennissaient.<br>Chère Cypris, puisses-tu lui fournir une réputation durable de victoire, en conservant le souvenir de ce remerciement."
+            },
+            {
+              "lang": "greek",
+              "content": "Πορφυρέην μάστιγα καὶ ἡνία σιγαλόεντα<br>Πλαγγὼν εὐίππων θῆκεν ἐπὶ προθύρων,<br>νικήσασα κέλητι Φιλαινίδα τὴν πολύχαρμον<br>ἑσπερινῶν πώλων ἄρτι φρυασσομένων.<br>Κύπρι φίλη, σὺ δὲ τῇδε πόροις νημερτέα νίκης<br>δόξαν, ἀείμνηστον τήνδε τιθεῖσα χάριν."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Érotiques ou funéraires?...",
+      "slug": "erotiques-ou-funeraires",
+      "imgUrl": "/static/img/home/meleagre-in-love.png",
+      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "epigrams": [
+        {
+          "id": 1,
+          "title": "AP 12.71 Callimaque",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Cléonicos de Thessalie, mon pauvre ! Par le soleil brûlant, je ne t’ai pas reconnu. Malheureux, où étais-tu ?<br>Tu n’as plus que les os et les cheveux. Est-ce que c’est ma malchance qui te tient, as-tu rencontré un pénible destin ?<br>Je le savais ; Euxithéos t’a ravi, car toi aussi tu es allé à ce beau garçon, pauvre fou, et tu l’a regardé de tes deux yeux."
+            },
+            {
+              "lang": "greek",
+              "content": "Θεσσαλικὲ Κλεόνικε τάλαν τάλαν, οὐ μὰ τὸν ὀξύν<br>ἥλιον, οὐκ ἔγνων· σχέτλιε, ποῦ γέγονας;<br>ὀστέα σοι καὶ μοῦνον ἔτι τρίχες· ἦ ῥά σε δαίμων<br>οὑμὸς ἔχει, χαλεπῇ δ' ἤντεο θευμορίῃ;<br>ἔγνων· Εὐξίθεός σε συνήρπασε, καὶ σὺ γὰρ ἐλθών<br>τὸν καλόν, ὦ μόχθηρ', ἔβλεπες ἀμφοτέροις."
+            }
+          ],
+          "sounds": {
+            "greek": "/static/sounds/erotiques-ou-funeraires/1.mp3"
+          }
+        },
+        {
+          "id": 2,
+          "title": "AP 7.217 Asclépiade",
+          "texts": [
+            {
+              "lang": "fr",
+              "content": "Je (con)tiens Archéanassa, la courtisane de Colophon.<br>Sur ses rides même siège [siégeait ?] Éros.<br>Ô vous amants qui avez cueilli la fleur fraîche de sa jeunesse, les premiers frappés, à travers quel bûcher êtes-vous passés!"
+            },
+            {
+              "lang": "greek",
+              "content": "Ἀρχεάνασσαν ἔχω, τὰν ἐκ Κολοφῶνος ἑταίραν,<br>ἇς καὶ ἐπὶ ῥυτίδων ὁ γλυκὺς ἕζετ' Ἔρως.<br>ἆ νέον ἥβης ἄνθος ἀποδρέψαντες ἐρασταὶ<br>πρωτόβολοι, δι' ὅσης ἤλθετε πυρκαϊῆς."
             }
           ]
         }

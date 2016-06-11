@@ -97,6 +97,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
   .text-container
     display: inline-block
+    width: 88%
 
     .text-theme,
     .text-title
