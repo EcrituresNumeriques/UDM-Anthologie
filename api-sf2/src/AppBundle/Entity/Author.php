@@ -126,13 +126,7 @@ class Author
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      */
     private $ownerGroup;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    private $ownerUser;
-
+    
     /**
      * @ORM\ManyToMany(targetEntity="Images")
      * @ORM\JoinTable(name="authors_images",
