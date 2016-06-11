@@ -17,4 +17,10 @@ class Group extends BaseGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    private $name;
+    private $members;
+    private $owner;
+
+
 }
