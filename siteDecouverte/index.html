@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <!-- meta tags -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Site Découverte</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="/static/img/favicon.ico">
+
+    <!-- Raleway font -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,400,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   </head>
+
   <body>
     <app></app>
-    <!-- built files will be auto injected -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type='text/javascript' src='/static/js/jquery.mousewheel.min.js'></script>
+    <script>
+      $(function() {
+        $('body').on('mousewheel', '.scroll', function(event, chg) {
+            this.scrollLeft -= (chg * 100);
+            event.preventDefault();
+        });
+      });
+     </script>
   </body>
+
 </html>
