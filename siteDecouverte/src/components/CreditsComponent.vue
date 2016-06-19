@@ -9,15 +9,26 @@
       </div>
     </div>
     <div class="row content-container">
-      <div class="col-md-3 col-md-offset-1">
+      <div class="col-md-4 col-md-offset-1">
         <div class="desc-container">
           <h3>Un projet collaboratif</h3>
-          <q><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae mi venenatis, tempus erat non, scelerisque odio. Morbi ultricies felis ut quam pretium, at sodales lacus posuere. Aenean feugiat tincidunt magna id lacinia. Morbi consequat, magna in dapibus porttitor, augue metus pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae mi venenatis, tempus erat non, scelerisque odio. Morbi ultricies felis ut quam pretium, at sodales lacus posuere. Aenean feugiat tincidunt magna id lacinia. Morbi consequat, magna in dapibus porttitor, augue metus pulvinar.</p></q>
+          <q>
+            L’Anthologie Palatine est un recueil byzantin d’épigrammes grecques dont l’ancêtre remonte à l’époque hellénistique (323-30 av. J.-C). Le manuscrit de l’Anthologie (le Codex Palatinus 23) a été retrouvé en 1606 par Claude Saumaise à Heidelberg. Ces poèmes ont dès lors exercé une influence majeure sur la littérature de la Renaissance jusqu’à aujourd’hui. Plus de détails sur Wikipedia.
+            Le manuscrit est aujourd’hui conservé à la bibliothèque de l’université d’Heidelberg, où il a été numérisé et rendu disponible dans la collection numérique de la bibliothèque.
+            Le texte grec de l’Anthologie est disponible sur le site du projet Perseus – superbe projet de numérisation hébergé par la Tufts University, dirigé par Gregory Crane. C’est là que nous l’avons pris. On peut consulter la traduction anglaise de W.R. Paton, disponible sur <a href="https://archive.org/" target="_blank">archive.org</a>.
+            Notre site propose d’ouvrir un petit chantier de traduction de l’anthologie en Français - et en d’autres langues - auquel vous êtes invités à participer.
+          </q>
         </div>
       </div>
-      <div class="col-md-6 col-md-offset-2">
+      <div class="col-md-6 col-md-offset-1">
         <div class="team-container">
           <h4><span class="bg"></span>Notre équipe <sup>V</sup></h4>
+          <ul>
+            <li>Marcello Vitali-Rosati : Professeur à l’Univeristé de Montréal</li>
+            <li>Elsa Bouchard : Professeure à l’Univeristé de Montréal</li>
+            <li>Arthur Juchereau</li>
+            <li>Servanne Monjour</li>
+          </ul>
           <ul>
             <li>Miléna Tarrière : Chef de Projet</li>
             <li>Nahel Moussi : UX/UI Designer</li>
@@ -120,8 +131,9 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
   ul
     list-style: none
-    padding-left: 20px
+    padding: 0 20px
     margin-top: 30px
+    display: inline-block
 
     li
       font-size: 12px

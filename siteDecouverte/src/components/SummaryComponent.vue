@@ -13,7 +13,11 @@
                 <nav class="navbar navbar-default">
                     <ul class="nav">
                         <li v-for="epigram in data.epigrams">
-                          <a v-link="{ name: 'theme', params: { theme: data.slug, themeId: data.id, id: epigram.id }}">{{ epigram.title }}</a>
+                          <a
+                            v-link="{ name: 'theme', params: { theme: data.slug, themeId: data.id, id: epigram.id }}"
+                          >
+                            {{ epigram.title }}
+                          </a>
                         </li>
                     </ul>
                 </nav>

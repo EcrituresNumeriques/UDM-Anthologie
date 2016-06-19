@@ -54,6 +54,7 @@ $hover: .2s all ease-out
 
 .discover-nav
   margin-top: 150px
+  width: 50%
 
 .nav>li>a
   display: flex
