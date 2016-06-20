@@ -15,14 +15,23 @@ security:
             security: false
 
         main:
+            pattern: ^/
             anonymous: ~
 
         oauth_token:                                   # Everyone can access the access token URL.
             pattern: ^/oauth/v2/token
             security: false
 
+
         api:
             pattern: ^/api/v1                          # All URLs are protected
             fos_oauth: true                            # OAuth2 protected resource
             stateless: true                            # Do no set session cookies
             anonymous: false                           # Anonymous access is not allowed
+
+        admin:
+            pattern: ^/admin
+            http_basic: ~
+
+    access_control:
+            - { path: ^/admin, roles: ROLE_USER }

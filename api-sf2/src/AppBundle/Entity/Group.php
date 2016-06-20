@@ -18,9 +18,4 @@ class Group extends BaseGroup
      */
     protected $id;
 
-    private $name;
-    private $members;
-    private $owner;
-
-
 }

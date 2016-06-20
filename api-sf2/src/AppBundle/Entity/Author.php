@@ -9,8 +9,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Author
  *
  * @ORM\Table(name="authors")
- * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Author
 {
@@ -90,6 +90,11 @@ class Author
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $deletedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="City")

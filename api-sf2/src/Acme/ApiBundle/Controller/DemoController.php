@@ -14,8 +14,21 @@ class DemoController extends FOSRestController
         return $this->handleView($view);
     }
 
-    public function getDemo2Action()
+    public function getDemoEntityAction()
     {
-        return $this->get('security.token_storage')->getToken()->getUser();
+        $eras = $this->get('doctrine')
+            ->getRepository('AppBundle:Era')
+            ->findAll()
+        ;
+
+        $view = $this->view($eras);
+        return  $this->handleView($view);
+
     }
+
+    public function getDemoTranslationAction()
+    {
+
+    }
+
 }

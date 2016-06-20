@@ -1,3 +1,4 @@
 acme_api_demo:
     type: rest
     resource: Acme\ApiBundle\Controller\DemoController
+    prefix: /api/v1

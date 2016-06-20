@@ -4,6 +4,7 @@ namespace Acme\ApiBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\Client as BaseClient;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\User;
 
 /**
  * @ORM\Table("oauth2_clients")
@@ -18,8 +19,16 @@ class Client extends BaseClient
      */
     protected $id;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", inversedBy="client")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
     public function __construct()
     {
         parent::__construct();
     }
+
+
 }

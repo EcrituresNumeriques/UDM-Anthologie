@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@AcmeApiBundle/Resources/config/services.yml" }
+    - { resource: "@AcmeBackEndBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -46,40 +47,11 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
-        mappings:
-            gedmo_translatable:
-                type: annotation
-                prefix: Gedmo\Translatable\Entity
-                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-                alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
-                is_bundle: false
-            gedmo_translator:
-                type: annotation
-                prefix: Gedmo\Translator\Entity
-                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
-                alias: GedmoTranslator # (optional) it will default to the name set for the mapping
-                is_bundle: false
-            gedmo_loggable:
-                type: annotation
-                prefix: Gedmo\Loggable\Entity
-                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-                alias: GedmoLoggable # (optional) it will default to the name set for the mappingmapping
-                is_bundle: false
-        filters:
-            softdeleteable:
-                enabled: true
-                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -98,11 +70,12 @@ fos_rest:
         default_format: json                            # All responses should be JSON formated
         include_format: false                           # We do not include format in request, so that all responses
                                                         # will eventually be JSON formated
-
 fos_user:
     db_driver: orm
     firewall_name: api                                  #Required byFOSUserBundle
     user_class: AppBundle\Entity\User
+    group:
+        group_class: AppBundle\Entity\Group
 
 fos_oauth_server:
     db_driver:           orm
@@ -113,8 +86,8 @@ fos_oauth_server:
     service:
         user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
 
-stof_doctrine_extensions:
-    default_locale: en_EN
-    orm:
-        default:
-            timestampable: true
+#stof_doctrine_extensions:
+#    default_locale: en_EN
+#    orm:
+#        default:
+#            timestampable: true
