@@ -5,7 +5,7 @@
       "name": "Méléagre in love",
       "slug": "meleagre-in-love",
       "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "summaryImgUrl": "/static/img/summary/meleagre-in-love.png",
       "epigrams": [
         {
           "id": 1,
@@ -175,7 +175,7 @@
       "name": "Les serments trahis",
       "slug": "les-serments-trahis",
       "imgUrl": "/static/img/home/les-serments-trahis.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "summaryImgUrl": "/static/img/summary/les-serments-trahis.png",
       "epigrams": [
         {
           "id": 1,
@@ -365,8 +365,8 @@
       "id": "3",
       "name": "Les lampes sont des témoins",
       "slug": "les-lampes-sont-des-temoins",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/les-lampes-sont-des-temoins.png",
+      "summaryImgUrl": "/static/img/summary/les-lampes-sont-des-temoins.png",
       "epigrams": [
         {
           "id": 1,
@@ -510,8 +510,8 @@
       "id": "4",
       "name": "Le Banquet",
       "slug": "le-banquet",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/le-banquet.png",
+      "summaryImgUrl": "/static/img/summary/le-banquet.png",
       "epigrams": [
         {
           "id": 1,
@@ -564,8 +564,8 @@
       "id": "5",
       "name": "La vieillesse",
       "slug": "la-vieillesse",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/la-vieillesse.png",
+      "summaryImgUrl": "/static/img/summary/la-vieillesse.png",
       "epigrams": [
         {
           "id": 1,
@@ -612,8 +612,8 @@
       "id": "6",
       "name": "Amour et fuite",
       "slug": "amour-et-fuite",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/amour-et-fuite.png",
+      "summaryImgUrl": "/static/img/summary/amour-et-fuite.png",
       "epigrams": [
         {
           "id": 1,
@@ -705,8 +705,8 @@
       "id": "7",
       "name": "Ne me fais pas dormir dehors!",
       "slug": "ne-me-fais-pas-dormir-dehors",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/ne-me-fais-pas-dormir-dehors.png",
+      "summaryImgUrl": "/static/img/summary/ne-me-fais-pas-dormir-dehors.png",
       "epigrams": [
         {
           "id": 1,
@@ -753,8 +753,8 @@
       "id": "8",
       "name": "Épitaphes",
       "slug": "epitaphes",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/epitaphes.png",
+      "summaryImgUrl": "/static/img/summary/epitaphes.png",
       "epigrams": [
         {
           "id": 1,
@@ -810,8 +810,8 @@
       "id": "9",
       "name": "Offrandes",
       "slug": "offrandes",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/offrandes.png",
+      "summaryImgUrl": "/static/img/summary/offrandes.png",
       "epigrams": [
         {
           "id": 1,
@@ -847,8 +847,8 @@
       "id": "10",
       "name": "Érotiques ou funéraires?...",
       "slug": "erotiques-ou-funeraires",
-      "imgUrl": "/static/img/home/meleagre-in-love.png",
-      "summaryImgUrl": "/static/img/summary/small-img.png",
+      "imgUrl": "/static/img/home/erotiques-ou-funeraires.png",
+      "summaryImgUrl": "/static/img/summary/erotiques-ou-funeraires.png",
       "epigrams": [
         {
           "id": 1,
