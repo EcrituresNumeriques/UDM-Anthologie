@@ -31,12 +31,7 @@ class User extends BaseUser
      * )
      */
     protected $groups;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Acme\ApiBundle\Entity\Client", mappedBy="user")
-     */
-    protected $client;
-
+    
     public function __construct() {
         parent::__construct();
     }

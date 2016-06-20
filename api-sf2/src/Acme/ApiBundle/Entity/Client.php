@@ -19,12 +19,6 @@ class Client extends BaseClient
      */
     protected $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", inversedBy="client")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    protected $user;
-
     public function __construct()
     {
         parent::__construct();

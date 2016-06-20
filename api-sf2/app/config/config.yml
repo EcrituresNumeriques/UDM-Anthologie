@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@AcmeApiBundle/Resources/config/services.yml" }
     - { resource: "@AcmeBackEndBundle/Resources/config/services.yml" }
+    - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -85,9 +86,3 @@ fos_oauth_server:
     auth_code_class:     Acme\ApiBundle\Entity\AuthCode
     service:
         user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
-
-#stof_doctrine_extensions:
-#    default_locale: en_EN
-#    orm:
-#        default:
-#            timestampable: true
