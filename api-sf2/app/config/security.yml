@@ -14,10 +14,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            pattern: ^/
-            anonymous: ~
-
         oauth_token:                                   # Everyone can access the access token URL.
             pattern: ^/oauth/v2/token
             security: false
@@ -31,6 +27,10 @@ security:
         admin:
             pattern: ^/admin
             http_basic: ~
+
+        main:
+            pattern: ^/
+            anonymous: ~
 
     access_control:
             - { path: ^/admin, roles: ROLE_USER }
