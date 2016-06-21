@@ -21,4 +21,9 @@ class Author
      * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $period;
 }
