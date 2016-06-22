@@ -1,5 +1,9 @@
 import Vue from 'vue'
 
-const host = 'localhost:8080/static/'
+const hostLocal = 'localhost:8080/static/'
 
-exports.dataDiscover = Vue.resource(host + 'mock/discover.json')
+exports.dataDiscover = Vue.resource(hostLocal + 'mock/discover.json')
+
+// const host = 'anthologie.raphaelaupee.fr/api/v1/demo'
+//
+// exports.hostApi = Vue.resource(host)

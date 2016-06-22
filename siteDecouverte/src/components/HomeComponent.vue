@@ -24,6 +24,16 @@ import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'
 
 export default {
+//  http: {
+//    root: '/',
+//    headers: {
+//      client_id: '3_2cikyz2e58sg4084gckkokcow0sgsgc080wwooc8ckoc8840o4',
+//      client_secret: '3xf5jg4tz1a8wg0o80os0wcgcckwkk4scws84go84w0w04ogg8',
+//      grant_type: 'password',
+//      username: 'front',
+//      password: 'owiowi'
+//    }
+//  },
   components: {
     MainNav,
     DiscoverNav
@@ -36,6 +46,10 @@ export default {
   },
   ready: function () {
     this.getCurrentThemeImg()
+//    return api.hostApi.get().then(function (response) {
+// //      self.$set('data', response.data.themes[dataId - 1].imgUrl)
+//      console.log('success: ' + response)
+//    }, function (response) { console.log('error: ' + response.status) })
   },
   methods: {
     getCurrentThemeImg: function () {
@@ -52,7 +66,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all linear
+$hover: .5s all linear
 
 .home
   height: 100%

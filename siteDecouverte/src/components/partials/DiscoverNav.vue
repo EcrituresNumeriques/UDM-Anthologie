@@ -2,8 +2,17 @@
     <div class="discover-nav">
         <nav class="navbar navbar-default">
             <ul class="nav">
-                <li class="discover-list" v-for="theme in data.themes" v-if="theme.epigrams">
-                  <a data-id="{{ theme.id }}" v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}">
+                <li
+                  class="discover-list"
+                  v-for="theme in data.themes"
+                  v-if="theme.epigrams"
+                >
+                  <a
+                    @mouseover="addClass"
+                    data-id="{{ theme.id }}"
+                    v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}"
+                    :class="{ 'active': $index === 0 }"
+                  >
                     <span class="dash"></span>
                     {{ theme.name }}
                     <sup>{{ theme.id | romanize }}</sup>
@@ -17,6 +26,8 @@
 <script>
 /* global api */
 import Vue from 'vue'
+
+import $ from 'jquery'
 
 Vue.filter('romanize', function (num) {
   if (!+num) { return false }
@@ -43,18 +54,28 @@ export default {
     var self = this
     return api.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
+      console.log($('li.discover-list:first-child'))
     }, function (response) { console.log(response.status) })
+  },
+  methods: {
+    addClass: function (e) {
+      $(e.target).addClass('active')
+      $(e.target).parent().siblings().children().removeClass('active')
+    }
   }
 }
-
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all ease-out
+$hover: .5s all ease-out
+
+.tamere
+  color: blue
 
 .discover-nav
   margin-top: 150px
   width: 50%
+  padding-left: 20px
 
 .nav>li>a
   display: flex
@@ -63,7 +84,7 @@ ul
   li
     a
       font-size: 17px
-      color: rgba(44, 44, 44, 0.5)
+      color: #e0e0e0
       align-items: center
       transition: $hover
       padding: 5px 15px 5px 0
@@ -77,12 +98,10 @@ ul
       sup
         font-size: 9px
 
-      &:hover,
       &:focus,
-      &.v-link-active
-        opacity: 1
+      &.active
         color: #2c2c2c
-        background: none;
+        background: none
 
         .dash
           width: 20px

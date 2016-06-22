@@ -161,7 +161,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all linear
+$hover: .5s all linear
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 .characters

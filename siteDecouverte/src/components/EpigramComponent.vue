@@ -26,13 +26,13 @@
                   >
                       <p @click="showPopin">
                         Image du manuscrit
-                        <span class="border-bottom"></span>
                       </p>
                   </div>
               </div>
           </div>
           <div
             tabindex="0"
+            @click="hidePopin"
             @keyup.esc="hidePopin"
             v-if="data.themes[theme].epigrams[epigram].imageUrl"
             class="manuscript-popin"
@@ -163,7 +163,7 @@ $(document).ready(function () {
 
 <style lang="sass">
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
-$hover: .2s all ease-out
+$hover: .5s all ease-out
 
 .epigram
   width: 100%
@@ -178,27 +178,38 @@ $hover: .2s all ease-out
 .mute
   display: inline-block
   vertical-align: top
-  margin-top: 72px
-  margin-right: 15px
+  margin-top: 64px
+  margin-right: 4px
 
   span
     color: #2c2c2c
-    font-size: 16px
+    font-size: 20px
     cursor: pointer
 
 .border-bottom
   width: 100%
   height: 2px
-  background: #2c2c2c
+  background: #222222
   display: inline-block
   vertical-align: top
+
+.greek-translation,
+.notes,
+.characters
+  p
+    span.glyphicon
+      transition: $hover
+
+    &:hover
+      span.glyphicon-chevron-right
+        transform: translateX(5px)
 
 .notes,
 .characters
   p
     font-style: italic
-    font-weight: 700
-    font-size: 14px
+    font-weight: 600
+    font-size: 16px
     color: #727272
     cursor: pointer
     display: inline-block
@@ -309,6 +320,40 @@ $hover: .2s all ease-out
    font-weight: 600
    display: inline-block
    cursor: pointer
+   position: relative
+   padding-bottom: 2px
+
+   &:before
+     content: ''
+     display: block
+     position: absolute
+     left: 0
+     bottom: 0
+     height: 2px
+     width: 100%
+     transition: width 0s ease
+
+   &:after
+     content: ''
+     display: block
+     position: absolute
+     right: 0
+     bottom: 0
+     height: 2px
+     width: 100%
+     background: #2C2C2C
+     transition: width .5s ease
+
+   &:hover
+     &:before
+       width: 0%
+       background: #2C2C2C
+       transition: width .5s ease
+
+     &:after
+       width: 0%
+       background: transparent
+       transition: width 0s ease
 
 .manuscript-popin
   position: absolute
@@ -317,11 +362,11 @@ $hover: .2s all ease-out
   top: 0
   left: 0
   z-index: 30
-  display: flex
   align-items: center
   justify-content: center
   background: rgba(0, 0, 0, .5)
   display: none
+  cursor: pointer
 
   .popin-cross-container
     position: absolute

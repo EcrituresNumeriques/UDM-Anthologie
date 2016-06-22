@@ -109,7 +109,7 @@ export default {
     margin-left: -35px
 
     .mute
-      margin-top: 20px
+      margin-top: -10px
 
     .dropdown-content
       p
@@ -120,9 +120,9 @@ export default {
         padding-bottom: 10px
         margin: 0
         display: inline-block
-        word-wrap: break-word;
-        width: 90%;
-        height: 228px;
+        word-wrap: break-word
+        width: 89%
+        height: 228px
         overflow-y: auto
         scrollbar-face-color: #2c2c2c
         scrollbar-track-color: #fff

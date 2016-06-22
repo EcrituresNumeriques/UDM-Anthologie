@@ -137,81 +137,83 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$hover: .5s all ease-out
+
 .player
   width: 45px
   text-align: center
   margin-right: 50px
 
-  .control
-    cursor: pointer
-    width: 100%
-    height: 45px
-    border-radius: 50%
-    display: flex
-    border: 1px solid #2c2c2c
-    justify-content: center
-    align-items: center
+.control
+  cursor: pointer
+  width: 100%
+  height: 45px
+  border-radius: 50%
+  display: flex
+  border: 1px solid #2c2c2c
+  justify-content: center
+  align-items: center
 
-    .play-button
+  .play-button
+    height: 10px
+    width: 10px
+    display: inline-block
+    overflow: hidden
+    position: relative
+
+    .left,
+    .right
       height: 10px
-      width: 10px
-      display: inline-block
-      overflow: hidden
-      position: relative
+      background: #2c2c2c
+      transition: all 0.25s ease
+      width: 3px
 
+    .left
+      float: left
+      overflow: hidden
+
+    .right
+      float: right
+
+    .triangle-1
+      transform: translate(0, -100%)
+
+    .triangle-2
+      transform: translate(0, 100%)
+
+    .triangle-1,
+    .triangle-2
+      position: absolute
+      top: 0
+      right: 0
+      background: transparent
+      width: 0
+      height: 0
+      border-right: 10px solid #fff
+      border-top: 5px solid #2c2c2c
+      border-bottom: 5px solid #2c2c2c
+      transition: transform 0.25s ease
+
+    &.paused
       .left,
       .right
-        height: 10px
-        background: #2c2c2c
-        transition: all 0.25s ease
-        width: 3px
-
-      .left
-        float: left
-        overflow: hidden
-
-      .right
-        float: right
+        width: 50%
 
       .triangle-1
-        transform: translate(0, -100%)
+        transform: translate(0, -50%)
 
       .triangle-2
-        transform: translate(0, 100%)
+        transform: translate(0, 50%)
 
-      .triangle-1,
-      .triangle-2
-        position: absolute
-        top: 0
-        right: 0
-        background: transparent
-        width: 0
-        height: 0
-        border-right: 10px solid #fff
-        border-top: 5px solid #2c2c2c
-        border-bottom: 5px solid #2c2c2c
-        transition: transform 0.25s ease
+.progressbar
+  height: 300px
+  width: 1px
+  display: inline-block
+  background: rgba(44, 44, 44, 0.2)
 
-      &.paused
-        .left,
-        .right
-          width: 50%
-
-        .triangle-1
-          transform: translate(0, -50%)
-
-        .triangle-2
-          transform: translate(0, 50%)
-
-  .progressbar
-    height: 300px
-    width: 1px
+  .progress
     display: inline-block
-    background: rgba(44, 44, 44, 0.2)
-
-    .progress
-      display: inline-block
-      width: 100%
-      height: 0
-      background: #2c2c2c
+    width: 100%
+    height: 0
+    background: #2c2c2c
 </style>

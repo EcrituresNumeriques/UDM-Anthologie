@@ -1,8 +1,5 @@
 <template>
   <div class="search-partial">
-    <div @click="closeSearchPartial" class="cross-container">
-      <div class="cross"></div>
-    </div>
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
         <div class="search-list">
@@ -16,7 +13,10 @@
               </a>
             </li>
             <li>
-              <a @click="closeSearchPartial" v-link="{ name: 'search', params: { type: 'theme', name: 'meleagre-in-love' }}">
+              <a
+                @click="closeSearchPartial"
+                v-link="{ name: 'search', params: { type: 'theme', name: 'meleagre-in-love' }}"
+              >
                 <span class="dash"></span>
                 Méléagre in love
                 <sup>II</sup>
@@ -84,7 +84,7 @@ import $ from 'jquery'
 export default {
   methods: {
     closeSearchPartial: function () {
-      $('.search-partial').removeClass('active')
+      $('.search-partial').fadeOut(1000)
     }
   }
 }
@@ -92,22 +92,17 @@ export default {
 
 <style lang="sass" scoped>
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
-$hover: .2s all ease-out
+$hover: .5s all ease-out
 
 .search-partial
   position: absolute
   top: 0
   left: 0
   background: #fff
-  display: flex
   flex-direction: column
   justify-content: flex-end
-  transition: $hover
-  transform: translateY(-100%)
   z-index: 10
-
-  &.active
-   transform: translateY(0)
+  display: none
 
   .cross-container
     position: absolute
@@ -166,6 +161,11 @@ $hover: .2s all ease-out
         sup
           font-size: 9px
 
+        .type-text-bg
+          opacity: 0
+          left: 12%
+          transition: $hover
+
         &:hover,
         &:focus
           opacity: 1
@@ -179,5 +179,4 @@ $hover: .2s all ease-out
 
           .type-text-bg
             opacity: 1
-            left: 12%
 </style>

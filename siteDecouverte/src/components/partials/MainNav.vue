@@ -3,26 +3,68 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header col-md-2">
-            <a class="navbar-brand" v-link="{ path : '/accueil' }">
+            <a
+              @click="closeSearchPartial"
+              class="navbar-brand"
+              v-link="{ path : '/accueil' }"
+            >
               <h1>Antho<span>logie</span></h1>
             </a>
           </div>
           <div class="navbar-link col-md-2">
-            <a v-link="{ name: 'credits' }">Crédits</span></a>
+            <a
+              @click="closeSearchPartial"
+              v-link="{ name: 'credits' }"
+            >
+              Crédits<span class="dash"></span>
+            </a>
           </div>
           <div class="navbar-list col-md-2">
             <p>Listes :</p>
             <ul>
-              <li><a v-link="{ name: 'authors' }">Auteurs</a></li>
-              <li><a v-link="{ name: 'keywords' }">Mots clès</a></li>
-              <li><a v-link="{ name: 'characters' }">Personnages</a></li>
+              <li>
+                <a
+                  @click="closeSearchPartial"
+                  v-link="{ name: 'authors' }"
+                >
+                  Auteurs<span class="dash"></span>
+                </a>
+              </li>
+              <li>
+                <a
+                  @click="closeSearchPartial"
+                  v-link="{ name: 'keywords' }"
+                >
+                  Mots clès<span class="dash"></span>
+                </a>
+              </li>
+              <li>
+                <a
+                  @click="closeSearchPartial"
+                  v-link="{ name: 'characters' }"
+                >
+                  Personnages<span class="dash"></span>
+                </a>
+              </li>
             </ul>
           </div>
           <form class="navbar-form navbar-left col-md-4" role="search">
             <div class="form-group search-container col-md-12">
-              <input @focus="onSearchFocus" type="search" class="form-control" placeholder="Recherche">
+              <input
+                @focus="onSearchFocus"
+                type="search"
+                class="form-control"
+                placeholder="Recherche"
+              >
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
-              <button @click="onResetClick" type="reset" class="reset"><span class="reset-cross"></span></button>
+              <button
+                @click="closeSearchPartial"
+                @click="onResetClick"
+                type="reset"
+                class="reset"
+              >
+                <span class="reset-cross"></span>
+              </button>
             </div>
           </form>
         </div>
@@ -36,7 +78,10 @@ import $ from 'jquery'
 export default {
   methods: {
     onSearchFocus: function () {
-      $('.search-partial').addClass('active')
+      $('.search-partial').fadeIn(1000).css('display', 'flex')
+    },
+    closeSearchPartial: function () {
+      $('.search-partial').fadeOut(1000)
     },
     onResetClick: function (e) {
       e.preventDefault()
@@ -49,7 +94,7 @@ export default {
 <style lang="sass" scoped>
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $nav-color: #2c2c2c
-$hover: .2s all linear
+$hover: .5s all linear
 
 .main-nav
   font-family: $raleway
@@ -93,30 +138,63 @@ $hover: .2s all linear
   a
     font-size: 12px
     font-weight: 400
-    padding: 5px 0
     color: $nav-color
     text-decoration: none
     display: inline-block
     opacity: .3
     transition: $hover
 
-    &:after
-      content: ""
-      width: 0
-      height: 1px
-      margin: 0 auto
-      display: block
-      vertical-align: top
-      background: #2c2c2c
-      transition: $hover
-
     &:hover,
-    &:focus,
     &.v-link-active
       opacity: 1
 
+    &.v-link-active
+      .dash
+        background: #000
+
+    .dash
+      width: 100%
+      height: 1px
+      display: block
+      position: relative
+      background: none
+      vertical-align: top
+
+      &:before
+        content: ''
+        display: block
+        position: absolute
+        left: 0
+        bottom: 0
+        height: 1px
+        width: 0
+        transition: width 0s ease, background .5s ease
+
       &:after
-        width: 100%
+        content: ''
+        display: block
+        position: absolute
+        right: 0
+        bottom: 0
+        height: 1px
+        width: 0
+        background: #2c2c2c
+        transition: width .5s ease
+
+    &:hover
+      text-decoration: none
+      color: #000000
+
+      .dash
+        &:before
+          width: 100%
+          background: #2c2c2c
+          transition: width .5s ease
+
+        &:after
+          width: 100%
+          background: transparent
+          transition: all 0s ease
 
 .navbar-link
   float: left
@@ -128,10 +206,10 @@ $hover: .2s all linear
 
 .navbar-list
   p
-    font-weight: 700
-    font-size: 10px
+    font-weight: 600
+    font-size: 12px
     color: $nav-color
-    margin-bottom: 15px
+    margin-bottom: 5px
     opacity: .3
 
   ul
@@ -207,7 +285,7 @@ form
       outline: none
 
     .reset-cross
-      width: 7px
+      width: 12px
       height: 1px
       background: #2c2c2c
       display: inline-block
@@ -216,7 +294,7 @@ form
 
       &:after
         content: ""
-        width: 7px
+        width: 12px
         height: 1px
         background: #2c2c2c
         transform: rotate(90deg)

@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all ease-out
+$hover: .5s all ease-out
 
 .index
   position: relative

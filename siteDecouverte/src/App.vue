@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="sass">
-$hover: .2s all ease-out
+$hover: .5s all ease-out
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 .fade-transition
@@ -133,16 +133,20 @@ span.bg
   left: 50%
   transform: translate3d(-50%, -50%, 0)
   font-family: $raleway
-  width: 100%
   text-align: center
   opacity: .04
   z-index: -1
+  width: 100%
 
   h1
     text-transform: uppercase
     font-size: 100px
     font-weight: 800
-    letter-spacing: 0.12em
+    max-width: 95%
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+    margin: 0 auto
 
 .page-subtitle-container
   display: flex
@@ -269,9 +273,10 @@ span.bg
   text-transform: uppercase
   font-family: $raleway
   font-size: 36px
-  font-weight: 800
+  font-weight: 900
   color: rgba(44, 44, 44, .08)
   opacity: 0
   transition: $hover
   z-index: -1
+  letter-spacing: 2px
 </style>

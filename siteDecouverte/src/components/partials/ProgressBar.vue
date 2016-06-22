@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all linear
+$hover: .5s all linear
 
 .scroll-progress-bar
   position: fixed

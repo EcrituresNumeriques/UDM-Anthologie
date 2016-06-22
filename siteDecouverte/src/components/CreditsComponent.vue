@@ -24,17 +24,17 @@
         <div class="team-container">
           <h4><span class="bg"></span>Notre équipe <sup>V</sup></h4>
           <ul>
-            <li>Marcello Vitali-Rosati : Professeur à l’Univeristé de Montréal</li>
-            <li>Elsa Bouchard : Professeure à l’Univeristé de Montréal</li>
-            <li>Arthur Juchereau</li>
-            <li>Servanne Monjour</li>
-          </ul>
-          <ul>
             <li>Miléna Tarrière : Chef de Projet</li>
             <li>Nahel Moussi : UX/UI Designer</li>
             <li>Raphaël Aupée : Développeur Back</li>
             <li>Paul Chagnon : UX/UI Designer</li>
             <li>Valentin Crochemore : Développeur Front</li>
+          </ul>
+          <ul>
+            <li>Marcello Vitali-Rosati : Professeur à l’Univeristé de Montréal</li>
+            <li>Elsa Bouchard : Professeure à l’Univeristé de Montréal</li>
+            <li>Arthur Juchereau</li>
+            <li>Servanne Monjour</li>
           </ul>
         </div>
       </div>
@@ -53,16 +53,41 @@
 <script>
 import BackBtn from './partials/BackBtn'
 
+import $ from 'jquery'
+
 export default {
   components: {
     BackBtn
   },
-  name: 'credits'
+  name: 'credits',
+  ready: function () {
+    var count = $('.team-container ul li').length
+    var romanized = this.romanize(count)
+    console.log(romanized)
+
+    $('.team-container h4 sup').text(romanized)
+  },
+  methods: {
+    romanize: function (num) {
+      if (!+num) { return false }
+      var digits = String(+num).split('')
+      var key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
+        '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC',
+        '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
+      var roman
+      roman = ''
+      var i = 3
+      while (i--) {
+        roman = (key[+digits.pop() + (i * 10)] || '') + roman
+      }
+      return Array(+digits.join('') + 1).join('M') + roman
+    }
+  }
 }
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all linear
+$hover: .5s all linear
 $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
 .row
@@ -98,12 +123,10 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
     margin-top: 80px
     display: inline-block
     quotes: "\201C""\201D""\2018""\2019"
+    line-height: 1.5em
 
     &:before
-      font-size: 30px
-      margin-bottom: -15px
-      vertical-align: bottom
-      display: inline-block
+      top: -6px
 
     &:after
       content: no-close-quote
@@ -134,6 +157,7 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
     padding: 0 20px
     margin-top: 30px
     display: inline-block
+    vertical-align: top
 
     li
       font-size: 12px

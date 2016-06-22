@@ -48,6 +48,10 @@ export default {
   },
   ready: function () {
     this.getCurrentThemeId()
+    var self = this
+    return api.dataDiscover.get().then(function (response) {
+      self.$set('data', response.data.themes[0])
+    }, function (response) { console.log(response.status) })
   },
   methods: {
     getCurrentThemeId: function () {
@@ -64,7 +68,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .2s all ease-out
+$hover: .5s all ease-out
 
 .summary
   width: 100%

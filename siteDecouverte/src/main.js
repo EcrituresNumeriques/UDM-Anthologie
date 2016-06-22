@@ -29,6 +29,13 @@ global.api = require('./service/api.js')
 
 Vue.http.options.root = '/'
 
+// Vue.http.get('http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=3_2cikyz2e58sg4084gckkokcow0sgsgc080wwooc8ckoc8840o4&client_secret=3xf5jg4tz1a8wg0o80os0wcgcckwkk4scws84go84w0w04ogg8&grant_type=password&username=front&password=owiowi').then(function (response) {
+//   Vue.http.headers.common['Authorization'] = response.data.token_type + ' ' + response.data.access_token
+//   console.log('Authorization: ' + response.data.token_type + ' ' + response.data.access_token)
+// }, function (response) {
+//   console.log('global error: ' + response.status)
+// })
+
 // routing
 export var router = new Router({
   history: true

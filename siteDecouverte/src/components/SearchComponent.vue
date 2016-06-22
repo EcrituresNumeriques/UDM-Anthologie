@@ -1,6 +1,7 @@
 <template>
   <div class="search-component">
     <div class="row scroll">
+      <scroll-progress-bar></scroll-progress-bar>
       <div class="col-md-5 col-md-offset-1 left-column">
         <div class="search-content-container">
           <div class="search-title-container">
@@ -73,7 +74,12 @@
 </template>
 
 <script>
+import ScrollProgressBar from './partials/ProgressBar.vue'
+
 export default {
+  components: {
+    ScrollProgressBar
+  },
   name: 'search'
 }
 </script>
@@ -101,6 +107,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
         font-weight: 700
         text-transform: capitalize
         display: inline-block
+        letter-spacing: 1px
 
         span
           display: inline-table
@@ -114,7 +121,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
             vertical-align: top
 
         sup
-          font-size: 10px
+          font-size: 12px
           font-style: italic
           color: rgba(44, 44, 44, .5)
           vertical-align: super
@@ -131,6 +138,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
           opacity: 1
           font-style: normal
           font-size: 48px
+          padding-left: 10px
 
     .search-desc-container
       width: 300px
