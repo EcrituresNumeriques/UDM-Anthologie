@@ -106,7 +106,7 @@ nelmio_cors:
 knp_doctrine_behaviors:
     soft_deletable: true
     timestampable:  true
-    translatable:   true
+    translatable:   false
     blameable:      false
     geocodable:     ~
     loggable:       ~
