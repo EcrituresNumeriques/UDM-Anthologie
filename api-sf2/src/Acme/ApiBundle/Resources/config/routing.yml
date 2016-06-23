@@ -1,9 +1,0 @@
-acme_api_demo:
-    type: rest
-    resource: Acme\ApiBundle\Controller\DemoController
-    prefix: /api/v1
-
-acme_api_author:
-    type: rest
-    resource: Acme\ApiBundle\Controller\AuthorController
-    prefix: /api/v1

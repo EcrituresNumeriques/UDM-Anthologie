@@ -23,10 +23,9 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 
             new AppBundle\AppBundle(),
-            new Acme\ApiBundle\AcmeApiBundle(),
-            new Acme\BackEndBundle\AcmeBackEndBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

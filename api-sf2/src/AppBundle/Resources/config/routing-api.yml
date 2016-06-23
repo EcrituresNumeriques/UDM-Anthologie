@@ -1,0 +1,10 @@
+api_demo:
+    type: rest
+    resource: AppBundle\Controller\Api\DemoController
+    prefix: /v1
+
+api_lang:
+    type: rest
+    resource: AppBundle\Controller\Api\LangController
+    prefix: /v1
+    name_prefix: api_v1_
