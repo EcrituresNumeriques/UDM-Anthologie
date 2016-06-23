@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * TextsVocals
@@ -12,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class TextsVocals
 {
+    use ORMBehaviors\SoftDeletable\SoftDeletable,
+        ORMBehaviors\Timestampable\Timestampable
+    ;
     /**
      * @var integer
      *

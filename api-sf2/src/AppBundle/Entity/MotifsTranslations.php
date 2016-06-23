@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: karael
+ * Date: 23/06/2016
+ * Time: 22:44
+ */
 
 namespace AppBundle\Entity;
 
@@ -8,14 +14,13 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * KeywordsTranslation
+ * MotifsTranslations
  *
- * @ORM\Table(name="keywords_translations")
+ * @ORM\Table(name="motifs_translations")
  * @ORM\Entity
  */
-class KeywordsTranslations
+class MotifsTranslations
 {
-
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
     /**
@@ -42,16 +47,14 @@ class KeywordsTranslations
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="Keywords", inversedBy="keywordTranslations")
-     * @JoinColumn(name="keyword_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ManyToOne(targetEntity="AppBundle\Entity\Motifs", inversedBy="motifTranslations")
+     * @JoinColumn(name="motif_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $keyword;
+    private $motif;
 
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-
 }
-

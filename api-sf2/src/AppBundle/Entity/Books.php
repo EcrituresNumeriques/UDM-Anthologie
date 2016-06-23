@@ -15,9 +15,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class Books
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -32,9 +31,10 @@ class Books
      * @OneToMany(targetEntity="BooksTranslations", mappedBy="book")
      */
     private $bookTranslations;
-    
 
-    public function __construct() {
+
+    public function __construct ()
+    {
         $this->bookTranslations = new ArrayCollection();
     }
 

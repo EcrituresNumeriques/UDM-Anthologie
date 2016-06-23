@@ -4,6 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -15,9 +18,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class Cities
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -40,8 +42,19 @@ class Cities
      */
     private $cityTranslations;
 
-    public function __construct() {
+    /**
+     * @ManyToMany(targetEntity="Images")
+     * @JoinTable(name="cities_images_assoc",
+     *      joinColumns={@JoinColumn(name="city_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
+     *      )
+     */
+    private $images;
+
+    public function __construct ()
+    {
         $this->cityTranslations = new ArrayCollection();
+        $this->images           = new ArrayCollection();
     }
 }
 

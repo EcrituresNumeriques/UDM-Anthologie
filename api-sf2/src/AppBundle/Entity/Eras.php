@@ -17,9 +17,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 class Eras
 {
 
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -50,9 +49,10 @@ class Eras
     private $eraTranslations;
 
 
-    public function __construct() {
+    public function __construct ()
+    {
         $this->eraTranslations = new ArrayCollection();
-        $this->authors = new ArrayCollection();
+        $this->authors         = new ArrayCollection();
     }
 
 }

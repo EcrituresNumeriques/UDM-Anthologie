@@ -20,9 +20,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 class Entities
 {
 
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -83,7 +82,7 @@ class Entities
 
     /**
      * @ManyToMany(targetEntity="Manuscripts", inversedBy="entities")
-     * @JoinTable(name="manuscripts")
+     * @JoinTable(name="entities_manuscripts_assoc")
      */
     private $manuscripts;
 
@@ -111,14 +110,15 @@ class Entities
      */
     private $notes;
 
-    public function __construct() {
+    public function __construct ()
+    {
         $this->entityTranslations = new ArrayCollection();
-        $this->authors = new ArrayCollection();
-        $this->manuscripts = new ArrayCollection();
-        $this->keywords = new ArrayCollection();
-        $this->motifs = new ArrayCollection();
-        $this->scholies = new ArrayCollection();
-        $this->notes = new ArrayCollection();
+        $this->authors            = new ArrayCollection();
+        $this->manuscripts        = new ArrayCollection();
+        $this->keywords           = new ArrayCollection();
+        $this->motifs             = new ArrayCollection();
+        $this->scholies           = new ArrayCollection();
+        $this->notes              = new ArrayCollection();
     }
 
 }

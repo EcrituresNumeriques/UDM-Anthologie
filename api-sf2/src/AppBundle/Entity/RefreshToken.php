@@ -2,8 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\RefreshToken as BaseRefreshToken;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\OAuthServerBundle\Entity\RefreshToken as BaseRefreshToken;
 
 /**
  * @ORM\Table("oauth2_refresh_tokens")
@@ -28,4 +28,5 @@ class RefreshToken extends BaseRefreshToken
      * @ORM\ManyToOne(targetEntity="User")
      */
     protected $user;
+    
 }

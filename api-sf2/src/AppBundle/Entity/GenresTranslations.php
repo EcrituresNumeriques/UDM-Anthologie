@@ -15,9 +15,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class GenresTranslations
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var integer
      *

@@ -4,8 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -17,9 +15,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class KeywordsFamilies
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var integer
      *
@@ -40,9 +37,10 @@ class KeywordsFamilies
      * @OneToMany(targetEntity="AppBundle\Entity\Keywords", mappedBy="keywordFamily")
      */
     private $keywords;
-    
 
-    public function __construct() {
+
+    public function __construct ()
+    {
         $this->keywords = new ArrayCollection();
     }
 

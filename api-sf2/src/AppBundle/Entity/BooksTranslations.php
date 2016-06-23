@@ -15,9 +15,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class BooksTranslations
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -27,7 +26,7 @@ class BooksTranslations
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string
      *
@@ -46,7 +45,7 @@ class BooksTranslations
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-    
+
 
 }
 

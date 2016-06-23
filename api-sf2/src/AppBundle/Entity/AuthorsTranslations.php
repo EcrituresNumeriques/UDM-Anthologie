@@ -15,9 +15,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class AuthorsTranslations
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var integer
      *
@@ -46,7 +45,7 @@ class AuthorsTranslations
      * @JoinColumn(name="author_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $author;
-    
+
 
     /**
      * @ManyToOne(targetEntity="Languages")

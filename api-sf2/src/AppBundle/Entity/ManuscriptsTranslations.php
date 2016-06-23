@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * ManuscriptsTranslations
@@ -12,12 +15,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ManuscriptsTranslations
 {
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -35,7 +40,17 @@ class ManuscriptsTranslations
      */
     private $page;
 
+    /**
+     * @ManyToOne(targetEntity="AppBundle\Entity\Manuscripts", inversedBy="manuscriptTranslations")
+     * @JoinColumn(name="manuscript_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $manuscripts;
 
+    /**
+     * @ManyToOne(targetEntity="Languages")
+     * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $language;
 
 }
 

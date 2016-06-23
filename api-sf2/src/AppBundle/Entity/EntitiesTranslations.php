@@ -1,11 +1,11 @@
 <?php
 
 namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * EntitiesTranslations
@@ -15,9 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class EntitiesTranslations
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -36,10 +35,10 @@ class EntitiesTranslations
     private $textTranslated;
 
     /**
-     * @ManyToOne(targetEntity="Entities", inversedBy="entity")
+     * @ManyToOne(targetEntity="Entities", inversedBy="entityTranslations")
      * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $entityTranslations;
+    private $entity;
 
     /**
      * @ManyToOne(targetEntity="Languages")

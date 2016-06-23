@@ -2,9 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\Client as BaseClient;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\User;
+use FOS\OAuthServerBundle\Entity\Client as BaseClient;
 
 /**
  * @ORM\Table("oauth2_clients")
@@ -19,7 +18,7 @@ class Client extends BaseClient
      */
     protected $id;
 
-    public function __construct()
+    public function __construct ()
     {
         parent::__construct();
     }

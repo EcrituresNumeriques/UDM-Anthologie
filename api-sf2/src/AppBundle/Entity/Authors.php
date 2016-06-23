@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\DependencyInjection\Tests\A;
 
 /**
  * Authors
@@ -21,9 +22,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 class Authors
 {
 
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -113,12 +113,13 @@ class Authors
      */
     private $images;
 
-    public function __construct() {
+    public function __construct ()
+    {
         $this->authorTranslations = new ArrayCollection();
-        $this->entities = new ArrayCollection();
-        $this->images = new ArrayCollection();
+        $this->entities           = new ArrayCollection();
+        $this->images             = new ArrayCollection();
     }
-    
+
 
 }
 

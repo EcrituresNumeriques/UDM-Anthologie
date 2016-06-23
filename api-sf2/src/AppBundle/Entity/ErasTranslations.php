@@ -15,9 +15,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class ErasTranslations
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @var integer
@@ -52,7 +51,7 @@ class ErasTranslations
     /**
      * @ManyToOne(targetEntity="Eras", inversedBy="eraTranslations")
      * @JoinColumn(name="era_id", referencedColumnName="id")
-    */
+     */
     private $era;
 
     /**

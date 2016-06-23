@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * NotesTranslations
@@ -12,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class NotesTranslations
 {
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var string
      *
@@ -28,5 +33,16 @@ class NotesTranslations
      */
     private $id;
 
-}
+    /**
+     * @ManyToOne(targetEntity="Notes", inversedBy="noteTranslations")
+     * @JoinColumn(name="motif_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $motif;
 
+    /**
+     * @ManyToOne(targetEntity="Languages")
+     * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $language;
+
+}

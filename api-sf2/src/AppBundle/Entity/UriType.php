@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * UriType
@@ -12,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UriType
 {
+    use ORMBehaviors\SoftDeletable\SoftDeletable,
+        ORMBehaviors\Timestampable\Timestampable
+    ;
     /**
      * @var integer
      *
