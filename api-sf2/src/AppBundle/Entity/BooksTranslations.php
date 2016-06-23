@@ -47,5 +47,86 @@ class BooksTranslations
     private $language;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return BooksTranslations
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set book
+     *
+     * @param \AppBundle\Entity\Books $book
+     *
+     * @return BooksTranslations
+     */
+    public function setBook(\AppBundle\Entity\Books $book = null)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \AppBundle\Entity\Books
+     */
+    public function getBook()
+    {
+        return $this->book;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return BooksTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+}

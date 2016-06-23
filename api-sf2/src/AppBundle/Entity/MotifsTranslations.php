@@ -57,4 +57,110 @@ class MotifsTranslations
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return MotifsTranslations
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return MotifsTranslations
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set motif
+     *
+     * @param \AppBundle\Entity\Motifs $motif
+     *
+     * @return MotifsTranslations
+     */
+    public function setMotif(\AppBundle\Entity\Motifs $motif = null)
+    {
+        $this->motif = $motif;
+
+        return $this;
+    }
+
+    /**
+     * Get motif
+     *
+     * @return \AppBundle\Entity\Motifs
+     */
+    public function getMotif()
+    {
+        return $this->motif;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return MotifsTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 }

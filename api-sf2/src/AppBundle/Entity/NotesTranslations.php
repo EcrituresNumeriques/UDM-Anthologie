@@ -45,4 +45,86 @@ class NotesTranslations
      */
     private $language;
 
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     *
+     * @return NotesTranslations
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set motif
+     *
+     * @param \AppBundle\Entity\Notes $motif
+     *
+     * @return NotesTranslations
+     */
+    public function setMotif(\AppBundle\Entity\Notes $motif = null)
+    {
+        $this->motif = $motif;
+
+        return $this;
+    }
+
+    /**
+     * Get motif
+     *
+     * @return \AppBundle\Entity\Notes
+     */
+    public function getMotif()
+    {
+        return $this->motif;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return NotesTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 }

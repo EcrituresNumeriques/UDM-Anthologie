@@ -37,5 +37,48 @@ class Genres
         $this->genreTranslations = new ArrayCollection();
     }
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add genreTranslation
+     *
+     * @param \AppBundle\Entity\GenresTranslations $genreTranslation
+     *
+     * @return Genres
+     */
+    public function addGenreTranslation(\AppBundle\Entity\GenresTranslations $genreTranslation)
+    {
+        $this->genreTranslations[] = $genreTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Remove genreTranslation
+     *
+     * @param \AppBundle\Entity\GenresTranslations $genreTranslation
+     */
+    public function removeGenreTranslation(\AppBundle\Entity\GenresTranslations $genreTranslation)
+    {
+        $this->genreTranslations->removeElement($genreTranslation);
+    }
+
+    /**
+     * Get genreTranslations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGenreTranslations()
+    {
+        return $this->genreTranslations;
+    }
+}

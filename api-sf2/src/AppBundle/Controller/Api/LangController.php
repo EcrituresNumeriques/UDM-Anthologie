@@ -2,29 +2,30 @@
 
 namespace AppBundle\Controller\Api;
 
+use AppBundle\Entity\Languages;
 use Doctrine\ORM\EntityRepository;
-
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations\Post;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Put;
-use FOS\RestBundle\Controller\Annotations\Delete;
-
-use AppBundle\Entity\Lang;
-use AppBundle\Form\LangType;
 
 class LangController extends BaseApiController
 {
     /**
      *
-     * @Get("/lang/", name="")
+     * @Get("/lang/", name="get_one")
+     *
+     * @param Request                            $request
+     * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getLangAction(Request $request, ParamFetcherInterface $paramFetcher) {
-        return BaseApiController::listAction($request, $paramFetcher);
+    public function getLangAction (Request $request , ParamFetcher $paramFetcher)
+    {
+        return BaseApiController::listAction($request , $paramFetcher);
     }
 
     /**
@@ -32,9 +33,10 @@ class LangController extends BaseApiController
      * @Post("/lang/", name="post")
      *
      * @param Request $request
+     *
      * @return Response
      */
-    public function postLangAction(Request $request)
+    public function postLangAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
@@ -43,7 +45,7 @@ class LangController extends BaseApiController
      * @see BaseApiController::getRepository()
      * @return EntityRepository
      */
-    public function getRepository()
+    public function getRepository ()
     {
         return $this->getDoctrine()->getManager()->getRepository('AppBundle:Lang');
     }
@@ -52,18 +54,18 @@ class LangController extends BaseApiController
      * @see BaseApiController::getNewEntity()
      * @return Object
      */
-    public function getNewEntity()
+    public function getNewEntity ()
     {
-        return new Lang();
+        return new Languages();
     }
 
     /**
      * @see BaseApiController::getNewEntity()
      * @return Object
      */
-    public function getFormType()
+    public function getFormType ()
     {
-        return LangType::class;
+        return LanguageType::class;
     }
 
 }

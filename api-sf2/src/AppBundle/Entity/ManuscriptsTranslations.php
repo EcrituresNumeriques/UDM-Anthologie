@@ -52,5 +52,110 @@ class ManuscriptsTranslations
      */
     private $language;
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return ManuscriptsTranslations
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set page
+     *
+     * @param integer $page
+     *
+     * @return ManuscriptsTranslations
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
+     * Get page
+     *
+     * @return integer
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * Set manuscripts
+     *
+     * @param \AppBundle\Entity\Manuscripts $manuscripts
+     *
+     * @return ManuscriptsTranslations
+     */
+    public function setManuscripts(\AppBundle\Entity\Manuscripts $manuscripts = null)
+    {
+        $this->manuscripts = $manuscripts;
+
+        return $this;
+    }
+
+    /**
+     * Get manuscripts
+     *
+     * @return \AppBundle\Entity\Manuscripts
+     */
+    public function getManuscripts()
+    {
+        return $this->manuscripts;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return ManuscriptsTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+}

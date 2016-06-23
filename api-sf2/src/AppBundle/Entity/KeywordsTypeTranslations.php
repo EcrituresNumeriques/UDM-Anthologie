@@ -52,5 +52,110 @@ class KeywordsTypeTranslations
      */
     private $language;
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return KeywordsTypeTranslations
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return KeywordsTypeTranslations
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set keywordType
+     *
+     * @param \AppBundle\Entity\KeywordsType $keywordType
+     *
+     * @return KeywordsTypeTranslations
+     */
+    public function setKeywordType(\AppBundle\Entity\KeywordsType $keywordType = null)
+    {
+        $this->keywordType = $keywordType;
+
+        return $this;
+    }
+
+    /**
+     * Get keywordType
+     *
+     * @return \AppBundle\Entity\KeywordsType
+     */
+    public function getKeywordType()
+    {
+        return $this->keywordType;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return KeywordsTypeTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+}

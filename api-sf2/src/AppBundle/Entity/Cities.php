@@ -56,5 +56,106 @@ class Cities
         $this->cityTranslations = new ArrayCollection();
         $this->images           = new ArrayCollection();
     }
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set gps
+     *
+     * @param string $gps
+     *
+     * @return Cities
+     */
+    public function setGps($gps)
+    {
+        $this->gps = $gps;
+
+        return $this;
+    }
+
+    /**
+     * Get gps
+     *
+     * @return string
+     */
+    public function getGps()
+    {
+        return $this->gps;
+    }
+
+    /**
+     * Add cityTranslation
+     *
+     * @param \AppBundle\Entity\CitiesTranslations $cityTranslation
+     *
+     * @return Cities
+     */
+    public function addCityTranslation(\AppBundle\Entity\CitiesTranslations $cityTranslation)
+    {
+        $this->cityTranslations[] = $cityTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Remove cityTranslation
+     *
+     * @param \AppBundle\Entity\CitiesTranslations $cityTranslation
+     */
+    public function removeCityTranslation(\AppBundle\Entity\CitiesTranslations $cityTranslation)
+    {
+        $this->cityTranslations->removeElement($cityTranslation);
+    }
+
+    /**
+     * Get cityTranslations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCityTranslations()
+    {
+        return $this->cityTranslations;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \AppBundle\Entity\Images $image
+     *
+     * @return Cities
+     */
+    public function addImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \AppBundle\Entity\Images $image
+     */
+    public function removeImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+}

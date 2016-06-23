@@ -8,16 +8,16 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * KeywordsTranslation
+ * CitiesTranslation
  *
- * @ORM\Table(name="keywords_translations")
+ * @ORM\Table(name="cities_translations")
  * @ORM\Entity
  */
-class KeywordsTranslations
+class CitiesTranslations
 {
-
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
+
     /**
      * @var integer
      *
@@ -30,22 +30,29 @@ class KeywordsTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=45, nullable=true)
+     * @ORM\Column(name="name", type="string", length=45, nullable=true)
      */
-    private $title;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="current_name", type="string", length=45, nullable=true)
+     */
+    private $currentName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=45, nullable=true)
      */
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="Keywords", inversedBy="keywordTranslations")
-     * @JoinColumn(name="keyword_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ManyToOne(targetEntity="Cities", inversedBy="cityTranslations")
+     * @JoinColumn(name="city_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $keyword;
+    private $city;
 
     /**
      * @ManyToOne(targetEntity="Languages")
@@ -65,27 +72,51 @@ class KeywordsTranslations
     }
 
     /**
-     * Set title
+     * Set name
      *
-     * @param string $title
+     * @param string $name
      *
-     * @return KeywordsTranslations
+     * @return CitiesTranslations
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get name
      *
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
+    }
+
+    /**
+     * Set currentName
+     *
+     * @param string $currentName
+     *
+     * @return CitiesTranslations
+     */
+    public function setCurrentName($currentName)
+    {
+        $this->currentName = $currentName;
+
+        return $this;
+    }
+
+    /**
+     * Get currentName
+     *
+     * @return string
+     */
+    public function getCurrentName()
+    {
+        return $this->currentName;
     }
 
     /**
@@ -93,7 +124,7 @@ class KeywordsTranslations
      *
      * @param string $description
      *
-     * @return KeywordsTranslations
+     * @return CitiesTranslations
      */
     public function setDescription($description)
     {
@@ -113,27 +144,27 @@ class KeywordsTranslations
     }
 
     /**
-     * Set keyword
+     * Set city
      *
-     * @param \AppBundle\Entity\Keywords $keyword
+     * @param \AppBundle\Entity\Cities $city
      *
-     * @return KeywordsTranslations
+     * @return CitiesTranslations
      */
-    public function setKeyword(\AppBundle\Entity\Keywords $keyword = null)
+    public function setCity(\AppBundle\Entity\Cities $city = null)
     {
-        $this->keyword = $keyword;
+        $this->city = $city;
 
         return $this;
     }
 
     /**
-     * Get keyword
+     * Get city
      *
-     * @return \AppBundle\Entity\Keywords
+     * @return \AppBundle\Entity\Cities
      */
-    public function getKeyword()
+    public function getCity()
     {
-        return $this->keyword;
+        return $this->city;
     }
 
     /**
@@ -141,7 +172,7 @@ class KeywordsTranslations
      *
      * @param \AppBundle\Entity\Languages $language
      *
-     * @return KeywordsTranslations
+     * @return CitiesTranslations
      */
     public function setLanguage(\AppBundle\Entity\Languages $language = null)
     {

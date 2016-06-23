@@ -44,5 +44,86 @@ class ScholiesTranslations
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set textTranslated
+     *
+     * @param string $textTranslated
+     *
+     * @return ScholiesTranslations
+     */
+    public function setTextTranslated($textTranslated)
+    {
+        $this->textTranslated = $textTranslated;
+
+        return $this;
+    }
+
+    /**
+     * Get textTranslated
+     *
+     * @return string
+     */
+    public function getTextTranslated()
+    {
+        return $this->textTranslated;
+    }
+
+    /**
+     * Set scholie
+     *
+     * @param \AppBundle\Entity\Scholies $scholie
+     *
+     * @return ScholiesTranslations
+     */
+    public function setScholie(\AppBundle\Entity\Scholies $scholie = null)
+    {
+        $this->scholie = $scholie;
+
+        return $this;
+    }
+
+    /**
+     * Get scholie
+     *
+     * @return \AppBundle\Entity\Scholies
+     */
+    public function getScholie()
+    {
+        return $this->scholie;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return ScholiesTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+}

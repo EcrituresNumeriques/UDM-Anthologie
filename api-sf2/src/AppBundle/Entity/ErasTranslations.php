@@ -60,4 +60,134 @@ class ErasTranslations
      */
     private $language;
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return ErasTranslations
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set cultureCenters
+     *
+     * @param string $cultureCenters
+     *
+     * @return ErasTranslations
+     */
+    public function setCultureCenters($cultureCenters)
+    {
+        $this->cultureCenters = $cultureCenters;
+
+        return $this;
+    }
+
+    /**
+     * Get cultureCenters
+     *
+     * @return string
+     */
+    public function getCultureCenters()
+    {
+        return $this->cultureCenters;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return ErasTranslations
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set era
+     *
+     * @param \AppBundle\Entity\Eras $era
+     *
+     * @return ErasTranslations
+     */
+    public function setEra(\AppBundle\Entity\Eras $era = null)
+    {
+        $this->era = $era;
+
+        return $this;
+    }
+
+    /**
+     * Get era
+     *
+     * @return \AppBundle\Entity\Eras
+     */
+    public function getEra()
+    {
+        return $this->era;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return ErasTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 }

@@ -41,5 +41,82 @@ class KeywordsType
         $this->keywords                = new ArrayCollection();
         $this->keywordTypeTranslations = new ArrayCollection();
     }
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add keywordTypeTranslation
+     *
+     * @param \AppBundle\Entity\KeywordsTypeTranslations $keywordTypeTranslation
+     *
+     * @return KeywordsType
+     */
+    public function addKeywordTypeTranslation(\AppBundle\Entity\KeywordsTypeTranslations $keywordTypeTranslation)
+    {
+        $this->keywordTypeTranslations[] = $keywordTypeTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Remove keywordTypeTranslation
+     *
+     * @param \AppBundle\Entity\KeywordsTypeTranslations $keywordTypeTranslation
+     */
+    public function removeKeywordTypeTranslation(\AppBundle\Entity\KeywordsTypeTranslations $keywordTypeTranslation)
+    {
+        $this->keywordTypeTranslations->removeElement($keywordTypeTranslation);
+    }
+
+    /**
+     * Get keywordTypeTranslations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKeywordTypeTranslations()
+    {
+        return $this->keywordTypeTranslations;
+    }
+
+    /**
+     * Add keyword
+     *
+     * @param \AppBundle\Entity\Keywords $keyword
+     *
+     * @return KeywordsType
+     */
+    public function addKeyword(\AppBundle\Entity\Keywords $keyword)
+    {
+        $this->keywords[] = $keyword;
+
+        return $this;
+    }
+
+    /**
+     * Remove keyword
+     *
+     * @param \AppBundle\Entity\Keywords $keyword
+     */
+    public function removeKeyword(\AppBundle\Entity\Keywords $keyword)
+    {
+        $this->keywords->removeElement($keyword);
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+}

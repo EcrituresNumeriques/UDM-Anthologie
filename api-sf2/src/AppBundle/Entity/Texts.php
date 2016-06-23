@@ -43,5 +43,82 @@ class Texts
         $this->textTranslations = new ArrayCollection();
         $this->entities         = new ArrayCollection();
     }
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add textTranslation
+     *
+     * @param \AppBundle\Entity\NotesTranslations $textTranslation
+     *
+     * @return Texts
+     */
+    public function addTextTranslation(\AppBundle\Entity\NotesTranslations $textTranslation)
+    {
+        $this->textTranslations[] = $textTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Remove textTranslation
+     *
+     * @param \AppBundle\Entity\NotesTranslations $textTranslation
+     */
+    public function removeTextTranslation(\AppBundle\Entity\NotesTranslations $textTranslation)
+    {
+        $this->textTranslations->removeElement($textTranslation);
+    }
+
+    /**
+     * Get textTranslations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTextTranslations()
+    {
+        return $this->textTranslations;
+    }
+
+    /**
+     * Add entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     *
+     * @return Texts
+     */
+    public function addEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities[] = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Remove entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     */
+    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities->removeElement($entity);
+    }
+
+    /**
+     * Get entities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
+}

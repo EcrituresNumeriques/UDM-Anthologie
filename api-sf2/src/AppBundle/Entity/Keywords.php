@@ -68,5 +68,174 @@ class Keywords
         $this->images              = new ArrayCollection();
     }
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set keywordFamily
+     *
+     * @param \AppBundle\Entity\KeywordsFamilies $keywordFamily
+     *
+     * @return Keywords
+     */
+    public function setKeywordFamily(\AppBundle\Entity\KeywordsFamilies $keywordFamily = null)
+    {
+        $this->keywordFamily = $keywordFamily;
+
+        return $this;
+    }
+
+    /**
+     * Get keywordFamily
+     *
+     * @return \AppBundle\Entity\KeywordsFamilies
+     */
+    public function getKeywordFamily()
+    {
+        return $this->keywordFamily;
+    }
+
+    /**
+     * Add keywordTranslation
+     *
+     * @param \AppBundle\Entity\KeywordsTranslations $keywordTranslation
+     *
+     * @return Keywords
+     */
+    public function addKeywordTranslation(\AppBundle\Entity\KeywordsTranslations $keywordTranslation)
+    {
+        $this->keywordTranslations[] = $keywordTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Remove keywordTranslation
+     *
+     * @param \AppBundle\Entity\KeywordsTranslations $keywordTranslation
+     */
+    public function removeKeywordTranslation(\AppBundle\Entity\KeywordsTranslations $keywordTranslation)
+    {
+        $this->keywordTranslations->removeElement($keywordTranslation);
+    }
+
+    /**
+     * Get keywordTranslations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKeywordTranslations()
+    {
+        return $this->keywordTranslations;
+    }
+
+    /**
+     * Add keywordsType
+     *
+     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     *
+     * @return Keywords
+     */
+    public function addKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    {
+        $this->keywordsTypes[] = $keywordsType;
+
+        return $this;
+    }
+
+    /**
+     * Remove keywordsType
+     *
+     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     */
+    public function removeKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    {
+        $this->keywordsTypes->removeElement($keywordsType);
+    }
+
+    /**
+     * Get keywordsTypes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKeywordsTypes()
+    {
+        return $this->keywordsTypes;
+    }
+
+    /**
+     * Add entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     *
+     * @return Keywords
+     */
+    public function addEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities[] = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Remove entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     */
+    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities->removeElement($entity);
+    }
+
+    /**
+     * Get entities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \AppBundle\Entity\Images $image
+     *
+     * @return Keywords
+     */
+    public function addImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \AppBundle\Entity\Images $image
+     */
+    public function removeImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+}

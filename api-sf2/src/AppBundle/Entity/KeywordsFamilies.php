@@ -44,5 +44,72 @@ class KeywordsFamilies
         $this->keywords = new ArrayCollection();
     }
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return KeywordsFamilies
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add keyword
+     *
+     * @param \AppBundle\Entity\Keywords $keyword
+     *
+     * @return KeywordsFamilies
+     */
+    public function addKeyword(\AppBundle\Entity\Keywords $keyword)
+    {
+        $this->keywords[] = $keyword;
+
+        return $this;
+    }
+
+    /**
+     * Remove keyword
+     *
+     * @param \AppBundle\Entity\Keywords $keyword
+     */
+    public function removeKeyword(\AppBundle\Entity\Keywords $keyword)
+    {
+        $this->keywords->removeElement($keyword);
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+}

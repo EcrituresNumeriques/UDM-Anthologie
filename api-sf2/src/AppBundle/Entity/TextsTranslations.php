@@ -52,5 +52,110 @@ class TextsTranslations
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set editor
+     *
+     * @param string $editor
+     *
+     * @return TextsTranslations
+     */
+    public function setEditor($editor)
+    {
+        $this->editor = $editor;
+
+        return $this;
+    }
+
+    /**
+     * Get editor
+     *
+     * @return string
+     */
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
+    /**
+     * Set textTranslated
+     *
+     * @param string $textTranslated
+     *
+     * @return TextsTranslations
+     */
+    public function setTextTranslated($textTranslated)
+    {
+        $this->textTranslated = $textTranslated;
+
+        return $this;
+    }
+
+    /**
+     * Get textTranslated
+     *
+     * @return string
+     */
+    public function getTextTranslated()
+    {
+        return $this->textTranslated;
+    }
+
+    /**
+     * Set text
+     *
+     * @param \AppBundle\Entity\Texts $text
+     *
+     * @return TextsTranslations
+     */
+    public function setText(\AppBundle\Entity\Texts $text = null)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return \AppBundle\Entity\Texts
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Languages $language
+     *
+     * @return TextsTranslations
+     */
+    public function setLanguage(\AppBundle\Entity\Languages $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Languages
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+}
