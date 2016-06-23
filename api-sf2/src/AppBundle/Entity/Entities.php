@@ -81,9 +81,44 @@ class Entities
      */
     private $authors;
 
+    /**
+     * @ManyToMany(targetEntity="Manuscripts", inversedBy="entities")
+     * @JoinTable(name="manuscripts")
+     */
+    private $manuscripts;
+
+    /**
+     * @ManyToMany(targetEntity="Keywords", inversedBy="entities")
+     * @JoinTable(name="entities_keywords_assoc")
+     */
+    private $keywords;
+
+    /**
+     * @ManyToMany(targetEntity="Motifs", inversedBy="entities")
+     * @JoinTable(name="entities_motifs_assoc")
+     */
+    private $motifs;
+
+    /**
+     * @ManyToMany(targetEntity="Scholies", inversedBy="entities")
+     * @JoinTable(name="entities_scholies_assoc")
+     */
+    private $scholies;
+
+    /**
+     * @ManyToMany(targetEntity="Notes", inversedBy="entities")
+     * @JoinTable(name="entities_notes_assoc")
+     */
+    private $notes;
+
     public function __construct() {
-        $this->authors = new ArrayCollection();
         $this->entityTranslations = new ArrayCollection();
+        $this->authors = new ArrayCollection();
+        $this->manuscripts = new ArrayCollection();
+        $this->keywords = new ArrayCollection();
+        $this->motifs = new ArrayCollection();
+        $this->scholies = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
 }
