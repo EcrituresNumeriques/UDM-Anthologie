@@ -17,13 +17,16 @@ class Group extends BaseGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @var string
-     *
+     * @ORM\Column(type="string")
      */
     protected $name;
+
     /**
      * @var array
+     * @ORM\Column(type="array")
      */
     protected $roles;
 
@@ -60,6 +63,8 @@ class Group extends BaseGroup
 
     /**
      * @param string $role
+     *
+     * @return boolean
      */
     public function hasRole($role)
     {

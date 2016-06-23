@@ -1,24 +1,23 @@
 <?php
 
 namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * EntitiesTranslations
+ * GenresTranslations
  *
- * @ORM\Table(name="entities_translations")
+ * @ORM\Table(name="genres_translations")
  * @ORM\Entity
  */
-class EntitiesTranslations
+class GenresTranslations
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable,
         ORMBehaviors\Timestampable\Timestampable
     ;
-
     /**
      * @var integer
      *
@@ -31,20 +30,28 @@ class EntitiesTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="text_translated", type="string", length=45, nullable=true)
+     * @ORM\Column(name="titre", type="string", length=45, nullable=false, unique=true)
      */
-    private $textTranslated;
+    private $titre;
 
     /**
-     * @ManyToOne(targetEntity="Entities", inversedBy="entity")
-     * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=45, nullable=true)
      */
-    private $entityTranslations;
+    private $description;
+
+    /**
+     * @ManyToOne(targetEntity="Genres", inversedBy="genreTranslations")
+     * @JoinColumn(name="genre_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $genre;
 
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
+
 }
 

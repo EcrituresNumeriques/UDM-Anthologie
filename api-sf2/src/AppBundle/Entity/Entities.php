@@ -2,7 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * Entities
@@ -12,12 +19,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Entities
 {
+
+    use ORMBehaviors\SoftDeletable\SoftDeletable,
+        ORMBehaviors\Timestampable\Timestampable
+    ;
+
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -41,6 +53,38 @@ class Entities
      * @ORM\Column(name="date_range", type="smallint", nullable=true)
      */
     private $dateRange;
+
+    /**
+     * @OneToMany(targetEntity="EntitiesTranslations", mappedBy="entity")
+     */
+    private $entityTranslations;
+
+    /**
+     * @ManyToOne(targetEntity="Books")
+     * @JoinColumn(name="book_id", referencedColumnName="id")
+     */
+    private $book;
+    /**
+     * @ManyToOne(targetEntity="Eras")
+     * @JoinColumn(name="era_id", referencedColumnName="id")
+     */
+    private $era;
+    /**
+     * @ManyToOne(targetEntity="Genres")
+     * @JoinColumn(name="genre_id", referencedColumnName="id")
+     */
+    private $genre;
+
+    /**
+     * @ManyToMany(targetEntity="Authors", inversedBy="entities")
+     * @JoinTable(name="entities_authors_assoc")
+     */
+    private $authors;
+
+    public function __construct() {
+        $this->authors = new ArrayCollection();
+        $this->entityTranslations = new ArrayCollection();
+    }
 
 }
 

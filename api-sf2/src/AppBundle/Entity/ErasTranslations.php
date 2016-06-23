@@ -8,12 +8,12 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * CitiesTranslation
+ * ErasTranslation
  *
- * @ORM\Table(name="cities_translations")
+ * @ORM\Table(name="eras_translations")
  * @ORM\Entity
  */
-class CitiesTranslations
+class ErasTranslations
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable,
         ORMBehaviors\Timestampable\Timestampable
@@ -27,7 +27,7 @@ class CitiesTranslations
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string
      *
@@ -38,28 +38,27 @@ class CitiesTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="current_name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="culture_centers", type="text", length=65535, nullable=true)
      */
-    private $currentName;
+    private $cultureCenters;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=45, nullable=true)
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="Cities", inversedBy="cityTranslations")
-     * @JoinColumn(name="city_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $city;
+     * @ManyToOne(targetEntity="Eras", inversedBy="eraTranslations")
+     * @JoinColumn(name="era_id", referencedColumnName="id")
+    */
+    private $era;
 
     /**
      * @ManyToOne(targetEntity="Languages")
-     * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
+     * @JoinColumn(name="language_id", referencedColumnName="id")
      */
     private $language;
 
 }
-
