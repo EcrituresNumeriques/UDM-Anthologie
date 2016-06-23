@@ -16,6 +16,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
   height: 25px
   text-align: center
   margin: 0
+  display: none
 
   @media (min-width: 992px)
     text-align: left

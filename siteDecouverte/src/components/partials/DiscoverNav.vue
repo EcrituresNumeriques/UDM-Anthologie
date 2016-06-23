@@ -13,7 +13,9 @@
                     v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}"
                     :class="{ 'active': $index === 0 }"
                   >
-                    <span class="dash"></span>
+                    <span class="dash">
+                      <span class="inner-dash"></span>
+                    </span>
                     {{ theme.name }}
                     <sup>{{ theme.id | romanize }}</sup>
                   </a>
@@ -54,7 +56,6 @@ export default {
     var self = this
     return api.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
-      console.log($('li.discover-list:first-child'))
     }, function (response) { console.log(response.status) })
   },
   methods: {
@@ -74,7 +75,7 @@ $hover: .5s all ease-out
 
 .discover-nav
   margin-top: 150px
-  width: 50%
+  width: 60%
   padding-left: 20px
 
 .nav>li>a
@@ -90,10 +91,24 @@ ul
       padding: 5px 15px 5px 0
 
       .dash
-        width: 0
+        width: 20px
         height: 1px
-        margin-right: 0
         transition: $hover
+        background: transparent
+        position: relative
+        margin-right: 0
+        animation: marginRightOut .5s ease-out forwards
+
+        .inner-dash
+          background: #000
+          height: 1px
+          width: 0
+          position: absolute
+          top: 0
+          left: 0
+          transition: $hover
+          animation: activeOut .5s ease-out forwards
+
 
       sup
         font-size: 9px
@@ -104,6 +119,36 @@ ul
         background: none
 
         .dash
-          width: 20px
-          margin-right: 20px
+          animation: marginRightIn .5s ease-out .2s forwards
+
+          .inner-dash
+            animation: activeIn .5s ease-out forwards
+
+@keyframes activeIn
+  from
+    width: 0
+
+  to
+    width: 20px
+
+@keyframes activeOut
+  from
+    width: 20px
+
+  to
+    width: 0
+
+@keyframes marginRightIn
+  from
+    margin-right: 0
+
+  to
+    margin-right: 20px
+
+@keyframes marginRightOut
+  from
+    margin-right: 20px
+
+  to
+    margin-right: 0
 </style>

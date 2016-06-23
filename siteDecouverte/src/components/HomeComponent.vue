@@ -1,5 +1,13 @@
 <template>
   <div class="home">
+    <div class="loader-container">
+      <div class="loader-percentage">0%</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar">
+          <div class="loader-bar-hide"></div>
+        </div>
+      </div>
+    </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-1 left-column">
             <discover-nav></discover-nav>
@@ -44,7 +52,11 @@ export default {
       data: '/static/img/home/meleagre-in-love.png'
     }
   },
+  compiled: function () {
+    this.hide()
+  },
   ready: function () {
+    this.loader()
     this.getCurrentThemeImg()
 //    return api.hostApi.get().then(function (response) {
 // //      self.$set('data', response.data.themes[dataId - 1].imgUrl)
@@ -60,9 +72,63 @@ export default {
           self.$set('data', response.data.themes[dataId - 1].imgUrl)
         }, function (response) { console.log(response.status) })
       })
+    },
+    loader: function () {
+      $(window).on('load', function () {
+        setTimeout(function () {
+          var mainNav = $('.main-nav')
+          var homeDiscoverNav = $('.home .discover-nav')
+          var homeImg = $('.home .img-container')
+          var homeSubtitle = $('.home .page-subtitle-container')
+
+          var loaderContainer = $('.loader-container')
+          var loaderPercentage = $('.loader-percentage')
+          var loaderBarContainer = $('.loader-bar-container')
+          var loaderBarContainerWidth = loaderBarContainer.width()
+          var loaderBar = loaderBarContainer.children()
+          var loaderBarHide = loaderBar.children()
+
+          loaderBar.animate({
+            width: '100%'
+          }, 2000, function () {
+            loaderBarHide.addClass('active')
+            loaderPercentage.fadeOut(500, function () {
+              loaderContainer.hide()
+            })
+            clearInterval(loaderInterval)
+            homeSubtitle.fadeIn('2000').addClass('visible')
+            setTimeout(function () {
+              mainNav.fadeIn(2000)
+              homeDiscoverNav.fadeIn(2000)
+              homeImg.fadeIn(2000)
+            }, 500)
+          })
+          var loaderInterval = setInterval(function () {
+            var loaderWidth = loaderBar.width()
+            var percentage = Math.round(loaderWidth / loaderBarContainerWidth * 100)
+            loaderPercentage.text(percentage + '%')
+          }, 100)
+        }, 500)
+      })
+    },
+    hide: function () {
+      $(window).on('load', function () {
+        var mainNav = $('.main-nav')
+        var homeDiscoverNav = $('.home .discover-nav')
+        var homeImg = $('.home .img-container')
+        var loaderContainer = $('.loader-container')
+        var homeSubtitle = $('.home .page-subtitle-container')
+
+        mainNav.hide(0)
+        homeDiscoverNav.hide()
+        homeImg.hide()
+        loaderContainer.show().css('display', 'flex')
+        homeSubtitle.hide()
+      })
     }
   }
 }
+
 </script>
 
 <style lang="sass" scoped>
@@ -74,6 +140,14 @@ $hover: .5s all linear
 
   >.row
     height: 100%
+    margin-left: -17px
+
+  .page-subtitle-container
+    transform: translateX(-2%)
+    transition: $hover
+
+    &.visible
+      transform: translateX(0)
 
 .left-column,
 .right-column
@@ -84,6 +158,7 @@ $hover: .5s all linear
   flex-direction: column
   justify-content: flex-end
   padding-right: 0
+  padding-left: 0
 
 .right-column
   align-items: center
@@ -98,5 +173,53 @@ $hover: .5s all linear
       max-width: 100%
       height: 100%
       opacity: 0.65
+
+
+.loader-container
+  width: 8.33333333%
+  position: absolute
+  left: 0
+  bottom: 95px
+  text-align: right
+  opacity: 0
+  animation: fadeIn 2s linear forwards
+  display: none
+  justify-content: flex-end
+  flex-direction: column
+
+  .loader-percentage
+    font-size: 20px
+    font-weight: 500
+    font-style: italic
+    margin-right: -20px
+
+.loader-bar-container
+  width: 100%
+  height: 2px
+
+  .loader-bar
+    width: 0
+    height: 100%
+    background: #000000
+    position: relative
+
+    .loader-bar-hide
+      position: absolute
+      top: 0
+      left: 0
+      height: 100%
+      width: 0
+      background: #ffffff
+      transition: $hover
+
+      &.active
+        width: 100%
+
+@keyframes fadeIn
+  from
+    opacity: 0
+
+  to
+    opacity: 1
 
 </style>
