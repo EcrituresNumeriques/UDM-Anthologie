@@ -78,6 +78,9 @@ $hover: .5s all ease-out
   width: 60%
   padding-left: 20px
 
+  li
+    margin: 5px 0
+
 .nav>li>a
   display: flex
 

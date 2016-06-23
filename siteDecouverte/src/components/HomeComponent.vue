@@ -32,16 +32,6 @@ import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'
 
 export default {
-//  http: {
-//    root: '/',
-//    headers: {
-//      client_id: '3_2cikyz2e58sg4084gckkokcow0sgsgc080wwooc8ckoc8840o4',
-//      client_secret: '3xf5jg4tz1a8wg0o80os0wcgcckwkk4scws84go84w0w04ogg8',
-//      grant_type: 'password',
-//      username: 'front',
-//      password: 'owiowi'
-//    }
-//  },
   components: {
     MainNav,
     DiscoverNav
@@ -49,19 +39,27 @@ export default {
   name: 'home',
   data () {
     return {
-      data: '/static/img/home/meleagre-in-love.png'
+      data: '/static/img/home/meleagre-in-love.png',
+      token: ''
     }
   },
   compiled: function () {
     this.hide()
   },
   ready: function () {
+    var self = this
+    this.$http.get('http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=3_2cikyz2e58sg4084gckkokcow0sgsgc080wwooc8ckoc8840o4&client_secret=3xf5jg4tz1a8wg0o80os0wcgcckwkk4scws84go84w0w04ogg8&grant_type=password&username=front&password=owiowi').then(function (response) {
+      self.$set('token', response.data.access_token)
+      self.$http.get('anthologie.raphaelaupee.fr/api/v1/demo?access_token=' + self.token).then(function (response) {
+        console.log('success: ' + response.data.hello)
+      }, function (response) {
+        console.log('error: ' + response)
+      })
+    }, function (response) {
+      console.log('global error: ' + response.status)
+    })
     this.loader()
     this.getCurrentThemeImg()
-//    return api.hostApi.get().then(function (response) {
-// //      self.$set('data', response.data.themes[dataId - 1].imgUrl)
-//      console.log('success: ' + response)
-//    }, function (response) { console.log('error: ' + response.status) })
   },
   methods: {
     getCurrentThemeImg: function () {

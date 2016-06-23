@@ -86,8 +86,8 @@ export default {
       var thisListClickedDropWrapper = thisListClickedTextContainer.children('.dropdown-text-wrapper')
       var thisListClickedDropText = thisListClickedDropWrapper.children('.dropdown-text')
       var thisListClickedDropTextLength = thisListClickedDropText.length
-      var thisListClickedArrowLeft = thisListClickedTextContainer.children('.dropdown-arrow-left')
-      var thisListClickedArrowRight = thisListClickedTextContainer.children('.dropdown-arrow-right')
+      var thisListClickedArrowLeft = thisListClickedTextContainer.children('.glyphicon-chevron-left')
+      var thisListClickedArrowRight = thisListClickedTextContainer.children('.glyphicon-chevron-right')
       thisListClickedTextContainer.css('display', 'flex')
       $('#' + thisListClickedData).addClass('visible').fadeIn('500')
       var thisListClickedDropTextVisibleIndex = $('#' + thisListClickedData).index()
@@ -95,7 +95,8 @@ export default {
       thisListClickedArrowRight.show()
       if (thisListClickedDropTextVisibleIndex === 0) {
         thisListClickedArrowLeft.hide()
-      } else if (thisListClickedDropTextVisibleIndex === thisListClickedDropTextLength - 1) {
+      }
+      if (thisListClickedDropTextVisibleIndex === thisListClickedDropTextLength - 1) {
         thisListClickedArrowRight.hide()
       }
     }

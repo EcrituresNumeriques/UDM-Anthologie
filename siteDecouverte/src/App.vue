@@ -72,9 +72,18 @@ body
 
   .scroll
     overflow-y: scroll
+    overflow-x: hidden
 
     &::-webkit-scrollbar
       display: none
+
+a
+  outline: none
+
+  &:hover,
+  &:focus,
+  &visited
+    outline: none
 
 sup
   padding: 0 8px
@@ -88,6 +97,7 @@ sup
   >div
     width: 100%
     height: 100%
+    overflow: hidden
 
 .v-link-active
   &:hover
@@ -151,7 +161,7 @@ span.bg
 .page-subtitle-container
   display: flex
   align-items: center
-  margin: 95px 0 45px
+  margin: 0 0 45px
 
   .dash
     width: 24px
@@ -173,7 +183,6 @@ span.bg
 
 .vertical-list-wrapper
   padding-top: 10px
-  height: 100%
 
   h3,
   h4
