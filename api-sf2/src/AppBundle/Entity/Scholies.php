@@ -23,7 +23,7 @@ class Scholies
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -33,9 +33,9 @@ class Scholies
     private $scholieTranslations;
 
     /**
-     * @ManyToMany(targetEntity="Manuscripts", mappedBy="manuscripts")
+     * @ManyToMany(targetEntity="Manuscripts", mappedBy="scholies")
      */
-    private $scholies;
+    private $manuscripts;
 
     /**
      * @ManyToMany(targetEntity="Entities", mappedBy="scholies")
@@ -45,7 +45,7 @@ class Scholies
     public function __construct ()
     {
         $this->scholieTranslations = new ArrayCollection();
-        $this->scholies            = new ArrayCollection();
+        $this->manuscripts         = new ArrayCollection();
         $this->entities            = new ArrayCollection();
     }
 }

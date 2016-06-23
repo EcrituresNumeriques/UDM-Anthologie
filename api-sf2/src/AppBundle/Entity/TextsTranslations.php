@@ -23,7 +23,7 @@ class TextsTranslations
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -39,13 +39,13 @@ class TextsTranslations
      *
      * @ORM\Column(name="text", type="text", length=65535, nullable=true)
      */
-    private $text;
+    private $textTranslated;
 
     /**
      * @ManyToOne(targetEntity="Texts", inversedBy="TextsTranslations")
      * @JoinColumn(name="text_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $scholie;
+    private $text;
 
     /**
      * @ManyToOne(targetEntity="Languages")

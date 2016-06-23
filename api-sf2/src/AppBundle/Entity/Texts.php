@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -19,12 +22,26 @@ class Texts
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_text", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idText;
+    private $id;
 
+    /**
+     * @OneToMany(targetEntity="AppBundle\Entity\NotesTranslations", mappedBy="text")
+     */
+    private $textTranslations;
 
+    /**
+     * @ManyToMany(targetEntity="Entities", mappedBy="texts")
+     */
+    private $entities;
+
+    public function __construct ()
+    {
+        $this->textTranslations = new ArrayCollection();
+        $this->entities         = new ArrayCollection();
+    }
 }
 

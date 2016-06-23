@@ -110,6 +110,12 @@ class Entities
      */
     private $notes;
 
+    /**
+     * @ManyToMany(targetEntity="Texts", inversedBy="entities")
+     * @JoinTable(name="entities_texts_assoc")
+     */
+    private $texts;
+
     public function __construct ()
     {
         $this->entityTranslations = new ArrayCollection();
@@ -119,6 +125,7 @@ class Entities
         $this->motifs             = new ArrayCollection();
         $this->scholies           = new ArrayCollection();
         $this->notes              = new ArrayCollection();
+        $this->texts              = new ArrayCollection();
     }
 
 }
