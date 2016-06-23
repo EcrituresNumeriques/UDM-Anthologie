@@ -12,8 +12,8 @@
     <span class="scroll-dot"></span>
   </span>
   <span class="scroll-arrows">
-    <span @click="onScrollLeftArrowClick" class="glyphicon glyphicon-arrow-left"></span>
-    <span @click="onScrollRightArrowClick" class="glyphicon glyphicon-arrow-right"></span>
+    <span @click="onScrollLeftArrowClick" class="glyphicon glyphicon-chevron-left"></span>
+    <span @click="onScrollRightArrowClick" class="glyphicon glyphicon-chevron-right"></span>
   </span>
 </template>
 
@@ -124,8 +124,29 @@ $hover: .5s all linear
   bottom: 64px
   display: inline-block
   z-index: 25
+  color: #2c2c2c
+  font-size: 10px
+  display: inline-block
+  width: 50px
 
   .glyphicon
     cursor: pointer
+    transition: $hover
+    display: inline-block
+    width: 46%
+    opacity: .3
+
+    &:hover
+       opacity: 1
+
+    &:first-child
+      &:hover
+        transform: translateX(-5px)
+
+    &:last-child
+      text-align: right
+
+      &:hover
+        transform: translateX(5px)
 
 </style>

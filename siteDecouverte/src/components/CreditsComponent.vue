@@ -63,7 +63,6 @@ export default {
   ready: function () {
     var count = $('.team-container ul li').length
     var romanized = this.romanize(count)
-    console.log(romanized)
 
     $('.team-container h4 sup').text(romanized)
   },
