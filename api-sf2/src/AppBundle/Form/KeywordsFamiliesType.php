@@ -6,35 +6,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class LanguageType extends AbstractType
+class KeywordsFamiliesType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('family')
         ;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Languages',
-            'csrf_protection' => false
+            'data_class' => 'AppBundle\Entity\KeywordsFamilies'
         ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return '';
     }
 }
