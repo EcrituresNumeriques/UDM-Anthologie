@@ -95,7 +95,7 @@ class ScholiesController extends BaseApiController
      */
     public function getRepository ()
     {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Notes');
+        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Scholies');
     }
 
     /**
