@@ -4,13 +4,13 @@ app:
     type:     annotation
 
 #Backend
-acme_back_end:
+app_back_end:
     resource: "@AppBundle/Controller/Back/"
     type:     annotation
     prefix:   /admin/
 
 #Api
-acme_api:
+app_api:
     type: rest
     resource: "@AppBundle/Resources/config/routing-api.yml"
     prefix:   /api
