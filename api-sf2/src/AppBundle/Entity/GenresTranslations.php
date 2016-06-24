@@ -29,9 +29,9 @@ class GenresTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=45, nullable=false, unique=true)
+     * @ORM\Column(name="title", type="string", length=45, nullable=false, unique=true)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var string
