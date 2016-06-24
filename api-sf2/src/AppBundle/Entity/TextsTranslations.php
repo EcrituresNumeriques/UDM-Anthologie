@@ -37,7 +37,7 @@ class TextsTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="editor", type="string", length=255, nullable=true)
+     * @ORM\Column(name="sound_url", type="string", length=255, nullable=true)
      */
     private $soundUrl;
 

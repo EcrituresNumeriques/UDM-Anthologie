@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
@@ -57,11 +58,21 @@ class Scholies
      */
     private $entities;
 
+    /**
+     * @ManyToMany(targetEntity="Images")
+     * @JoinTable(name="scholies_images_assoc",
+     *      joinColumns={@JoinColumn(name="scholie_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
+     *      )
+     */
+    private $images;
+
     public function __construct ()
     {
         $this->scholieTranslations = new ArrayCollection();
         $this->manuscripts         = new ArrayCollection();
         $this->entities            = new ArrayCollection();
+        $this->images              = new ArrayCollection();
     }
 
     /**
@@ -69,7 +80,7 @@ class Scholies
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
     }
@@ -81,7 +92,7 @@ class Scholies
      *
      * @return Scholies
      */
-    public function addScholieTranslation(\AppBundle\Entity\NotesTranslations $scholieTranslation)
+    public function addScholieTranslation (\AppBundle\Entity\NotesTranslations $scholieTranslation)
     {
         $this->scholieTranslations[] = $scholieTranslation;
 
@@ -93,7 +104,7 @@ class Scholies
      *
      * @param \AppBundle\Entity\NotesTranslations $scholieTranslation
      */
-    public function removeScholieTranslation(\AppBundle\Entity\NotesTranslations $scholieTranslation)
+    public function removeScholieTranslation (\AppBundle\Entity\NotesTranslations $scholieTranslation)
     {
         $this->scholieTranslations->removeElement($scholieTranslation);
     }
@@ -103,7 +114,7 @@ class Scholies
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getScholieTranslations()
+    public function getScholieTranslations ()
     {
         return $this->scholieTranslations;
     }
@@ -115,7 +126,7 @@ class Scholies
      *
      * @return Scholies
      */
-    public function addManuscript(\AppBundle\Entity\Manuscripts $manuscript)
+    public function addManuscript (\AppBundle\Entity\Manuscripts $manuscript)
     {
         $this->manuscripts[] = $manuscript;
 
@@ -127,7 +138,7 @@ class Scholies
      *
      * @param \AppBundle\Entity\Manuscripts $manuscript
      */
-    public function removeManuscript(\AppBundle\Entity\Manuscripts $manuscript)
+    public function removeManuscript (\AppBundle\Entity\Manuscripts $manuscript)
     {
         $this->manuscripts->removeElement($manuscript);
     }
@@ -137,7 +148,7 @@ class Scholies
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getManuscripts()
+    public function getManuscripts ()
     {
         return $this->manuscripts;
     }
@@ -149,7 +160,7 @@ class Scholies
      *
      * @return Scholies
      */
-    public function addEntity(\AppBundle\Entity\Entities $entity)
+    public function addEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities[] = $entity;
 
@@ -161,7 +172,7 @@ class Scholies
      *
      * @param \AppBundle\Entity\Entities $entity
      */
-    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    public function removeEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities->removeElement($entity);
     }
@@ -171,9 +182,19 @@ class Scholies
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntities()
+    public function getEntities ()
     {
         return $this->entities;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser ()
+    {
+        return $this->user;
     }
 
     /**
@@ -183,33 +204,9 @@ class Scholies
      *
      * @return Scholies
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser (\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \AppBundle\Entity\Group $group
-     *
-     * @return Scholies
-     */
-    public function setGroup(\AppBundle\Entity\Group $group = null)
-    {
-        $this->group = $group;
 
         return $this;
     }
@@ -219,8 +216,22 @@ class Scholies
      *
      * @return \AppBundle\Entity\Group
      */
-    public function getGroup()
+    public function getGroup ()
     {
         return $this->group;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Scholies
+     */
+    public function setGroup (\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
     }
 }

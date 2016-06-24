@@ -134,6 +134,15 @@ class Entities
      */
     private $texts;
 
+    /**
+     * @ManyToMany(targetEntity="Images")
+     * @JoinTable(name="entities_images_assoc",
+     *      joinColumns={@JoinColumn(name="entity_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
+     *      )
+     */
+    private $images;
+
     public function __construct ()
     {
         $this->entityTranslations = new ArrayCollection();
@@ -145,6 +154,7 @@ class Entities
         $this->notes              = new ArrayCollection();
         $this->texts              = new ArrayCollection();
         $this->uris               = new ArrayCollection();
+        $this->images             = new ArrayCollection();
     }
 
 
@@ -575,39 +585,25 @@ class Entities
     }
 
     /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser ()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set user
      *
      * @param \AppBundle\Entity\User $user
      *
      * @return Entities
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser (\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \AppBundle\Entity\Group $group
-     *
-     * @return Entities
-     */
-    public function setGroup(\AppBundle\Entity\Group $group = null)
-    {
-        $this->group = $group;
 
         return $this;
     }
@@ -617,9 +613,23 @@ class Entities
      *
      * @return \AppBundle\Entity\Group
      */
-    public function getGroup()
+    public function getGroup ()
     {
         return $this->group;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Entities
+     */
+    public function setGroup (\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
     }
 
     /**
@@ -629,7 +639,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addUri(\AppBundle\Entity\Uri $uri)
+    public function addUri (\AppBundle\Entity\Uri $uri)
     {
         $this->uris[] = $uri;
 
@@ -641,7 +651,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Uri $uri
      */
-    public function removeUri(\AppBundle\Entity\Uri $uri)
+    public function removeUri (\AppBundle\Entity\Uri $uri)
     {
         $this->uris->removeElement($uri);
     }
@@ -651,7 +661,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUris()
+    public function getUris ()
     {
         return $this->uris;
     }

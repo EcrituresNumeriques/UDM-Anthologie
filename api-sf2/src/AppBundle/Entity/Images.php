@@ -53,9 +53,9 @@ class Images
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=45, nullable=true)
+     * @ORM\Column(name="credit", type="string", length=45, nullable=true)
      */
-    private $author;
+    private $credit;
 
     /**
      * @ManyToOne(targetEntity="Eras", inversedBy="images")
