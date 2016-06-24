@@ -3,8 +3,80 @@ api_demo:
     resource: AppBundle\Controller\Api\DemoController
     prefix: /v1
 
-api_lang:
+api_authors:
+    type: rest
+    resource: AppBundle\Controller\Api\AuthorsController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_books:
+    type: rest
+    resource: AppBundle\Controller\Api\BooksController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_cities:
+    type: rest
+    resource: AppBundle\Controller\Api\CitiesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_entities:
+    type: rest
+    resource: AppBundle\Controller\Api\EntitiesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_era:
+    type: rest
+    resource: AppBundle\Controller\Api\ErasController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_genres:
+    type: rest
+    resource: AppBundle\Controller\Api\GenresController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_images:
+    type: rest
+    resource: AppBundle\Controller\Api\ImagesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_langs:
     type: rest
     resource: AppBundle\Controller\Api\LangController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_manuscripts:
+    type: rest
+    resource: AppBundle\Controller\Api\ManuscriptsController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_motifs:
+    type: rest
+    resource: AppBundle\Controller\Api\MotifsController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_notes:
+    type: rest
+    resource: AppBundle\Controller\Api\NotesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_Scholies:
+    type: rest
+    resource: AppBundle\Controller\Api\ScholiesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_Texts:
+    type: rest
+    resource: AppBundle\Controller\Api\TextsController
     prefix: /v1
     name_prefix: api_v1_
