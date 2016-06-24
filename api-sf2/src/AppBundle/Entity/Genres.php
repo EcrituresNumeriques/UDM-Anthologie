@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -15,9 +18,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 class Genres
 {
 
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var integer
      *
@@ -28,12 +30,31 @@ class Genres
     private $id;
 
     /**
+     * @ManyToOne(targetEntity="User", inversedBy="genres")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="genres")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @OneToMany(targetEntity="Entities", mappedBy="genre")
+     */
+    private $entities;
+
+    /**
      * @OneToMany(targetEntity="GenresTranslations", mappedBy="genre")
      */
     private $genreTranslations;
 
 
-    public function __construct() {
+    public function __construct ()
+    {
+        $this->entities          = new ArrayCollection();
         $this->genreTranslations = new ArrayCollection();
     }
 
@@ -43,7 +64,7 @@ class Genres
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
     }
@@ -55,7 +76,7 @@ class Genres
      *
      * @return Genres
      */
-    public function addGenreTranslation(\AppBundle\Entity\GenresTranslations $genreTranslation)
+    public function addGenreTranslation (\AppBundle\Entity\GenresTranslations $genreTranslation)
     {
         $this->genreTranslations[] = $genreTranslation;
 
@@ -67,7 +88,7 @@ class Genres
      *
      * @param \AppBundle\Entity\GenresTranslations $genreTranslation
      */
-    public function removeGenreTranslation(\AppBundle\Entity\GenresTranslations $genreTranslation)
+    public function removeGenreTranslation (\AppBundle\Entity\GenresTranslations $genreTranslation)
     {
         $this->genreTranslations->removeElement($genreTranslation);
     }
@@ -77,7 +98,7 @@ class Genres
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGenreTranslations()
+    public function getGenreTranslations ()
     {
         return $this->genreTranslations;
     }

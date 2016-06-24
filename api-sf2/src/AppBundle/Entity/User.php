@@ -3,8 +3,10 @@
 
 namespace AppBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\Common\Collections\ArrayCollection;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * User
@@ -31,9 +33,106 @@ class User extends BaseUser
      * )
      */
     protected $groups;
-    
-    public function __construct() {
-        parent::__construct();
 
+    /**
+     * @OneToMany(targetEntity="Authors", mappedBy="user")
+     */
+    private $authors;
+
+    /**
+     * @OneToMany(targetEntity="Books", mappedBy="user")
+     */
+    private $books;
+
+    /**
+     * @OneToMany(targetEntity="Cities", mappedBy="user")
+     */
+    private $cities;
+
+    /**
+     * @OneToMany(targetEntity="Entities", mappedBy="user")
+     */
+    private $entities;
+
+    /**
+     * @OneToMany(targetEntity="Eras", mappedBy="user")
+     */
+    private $eras;
+
+    /**
+     * @OneToMany(targetEntity="Genres", mappedBy="user")
+     */
+    private $genres;
+
+    /**
+     * @OneToMany(targetEntity="Images", mappedBy="user")
+     */
+    private $images;
+
+    /**
+     * @OneToMany(targetEntity="Keywords", mappedBy="user")
+     */
+    private $keywords;
+
+    /**
+     * @OneToMany(targetEntity="KeywordsType", mappedBy="user")
+     */
+    private $keywordsTypes;
+
+    /**
+     * @OneToMany(targetEntity="Manuscripts", mappedBy="user")
+     */
+    private $manuscripts;
+
+    /**
+     * @OneToMany(targetEntity="Motifs", mappedBy="user")
+     */
+    private $motifs;
+
+    /**
+     * @OneToMany(targetEntity="Notes", mappedBy="user")
+     */
+    private $notes;
+
+    /**
+     * @OneToMany(targetEntity="Scholies", mappedBy="user")
+     */
+    private $scholies;
+
+    /**
+     * @OneToMany(targetEntity="Texts", mappedBy="user")
+     */
+    private $texts;
+
+    /**
+     * @OneToMany(targetEntity="Uri", mappedBy="user")
+     */
+    private $uri;
+
+    /**
+     * @OneToMany(targetEntity="UriTypes", mappedBy="user")
+     */
+    private $uriTypes;
+
+
+    public function __construct ()
+    {
+        parent::__construct();
+        $this->authors       = new ArrayCollection();
+        $this->books         = new ArrayCollection();
+        $this->cities        = new ArrayCollection();
+        $this->entities      = new ArrayCollection();
+        $this->eras          = new ArrayCollection();
+        $this->genres        = new ArrayCollection();
+        $this->images        = new ArrayCollection();
+        $this->keywords      = new ArrayCollection();
+        $this->keywordsTypes = new ArrayCollection();
+        $this->manuscripts   = new ArrayCollection();
+        $this->motifs        = new ArrayCollection();
+        $this->notes         = new ArrayCollection();
+        $this->scholies      = new ArrayCollection();
+        $this->texts         = new ArrayCollection();
+        $this->uri           = new ArrayCollection();
+        $this->uriTypes      = new ArrayCollection();
     }
 }

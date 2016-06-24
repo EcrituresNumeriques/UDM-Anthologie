@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -38,6 +39,18 @@ class Cities
     private $gps;
 
     /**
+     * @ManyToOne(targetEntity="User", inversedBy="cities")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="cities")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
      * @OneToMany(targetEntity="CitiesTranslations", mappedBy="city")
      */
     private $cityTranslations;
@@ -62,9 +75,19 @@ class Cities
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * Get gps
+     *
+     * @return string
+     */
+    public function getGps ()
+    {
+        return $this->gps;
     }
 
     /**
@@ -74,21 +97,11 @@ class Cities
      *
      * @return Cities
      */
-    public function setGps($gps)
+    public function setGps ($gps)
     {
         $this->gps = $gps;
 
         return $this;
-    }
-
-    /**
-     * Get gps
-     *
-     * @return string
-     */
-    public function getGps()
-    {
-        return $this->gps;
     }
 
     /**
@@ -98,7 +111,7 @@ class Cities
      *
      * @return Cities
      */
-    public function addCityTranslation(\AppBundle\Entity\CitiesTranslations $cityTranslation)
+    public function addCityTranslation (\AppBundle\Entity\CitiesTranslations $cityTranslation)
     {
         $this->cityTranslations[] = $cityTranslation;
 
@@ -110,7 +123,7 @@ class Cities
      *
      * @param \AppBundle\Entity\CitiesTranslations $cityTranslation
      */
-    public function removeCityTranslation(\AppBundle\Entity\CitiesTranslations $cityTranslation)
+    public function removeCityTranslation (\AppBundle\Entity\CitiesTranslations $cityTranslation)
     {
         $this->cityTranslations->removeElement($cityTranslation);
     }
@@ -120,7 +133,7 @@ class Cities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCityTranslations()
+    public function getCityTranslations ()
     {
         return $this->cityTranslations;
     }
@@ -132,7 +145,7 @@ class Cities
      *
      * @return Cities
      */
-    public function addImage(\AppBundle\Entity\Images $image)
+    public function addImage (\AppBundle\Entity\Images $image)
     {
         $this->images[] = $image;
 
@@ -144,7 +157,7 @@ class Cities
      *
      * @param \AppBundle\Entity\Images $image
      */
-    public function removeImage(\AppBundle\Entity\Images $image)
+    public function removeImage (\AppBundle\Entity\Images $image)
     {
         $this->images->removeElement($image);
     }
@@ -154,7 +167,7 @@ class Cities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getImages()
+    public function getImages ()
     {
         return $this->images;
     }

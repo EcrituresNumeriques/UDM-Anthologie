@@ -54,25 +54,43 @@ class Entities
     private $dateRange;
 
     /**
+     * @ManyToOne(targetEntity="Books", inversedBy="entities")
+     * @JoinColumn(name="book_id", referencedColumnName="id")
+     */
+    private $book;
+
+    /**
+     * @ManyToOne(targetEntity="Eras", inversedBy="entities")
+     * @JoinColumn(name="era_id", referencedColumnName="id")
+     */
+    private $era;
+    /**
+     * @ManyToOne(targetEntity="Genres", inversedBy="entities")
+     * @JoinColumn(name="genre_id", referencedColumnName="id")
+     */
+    private $genre;
+
+    /**
+     * @ManyToOne(targetEntity="User", inversedBy="entities")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="entities")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
      * @OneToMany(targetEntity="EntitiesTranslations", mappedBy="entity")
      */
     private $entityTranslations;
 
     /**
-     * @ManyToOne(targetEntity="Books")
-     * @JoinColumn(name="book_id", referencedColumnName="id")
+     * @OneToMany(targetEntity="Uri", mappedBy="entity")
      */
-    private $book;
-    /**
-     * @ManyToOne(targetEntity="Eras")
-     * @JoinColumn(name="era_id", referencedColumnName="id")
-     */
-    private $era;
-    /**
-     * @ManyToOne(targetEntity="Genres")
-     * @JoinColumn(name="genre_id", referencedColumnName="id")
-     */
-    private $genre;
+    private $uris;
 
     /**
      * @ManyToMany(targetEntity="Authors", inversedBy="entities")
@@ -126,6 +144,7 @@ class Entities
         $this->scholies           = new ArrayCollection();
         $this->notes              = new ArrayCollection();
         $this->texts              = new ArrayCollection();
+        $this->uris               = new ArrayCollection();
     }
 
 
@@ -134,9 +153,19 @@ class Entities
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle ()
+    {
+        return $this->title;
     }
 
     /**
@@ -146,33 +175,9 @@ class Entities
      *
      * @return Entities
      */
-    public function setTitle($title)
+    public function setTitle ($title)
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set date
-     *
-     * @param integer $date
-     *
-     * @return Entities
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
 
         return $this;
     }
@@ -182,21 +187,21 @@ class Entities
      *
      * @return integer
      */
-    public function getDate()
+    public function getDate ()
     {
         return $this->date;
     }
 
     /**
-     * Set dateRange
+     * Set date
      *
-     * @param integer $dateRange
+     * @param integer $date
      *
      * @return Entities
      */
-    public function setDateRange($dateRange)
+    public function setDate ($date)
     {
-        $this->dateRange = $dateRange;
+        $this->date = $date;
 
         return $this;
     }
@@ -206,9 +211,23 @@ class Entities
      *
      * @return integer
      */
-    public function getDateRange()
+    public function getDateRange ()
     {
         return $this->dateRange;
+    }
+
+    /**
+     * Set dateRange
+     *
+     * @param integer $dateRange
+     *
+     * @return Entities
+     */
+    public function setDateRange ($dateRange)
+    {
+        $this->dateRange = $dateRange;
+
+        return $this;
     }
 
     /**
@@ -218,7 +237,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addEntityTranslation(\AppBundle\Entity\EntitiesTranslations $entityTranslation)
+    public function addEntityTranslation (\AppBundle\Entity\EntitiesTranslations $entityTranslation)
     {
         $this->entityTranslations[] = $entityTranslation;
 
@@ -230,7 +249,7 @@ class Entities
      *
      * @param \AppBundle\Entity\EntitiesTranslations $entityTranslation
      */
-    public function removeEntityTranslation(\AppBundle\Entity\EntitiesTranslations $entityTranslation)
+    public function removeEntityTranslation (\AppBundle\Entity\EntitiesTranslations $entityTranslation)
     {
         $this->entityTranslations->removeElement($entityTranslation);
     }
@@ -240,9 +259,19 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntityTranslations()
+    public function getEntityTranslations ()
     {
         return $this->entityTranslations;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \AppBundle\Entity\Books
+     */
+    public function getBook ()
+    {
+        return $this->book;
     }
 
     /**
@@ -252,33 +281,9 @@ class Entities
      *
      * @return Entities
      */
-    public function setBook(\AppBundle\Entity\Books $book = null)
+    public function setBook (\AppBundle\Entity\Books $book = null)
     {
         $this->book = $book;
-
-        return $this;
-    }
-
-    /**
-     * Get book
-     *
-     * @return \AppBundle\Entity\Books
-     */
-    public function getBook()
-    {
-        return $this->book;
-    }
-
-    /**
-     * Set era
-     *
-     * @param \AppBundle\Entity\Eras $era
-     *
-     * @return Entities
-     */
-    public function setEra(\AppBundle\Entity\Eras $era = null)
-    {
-        $this->era = $era;
 
         return $this;
     }
@@ -288,21 +293,21 @@ class Entities
      *
      * @return \AppBundle\Entity\Eras
      */
-    public function getEra()
+    public function getEra ()
     {
         return $this->era;
     }
 
     /**
-     * Set genre
+     * Set era
      *
-     * @param \AppBundle\Entity\Genres $genre
+     * @param \AppBundle\Entity\Eras $era
      *
      * @return Entities
      */
-    public function setGenre(\AppBundle\Entity\Genres $genre = null)
+    public function setEra (\AppBundle\Entity\Eras $era = null)
     {
-        $this->genre = $genre;
+        $this->era = $era;
 
         return $this;
     }
@@ -312,9 +317,23 @@ class Entities
      *
      * @return \AppBundle\Entity\Genres
      */
-    public function getGenre()
+    public function getGenre ()
     {
         return $this->genre;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param \AppBundle\Entity\Genres $genre
+     *
+     * @return Entities
+     */
+    public function setGenre (\AppBundle\Entity\Genres $genre = null)
+    {
+        $this->genre = $genre;
+
+        return $this;
     }
 
     /**
@@ -324,7 +343,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addAuthor(\AppBundle\Entity\Authors $author)
+    public function addAuthor (\AppBundle\Entity\Authors $author)
     {
         $this->authors[] = $author;
 
@@ -336,7 +355,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Authors $author
      */
-    public function removeAuthor(\AppBundle\Entity\Authors $author)
+    public function removeAuthor (\AppBundle\Entity\Authors $author)
     {
         $this->authors->removeElement($author);
     }
@@ -346,7 +365,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAuthors()
+    public function getAuthors ()
     {
         return $this->authors;
     }
@@ -358,7 +377,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addManuscript(\AppBundle\Entity\Manuscripts $manuscript)
+    public function addManuscript (\AppBundle\Entity\Manuscripts $manuscript)
     {
         $this->manuscripts[] = $manuscript;
 
@@ -370,7 +389,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Manuscripts $manuscript
      */
-    public function removeManuscript(\AppBundle\Entity\Manuscripts $manuscript)
+    public function removeManuscript (\AppBundle\Entity\Manuscripts $manuscript)
     {
         $this->manuscripts->removeElement($manuscript);
     }
@@ -380,7 +399,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getManuscripts()
+    public function getManuscripts ()
     {
         return $this->manuscripts;
     }
@@ -392,7 +411,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addKeyword(\AppBundle\Entity\Keywords $keyword)
+    public function addKeyword (\AppBundle\Entity\Keywords $keyword)
     {
         $this->keywords[] = $keyword;
 
@@ -404,7 +423,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Keywords $keyword
      */
-    public function removeKeyword(\AppBundle\Entity\Keywords $keyword)
+    public function removeKeyword (\AppBundle\Entity\Keywords $keyword)
     {
         $this->keywords->removeElement($keyword);
     }
@@ -414,7 +433,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getKeywords()
+    public function getKeywords ()
     {
         return $this->keywords;
     }
@@ -426,7 +445,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addMotif(\AppBundle\Entity\Motifs $motif)
+    public function addMotif (\AppBundle\Entity\Motifs $motif)
     {
         $this->motifs[] = $motif;
 
@@ -438,7 +457,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Motifs $motif
      */
-    public function removeMotif(\AppBundle\Entity\Motifs $motif)
+    public function removeMotif (\AppBundle\Entity\Motifs $motif)
     {
         $this->motifs->removeElement($motif);
     }
@@ -448,7 +467,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMotifs()
+    public function getMotifs ()
     {
         return $this->motifs;
     }
@@ -460,7 +479,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addScholy(\AppBundle\Entity\Scholies $scholy)
+    public function addScholy (\AppBundle\Entity\Scholies $scholy)
     {
         $this->scholies[] = $scholy;
 
@@ -472,7 +491,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Scholies $scholy
      */
-    public function removeScholy(\AppBundle\Entity\Scholies $scholy)
+    public function removeScholy (\AppBundle\Entity\Scholies $scholy)
     {
         $this->scholies->removeElement($scholy);
     }
@@ -482,7 +501,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getScholies()
+    public function getScholies ()
     {
         return $this->scholies;
     }
@@ -494,7 +513,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addNote(\AppBundle\Entity\Notes $note)
+    public function addNote (\AppBundle\Entity\Notes $note)
     {
         $this->notes[] = $note;
 
@@ -506,7 +525,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Notes $note
      */
-    public function removeNote(\AppBundle\Entity\Notes $note)
+    public function removeNote (\AppBundle\Entity\Notes $note)
     {
         $this->notes->removeElement($note);
     }
@@ -516,7 +535,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getNotes()
+    public function getNotes ()
     {
         return $this->notes;
     }
@@ -528,7 +547,7 @@ class Entities
      *
      * @return Entities
      */
-    public function addText(\AppBundle\Entity\Texts $text)
+    public function addText (\AppBundle\Entity\Texts $text)
     {
         $this->texts[] = $text;
 
@@ -540,7 +559,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Texts $text
      */
-    public function removeText(\AppBundle\Entity\Texts $text)
+    public function removeText (\AppBundle\Entity\Texts $text)
     {
         $this->texts->removeElement($text);
     }
@@ -550,7 +569,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTexts()
+    public function getTexts ()
     {
         return $this->texts;
     }

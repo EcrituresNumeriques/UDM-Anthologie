@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 use FOS\UserBundle\Model\Group as BaseGroup;
 
 /**
@@ -30,11 +32,17 @@ class Group extends BaseGroup
      */
     protected $roles;
 
+    /**
+     * @OneToMany(targetEntity="AuthorsTranslations", mappedBy="group")
+     */
+    private $authors;
+
     public function __construct($name, $roles = array())
     {
         parent::__construct($name, $roles = array());
         $this->name = $name;
         $this->roles = $roles;
+        $this->authors = new ArrayCollection();
     }
 
     /**

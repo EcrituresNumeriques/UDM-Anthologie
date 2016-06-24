@@ -52,8 +52,7 @@ class AuthorsTranslations
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-
-
+    
 
     /**
      * Get id

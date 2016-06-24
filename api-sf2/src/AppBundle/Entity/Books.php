@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -28,6 +30,23 @@ class Books
     private $id;
 
     /**
+     * @ManyToOne(targetEntity="User", inversedBy="books")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="books")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @OneToMany(targetEntity="Entities", mappedBy="book")
+     */
+    private $entities;
+
+    /**
      * @OneToMany(targetEntity="BooksTranslations", mappedBy="book")
      */
     private $bookTranslations;
@@ -36,6 +55,7 @@ class Books
     public function __construct ()
     {
         $this->bookTranslations = new ArrayCollection();
+        $this->entities         = new ArrayCollection();
     }
 
 
@@ -44,7 +64,7 @@ class Books
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
     }
@@ -56,7 +76,7 @@ class Books
      *
      * @return Books
      */
-    public function addBookTranslation(\AppBundle\Entity\BooksTranslations $bookTranslation)
+    public function addBookTranslation (\AppBundle\Entity\BooksTranslations $bookTranslation)
     {
         $this->bookTranslations[] = $bookTranslation;
 
@@ -68,7 +88,7 @@ class Books
      *
      * @param \AppBundle\Entity\BooksTranslations $bookTranslation
      */
-    public function removeBookTranslation(\AppBundle\Entity\BooksTranslations $bookTranslation)
+    public function removeBookTranslation (\AppBundle\Entity\BooksTranslations $bookTranslation)
     {
         $this->bookTranslations->removeElement($bookTranslation);
     }
@@ -78,7 +98,7 @@ class Books
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getBookTranslations()
+    public function getBookTranslations ()
     {
         return $this->bookTranslations;
     }

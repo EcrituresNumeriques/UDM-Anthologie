@@ -9,8 +9,11 @@ use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use Symfony\Component\DependencyInjection\Tests\A;
+
 
 /**
  * Authors
@@ -77,11 +80,6 @@ class Authors
     private $activityRange;
 
     /**
-     * @OneToMany(targetEntity="AuthorsTranslations", mappedBy="author")
-     */
-    private $authorTranslations;
-
-    /**
      * @ManyToOne(targetEntity="Cities")
      * @JoinColumn(name="city_born_id", referencedColumnName="id", onDelete="SET NULL")
      */
@@ -98,6 +96,23 @@ class Authors
      * @JoinColumn(name="era_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $era;
+
+    /**
+     * @ManyToOne(targetEntity="User", inversedBy="authors")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="authors")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @OneToMany(targetEntity="AuthorsTranslations", mappedBy="author")
+     */
+    private $authorTranslations;
 
     /**
      * @ManyToMany(targetEntity="Entities", mappedBy="authors")
@@ -121,15 +136,24 @@ class Authors
     }
 
 
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * Get born
+     *
+     * @return integer
+     */
+    public function getBorn ()
+    {
+        return $this->born;
     }
 
     /**
@@ -139,33 +163,9 @@ class Authors
      *
      * @return Authors
      */
-    public function setBorn($born)
+    public function setBorn ($born)
     {
         $this->born = $born;
-
-        return $this;
-    }
-
-    /**
-     * Get born
-     *
-     * @return integer
-     */
-    public function getBorn()
-    {
-        return $this->born;
-    }
-
-    /**
-     * Set bornRange
-     *
-     * @param integer $bornRange
-     *
-     * @return Authors
-     */
-    public function setBornRange($bornRange)
-    {
-        $this->bornRange = $bornRange;
 
         return $this;
     }
@@ -175,21 +175,21 @@ class Authors
      *
      * @return integer
      */
-    public function getBornRange()
+    public function getBornRange ()
     {
         return $this->bornRange;
     }
 
     /**
-     * Set died
+     * Set bornRange
      *
-     * @param integer $died
+     * @param integer $bornRange
      *
      * @return Authors
      */
-    public function setDied($died)
+    public function setBornRange ($bornRange)
     {
-        $this->died = $died;
+        $this->bornRange = $bornRange;
 
         return $this;
     }
@@ -199,21 +199,21 @@ class Authors
      *
      * @return integer
      */
-    public function getDied()
+    public function getDied ()
     {
         return $this->died;
     }
 
     /**
-     * Set diedRange
+     * Set died
      *
-     * @param integer $diedRange
+     * @param integer $died
      *
      * @return Authors
      */
-    public function setDiedRange($diedRange)
+    public function setDied ($died)
     {
-        $this->diedRange = $diedRange;
+        $this->died = $died;
 
         return $this;
     }
@@ -223,21 +223,21 @@ class Authors
      *
      * @return integer
      */
-    public function getDiedRange()
+    public function getDiedRange ()
     {
         return $this->diedRange;
     }
 
     /**
-     * Set activity
+     * Set diedRange
      *
-     * @param integer $activity
+     * @param integer $diedRange
      *
      * @return Authors
      */
-    public function setActivity($activity)
+    public function setDiedRange ($diedRange)
     {
-        $this->activity = $activity;
+        $this->diedRange = $diedRange;
 
         return $this;
     }
@@ -247,21 +247,21 @@ class Authors
      *
      * @return integer
      */
-    public function getActivity()
+    public function getActivity ()
     {
         return $this->activity;
     }
 
     /**
-     * Set activityRange
+     * Set activity
      *
-     * @param integer $activityRange
+     * @param integer $activity
      *
      * @return Authors
      */
-    public function setActivityRange($activityRange)
+    public function setActivity ($activity)
     {
-        $this->activityRange = $activityRange;
+        $this->activity = $activity;
 
         return $this;
     }
@@ -271,9 +271,23 @@ class Authors
      *
      * @return integer
      */
-    public function getActivityRange()
+    public function getActivityRange ()
     {
         return $this->activityRange;
+    }
+
+    /**
+     * Set activityRange
+     *
+     * @param integer $activityRange
+     *
+     * @return Authors
+     */
+    public function setActivityRange ($activityRange)
+    {
+        $this->activityRange = $activityRange;
+
+        return $this;
     }
 
     /**
@@ -283,7 +297,7 @@ class Authors
      *
      * @return Authors
      */
-    public function addAuthorTranslation(\AppBundle\Entity\AuthorsTranslations $authorTranslation)
+    public function addAuthorTranslation (\AppBundle\Entity\AuthorsTranslations $authorTranslation)
     {
         $this->authorTranslations[] = $authorTranslation;
 
@@ -295,7 +309,7 @@ class Authors
      *
      * @param \AppBundle\Entity\AuthorsTranslations $authorTranslation
      */
-    public function removeAuthorTranslation(\AppBundle\Entity\AuthorsTranslations $authorTranslation)
+    public function removeAuthorTranslation (\AppBundle\Entity\AuthorsTranslations $authorTranslation)
     {
         $this->authorTranslations->removeElement($authorTranslation);
     }
@@ -305,9 +319,19 @@ class Authors
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAuthorTranslations()
+    public function getAuthorTranslations ()
     {
         return $this->authorTranslations;
+    }
+
+    /**
+     * Get bornCity
+     *
+     * @return \AppBundle\Entity\Cities
+     */
+    public function getBornCity ()
+    {
+        return $this->bornCity;
     }
 
     /**
@@ -317,33 +341,9 @@ class Authors
      *
      * @return Authors
      */
-    public function setBornCity(\AppBundle\Entity\Cities $bornCity = null)
+    public function setBornCity (\AppBundle\Entity\Cities $bornCity = null)
     {
         $this->bornCity = $bornCity;
-
-        return $this;
-    }
-
-    /**
-     * Get bornCity
-     *
-     * @return \AppBundle\Entity\Cities
-     */
-    public function getBornCity()
-    {
-        return $this->bornCity;
-    }
-
-    /**
-     * Set diedCity
-     *
-     * @param \AppBundle\Entity\Cities $diedCity
-     *
-     * @return Authors
-     */
-    public function setDiedCity(\AppBundle\Entity\Cities $diedCity = null)
-    {
-        $this->diedCity = $diedCity;
 
         return $this;
     }
@@ -353,21 +353,21 @@ class Authors
      *
      * @return \AppBundle\Entity\Cities
      */
-    public function getDiedCity()
+    public function getDiedCity ()
     {
         return $this->diedCity;
     }
 
     /**
-     * Set era
+     * Set diedCity
      *
-     * @param \AppBundle\Entity\Eras $era
+     * @param \AppBundle\Entity\Cities $diedCity
      *
      * @return Authors
      */
-    public function setEra(\AppBundle\Entity\Eras $era = null)
+    public function setDiedCity (\AppBundle\Entity\Cities $diedCity = null)
     {
-        $this->era = $era;
+        $this->diedCity = $diedCity;
 
         return $this;
     }
@@ -377,9 +377,23 @@ class Authors
      *
      * @return \AppBundle\Entity\Eras
      */
-    public function getEra()
+    public function getEra ()
     {
         return $this->era;
+    }
+
+    /**
+     * Set era
+     *
+     * @param \AppBundle\Entity\Eras $era
+     *
+     * @return Authors
+     */
+    public function setEra (\AppBundle\Entity\Eras $era = null)
+    {
+        $this->era = $era;
+
+        return $this;
     }
 
     /**
@@ -389,7 +403,7 @@ class Authors
      *
      * @return Authors
      */
-    public function addEntity(\AppBundle\Entity\Entities $entity)
+    public function addEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities[] = $entity;
 
@@ -401,7 +415,7 @@ class Authors
      *
      * @param \AppBundle\Entity\Entities $entity
      */
-    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    public function removeEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities->removeElement($entity);
     }
@@ -411,7 +425,7 @@ class Authors
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntities()
+    public function getEntities ()
     {
         return $this->entities;
     }
@@ -423,7 +437,7 @@ class Authors
      *
      * @return Authors
      */
-    public function addImage(\AppBundle\Entity\Images $image)
+    public function addImage (\AppBundle\Entity\Images $image)
     {
         $this->images[] = $image;
 
@@ -435,7 +449,7 @@ class Authors
      *
      * @param \AppBundle\Entity\Images $image
      */
-    public function removeImage(\AppBundle\Entity\Images $image)
+    public function removeImage (\AppBundle\Entity\Images $image)
     {
         $this->images->removeElement($image);
     }
@@ -445,7 +459,7 @@ class Authors
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getImages()
+    public function getImages ()
     {
         return $this->images;
     }

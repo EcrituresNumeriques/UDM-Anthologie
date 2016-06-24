@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -44,6 +46,28 @@ class Eras
     private $dateEnd;
 
     /**
+     * @ManyToOne(targetEntity="User", inversedBy="eras")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="eras")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @OneToMany(targetEntity="Entities", mappedBy="era")
+     */
+    private $entities;
+
+    /**
+     * @OneToMany(targetEntity="Images", mappedBy="era")
+     */
+    private $images;
+
+    /**
      * @OneToMany(targetEntity="ErasTranslations", mappedBy="era")
      */
     private $eraTranslations;
@@ -51,8 +75,9 @@ class Eras
 
     public function __construct ()
     {
+        $this->entities        = new ArrayCollection();
         $this->eraTranslations = new ArrayCollection();
-        $this->authors         = new ArrayCollection();
+        $this->images          = new ArrayCollection();
     }
 
 
@@ -61,9 +86,19 @@ class Eras
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * Get dateBegin
+     *
+     * @return integer
+     */
+    public function getDateBegin ()
+    {
+        return $this->dateBegin;
     }
 
     /**
@@ -73,33 +108,9 @@ class Eras
      *
      * @return Eras
      */
-    public function setDateBegin($dateBegin)
+    public function setDateBegin ($dateBegin)
     {
         $this->dateBegin = $dateBegin;
-
-        return $this;
-    }
-
-    /**
-     * Get dateBegin
-     *
-     * @return integer
-     */
-    public function getDateBegin()
-    {
-        return $this->dateBegin;
-    }
-
-    /**
-     * Set dateEnd
-     *
-     * @param integer $dateEnd
-     *
-     * @return Eras
-     */
-    public function setDateEnd($dateEnd)
-    {
-        $this->dateEnd = $dateEnd;
 
         return $this;
     }
@@ -109,9 +120,23 @@ class Eras
      *
      * @return integer
      */
-    public function getDateEnd()
+    public function getDateEnd ()
     {
         return $this->dateEnd;
+    }
+
+    /**
+     * Set dateEnd
+     *
+     * @param integer $dateEnd
+     *
+     * @return Eras
+     */
+    public function setDateEnd ($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+
+        return $this;
     }
 
     /**
@@ -121,7 +146,7 @@ class Eras
      *
      * @return Eras
      */
-    public function addEraTranslation(\AppBundle\Entity\ErasTranslations $eraTranslation)
+    public function addEraTranslation (\AppBundle\Entity\ErasTranslations $eraTranslation)
     {
         $this->eraTranslations[] = $eraTranslation;
 
@@ -133,7 +158,7 @@ class Eras
      *
      * @param \AppBundle\Entity\ErasTranslations $eraTranslation
      */
-    public function removeEraTranslation(\AppBundle\Entity\ErasTranslations $eraTranslation)
+    public function removeEraTranslation (\AppBundle\Entity\ErasTranslations $eraTranslation)
     {
         $this->eraTranslations->removeElement($eraTranslation);
     }
@@ -143,7 +168,7 @@ class Eras
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEraTranslations()
+    public function getEraTranslations ()
     {
         return $this->eraTranslations;
     }

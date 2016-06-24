@@ -30,7 +30,7 @@ class EntitiesTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="text_translated", type="string", length=45, nullable=true)
+     * @ORM\Column(name="text_translated", type="text", length=65535, nullable=true)
      */
     private $textTranslated;
 

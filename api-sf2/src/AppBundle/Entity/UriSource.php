@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -21,7 +23,7 @@ class UriSource
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -32,7 +34,15 @@ class UriSource
      */
     private $name;
 
+    /**
+     * @OneToMany(targetEntity="Uri", mappedBy="entity")
+     */
+    private $uriSource;
 
+    public function __construct ()
+    {
+        $this->uriSource = ArrayCollection();
+    }
 
     /**
      * Get id

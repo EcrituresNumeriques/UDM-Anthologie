@@ -29,7 +29,7 @@ class KeywordsTypeTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="label", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="label", type="string", length=50, nullable=true)
      */
     private $label;
 

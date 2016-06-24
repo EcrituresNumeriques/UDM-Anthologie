@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -32,6 +34,29 @@ class Uri
      */
     private $value;
 
+    /**
+     * @ManyToOne(targetEntity="UriSource", inversedBy="uris")
+     * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $uriSource;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="uris")
+     * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $entity;
+
+    /**
+     * @ManyToOne(targetEntity="User", inversedBy="uris")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="uris")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
 
     /**
      * Set id

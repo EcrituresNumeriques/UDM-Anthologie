@@ -58,12 +58,22 @@ class Images
     private $author;
 
     /**
-     * @ManyToOne(targetEntity="Eras")
+     * @ManyToOne(targetEntity="Eras", inversedBy="images")
      * @JoinColumn(name="era_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $era;
 
+    /**
+     * @ManyToOne(targetEntity="User", inversedBy="images")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
 
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="images")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
 
     /**
      * Get id

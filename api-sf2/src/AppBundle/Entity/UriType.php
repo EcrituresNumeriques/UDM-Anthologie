@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * UriType
+ * UriTypes
  *
- * @ORM\Table(name="URI_type")
+ * @ORM\Table(name="URI_types")
  * @ORM\Entity
  */
-class UriType
+class UriTypes
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable,
         ORMBehaviors\Timestampable\Timestampable
@@ -21,32 +21,8 @@ class UriType
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     *
-     * @return UriType
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    
 }

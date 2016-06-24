@@ -37,6 +37,18 @@ class Keywords
     private $keywordFamily;
 
     /**
+     * @ManyToOne(targetEntity="User", inversedBy="keywords")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="keywords")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
      * @OneToMany(targetEntity="KeywordsTranslations", mappedBy="keyword")
      */
     private $keywordTranslations;

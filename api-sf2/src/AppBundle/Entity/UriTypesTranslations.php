@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * UriTypeTranslation
+ * UriTypesTranslations
  *
  * @ORM\Table(name="URI_type_translation")
  * @ORM\Entity
  */
-class UriTypeTranslation
+class UriTypesTranslations
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable,
         ORMBehaviors\Timestampable\Timestampable
@@ -21,7 +21,7 @@ class UriTypeTranslation
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
