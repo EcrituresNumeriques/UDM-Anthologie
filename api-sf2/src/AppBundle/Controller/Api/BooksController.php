@@ -2,37 +2,37 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Languages;
+use AppBundle\Entity\Books;
+use AppBundle\Entity\BooksTranslations;
+use AppBundle\Form\BooksType;
 use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
-
-use AppBundle\Form\LanguageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class LangController extends BaseApiController
+class BooksController extends BaseApiController
 {
     /**
      *
-     * @Get("/lang/")
+     * @Get("/book/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getLangsAction (Request $request , ParamFetcher $paramFetcher)
+    public function getBooksAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
 
     /**
      *
-     * @Get("/lang/{id}")
+     * @Get("/book/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -41,41 +41,41 @@ class LangController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getLangAction (Request $request , $id)
+    public function getBookAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      *
-     * @Post("/lang/")
+     * @Post("/book/")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function postLangAction (Request $request)
+    public function postBookAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      *
-     * @Put("/lang/{id}")
+     * @Put("/book/{id}")
      *
      * @param Request $request
      * @param         $id
      *
      * @return Response
      */
-    public function putLangAction (Request $request , $id)
+    public function putBookAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      *
-     * @Delete("/lang/{id}")
+     * @Delete("/book/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -83,7 +83,7 @@ class LangController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteLangAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteBookAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::updateAction($request , $paramFetcher , $id);
     }
@@ -95,7 +95,7 @@ class LangController extends BaseApiController
      */
     public function getRepository ()
     {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Languages');
+        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Books');
     }
 
     /**
@@ -105,7 +105,17 @@ class LangController extends BaseApiController
      */
     public function getNewEntity ()
     {
-        return new Languages();
+        return new Books();
+    }
+
+    /**
+     * @see BaseApiController::getNewEntity()
+     *
+     * @return Object
+     */
+    public function getEntityTranslation ()
+    {
+        return new BooksTranslations();
     }
 
     /**
@@ -115,7 +125,7 @@ class LangController extends BaseApiController
      */
     public function getFormType ()
     {
-        return LanguageType::class;
+        return BooksType::class;
     }
 
 }

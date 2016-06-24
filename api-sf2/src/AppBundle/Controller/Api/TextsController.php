@@ -2,37 +2,40 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Languages;
+use AppBundle\Entity\Scholies;
+use AppBundle\Entity\ScholiesTranslations;
+use AppBundle\Entity\Texts;
+use AppBundle\Entity\TextsTranslations;
+use AppBundle\Form\ScholiesType;
+use AppBundle\Form\TextsType;
 use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
-
-use AppBundle\Form\LanguageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class LangController extends BaseApiController
+class TextsController extends BaseApiController
 {
     /**
      *
-     * @Get("/lang/")
+     * @Get("/text/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getLangsAction (Request $request , ParamFetcher $paramFetcher)
+    public function getTextsAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
 
     /**
      *
-     * @Get("/lang/{id}")
+     * @Get("/text/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -41,41 +44,41 @@ class LangController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getLangAction (Request $request , $id)
+    public function getTextAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      *
-     * @Post("/lang/")
+     * @Post("/text/")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function postLangAction (Request $request)
+    public function postTextAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      *
-     * @Put("/lang/{id}")
+     * @Put("/text/{id}")
      *
      * @param Request $request
      * @param         $id
      *
      * @return Response
      */
-    public function putLangAction (Request $request , $id)
+    public function putTextAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      *
-     * @Delete("/lang/{id}")
+     * @Delete("/text/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -83,7 +86,7 @@ class LangController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteLangAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteTextAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::updateAction($request , $paramFetcher , $id);
     }
@@ -95,7 +98,7 @@ class LangController extends BaseApiController
      */
     public function getRepository ()
     {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Languages');
+        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Notes');
     }
 
     /**
@@ -105,7 +108,17 @@ class LangController extends BaseApiController
      */
     public function getNewEntity ()
     {
-        return new Languages();
+        return new Texts();
+    }
+
+    /**
+     * @see BaseApiController::getNewEntity()
+     *
+     * @return Object
+     */
+    public function getEntityTranslation ()
+    {
+        return new TextsTranslations();
     }
 
     /**
@@ -115,7 +128,7 @@ class LangController extends BaseApiController
      */
     public function getFormType ()
     {
-        return LanguageType::class;
+        return TextsType::class;
     }
 
 }

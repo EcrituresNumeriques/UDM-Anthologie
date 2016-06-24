@@ -2,37 +2,37 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Languages;
+use AppBundle\Entity\Authors;
+use AppBundle\Entity\AuthorsTranslations;
+use AppBundle\Form\AuthorsType;
 use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
-
-use AppBundle\Form\LanguageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class LangController extends BaseApiController
+class AuthorsController extends BaseApiController
 {
     /**
      *
-     * @Get("/lang/")
+     * @Get("/author/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getLangsAction (Request $request , ParamFetcher $paramFetcher)
+    public function getAuthorsAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
 
     /**
      *
-     * @Get("/lang/{id}")
+     * @Get("/author/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -41,41 +41,41 @@ class LangController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getLangAction (Request $request , $id)
+    public function getAuthorAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      *
-     * @Post("/lang/")
+     * @Post("/author/")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function postLangAction (Request $request)
+    public function postAuthorAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      *
-     * @Put("/lang/{id}")
+     * @Put("/author/{id}")
      *
      * @param Request $request
      * @param         $id
      *
      * @return Response
      */
-    public function putLangAction (Request $request , $id)
+    public function putAuthorAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      *
-     * @Delete("/lang/{id}")
+     * @Delete("/author/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -83,7 +83,7 @@ class LangController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteLangAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::updateAction($request , $paramFetcher , $id);
     }
@@ -95,7 +95,7 @@ class LangController extends BaseApiController
      */
     public function getRepository ()
     {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Languages');
+        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors');
     }
 
     /**
@@ -105,7 +105,17 @@ class LangController extends BaseApiController
      */
     public function getNewEntity ()
     {
-        return new Languages();
+        return new Authors();
+    }
+
+    /**
+     * @see BaseApiController::getNewEntity()
+     *
+     * @return Object
+     */
+    public function getEntityTranslation ()
+    {
+        return new AuthorsTranslations();
     }
 
     /**
@@ -115,7 +125,7 @@ class LangController extends BaseApiController
      */
     public function getFormType ()
     {
-        return LanguageType::class;
+        return AuthorsType::class;
     }
 
 }
