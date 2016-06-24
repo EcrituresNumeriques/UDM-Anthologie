@@ -1,24 +1,58 @@
 # UDM-Anthologie
 
-> Anthologie Palatine
+The project contain Front Backend and REST Api
 
-## Build Setup
+## Requirements:
+[Docker] and Git have to be installed on your server.
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# lint all *.js and *.vue files
-npm run lint
-
-# run unit tests
-npm test
+## Installation:
+```sh
+$ git clone http://project
+$ docker-compose up
 ```
 
-For more information see the [docs for vueify](https://github.com/vuejs/vueify).
+## Technologies :
+
+##### Front:
+* [AngularJS] - HTML enhanced for web apps!
+* [Ace Editor] - awesome web-based text editor
+* [markdown-it] - Markdown parser done right. Fast and easy to extend.
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework [@tjholowaychuk]
+* [Gulp] - the streaming build system
+* [keymaster.js] - awesome keyboard handler lib by [@thomasfuchs]
+* [jQuery] - duh
+
+##### Back:
+* [AngularJS] - HTML enhanced for web apps!
+* [Ace Editor] - awesome web-based text editor
+* [markdown-it] - Markdown parser done right. Fast and easy to extend.
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework [@tjholowaychuk]
+* [Gulp] - the streaming build system
+* [keymaster.js] - awesome keyboard handler lib by [@thomasfuchs]
+* [jQuery] - duh
+
+##### Front:
+* [AngularJS] - HTML enhanced for web apps!
+* [Ace Editor] - awesome web-based text editor
+* [markdown-it] - Markdown parser done right. Fast and easy to extend.
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework [@tjholowaychuk]
+* [Gulp] - the streaming build system
+* [keymaster.js] - awesome keyboard handler lib by [@thomasfuchs]
+* [jQuery] - duh
+
+### Development
+
+### Version
+1.0.0
+
+#### To do
+	- A lot of things
+    - Documentation
+    - Unit Tests
+    - Functionnals tests
