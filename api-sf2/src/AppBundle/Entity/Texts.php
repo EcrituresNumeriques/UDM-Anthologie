@@ -44,7 +44,7 @@ class Texts
 
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\NotesTranslations", mappedBy="text")
+     * @OneToMany(targetEntity="TextsTranslations", mappedBy="text")
      */
     private $textTranslations;
 
