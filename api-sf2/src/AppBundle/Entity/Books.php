@@ -102,4 +102,86 @@ class Books
     {
         return $this->bookTranslations;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Books
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Books
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Add entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     *
+     * @return Books
+     */
+    public function addEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities[] = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Remove entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     */
+    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities->removeElement($entity);
+    }
+
+    /**
+     * Get entities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
 }

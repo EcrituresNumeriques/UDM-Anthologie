@@ -102,4 +102,86 @@ class Genres
     {
         return $this->genreTranslations;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Genres
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Genres
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Add entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     *
+     * @return Genres
+     */
+    public function addEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities[] = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Remove entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     */
+    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities->removeElement($entity);
+    }
+
+    /**
+     * Get entities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
 }

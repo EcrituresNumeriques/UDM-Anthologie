@@ -573,4 +573,86 @@ class Entities
     {
         return $this->texts;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Entities
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Entities
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Add uri
+     *
+     * @param \AppBundle\Entity\Uri $uri
+     *
+     * @return Entities
+     */
+    public function addUri(\AppBundle\Entity\Uri $uri)
+    {
+        $this->uris[] = $uri;
+
+        return $this;
+    }
+
+    /**
+     * Remove uri
+     *
+     * @param \AppBundle\Entity\Uri $uri
+     */
+    public function removeUri(\AppBundle\Entity\Uri $uri)
+    {
+        $this->uris->removeElement($uri);
+    }
+
+    /**
+     * Get uris
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUris()
+    {
+        return $this->uris;
+    }
 }

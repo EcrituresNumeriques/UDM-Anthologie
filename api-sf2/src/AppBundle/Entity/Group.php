@@ -122,4 +122,38 @@ class Group extends BaseGroup
 
         return $this;
     }
+
+    /**
+     * Add author
+     *
+     * @param \AppBundle\Entity\AuthorsTranslations $author
+     *
+     * @return Group
+     */
+    public function addAuthor(\AppBundle\Entity\AuthorsTranslations $author)
+    {
+        $this->authors[] = $author;
+
+        return $this;
+    }
+
+    /**
+     * Remove author
+     *
+     * @param \AppBundle\Entity\AuthorsTranslations $author
+     */
+    public function removeAuthor(\AppBundle\Entity\AuthorsTranslations $author)
+    {
+        $this->authors->removeElement($author);
+    }
+
+    /**
+     * Get authors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
 }

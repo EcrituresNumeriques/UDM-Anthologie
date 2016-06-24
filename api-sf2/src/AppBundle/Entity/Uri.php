@@ -105,4 +105,100 @@ class Uri
     {
         return $this->value;
     }
+
+    /**
+     * Set uriSource
+     *
+     * @param \AppBundle\Entity\UriSource $uriSource
+     *
+     * @return Uri
+     */
+    public function setUriSource(\AppBundle\Entity\UriSource $uriSource = null)
+    {
+        $this->uriSource = $uriSource;
+
+        return $this;
+    }
+
+    /**
+     * Get uriSource
+     *
+     * @return \AppBundle\Entity\UriSource
+     */
+    public function getUriSource()
+    {
+        return $this->uriSource;
+    }
+
+    /**
+     * Set entity
+     *
+     * @param \AppBundle\Entity\Group $entity
+     *
+     * @return Uri
+     */
+    public function setEntity(\AppBundle\Entity\Group $entity = null)
+    {
+        $this->entity = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Get entity
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Uri
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Uri
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
 }

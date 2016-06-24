@@ -172,4 +172,120 @@ class Eras
     {
         return $this->eraTranslations;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Eras
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Eras
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Add entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     *
+     * @return Eras
+     */
+    public function addEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities[] = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Remove entity
+     *
+     * @param \AppBundle\Entity\Entities $entity
+     */
+    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    {
+        $this->entities->removeElement($entity);
+    }
+
+    /**
+     * Get entities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \AppBundle\Entity\Images $image
+     *
+     * @return Eras
+     */
+    public function addImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \AppBundle\Entity\Images $image
+     */
+    public function removeImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
 }

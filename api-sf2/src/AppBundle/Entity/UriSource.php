@@ -77,4 +77,38 @@ class UriSource
     {
         return $this->name;
     }
+
+    /**
+     * Add uriSource
+     *
+     * @param \AppBundle\Entity\Uri $uriSource
+     *
+     * @return UriSource
+     */
+    public function addUriSource(\AppBundle\Entity\Uri $uriSource)
+    {
+        $this->uriSource[] = $uriSource;
+
+        return $this;
+    }
+
+    /**
+     * Remove uriSource
+     *
+     * @param \AppBundle\Entity\Uri $uriSource
+     */
+    public function removeUriSource(\AppBundle\Entity\Uri $uriSource)
+    {
+        $this->uriSource->removeElement($uriSource);
+    }
+
+    /**
+     * Get uriSource
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUriSource()
+    {
+        return $this->uriSource;
+    }
 }
