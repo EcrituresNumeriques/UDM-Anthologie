@@ -66,6 +66,7 @@ swiftmailer:
 nelmio_api_doc: ~
 
 fos_rest:
+    param_fetcher_listener: true
     routing_loader:
         default_format: json                            # All responses should be JSON formated
         include_format: false                           # We do not include format in request, so that all responses
