@@ -37,7 +37,14 @@ class TextsTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="editor", type="string", length=255, nullable=true)
+     */
+    private $soundUrl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text", length=65535)
      */
     private $textTranslated;
 
