@@ -15,6 +15,7 @@ class Languages
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
+
     /**
      * @var integer
      *
@@ -27,17 +28,16 @@ class Languages
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     * @ORM\Column(name="name", type="string", length=45, unique=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="family", type="string", length=45, nullable=false)
+     * @ORM\Column(name="family", type="string", length=45)
      */
     private $family;
-
 
 
     /**
@@ -45,7 +45,7 @@ class Languages
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
     }
@@ -57,7 +57,7 @@ class Languages
      *
      * @return Languages
      */
-    public function setName($name)
+    public function setName ($name)
     {
         $this->name = $name;
 
@@ -69,7 +69,7 @@ class Languages
      *
      * @return string
      */
-    public function getName()
+    public function getName ()
     {
         return $this->name;
     }
@@ -81,7 +81,7 @@ class Languages
      *
      * @return Languages
      */
-    public function setFamily($family)
+    public function setFamily ($family)
     {
         $this->family = $family;
 
@@ -93,8 +93,9 @@ class Languages
      *
      * @return string
      */
-    public function getFamily()
+    public function getFamily ()
     {
         return $this->family;
     }
+
 }
