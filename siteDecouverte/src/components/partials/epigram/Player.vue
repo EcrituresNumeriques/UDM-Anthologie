@@ -2,7 +2,7 @@
   <div class="col-md-1 col-md-offset-1 player">
     <div
       v-if="data.themes[theme].epigrams[epigram].sounds"
-      class="player"
+      class="player-container"
     >
       <div
         @click="onControlClick"
@@ -68,16 +68,20 @@ export default {
       }
       greekSound = $('audio')[$('audio').length - 1]
       if (controlBtn.hasClass('french-sound-playing')) {
+        console.log('french: ' + $('.french-sound source').attr('src'))
         if (!frenchSound.paused) {
+          console.log('french pause: ' + $(frenchSound).attr('class'))
           frenchSound.pause()
           playBtn.addClass('paused')
           $('.french-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
           frenchSound.volume = 1
         } else {
+          console.log('french play: ' + $(frenchSound).attr('class'))
           frenchSound.play()
           playBtn.removeClass('paused')
         }
       } else if (controlBtn.hasClass('greek-sound-playing')) {
+        console.log('greek')
         if (!greekSound.paused) {
           greekSound.pause()
           playBtn.addClass('paused')
@@ -88,12 +92,15 @@ export default {
           playBtn.removeClass('paused')
         }
       } else {
+        console.log('init')
         $('audio')[0].play()
         playBtn.removeClass('paused')
         if ($('audio').length === 1) {
           controlBtn.addClass('greek-sound-playing')
+          console.log('init greek')
         } else {
           controlBtn.addClass('french-sound-playing')
+          console.log($('.french-sound source').attr('src'))
         }
       }
     },
@@ -139,7 +146,7 @@ export default {
 <style lang="sass" scoped>
 $hover: .5s all ease-out
 
-.player
+.player-container
   width: 45px
   text-align: center
   margin-right: 50px

@@ -25,17 +25,17 @@
               <li>
                 <a
                   @click="closeSearchPartial"
-                  v-link="{ name: 'authors' }"
+                  v-link="{ name: 'genres' }"
                 >
-                  Auteurs<span class="dash"></span>
+                  Genres<span class="dash"></span>
                 </a>
               </li>
               <li>
                 <a
                   @click="closeSearchPartial"
-                  v-link="{ name: 'keywords' }"
+                  v-link="{ name: 'authors' }"
                 >
-                  Mots clès<span class="dash"></span>
+                  Auteurs<span class="dash"></span>
                 </a>
               </li>
               <li>

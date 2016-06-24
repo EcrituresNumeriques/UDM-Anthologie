@@ -126,7 +126,6 @@ $hover: .5s all linear
   z-index: 25
   color: #2c2c2c
   font-size: 10px
-  display: inline-block
   width: 50px
 
   .glyphicon

@@ -10,7 +10,7 @@ import App from './App'
 import Home from './components/HomeComponent.vue'
 import Credits from './components/CreditsComponent'
 import Summary from './components/SummaryComponent'
-import Keywords from './components/KeywordsComponent'
+import Genres from './components/GenresComponent'
 import Authors from './components/AuthorsComponent'
 import Characters from './components/CharactersComponent'
 import Epigram from './components/EpigramComponent'
@@ -51,9 +51,9 @@ router.map({
     component: Summary,
     name: 'summary'
   },
-  '/mots-cles': {
-    component: Keywords,
-    name: 'keywords'
+  '/genres': {
+    component: Genres,
+    name: 'genres'
   },
   '/auteurs': {
     component: Authors,

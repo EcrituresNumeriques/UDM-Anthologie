@@ -1,7 +1,7 @@
 <template>
     <div class="back-btn">
         <div class="inner-links">
-          <a href="#" class="back">
+          <a @click="onBackClick" href="#" class="back">
             <span class="dash"></span>
             Retour
           </a>
@@ -10,15 +10,14 @@
 </template>
 
 <script>
-import $ from 'jquery'
-
-$(document).ready(function () {
-  $('body').on('click', '.back', function (e) {
-    e.preventDefault()
-    window.history.back()
-  })
-})
-
+export default {
+  methods: {
+    onBackClick: function (e) {
+      e.preventDefault()
+      window.history.back()
+    }
+  }
+}
 </script>
 
 <style lang="sass" scoped>
