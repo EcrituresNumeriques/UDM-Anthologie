@@ -61,7 +61,7 @@ class Manuscripts
 
     /**
      * @ManyToMany(targetEntity="Images")
-     * @JoinTable(name="manuscripts_images",
+     * @JoinTable(name="manuscripts_images_assoc",
      *      joinColumns={@JoinColumn(name="manuscript_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
      *      )

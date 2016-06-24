@@ -158,4 +158,28 @@ class GenresTranslations
     {
         return $this->language;
     }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return GenresTranslations
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 }

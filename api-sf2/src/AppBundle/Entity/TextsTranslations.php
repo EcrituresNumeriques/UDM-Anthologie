@@ -165,4 +165,28 @@ class TextsTranslations
     {
         return $this->language;
     }
+
+    /**
+     * Set soundUrl
+     *
+     * @param string $soundUrl
+     *
+     * @return TextsTranslations
+     */
+    public function setSoundUrl($soundUrl)
+    {
+        $this->soundUrl = $soundUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get soundUrl
+     *
+     * @return string
+     */
+    public function getSoundUrl()
+    {
+        return $this->soundUrl;
+    }
 }

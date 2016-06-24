@@ -252,4 +252,28 @@ class Images
     {
         return $this->group;
     }
+
+    /**
+     * Set credit
+     *
+     * @param string $credit
+     *
+     * @return Images
+     */
+    public function setCredit($credit)
+    {
+        $this->credit = $credit;
+
+        return $this;
+    }
+
+    /**
+     * Get credit
+     *
+     * @return string
+     */
+    public function getCredit()
+    {
+        return $this->credit;
+    }
 }

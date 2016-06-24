@@ -665,4 +665,38 @@ class Entities
     {
         return $this->uris;
     }
+
+    /**
+     * Add image
+     *
+     * @param \AppBundle\Entity\Images $image
+     *
+     * @return Entities
+     */
+    public function addImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \AppBundle\Entity\Images $image
+     */
+    public function removeImage(\AppBundle\Entity\Images $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
 }
