@@ -1,0 +1,5 @@
+api_authors:
+    type: rest
+    resource: AppBundle\Controller\Api\AuthorsController
+    prefix: /v1
+    name_prefix: api_v1_
