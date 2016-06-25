@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Api;
 
+use Doctrine\Common\Collections\Criteria;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
@@ -58,27 +59,20 @@ abstract class BaseApiController extends FOSRestController
      *
      * @param Request $request
      * @param         $idEntity
-     * @param         $idEntityTranslation
      *
      * @return Response
      */
-    protected function createTranslationAction (Request $request , $idEntity , $idEntityTranslation)
+    protected function createTranslationAction (Request $request , $idEntity)
     {
-        $entityName = $this->getParams()["entityTranslationName"];
-        $entityForm = $this->getParams()["entityTranslationForm"];
-        $entity     = new $entityName;
-        $em         = $this->getDoctrine()->getEntityManager();
-
-        $form = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
-
+        $entity         = $this->getParams()["entityTranslation"];
+        $form           = $this->getParams()["entityTranslationForm"];
+        $entitySelector = "set" . $this->getParams()["entityTranslationInversedBy"];
+        $entity->$entitySelector($idEntity);
+        $em   = $this->getDoctrine()->getEntityManager();
+        $form = $this->createForm($form , $entity , array("method" => $request->getMethod()));
         $form->handleRequest($request);
         $view = $this->view($form , 400);
         if ($form->isValid()) {
-
-            $um   = $this->container->get('fos_user.user_manager');
-            $user = $um->findUserBy(array("id" => 1));
-
-            $entity->setUser($user);
             $em->persist($entity);
             $em->flush();
             $view = $this->view($entity , 200);
@@ -88,14 +82,14 @@ abstract class BaseApiController extends FOSRestController
     }
 
     /**
-     * Base edit translation
+     * Base update translation
      *
      * @param Request $request
      * @param         $idEntity
      *
      * @return Response
      */
-    protected function editTranslationAction (Request $request , $idEntity)
+    protected function updateTranslationAction (Request $request , $idEntity)
     {
 
     }
@@ -104,13 +98,11 @@ abstract class BaseApiController extends FOSRestController
      * Base delete translation
      *
      * @param Request $request
-     * @param         $idEntity
-     *
      * @param         $idEntityTranslation
      *
      * @return Response
      */
-    protected function deleteTranslationAction (Request $request , $idEntity , $idEntityTranslation)
+    protected function deleteTranslationAction (Request $request , $idEntityTranslation)
     {
 
     }
@@ -184,11 +176,10 @@ abstract class BaseApiController extends FOSRestController
         //exit(\Doctrine\Common\Util\Debug::dump());
 
         if ($paramFetcher->get('lang')) {
-            $resultQuery->join('AppBundle:' . $this->getParams()["entityTranslationName"] , 't')
-                ->addSelect('t')
-                ->where('q.id = t.author')
-                ->andWhere('t.language = :lang')
-                ->setParameter('lang' , $paramFetcher->get('lang'));
+            $criteria = Criteria::create()
+                ->where(Criteria::expr()->eq("langue" , $paramFetcher->get('lang')));
+            //exit(\Doctrine\Common\Util\Debug::dump($resultQuery));
+            $resultQuery->filterCollection($criteria);
         }
 
         if ($paramFetcher->get('groupId')) {
@@ -233,30 +224,29 @@ abstract class BaseApiController extends FOSRestController
     protected function readAction (Request $request , $id)
     {
         $repository = $this->getParams()["repository"];
-        $result     = $repository->findOneBy(array('id' => $id));
-        $view       = $this->view($result , 200);
+        $entity     = $repository->findOneBy(array('id' => $id));
+        $view       = $this->view($entity , 200);
 
         return $this->handleView($view);
     }
 
 
     /**
-     * Base "upload" action.
+     * Base "update" action.
      *
      * @param Request      $request
-     * @param ParamFetcher $paramFetcher
      * @param              $id
      *
      * @return Response
      */
-    protected function updateAction (Request $request , ParamFetcher $paramFetcher , $id)
+    protected function updateAction (Request $request , $id)
     {
+        $repository = $this->getParams()["repository"];
+        $entity     = $repository->findOneBy(array('id' => $id));
         $entityForm = $this->getParams()["entityForm"];
-        $em         = $this->getDoctrine()->getManager();
-        $entity     = $em->findOneBy(array('id' => $id));
+        $em         = $this->getDoctrine()->getEntityManager();
 
         $form = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
-
         $form->handleRequest($request);
         $view = $this->view($form , 400);
         if ($form->isValid()) {

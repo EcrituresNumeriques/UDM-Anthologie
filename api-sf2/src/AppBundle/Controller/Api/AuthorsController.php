@@ -4,8 +4,8 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Authors;
 use AppBundle\Entity\AuthorsTranslations;
+use AppBundle\Form\AuthorsTranslationsType;
 use AppBundle\Form\AuthorsType;
-use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -25,13 +25,15 @@ class AuthorsController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors') ,
-            "entity"                => new Authors() ,
-            "entityName"            => "Authors" ,
-            "entityForm"            => new AuthorsType() ,
-            "entityTranslation"     => new AuthorsTranslations() ,
-            "entityTranslationName" => "AuthorsTranslations" ,
-            "entityTranslationForm" => null ,
+            "repository"                  => $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors') ,
+            "repositoryTranslation"       => $this->getDoctrine()->getManager()->getRepository('AppBundle:AuthorsTranslations') ,
+            "entity"                      => new Authors() ,
+            "entityName"                  => "Authors" ,
+            "entityForm"                  => new AuthorsType() ,
+            "entityTranslation"           => new AuthorsTranslations() ,
+            "entityTranslationInversedBy" => "author" ,
+            "entityTranslationName"       => "AuthorsTranslations" ,
+            "entityTranslationForm"       => new AuthorsTranslationsType() ,
         );
     }
 
@@ -174,14 +176,13 @@ class AuthorsController extends BaseApiController
      * @Put("/author/{id}")
      *
      * @param Request      $request
-     * @param ParamFetcher $paramFetcher
      * @param              $id
      *
      * @return Response
      */
-    public function putAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function putAuthorAction (Request $request , $id)
     {
-        return BaseApiController::updateAction($request , $paramFetcher , $id);
+        return BaseApiController::updateAction($request , $id);
     }
 
     /**
@@ -217,7 +218,9 @@ class AuthorsController extends BaseApiController
      */
     public function deleteAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
-        return BaseApiController::updateAction($request , $paramFetcher , $id);
+        $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors');
+        $resultQuery = $repository->createQueryBuilder('q');
+        return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
 }
