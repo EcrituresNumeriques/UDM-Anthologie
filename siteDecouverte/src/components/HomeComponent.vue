@@ -42,7 +42,7 @@ export default {
       data: '/static/img/home/meleagre-in-love.png'
     }
   },
-  compiled: function () {
+  created: function () {
     this.hide()
   },
   ready: function () {
