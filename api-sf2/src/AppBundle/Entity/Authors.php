@@ -110,7 +110,7 @@ class Authors
     private $group;
 
     /**
-     * @OneToMany(targetEntity="AuthorsTranslations", mappedBy="author")
+     * @OneToMany(targetEntity="AuthorsTranslations", mappedBy="author", cascade={"persist"})
      */
     private $authorTranslations;
 
