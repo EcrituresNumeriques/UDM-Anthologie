@@ -29,6 +29,11 @@ abstract class BaseApiController extends FOSRestController
         $form->handleRequest($request);
         $view = $this->view($form , 400);
         if ($form->isValid()) {
+
+            $um   = $this->container->get('fos_user.user_manager');
+            $user = $um->findUserBy(array("id" => 1));
+
+            $entity->setUser($user);
             $em->persist($entity);
             $em->flush();
             $view = $this->view($entity , 200);
@@ -59,7 +64,27 @@ abstract class BaseApiController extends FOSRestController
      */
     protected function createTranslationAction (Request $request , $idEntity , $idEntityTranslation)
     {
+        $entityName = $this->getParams()["entityTranslationName"];
+        $entityForm = $this->getParams()["entityTranslationForm"];
+        $entity     = new $entityName;
+        $em         = $this->getDoctrine()->getEntityManager();
 
+        $form = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
+
+        $form->handleRequest($request);
+        $view = $this->view($form , 400);
+        if ($form->isValid()) {
+
+            $um   = $this->container->get('fos_user.user_manager');
+            $user = $um->findUserBy(array("id" => 1));
+
+            $entity->setUser($user);
+            $em->persist($entity);
+            $em->flush();
+            $view = $this->view($entity , 200);
+        }
+
+        return $this->handleView($view);
     }
 
     /**
@@ -71,6 +96,21 @@ abstract class BaseApiController extends FOSRestController
      * @return Response
      */
     protected function editTranslationAction (Request $request , $idEntity)
+    {
+
+    }
+
+    /**
+     * Base delete translation
+     *
+     * @param Request $request
+     * @param         $idEntity
+     *
+     * @param         $idEntityTranslation
+     *
+     * @return Response
+     */
+    protected function deleteTranslationAction (Request $request , $idEntity , $idEntityTranslation)
     {
 
     }
@@ -145,6 +185,7 @@ abstract class BaseApiController extends FOSRestController
 
         if ($paramFetcher->get('lang')) {
             $resultQuery->join('AppBundle:' . $this->getParams()["entityTranslationName"] , 't')
+                ->addSelect('t')
                 ->where('q.id = t.author')
                 ->andWhere('t.language = :lang')
                 ->setParameter('lang' , $paramFetcher->get('lang'));

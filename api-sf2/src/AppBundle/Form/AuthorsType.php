@@ -28,8 +28,11 @@ class AuthorsType extends AbstractType
             ->add('images')
             ->add('authorTranslations' , CollectionType::class , array(
                 'entry_type' => AuthorsTranslationsType::class ,
-                'allow_add'  => true ,
-            ));;
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ))
+            ->add('group');
     }
 
     /**

@@ -18,8 +18,6 @@ class AuthorsTranslationsType extends AbstractType
             ->add('name')
             ->add('about')
             ->add('language')
-            ->add('user')
-            ->add('group')
         ;
     }
     

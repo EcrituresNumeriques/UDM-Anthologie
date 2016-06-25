@@ -299,6 +299,7 @@ class Authors
      */
     public function addAuthorTranslation (\AppBundle\Entity\AuthorsTranslations $authorTranslation)
     {
+        $authorTranslation->setAuthor($this);
         $this->authorTranslations[] = $authorTranslation;
 
         return $this;

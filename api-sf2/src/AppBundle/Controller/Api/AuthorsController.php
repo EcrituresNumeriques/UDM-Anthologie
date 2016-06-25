@@ -87,17 +87,11 @@ class AuthorsController extends BaseApiController
      *              "description"="OAuth token is needed for security"
      *          },
      *          {
-     *              "name"="id"
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author identifier"
      *          }
-     *     },
-     *     filters={
-     *         {"name"="offset", "dataType"="integer"},
-     *         {"name"="limit", "dataType"="integer"},
-     *         {"name"="sort", "dataType"="string", "pattern"="ASC|DESC"},
-     *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
-     *         {"name"="groupId", "dataType"="integer"},
-     *         {"name"="userId", "dataType"="integer"},
-     *         {"name"="lang", "dataType"="integer"}
      *     },
      *     statusCodes={
      *         200="Returned when successful",
@@ -121,6 +115,24 @@ class AuthorsController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Create a new Author",
+     *     requirements={
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\AuthorsType",
+     *     output="AppBundle\Entity\Authors",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         403="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Post("/author/")
      *
@@ -134,6 +146,30 @@ class AuthorsController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Edit an Author",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\AuthorsType",
+     *     output="AppBundle\Entity\Authors",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         403="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Put("/author/{id}")
      *
@@ -149,7 +185,28 @@ class AuthorsController extends BaseApiController
     }
 
     /**
-     *
+     * @ApiDoc(
+     *     description="Edit an Author",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author identifier"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         403="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      * @Delete("/author/{id}")
      *
      * @param Request      $request
