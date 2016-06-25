@@ -87,6 +87,11 @@ fos_oauth_server:
     service:
         user_provider: fos_user.user_provider.username             # This property will be used when valid credentials are given to load the user upon access token creation
 
+jms_serializer:
+    metadata:
+        auto_detection: true
+        directories:
+            - { path: %kernel.root_dir%/serializer/FOSUB, namespace_prefix: 'FOS\UserBundle' }
 nelmio_cors:
     defaults:
         allow_credentials: false
