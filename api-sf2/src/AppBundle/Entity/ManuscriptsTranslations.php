@@ -41,17 +41,17 @@ class ManuscriptsTranslations
     private $page;
 
     /**
-     * @ManyToOne(targetEntity="AppBundle\Entity\Manuscripts", inversedBy="manuscriptTranslations")
+     * @ManyToOne(targetEntity="Manuscripts", inversedBy="manuscriptTranslations")
      * @JoinColumn(name="manuscript_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $manuscripts;
+    private $manuscript;
 
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-
+    
 
     /**
      * Get id
@@ -112,27 +112,27 @@ class ManuscriptsTranslations
     }
 
     /**
-     * Set manuscripts
+     * Set manuscript
      *
-     * @param \AppBundle\Entity\Manuscripts $manuscripts
+     * @param \AppBundle\Entity\Manuscripts $manuscript
      *
      * @return ManuscriptsTranslations
      */
-    public function setManuscripts(\AppBundle\Entity\Manuscripts $manuscripts = null)
+    public function setManuscript(\AppBundle\Entity\Manuscripts $manuscript = null)
     {
-        $this->manuscripts = $manuscripts;
+        $this->manuscript = $manuscript;
 
         return $this;
     }
 
     /**
-     * Get manuscripts
+     * Get manuscript
      *
      * @return \AppBundle\Entity\Manuscripts
      */
-    public function getManuscripts()
+    public function getManuscript()
     {
-        return $this->manuscripts;
+        return $this->manuscript;
     }
 
     /**

@@ -44,7 +44,7 @@ class Scholies
 
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\NotesTranslations", mappedBy="scholie")
+     * @OneToMany(targetEntity="ScholiesTranslations", mappedBy="scholie")
      */
     private $scholieTranslations;
 

@@ -2,9 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -15,9 +18,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class Uri
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var integer
      *
@@ -35,28 +37,40 @@ class Uri
     private $value;
 
     /**
-     * @ManyToOne(targetEntity="UriSource", inversedBy="uris")
-     * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
+     * @OneToOne(targetEntity="UriSource", inversedBy="uri")
+     * @JoinColumn(name="uri_source_id", referencedColumnName="id")
      */
     private $uriSource;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="uris")
-     * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="Entities", inversedBy="uris")
+     * @ORM\JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $entity;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="uris")
+     * @ManyToOne(targetEntity="User", inversedBy="uri")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="uris")
+     * @ManyToOne(targetEntity="Group", inversedBy="uri")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
+
+    /**
+     * @OneToMany(targetEntity="UriTypes", mappedBy="uri")
+     */
+    private $uriTypes;
+
+    public function __construct ()
+    {
+        $this->uriTypes = new ArrayCollection();
+    }
+
+    
 
     /**
      * Set id
@@ -133,11 +147,11 @@ class Uri
     /**
      * Set entity
      *
-     * @param \AppBundle\Entity\Group $entity
+     * @param \AppBundle\Entity\Entity $entity
      *
      * @return Uri
      */
-    public function setEntity(\AppBundle\Entity\Group $entity = null)
+    public function setEntity(\AppBundle\Entity\Entity $entity = null)
     {
         $this->entity = $entity;
 
@@ -147,7 +161,7 @@ class Uri
     /**
      * Get entity
      *
-     * @return \AppBundle\Entity\Group
+     * @return \AppBundle\Entity\Entity
      */
     public function getEntity()
     {
@@ -200,5 +214,39 @@ class Uri
     public function getGroup()
     {
         return $this->group;
+    }
+
+    /**
+     * Add urisType
+     *
+     * @param \AppBundle\Entity\UriTypes $urisType
+     *
+     * @return Uri
+     */
+    public function addUrisType(\AppBundle\Entity\UriTypes $urisType)
+    {
+        $this->urisTypes[] = $urisType;
+
+        return $this;
+    }
+
+    /**
+     * Remove urisType
+     *
+     * @param \AppBundle\Entity\UriTypes $urisType
+     */
+    public function removeUrisType(\AppBundle\Entity\UriTypes $urisType)
+    {
+        $this->urisTypes->removeElement($urisType);
+    }
+
+    /**
+     * Get urisTypes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUrisTypes()
+    {
+        return $this->urisTypes;
     }
 }

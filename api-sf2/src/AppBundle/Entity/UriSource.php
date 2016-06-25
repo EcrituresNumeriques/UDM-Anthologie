@@ -2,9 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -15,9 +14,8 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  */
 class UriSource
 {
-    use ORMBehaviors\SoftDeletable\SoftDeletable,
-        ORMBehaviors\Timestampable\Timestampable
-    ;
+    use ORMBehaviors\SoftDeletable\SoftDeletable ,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @var integer
      *
@@ -35,23 +33,29 @@ class UriSource
     private $name;
 
     /**
-     * @OneToMany(targetEntity="Uri", mappedBy="entity")
+     * @OneToOne(targetEntity="Uri", mappedBy="uriSource")
      */
-    private $uriSource;
-
-    public function __construct ()
-    {
-        $this->uriSource = ArrayCollection();
-    }
-
+    private $uri;
+    
+    
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName ()
+    {
+        return $this->name;
     }
 
     /**
@@ -61,21 +65,11 @@ class UriSource
      *
      * @return UriSource
      */
-    public function setName($name)
+    public function setName ($name)
     {
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -85,7 +79,7 @@ class UriSource
      *
      * @return UriSource
      */
-    public function addUriSource(\AppBundle\Entity\Uri $uriSource)
+    public function addUriSource (\AppBundle\Entity\Uri $uriSource)
     {
         $this->uriSource[] = $uriSource;
 
@@ -97,7 +91,7 @@ class UriSource
      *
      * @param \AppBundle\Entity\Uri $uriSource
      */
-    public function removeUriSource(\AppBundle\Entity\Uri $uriSource)
+    public function removeUriSource (\AppBundle\Entity\Uri $uriSource)
     {
         $this->uriSource->removeElement($uriSource);
     }
@@ -107,8 +101,32 @@ class UriSource
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUriSource()
+    public function getUriSource ()
     {
         return $this->uriSource;
+    }
+
+    /**
+     * Set uri
+     *
+     * @param \AppBundle\Entity\Uri $uri
+     *
+     * @return UriSource
+     */
+    public function setUri(\AppBundle\Entity\Uri $uri = null)
+    {
+        $this->uri = $uri;
+
+        return $this;
+    }
+
+    /**
+     * Get uri
+     *
+     * @return \AppBundle\Entity\Uri
+     */
+    public function getUri()
+    {
+        return $this->uri;
     }
 }

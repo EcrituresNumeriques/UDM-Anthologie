@@ -49,7 +49,7 @@ class TextsTranslations
     private $textTranslated;
 
     /**
-     * @ManyToOne(targetEntity="Texts", inversedBy="TextsTranslations")
+     * @ManyToOne(targetEntity="Texts", inversedBy="textTranslations")
      * @JoinColumn(name="text_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $text;

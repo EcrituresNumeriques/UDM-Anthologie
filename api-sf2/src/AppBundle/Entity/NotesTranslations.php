@@ -35,9 +35,9 @@ class NotesTranslations
 
     /**
      * @ManyToOne(targetEntity="Notes", inversedBy="noteTranslations")
-     * @JoinColumn(name="motif_id", referencedColumnName="id", onDelete="CASCADE")
+     * @JoinColumn(name="note_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $motif;
+    private $note;
 
     /**
      * @ManyToOne(targetEntity="Languages")
@@ -126,5 +126,29 @@ class NotesTranslations
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * Set note
+     *
+     * @param \AppBundle\Entity\Notes $note
+     *
+     * @return NotesTranslations
+     */
+    public function setNote(\AppBundle\Entity\Notes $note = null)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return \AppBundle\Entity\Notes
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 }

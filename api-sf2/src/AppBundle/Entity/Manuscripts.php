@@ -43,7 +43,7 @@ class Manuscripts
     private $group;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\ManuscriptsTranslations", mappedBy="manuscript")
+     * @OneToMany(targetEntity="ManuscriptsTranslations", mappedBy="manuscript")
      */
     private $manuscriptTranslations;
 
