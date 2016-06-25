@@ -11,12 +11,57 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthorsController extends BaseApiController
 {
     /**
+     * @see BaseApiController::getParams()
+     *
+     * @return Object[]
+     */
+    public function getParams ()
+    {
+        return array(
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors') ,
+            "entity"                => new Authors() ,
+            "entityName"            => "Authors" ,
+            "entityForm"            => new AuthorsType() ,
+            "entityTranslation"     => new AuthorsTranslations() ,
+            "entityTranslationName" => "AuthorsTranslations" ,
+            "entityTranslationForm" => null ,
+        );
+    }
+
+    /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a list of users and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          }
+     *     },
+     *     filters={
+     *         {"name"="offset", "dataType"="integer"},
+     *         {"name"="limit", "dataType"="integer"},
+     *         {"name"="sort", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
+     *         {"name"="groupId", "dataType"="integer"},
+     *         {"name"="userId", "dataType"="integer"},
+     *         {"name"="lang", "dataType"="integer"}
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         403="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Get("/author/")
      *
@@ -31,6 +76,35 @@ class AuthorsController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get an author and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id"
+     *          }
+     *     },
+     *     filters={
+     *         {"name"="offset", "dataType"="integer"},
+     *         {"name"="limit", "dataType"="integer"},
+     *         {"name"="sort", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
+     *         {"name"="groupId", "dataType"="integer"},
+     *         {"name"="userId", "dataType"="integer"},
+     *         {"name"="lang", "dataType"="integer"}
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         403="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Get("/author/{id}")
      *
@@ -63,14 +137,15 @@ class AuthorsController extends BaseApiController
      *
      * @Put("/author/{id}")
      *
-     * @param Request $request
-     * @param         $id
+     * @param Request      $request
+     * @param ParamFetcher $paramFetcher
+     * @param              $id
      *
      * @return Response
      */
-    public function putAuthorAction (Request $request , $id)
+    public function putAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
-        return BaseApiController::updateAction($request , $id);
+        return BaseApiController::updateAction($request , $paramFetcher , $id);
     }
 
     /**
@@ -86,46 +161,6 @@ class AuthorsController extends BaseApiController
     public function deleteAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::updateAction($request , $paramFetcher , $id);
-    }
-
-    /**
-     * @see BaseApiController::getRepository()
-     *
-     * @return EntityRepository
-     */
-    public function getRepository ()
-    {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors');
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
-     *
-     * @return Object
-     */
-    public function getNewEntity ()
-    {
-        return new Authors();
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
-     *
-     * @return Object
-     */
-    public function getEntityTranslation ()
-    {
-        return new AuthorsTranslations();
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
-     *
-     * @return Object
-     */
-    public function getFormType ()
-    {
-        return AuthorsType::class;
     }
 
 }

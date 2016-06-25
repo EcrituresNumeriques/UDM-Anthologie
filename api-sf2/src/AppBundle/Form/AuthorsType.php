@@ -11,9 +11,9 @@ class AuthorsType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm (FormBuilderInterface $builder , array $options)
     {
         $builder
             ->add('born')
@@ -25,21 +25,20 @@ class AuthorsType extends AbstractType
             ->add('bornCity')
             ->add('diedCity')
             ->add('era')
-            ->add('entities')
             ->add('images')
-            ->add('AuthorTranslations', CollectionType::class, array(
-                'entry_type' => AuthorsTranslationsType::class
-            ));
-        ;
+            ->add('authorTranslations' , CollectionType::class , array(
+                'entry_type' => AuthorsTranslationsType::class ,
+                'allow_add'  => true ,
+            ));;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions (OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Authors',
+            'data_class'      => 'AppBundle\Entity\Authors' ,
             'csrf_protection' => false
         ));
     }
@@ -47,7 +46,7 @@ class AuthorsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName ()
     {
         return '';
     }

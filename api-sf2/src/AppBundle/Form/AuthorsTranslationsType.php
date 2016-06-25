@@ -17,8 +17,9 @@ class AuthorsTranslationsType extends AbstractType
         $builder
             ->add('name')
             ->add('about')
-            ->add('author')
             ->add('language')
+            ->add('user')
+            ->add('group')
         ;
     }
     
@@ -28,7 +29,16 @@ class AuthorsTranslationsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\AuthorsTranslations'
+            'data_class' => 'AppBundle\Entity\AuthorsTranslations',
+            'csrf_protection' => false
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return '';
     }
 }
