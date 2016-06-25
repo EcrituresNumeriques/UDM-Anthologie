@@ -52,6 +52,8 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        filters:
+            translatable_class: AppBundle\Doctrine\Filter\LanguageFilter
 
 # Swiftmailer Configuration
 swiftmailer:

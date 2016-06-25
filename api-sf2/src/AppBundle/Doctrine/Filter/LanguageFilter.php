@@ -1,18 +1,34 @@
 <?php
 namespace AppBundle\Doctrine\Filter;
 
-use Doctrine\ORM\Mapping\ClassMetaData,
-    Doctrine\ORM\Query\Filter\SQLFilter;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Query\Filter\SQLFilter;
 
 class LanguageFilter extends SQLFilter
 {
-    public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
+
+
+    public function addFilterConstraint (ClassMetadata $targetEntity , $targetTableAlias)
     {
-        // Check if the entity implements the LocalAware interface
-        if (!$targetEntity->reflClass->implementsInterface('LocaleAware')) {
-            return "";
+
+        $reader           = new AnnotationReader();
+        $translationAware = $reader->getClassAnnotation($targetEntity->getReflectionClass() ,
+            'AppBundle\Annotation\TranslatableMeta');
+
+        if ( !$translationAware || !$translationAware->languageTable) {
+            return '';
         }
 
-        return $targetTableAlias.'.locale = ' . $this->getParameter('locale'); // getParameter applies quoting automatically
+        try {
+            $language = $this->getParameter('lang');
+        } catch (\InvalidArgumentException $e) {
+            // No Lang have been defined
+            return '';
+        }
+        //exit(\Doctrine\Common\Util\Debug::dump(sprintf('%s .......  %s.%s = %s', $targetEntity->getReflectionClass(), $targetTableAlias, $translationAware->languageTable, $this->getParameter('lang'))));
+        $query = sprintf('%s.%s = %s', $targetTableAlias, $translationAware->languageTable, "2");
+        return $query;
     }
+
 }
