@@ -26,7 +26,7 @@
 </template>
 
 <script>
-/* global api */
+/* global theme */
 import Vue from 'vue'
 
 import $ from 'jquery'
@@ -54,7 +54,7 @@ export default {
   },
   ready: function () {
     var self = this
-    return api.dataDiscover.get().then(function (response) {
+    return theme.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
     }, function (response) { console.log(response.status) })
   },

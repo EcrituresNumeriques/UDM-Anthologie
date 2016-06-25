@@ -7,7 +7,6 @@
     <div class="hidden-md hidden-lg">
       <responsive></responsive>
     </div>
-    <search></search>
     <copyright></copyright>
   </div>
 </template>
@@ -21,10 +20,9 @@ import Summary from './components/SummaryComponent'
 import Keywords from './components/GenresComponent'
 import Authors from './components/AuthorsComponent'
 import Characters from './components/CharactersComponent'
-import Epigram from './components/EpigramComponent'
-import SearchComponent from './components/SearchComponent'
+import EpigramTheme from './components/EpigramThemeComponent'
+import SearchComponent from './components/SearchGenreComponent'
 import NotFound from './components/404Component'
-import Search from './components/partials/Search'
 import Copyright from './components/partials/Copyright'
 
 export default {
@@ -37,10 +35,9 @@ export default {
     Keywords,
     Authors,
     Characters,
-    Epigram,
+    EpigramTheme,
     SearchComponent,
     NotFound,
-    Search,
     Copyright
   }
 }
@@ -98,10 +95,6 @@ sup
     width: 100%
     height: 100%
     overflow: hidden
-
-.v-link-active
-  &:hover
-    cursor: default
 
 .navbar-default
   background: none

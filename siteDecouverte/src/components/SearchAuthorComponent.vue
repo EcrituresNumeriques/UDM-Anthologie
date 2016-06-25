@@ -5,14 +5,14 @@
       <div class="col-md-5 col-md-offset-1 left-column">
         <div class="search-content-container">
           <div class="search-title-container">
-            <h3><span>Méléagre</span><sup>310/305 av jc - 240</sup></h3>
+            <h3><span>{{ dataAuthor[author].author_translations[0].name }}</span><sup>{{ dataAuthor[author].born }} / {{ dataAuthor[author].died }}</sup></h3>
           </div>
           <div class="search-subtext-container">
-            <p>Héllénistique<span class="type-text-bg">Auteur</span></p>
+            <p>{{ dataAuthor[author].era.era_translations[0].name }}<span class="type-text-bg">Auteur</span></p>
           </div>
         </div>
         <div class="search-desc-container">
-          <q>Il existe deux versions de son mythe. Dans la première, qui s'apparente à un conte populaire, la vie de Méléagre est liée à un tison qui, jeté dans le feu, entraîne la mort du héros. Dans la seconde, rapportée par Homère, Méléagre est un double d'Achille pendant la guerre de Troie : le héros en colère.</q>
+          <q>{{ dataAuthor[author].author_translations[0].about }}</q>
         </div>
         <div class="page-subtitle-container">
           <span class="dash"></span>
@@ -25,48 +25,19 @@
             <div>
               <h4><span class="bg"></span>épigrammes liées<sup>XII</sup></h4>
               <ul>
-                <li><a href="#">AP 5.177, 37</a></li>
-                <li><a href="#">AP 12.132b, 22</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                <li><a href="#">AP 5.177, 37</a></li>
-                <li><a href="#">AP 12.132b, 22</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 5.177, 37</a></li>
-                <li><a href="#">AP 12.132b, 22</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                <li><a href="#">AP 5.177, 37</a></li>
-                <li><a href="#">AP 12.132b, 22</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 5.177, 37</a></li>
-                <li><a href="#">AP 12.132b, 22</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                <li><a href="#">AP 5.177, 37</a></li>
-                <li><a href="#">AP 12.132b, 22</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
-                <li><a href="#">AP 7.421 : Épitaphe «logogriphique»</a></li>
-                <li><a href="#">AP 5.152, 34</a></li>
-                <li><a href="#">AP 7.417</a></li>
+                <li v-for="epigram in dataAuthor[author].entities">
+                  <a v-link="{ name: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</a>
+                </li>
               </ul>
             </div>
           </div>
         </div>
         <div class="img-container">
-          <img src="/static/img/search/meleagre.png" alt="">
+          <img
+            v-if="dataAuthor[author].images[0].url"
+            :src="dataAuthor[author].images[0].url"
+            alt="{{ dataAuthor[author].author_translations[0].name }}"
+          >
         </div>
       </div>
     </div>
@@ -80,7 +51,38 @@ export default {
   components: {
     ScrollProgressBar
   },
-  name: 'search'
+  name: 'searchAuthor',
+  data () {
+    return {
+      dataAuthor: {},
+      author: this.author
+    }
+  },
+  route: {
+    data: function (transition) {
+      transition.next({
+        author: transition.to.params.id - 1
+      })
+    }
+  },
+  ready: function () {
+    this.getAuthorsData()
+  },
+  methods: {
+    getAuthorsData: function () {
+      var self = this
+      this.$http.get('http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=1_2on8mj00wu68oc4oso0cwck8gcc4ccogkc04owgk8g4og4wggk&client_secret=1vfwitjfzz0kkko8kw80cwk844ws8000w8cs40o88g00488www&grant_type=password&username=front&password=owiowi').then(function (response) {
+        self.$set('token', response.data.access_token)
+        self.$http.get('anthologie.raphaelaupee.fr/api/v1/author?access_token=' + self.token).then(function (response) {
+          self.$set('dataAuthor', response.data)
+        }, function (response) {
+          console.log('error: ' + response)
+        })
+      }, function (response) {
+        console.log('global error: ' + response.status)
+      })
+    }
+  }
 }
 </script>
 
@@ -164,4 +166,10 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
       margin-right: 130px
       margin-bottom: 45px
       margin-top: 100px
+      width: 250px
+      height: 250px
+
+      img
+        max-width: 235px
+        max-height: 235px
 </style>

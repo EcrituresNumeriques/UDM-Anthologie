@@ -30,7 +30,7 @@
 </template>
 
 <script>
-/* global api */
+/* global theme */
 import BackBtn from './partials/BackBtn'
 import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'
@@ -49,7 +49,7 @@ export default {
   ready: function () {
     this.getCurrentThemeId()
     var self = this
-    return api.dataDiscover.get().then(function (response) {
+    return theme.dataDiscover.get().then(function (response) {
       self.$set('data', response.data.themes[0])
     }, function (response) { console.log(response.status) })
   },
@@ -58,7 +58,7 @@ export default {
       var self = this
       $('body').on('mouseenter', '.discover-list a', function () {
         var dataId = $(this).data('id')
-        return api.dataDiscover.get().then(function (response) {
+        return theme.dataDiscover.get().then(function (response) {
           self.$set('data', response.data.themes[dataId - 1])
         }, function (response) { console.log(response.status) })
       })

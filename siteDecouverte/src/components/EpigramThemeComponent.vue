@@ -1,5 +1,5 @@
 <template>
-    <div class="epigram" :theme="theme" :epigram="epigram">
+    <div class="epigram-theme" :theme="theme" :epigram="epigram">
         <div v-if="data.themes[theme].epigrams[epigram]">
           <div class="page-title-container">
               <h1>{{ data.themes[theme].epigrams[epigram].title }}</h1>
@@ -57,16 +57,16 @@
 </template>
 
 <script>
-/* global api */
+/* global theme */
 import Vue from 'vue'
 
 import BackBtn from './partials/BackBtn'
-import Pagination from './partials/epigram/Pagination'
-import Player from './partials/epigram/Player'
-import Translation from './partials/epigram/Translation'
-import GreekText from './partials/epigram/GreekText'
-import Notes from './partials/epigram/Notes'
-import Characters from './partials/epigram/Characters'
+import Pagination from './partials/epigramTheme/Pagination'
+import Player from './partials/epigramTheme/Player'
+import Translation from './partials/epigramTheme/Translation'
+import GreekText from './partials/epigramTheme/GreekText'
+import Notes from './partials/epigramTheme/Notes'
+import Characters from './partials/epigramTheme/Characters'
 
 import $ from 'jquery'
 
@@ -78,7 +78,7 @@ Vue.filter('numberize', function (value) {
 })
 
 export default {
-  name: 'epigram',
+  name: 'theme',
   components: {
     BackBtn,
     Pagination,
@@ -105,7 +105,7 @@ export default {
   },
   ready: function () {
     var self = this
-    return api.dataDiscover.get().then(function (response) {
+    return theme.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
     }, function (response) { console.log(response.status) })
   },
@@ -165,7 +165,7 @@ $(document).ready(function () {
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $hover: .5s all ease-out
 
-.epigram
+.epigram-theme
   width: 100%
   height: 100%
 

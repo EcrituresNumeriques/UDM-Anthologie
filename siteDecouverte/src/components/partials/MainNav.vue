@@ -1,4 +1,5 @@
 <template>
+    <search :data-search="dataSearch" :search="search"></search>
     <div class="main-nav col-md-6 col-md-offset-1">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -51,6 +52,7 @@
           <form class="navbar-form navbar-left col-md-4" role="search">
             <div class="form-group search-container col-md-12">
               <input
+                v-model="search"
                 @focus="onSearchFocus"
                 type="search"
                 class="form-control"
@@ -73,9 +75,21 @@
 </template>
 
 <script>
+import Search from './Search'
+
 import $ from 'jquery'
 
 export default {
+  components: {
+    Search
+  },
+  data () {
+    return {
+      search: ''
+    }
+  },
+  ready: function () {
+  },
   methods: {
     onSearchFocus: function () {
       $('.search-partial').fadeIn(1000).css('display', 'flex')
@@ -95,6 +109,10 @@ export default {
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $nav-color: #2c2c2c
 $hover: .5s all linear
+
+.v-link-active
+  &:hover
+    cursor: default
 
 .main-nav
   font-family: $raleway

@@ -23,6 +23,10 @@ import $ from 'jquery'
 export default {
   name: 'ScrollProgressBar',
   ready: function () {
+    if ($('.scroll')[0].scrollWidth <= $('.scroll').width()) {
+      $('.scroll-dot').addClass('active').addClass('disable')
+      $('.scroll-arrows').hide()
+    }
     this.onScrollProgressBar()
     this.onDotClick()
   },
@@ -90,7 +94,7 @@ $hover: .5s all linear
   right: 300px
   top: 44px
   display: inline-block
-  z-index: 25
+  z-index: 15
 
   .scroll-dot
     width: 4px
@@ -117,6 +121,9 @@ $hover: .5s all linear
       &:after
         background: #2c2c2c
         opacity: 1
+
+    &.disable
+      cursor: default
 
 .scroll-arrows
   position: fixed

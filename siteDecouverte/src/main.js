@@ -13,8 +13,12 @@ import Summary from './components/SummaryComponent'
 import Genres from './components/GenresComponent'
 import Authors from './components/AuthorsComponent'
 import Characters from './components/CharactersComponent'
-import Epigram from './components/EpigramComponent'
-import SearchComponent from './components/SearchComponent'
+import EpigramTheme from './components/EpigramThemeComponent'
+import EpigramApi from './components/EpigramApiComponent'
+import SearchGenreComponent from './components/SearchGenreComponent'
+import SearchAuthorComponent from './components/SearchAuthorComponent'
+import SearchEraComponent from './components/SearchEraComponent'
+import SearchCityComponent from './components/SearchCityComponent'
 import NotFound from './components/404Component'
 
 // install router & resource
@@ -22,10 +26,10 @@ Vue.use(Router)
 Vue.use(Resource)
 
 // VUe Config
-Vue.config.silent = true // Supress all Vue.js logs and warnings -> because of strange and useless warnings when loading an epigram
+Vue.config.silent = true // Supress all Vue.js logs and warnings -> because of strange and useless warnings when loading an epigramTheme
 
 // configuration Resource
-global.api = require('./service/api.js')
+global.theme = require('./service/theme.js')
 
 Vue.http.options.root = '/'
 
@@ -64,16 +68,28 @@ router.map({
     name: 'characters'
   },
   '/epigramme/:id': {
-    component: Epigram,
+    component: EpigramApi,
     name: 'epigram'
   },
   'theme/:themeId/:theme/:id': {
-    component: Epigram,
+    component: EpigramTheme,
     name: 'theme'
   },
-  'recherche/:type/:name': {
-    component: SearchComponent,
-    name: 'search'
+  'recherche/genre/:id': {
+    component: SearchGenreComponent,
+    name: 'searchGenre'
+  },
+  'recherche/auteur/:id': {
+    component: SearchAuthorComponent,
+    name: 'searchAuthor'
+  },
+  'recherche/ere/:id': {
+    component: SearchEraComponent,
+    name: 'searchEra'
+  },
+  'recherche/ville/:id': {
+    component: SearchCityComponent,
+    name: 'searchCity'
   },
   '/404': {
     component: NotFound,
