@@ -8,7 +8,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class KeywordsFamilies extends BaseApiController
+class KeywordsFamiliesController extends BaseApiController
 {
 
     public function getParams ()

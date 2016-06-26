@@ -28,74 +28,68 @@ api_eras:
     prefix: /v1
     name_prefix: api_v1_
 
-api_genres:
+api_manuscripts:
     type: rest
-    resource: AppBundle\Controller\Api\GenresController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_keywords:
-    type: rest
-    ressource: AppBundle\Controller\Api\KeywordsController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_keywords_categories:
-    type: rest
-    ressource: AppBundle\Controller\Api\KeywordsCategoriesController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_keywords_families:
-    type: rest
-    ressource: AppBundle\Controller\Api\KeywordsFamiliesController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_manuscript:
-    type: rest
-    ressource: AppBundle\Controller\Api\ManuscriptController
+    resource: AppBundle\Controller\Api\ManuscriptsController
     prefix: /v1
     name_prefix: api_v1_
 
 api_motifs:
     type: rest
-    ressource: AppBundle\Controller\Api\MotifsController
+    resource: AppBundle\Controller\Api\MotifsController
     prefix: /v1
     name_prefix: api_v1_
 
 api_notes:
     type: rest
-    ressource: AppBundle\Controller\Api\NotesController
+    resource: AppBundle\Controller\Api\NotesController
     prefix: /v1
     name_prefix: api_v1_
 
 api_scholies:
     type: rest
-    ressource: AppBundle\Controller\Api\ScholiesController
+    resource: AppBundle\Controller\Api\ScholiesController
     prefix: /v1
     name_prefix: api_v1_
 
 api_texts:
     type: rest
-    ressource: AppBundle\Controller\Api\TextsController
+    resource: AppBundle\Controller\Api\TextsController
     prefix: /v1
     name_prefix: api_v1_
 
 api_uri_categories:
     type: rest
-    ressource: AppBundle\Controller\Api\UriCategoriesController
+    resource: AppBundle\Controller\Api\UriCategoriesController
     prefix: /v1
     name_prefix: api_v1_
 
-api_uri:
-    type: rest
-    ressource: AppBundle\Controller\Api\UriController
-    prefix: /v1
-    name_prefix: api_v1_
-    
 api_uri_source:
     type: rest
-    ressource: AppBundle\Controller\Api\UriSourceController
+    resource: AppBundle\Controller\Api\UriSourceController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_keywords:
+    type: rest
+    resource: AppBundle\Controller\Api\KeywordsController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_keywords_categories:
+    type: rest
+    resource: AppBundle\Controller\Api\KeywordsCategoriesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_keywords_families:
+    type: rest
+    resource: AppBundle\Controller\Api\KeywordsFamiliesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_genres:
+    type: rest
+    resource: AppBundle\Controller\Api\GenresController
     prefix: /v1
     name_prefix: api_v1_
