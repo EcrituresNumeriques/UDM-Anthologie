@@ -97,6 +97,7 @@ jms_serializer:
         auto_detection: true
         directories:
             - { path: %kernel.root_dir%/serializer/FOSUB, namespace_prefix: 'FOS\UserBundle' }
+
 nelmio_cors:
     defaults:
         allow_credentials: false
