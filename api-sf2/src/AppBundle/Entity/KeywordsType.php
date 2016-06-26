@@ -9,12 +9,16 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * KeywordsType
  *
  * @ORM\Table(name="keywords_type")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class KeywordsType
 {
@@ -42,7 +46,7 @@ class KeywordsType
     private $group;
     
     /**
-     * @OneToMany(targetEntity="KeywordsTypeTranslations", mappedBy="keywordType")
+     * @OneToMany(targetEntity="KeywordsTypeTranslations", mappedBy="keywordType", cascade={"persist"})
      */
     private $keywordTypeTranslations;
 
@@ -76,6 +80,7 @@ class KeywordsType
      */
     public function addKeywordTypeTranslation(\AppBundle\Entity\KeywordsTypeTranslations $keywordTypeTranslation)
     {
+        $keywordTypeTranslation->setKeywordType($this);
         $this->keywordTypeTranslations[] = $keywordTypeTranslation;
 
         return $this;

@@ -9,12 +9,16 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Texts
  *
  * @ORM\Table(name="texts")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Texts
 {
@@ -44,7 +48,7 @@ class Texts
 
 
     /**
-     * @OneToMany(targetEntity="TextsTranslations", mappedBy="text")
+     * @OneToMany(targetEntity="TextsTranslations", mappedBy="text", cascade={"persist"})
      */
     private $textTranslations;
 
@@ -72,12 +76,13 @@ class Texts
     /**
      * Add textTranslation
      *
-     * @param \AppBundle\Entity\NotesTranslations $textTranslation
+     * @param \AppBundle\Entity\TextsTranslations $textTranslation
      *
      * @return Texts
      */
-    public function addTextTranslation(\AppBundle\Entity\NotesTranslations $textTranslation)
+    public function addTextTranslation(\AppBundle\Entity\TextsTranslations $textTranslation)
     {
+        $textTranslation->setText($this);
         $this->textTranslations[] = $textTranslation;
 
         return $this;
@@ -86,9 +91,9 @@ class Texts
     /**
      * Remove textTranslation
      *
-     * @param \AppBundle\Entity\NotesTranslations $textTranslation
+     * @param \AppBundle\Entity\TextsTranslations $textTranslation
      */
-    public function removeTextTranslation(\AppBundle\Entity\NotesTranslations $textTranslation)
+    public function removeTextTranslation(\AppBundle\Entity\TextsTranslations $textTranslation)
     {
         $this->textTranslations->removeElement($textTranslation);
     }

@@ -10,12 +10,16 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Scholies
  *
  * @ORM\Table(name="scholies")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Scholies
 {
@@ -44,7 +48,7 @@ class Scholies
 
 
     /**
-     * @OneToMany(targetEntity="ScholiesTranslations", mappedBy="scholie")
+     * @OneToMany(targetEntity="ScholiesTranslations", mappedBy="scholie", cascade={"persist"})
      */
     private $scholieTranslations;
 
@@ -88,12 +92,13 @@ class Scholies
     /**
      * Add scholieTranslation
      *
-     * @param \AppBundle\Entity\NotesTranslations $scholieTranslation
+     * @param \AppBundle\Entity\ScholiesTranslations $scholieTranslation
      *
      * @return Scholies
      */
-    public function addScholieTranslation (\AppBundle\Entity\NotesTranslations $scholieTranslation)
+    public function addScholieTranslation (\AppBundle\Entity\ScholiesTranslations $scholieTranslation)
     {
+        $scholieTranslation->setScholie($this);
         $this->scholieTranslations[] = $scholieTranslation;
 
         return $this;
@@ -102,9 +107,9 @@ class Scholies
     /**
      * Remove scholieTranslation
      *
-     * @param \AppBundle\Entity\NotesTranslations $scholieTranslation
+     * @param \AppBundle\Entity\ScholiesTranslations $scholieTranslation
      */
-    public function removeScholieTranslation (\AppBundle\Entity\NotesTranslations $scholieTranslation)
+    public function removeScholieTranslation (\AppBundle\Entity\ScholiesTranslations $scholieTranslation)
     {
         $this->scholieTranslations->removeElement($scholieTranslation);
     }

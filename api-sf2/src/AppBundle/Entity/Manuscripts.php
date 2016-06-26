@@ -10,12 +10,16 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Manuscripts
  *
  * @ORM\Table(name="manuscripts")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Manuscripts
 {
@@ -43,7 +47,7 @@ class Manuscripts
     private $group;
 
     /**
-     * @OneToMany(targetEntity="ManuscriptsTranslations", mappedBy="manuscript")
+     * @OneToMany(targetEntity="ManuscriptsTranslations", mappedBy="manuscript", cascade={"persist"})
      */
     private $manuscriptTranslations;
 
@@ -95,6 +99,7 @@ class Manuscripts
      */
     public function addManuscriptTranslation(\AppBundle\Entity\ManuscriptsTranslations $manuscriptTranslation)
     {
+        $manuscriptTranslation->setManuscript($this);
         $this->manuscriptTranslations[] = $manuscriptTranslation;
 
         return $this;

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -16,6 +17,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="cities")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Cities
 {
@@ -51,12 +55,12 @@ class Cities
     private $group;
 
     /**
-     * @OneToMany(targetEntity="CitiesTranslations", mappedBy="city")
+     * @OneToMany(targetEntity="CitiesTranslations", mappedBy="city", cascade={"persist"})
      */
     private $cityTranslations;
 
     /**
-     * @ManyToMany(targetEntity="Images")
+     * @ManyToMany(targetEntity="Images", cascade={"persist"})
      * @JoinTable(name="cities_images_assoc",
      *      joinColumns={@JoinColumn(name="city_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
@@ -113,6 +117,7 @@ class Cities
      */
     public function addCityTranslation (\AppBundle\Entity\CitiesTranslations $cityTranslation)
     {
+        $cityTranslation->setCity($this);
         $this->cityTranslations[] = $cityTranslation;
 
         return $this;

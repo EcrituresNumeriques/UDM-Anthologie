@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -12,6 +13,10 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="URI_type_translation")
  * @ORM\Entity
+ * @AppAnnotations\TranslatableMeta(languageTable="language_id")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class UriTypesTranslations
 {
@@ -38,13 +43,26 @@ class UriTypesTranslations
      * @ManyToOne(targetEntity="UriTypes", inversedBy="uriTypeTranslations")
      * @JoinColumn(name="uri_type_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $uriTypes;
+    private $uriType;
 
+    /**
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+    
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
+    
 
     /**
      * Get id
@@ -81,27 +99,75 @@ class UriTypesTranslations
     }
 
     /**
-     * Set uriTypes
+     * Set uriType
      *
-     * @param \AppBundle\Entity\UriTypes $uriTypes
+     * @param \AppBundle\Entity\UriTypes $uriType
      *
      * @return UriTypesTranslations
      */
-    public function setUriTypes(\AppBundle\Entity\UriTypes $uriTypes = null)
+    public function setUriType(\AppBundle\Entity\UriTypes $uriType = null)
     {
-        $this->uriTypes = $uriTypes;
+        $this->uriType = $uriType;
 
         return $this;
     }
 
     /**
-     * Get uriTypes
+     * Get uriType
      *
      * @return \AppBundle\Entity\UriTypes
      */
-    public function getUriTypes()
+    public function getUriType()
     {
-        return $this->uriTypes;
+        return $this->uriType;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return UriTypesTranslations
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return UriTypesTranslations
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -14,6 +15,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="books")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Books
 {
@@ -47,7 +51,7 @@ class Books
     private $entities;
 
     /**
-     * @OneToMany(targetEntity="BooksTranslations", mappedBy="book")
+     * @OneToMany(targetEntity="BooksTranslations", mappedBy="book", cascade={"persist"})
      */
     private $bookTranslations;
 
@@ -78,6 +82,7 @@ class Books
      */
     public function addBookTranslation (\AppBundle\Entity\BooksTranslations $bookTranslation)
     {
+        $bookTranslation->setBook($this);
         $this->bookTranslations[] = $bookTranslation;
 
         return $this;
@@ -104,39 +109,25 @@ class Books
     }
 
     /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser ()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set user
      *
      * @param \AppBundle\Entity\User $user
      *
      * @return Books
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser (\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \AppBundle\Entity\Group $group
-     *
-     * @return Books
-     */
-    public function setGroup(\AppBundle\Entity\Group $group = null)
-    {
-        $this->group = $group;
 
         return $this;
     }
@@ -146,9 +137,23 @@ class Books
      *
      * @return \AppBundle\Entity\Group
      */
-    public function getGroup()
+    public function getGroup ()
     {
         return $this->group;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Books
+     */
+    public function setGroup (\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
     }
 
     /**
@@ -158,7 +163,7 @@ class Books
      *
      * @return Books
      */
-    public function addEntity(\AppBundle\Entity\Entities $entity)
+    public function addEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities[] = $entity;
 
@@ -170,7 +175,7 @@ class Books
      *
      * @param \AppBundle\Entity\Entities $entity
      */
-    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    public function removeEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities->removeElement($entity);
     }
@@ -180,7 +185,7 @@ class Books
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntities()
+    public function getEntities ()
     {
         return $this->entities;
     }

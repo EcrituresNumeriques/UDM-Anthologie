@@ -2,11 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -15,6 +14,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\Table(name="eras")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EraRepository")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Eras
 {
@@ -46,29 +48,33 @@ class Eras
     private $dateEnd;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="eras")
-     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="eras")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="eras")
-     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="Group", inversedBy="eras")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
 
     /**
-     * @OneToMany(targetEntity="Entities", mappedBy="era")
+     * @ORM\OneToMany(targetEntity="Entities", mappedBy="era")
      */
     private $entities;
 
     /**
-     * @OneToMany(targetEntity="Images", mappedBy="era")
+     * @ORM\ManyToMany(targetEntity="Images", cascade={"persist"})
+     * @ORM\JoinTable(name="eras_images_assoc",
+     *      joinColumns={@JoinColumn(name="author_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
+     *      )
      */
     private $images;
 
     /**
-     * @OneToMany(targetEntity="ErasTranslations", mappedBy="era")
+     * @ORM\OneToMany(targetEntity="ErasTranslations", mappedBy="era", cascade={"persist"})
      */
     private $eraTranslations;
 
@@ -148,6 +154,7 @@ class Eras
      */
     public function addEraTranslation (\AppBundle\Entity\ErasTranslations $eraTranslation)
     {
+        $eraTranslation->setEra($this);
         $this->eraTranslations[] = $eraTranslation;
 
         return $this;
@@ -174,39 +181,25 @@ class Eras
     }
 
     /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser ()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set user
      *
      * @param \AppBundle\Entity\User $user
      *
      * @return Eras
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser (\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \AppBundle\Entity\Group $group
-     *
-     * @return Eras
-     */
-    public function setGroup(\AppBundle\Entity\Group $group = null)
-    {
-        $this->group = $group;
 
         return $this;
     }
@@ -216,9 +209,23 @@ class Eras
      *
      * @return \AppBundle\Entity\Group
      */
-    public function getGroup()
+    public function getGroup ()
     {
         return $this->group;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Eras
+     */
+    public function setGroup (\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
     }
 
     /**
@@ -228,7 +235,7 @@ class Eras
      *
      * @return Eras
      */
-    public function addEntity(\AppBundle\Entity\Entities $entity)
+    public function addEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities[] = $entity;
 
@@ -240,7 +247,7 @@ class Eras
      *
      * @param \AppBundle\Entity\Entities $entity
      */
-    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    public function removeEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities->removeElement($entity);
     }
@@ -250,7 +257,7 @@ class Eras
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntities()
+    public function getEntities ()
     {
         return $this->entities;
     }
@@ -262,7 +269,7 @@ class Eras
      *
      * @return Eras
      */
-    public function addImage(\AppBundle\Entity\Images $image)
+    public function addImage (\AppBundle\Entity\Images $image)
     {
         $this->images[] = $image;
 
@@ -274,7 +281,7 @@ class Eras
      *
      * @param \AppBundle\Entity\Images $image
      */
-    public function removeImage(\AppBundle\Entity\Images $image)
+    public function removeImage (\AppBundle\Entity\Images $image)
     {
         $this->images->removeElement($image);
     }
@@ -284,7 +291,7 @@ class Eras
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getImages()
+    public function getImages ()
     {
         return $this->images;
     }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -15,6 +16,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="notes")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Notes
 {
@@ -42,7 +46,7 @@ class Notes
     private $group;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\NotesTranslations", mappedBy="note")
+     * @OneToMany(targetEntity="AppBundle\Entity\NotesTranslations", mappedBy="note", cascade={"persist"})
      */
     private $noteTranslations;
 
@@ -126,6 +130,7 @@ class Notes
      */
     public function addNoteTranslation(\AppBundle\Entity\NotesTranslations $noteTranslation)
     {
+        $noteTranslation->setNote($this);
         $this->noteTranslations[] = $noteTranslation;
 
         return $this;

@@ -8,12 +8,16 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * UriTypes
  *
  * @ORM\Table(name="URI_types")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class UriTypes
 {
@@ -47,7 +51,7 @@ class UriTypes
     private $group;
 
     /**
-     * @OneToMany(targetEntity="UriTypesTranslations", mappedBy="uriTypes")
+     * @OneToMany(targetEntity="UriTypesTranslations", mappedBy="uriType", cascade={"persist"})
      */
     private $uriTypeTranslations;
     
@@ -139,13 +143,13 @@ class UriTypes
     }
 
     /**
-     * Add uriTypeTranslation
+     * Add UriTypesTranslations
      *
-     * @param \AppBundle\Entity\uriTypesTranslations $uriTypeTranslation
+     * @param \AppBundle\Entity\UriTypesTranslations $uriTypeTranslation
      *
      * @return UriTypes
      */
-    public function addUriTypeTranslation(\AppBundle\Entity\uriTypesTranslations $uriTypeTranslation)
+    public function addUriTypeTranslation(\AppBundle\Entity\UriTypesTranslations $uriTypeTranslation)
     {
         $this->uriTypeTranslations[] = $uriTypeTranslation;
 
@@ -153,17 +157,17 @@ class UriTypes
     }
 
     /**
-     * Remove uriTypeTranslation
+     * Remove UriTypesTranslations
      *
-     * @param \AppBundle\Entity\uriTypesTranslations $uriTypeTranslation
+     * @param \AppBundle\Entity\UriTypesTranslations $uriTypeTranslation
      */
-    public function removeUriTypeTranslation(\AppBundle\Entity\uriTypesTranslations $uriTypeTranslation)
+    public function removeUriTypeTranslation(\AppBundle\Entity\UriTypesTranslations $uriTypeTranslation)
     {
         $this->uriTypeTranslations->removeElement($uriTypeTranslation);
     }
 
     /**
-     * Get uriTypeTranslations
+     * Get UriTypesTranslations
      *
      * @return \Doctrine\Common\Collections\Collection
      */

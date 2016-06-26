@@ -9,12 +9,16 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Uri
  *
  * @ORM\Table(name="URI")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Uri
 {
@@ -225,6 +229,7 @@ class Uri
      */
     public function addUrisType(\AppBundle\Entity\UriTypes $urisType)
     {
+        $urisType->setUri($this);
         $this->urisTypes[] = $urisType;
 
         return $this;
@@ -248,5 +253,39 @@ class Uri
     public function getUrisTypes()
     {
         return $this->urisTypes;
+    }
+
+    /**
+     * Add uriType
+     *
+     * @param \AppBundle\Entity\UriTypes $uriType
+     *
+     * @return Uri
+     */
+    public function addUriType(\AppBundle\Entity\UriTypes $uriType)
+    {
+        $this->uriTypes[] = $uriType;
+
+        return $this;
+    }
+
+    /**
+     * Remove uriType
+     *
+     * @param \AppBundle\Entity\UriTypes $uriType
+     */
+    public function removeUriType(\AppBundle\Entity\UriTypes $uriType)
+    {
+        $this->uriTypes->removeElement($uriType);
+    }
+
+    /**
+     * Get uriTypes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUriTypes()
+    {
+        return $this->uriTypes;
     }
 }

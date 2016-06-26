@@ -8,12 +8,16 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Genres
  *
  * @ORM\Table(name="genres")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Genres
 {
@@ -47,7 +51,7 @@ class Genres
     private $entities;
 
     /**
-     * @OneToMany(targetEntity="GenresTranslations", mappedBy="genre")
+     * @OneToMany(targetEntity="GenresTranslations", mappedBy="genre", cascade={"persist"})
      */
     private $genreTranslations;
 
@@ -78,6 +82,7 @@ class Genres
      */
     public function addGenreTranslation (\AppBundle\Entity\GenresTranslations $genreTranslation)
     {
+        $genreTranslation->setGenre($this);
         $this->genreTranslations[] = $genreTranslation;
 
         return $this;
