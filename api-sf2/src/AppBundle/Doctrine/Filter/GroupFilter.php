@@ -5,26 +5,25 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 
-class LanguageFilter extends SQLFilter
+class GroupFilter extends SQLFilter
 {
 
     public function addFilterConstraint (ClassMetadata $targetEntity , $targetTableAlias)
     {
 
         $reader           = new AnnotationReader();
-        $translationAware = $reader->getClassAnnotation($targetEntity->getReflectionClass() ,
-            'AppBundle\\Annotation\\TranslatableMeta');
-        if ( !$translationAware ) {
+        $groupAware = $reader->getClassAnnotation($targetEntity->getReflectionClass() ,
+            'AppBundle\\Annotation\\GroupMeta');
+        if ( !$groupAware ) {
             return '';
         }
 
         try {
-            $language = $this->getParameter('lang');
+            $groupId = $this->getParameter('groupId');
         } catch (\InvalidArgumentException $e) {
             return '';
         }
-        
-        return sprintf('%s.%s = %s' , $targetTableAlias , $translationAware->languageTable , $language);
+        return sprintf('%s.%s = %s' , $targetTableAlias , $groupAware->groupTable , $groupId);
     }
 
 }

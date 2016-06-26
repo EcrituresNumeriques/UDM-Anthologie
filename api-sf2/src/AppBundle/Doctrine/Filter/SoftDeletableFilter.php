@@ -5,26 +5,26 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 
-class LanguageFilter extends SQLFilter
+class SoftDeletableFilter extends SQLFilter
 {
 
     public function addFilterConstraint (ClassMetadata $targetEntity , $targetTableAlias)
     {
 
         $reader           = new AnnotationReader();
-        $translationAware = $reader->getClassAnnotation($targetEntity->getReflectionClass() ,
-            'AppBundle\\Annotation\\TranslatableMeta');
-        if ( !$translationAware ) {
+        $softDeleteAware = $reader->getClassAnnotation($targetEntity->getReflectionClass() ,
+            'AppBundle\\Annotation\\SoftDeleteMeta');
+        if ( !$softDeleteAware ) {
             return '';
         }
 
         try {
-            $language = $this->getParameter('lang');
+            $softDelete = $this->getParameter('deleted') ? "IS NULL" : "IS NOT NULL" ;
         } catch (\InvalidArgumentException $e) {
             return '';
         }
-        
-        return sprintf('%s.%s = %s' , $targetTableAlias , $translationAware->languageTable , $language);
+
+        return sprintf('%s.%s %s' , $targetTableAlias , $softDeleteAware->deleteFlagTable , $softDelete);
     }
 
 }
