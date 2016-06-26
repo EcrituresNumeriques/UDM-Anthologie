@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -12,6 +13,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="images")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Images
 {
@@ -56,12 +60,6 @@ class Images
      * @ORM\Column(name="credit", type="string", length=45, nullable=true)
      */
     private $credit;
-
-    /**
-     * @ManyToOne(targetEntity="Eras", inversedBy="images")
-     * @JoinColumn(name="era_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $era;
 
     /**
      * @ManyToOne(targetEntity="User", inversedBy="images")

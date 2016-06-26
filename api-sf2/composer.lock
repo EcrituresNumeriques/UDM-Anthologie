@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9fec5912d481d637ab5b43cca7a18c3c",
-    "content-hash": "1c9a779c06c56ef8b9f02eb4f8392186",
+    "hash": "4adc1ea262b017ee7589631ba79eb750",
+    "content-hash": "29c2ecd276409ce0371991e27ccf9612",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1729,17 +1729,17 @@
         },
         {
             "name": "nelmio/api-doc-bundle",
-            "version": "2.12.0",
+            "version": "2.13.0",
             "target-dir": "Nelmio/ApiDocBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "6793b701570f5f426678309910b2440c8f5d1d9e"
+                "reference": "a3a9bb3b700f3ebaed95390292dad23f8141afa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/6793b701570f5f426678309910b2440c8f5d1d9e",
-                "reference": "6793b701570f5f426678309910b2440c8f5d1d9e",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/a3a9bb3b700f3ebaed95390292dad23f8141afa0",
+                "reference": "a3a9bb3b700f3ebaed95390292dad23f8141afa0",
                 "shasum": ""
             },
             "require": {
@@ -1781,7 +1781,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.12-dev"
+                    "dev-master": "2.13-dev"
                 }
             },
             "autoload": {
@@ -1810,7 +1810,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2016-03-21 11:19:12"
+            "time": "2016-06-13 09:12:09"
         },
         {
             "name": "nelmio/cors-bundle",
@@ -2057,16 +2057,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.6",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0"
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ffe306d09c1f2bad721237f63b2169d1b78253d0",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
                 "shasum": ""
             },
             "require": {
@@ -2105,7 +2105,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-04-25 20:50:31"
+            "time": "2016-06-23 16:11:33"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3429,16 +3429,16 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v3.0.6",
+            "version": "v3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "ac91535054d025937d897d78ebb5fc2da5e955a4"
+                "reference": "d1be460925376703a470a3ac6ec034eb7eab3892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/ac91535054d025937d897d78ebb5fc2da5e955a4",
-                "reference": "ac91535054d025937d897d78ebb5fc2da5e955a4",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/d1be460925376703a470a3ac6ec034eb7eab3892",
+                "reference": "d1be460925376703a470a3ac6ec034eb7eab3892",
                 "shasum": ""
             },
             "require": {
@@ -3477,7 +3477,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2016-02-26 04:36:01"
+            "time": "2016-06-20 05:58:05"
         },
         {
             "name": "symfony/phpunit-bridge",

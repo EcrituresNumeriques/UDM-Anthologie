@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -9,9 +10,6 @@ use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Groups;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 
@@ -21,6 +19,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\Table(name="authors")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Authors
 {
@@ -120,7 +121,7 @@ class Authors
     private $entities;
 
     /**
-     * @ManyToMany(targetEntity="Images")
+     * @ManyToMany(targetEntity="Images", cascade={"persist"})
      * @JoinTable(name="authors_images_assoc",
      *      joinColumns={@JoinColumn(name="author_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
@@ -466,39 +467,25 @@ class Authors
     }
 
     /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser ()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set user
      *
      * @param \AppBundle\Entity\User $user
      *
      * @return Authors
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser (\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \AppBundle\Entity\Group $group
-     *
-     * @return Authors
-     */
-    public function setGroup(\AppBundle\Entity\Group $group = null)
-    {
-        $this->group = $group;
 
         return $this;
     }
@@ -508,8 +495,22 @@ class Authors
      *
      * @return \AppBundle\Entity\Group
      */
-    public function getGroup()
+    public function getGroup ()
     {
         return $this->group;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Authors
+     */
+    public function setGroup (\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
     }
 }

@@ -42,7 +42,8 @@ class AuthorsType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class'      => 'AppBundle\Entity\Authors' ,
-            'csrf_protection' => false
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 

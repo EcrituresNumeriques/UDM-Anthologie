@@ -9,7 +9,11 @@
         {{ css|raw }}
     </style>
     {% block stylesheets %}
+<<<<<<< HEAD
         <link href="{{ asset('doc/css/custom.css') }}" rel="stylesheet" />
+=======
+    <link href="{{ asset('doc/css/custom.css') }}" rel="stylesheet" />
+>>>>>>> api-sf2
     {% endblock %}
     <script type="text/javascript">
         {{ js|raw }}
@@ -29,6 +33,7 @@
         </ul>
     </div>
     {#{% if enableSandbox %}#}
+<<<<<<< HEAD
         {#<div id="sandbox_configuration">#}
             {#{% if bodyFormats|length > 0 %}#}
                 {#body format:#}
@@ -60,6 +65,39 @@
                 {#<button id="clear_api_auth" type="button">Clear</button>#}
             {#{% endif %}#}
         {#</div>#}
+=======
+    {#<div id="sandbox_configuration">#}
+    {#{% if bodyFormats|length > 0 %}#}
+    {#body format:#}
+    {#<select id="body_format">#}
+        {#{% if 'form' in bodyFormats %}<option value="form"{{ defaultBodyFormat == 'form' ? ' selected' : '' }}>Form Data</option>{% endif %}#}
+        {#{% if 'json' in bodyFormats %}<option value="json"{{ defaultBodyFormat == 'json' ? ' selected' : '' }}>JSON</option>{% endif %}#}
+        {#</select>#}
+    {#{% endif %}#}
+    {#{% if requestFormats|length > 0 %}#}
+    {#request format:#}
+    {#<select id="request_format">#}
+        {#{% for format, header in requestFormats %}#}
+        {#<option value="{{ header }}"{{ defaultRequestFormat == format ? ' selected' : '' }}>{{ format }}</option>#}
+        {#{% endfor %}#}
+        {#{% endif %}#}
+        {#</select>#}
+    {#{% if authentication %}#}
+    {#{% if authentication.delivery == 'http' and authentication.type == 'basic' %}#}
+    {#api login: <input type="text" id="api_login" value=""/>#}
+    {#api password: <input type="text" id="api_pass" value=""/>#}
+    {#{% elseif authentication.delivery in ['query', 'http', 'header'] %}#}
+    {#api key: <input type="text" id="api_key" value=""/>#}
+    {#{% endif %}#}
+
+    {#{% if authentication.custom_endpoint %}#}
+    {#api endpoint: <input type="text" id="api_endpoint" value=""/>#}
+    {#{% endif %}#}
+    {#<button id="save_api_auth" type="button">Save</button>#}
+    {#<button id="clear_api_auth" type="button">Clear</button>#}
+    {#{% endif %}#}
+    {#</div>#}
+>>>>>>> api-sf2
     {#{% endif %}#}
     <br style="clear: both;" />
 </div>
