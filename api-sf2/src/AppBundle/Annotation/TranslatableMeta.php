@@ -8,7 +8,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("CLASS")
  */
-final class TranslatableMeta extends Annotation
+final class Translatable
 {
     public $languageTable;
 }
