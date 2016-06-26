@@ -96,6 +96,23 @@ li.operation.delete .heading h3 span.http_method i {
     font-size: 14px;
 }
 
+li.operation.get .heading h3 span.http_method i {
+    color: #2980b9;
+}
+
+li.operation.post .heading h3 span.http_method i {
+    color: #27ae60;
+}
+
+li.operation.put .heading h3 span.http_method i {
+    color: #d35400;
+}
+
+li.operation.delete .heading h3 span.http_method i {
+    color: #c0392b;
+}
+
+
 .heading ul.options {
     margin: 0;
     padding: 10px;
@@ -121,23 +138,85 @@ li.operation.delete div.content {
 li.operation.get div.content.pane,
 li.operation.post div.content.pane,
 li.operation.put div.content.pane,
-li.operation.delete div.content.pane {
+li.operation.delete div.content.pane,
+.pane.sandbox {
     background: #f5f5f5;
     border: solid 1px #f6f6f6;
 }
 
 li.operation.get div.content h4 {
-    color: #2980b9;
+    color: #89C4F4;
+    margin-bottom: 15px
 }
 
 li.operation.post div.content h4 {
-    color: #27ae60;
+    color: #87D37C ;
 }
 
 li.operation.put div.content h4 {
-    color: #d35400;
+    color: #FFA400;
 }
 
 li.operation.delete div.content h4 {
-    color: #c0392b;
+    color: #D24D57;
+}
+
+/* Sanbox */
+
+form .parameters .tuple span:not(.remove),
+form .headers .tuple span:not(.remove),
+form .request-content .tuple span:not(.remove) {
+    margin: 0 15px
+}
+
+form .parameters .tuple input,
+form .parameters .tuple textarea,
+form .parameters .tuple select,
+form .headers .tuple input,
+form .request-content .tuple input,
+form .request-content textarea {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 5px 0;
+}
+
+form .headers .tuple input {
+    width: 50%;
+}
+
+form .request-content textarea {
+    width: 94%;
+    min-width: 94%;
+    max-width: 94%;
+    margin-bottom: 15px;
+}
+
+.buttons input,
+.add_header,
+.set-content-type,
+.add_parameter {
+    background: #366870;
+    border: none;
+    color: #fff;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 10px 30px;
+    font-weight: 800;
+    font-size: 18px;
+    margin: 15px 0;
+    cursor: pointer;;
+}
+
+.set-content-type {
+    display: block;
+}
+
+.remove {
+    margin-left: 15px;
+}
+
+small {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
 }
