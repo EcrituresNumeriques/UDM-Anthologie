@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Authors;
-use AppBundle\Entity\AuthorsTranslations;
-use AppBundle\Form\AuthorsTranslationsType;
-use AppBundle\Form\AuthorsType;
+use AppBundle\Entity\Eras;
+use AppBundle\Entity\ErasTranslations;
+use AppBundle\Form\ErasTranslationsType;
+use AppBundle\Form\ErasType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -15,7 +15,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthorsController extends BaseApiController
+class ErasController extends BaseApiController
 {
     /**
      * @see BaseApiController::getParams()
@@ -25,22 +25,22 @@ class AuthorsController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors') ,
-            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:AuthorsTranslations') ,
-            "entity"                => new Authors() ,
-            "entityName"            => "Authors" ,
-            "entitySetter"          => "setAuthor" ,
-            "entityForm"            => new AuthorsType() ,
-            "entityTranslation"     => new AuthorsTranslations() ,
-            "entityTranslationName" => "AuthorsTranslations" ,
-            "entityTranslationForm" => new AuthorsTranslationsType() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Eras') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:ErasTranslations') ,
+            "entity"                => new Eras() ,
+            "entityName"            => "Eras" ,
+            "entitySetter"          => "setEra" ,
+            "entityForm"            => new ErasType() ,
+            "entityTranslation"     => new ErasTranslations() ,
+            "entityTranslationName" => "ErasTranslations" ,
+            "entityTranslationForm" => new ErasTranslationsType() ,
         );
     }
 
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a list of authors and related datas",
+     *     description="Get a list of Eras and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -63,14 +63,14 @@ class AuthorsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/author/")
+     * @Get("/era/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getAuthorsAction (Request $request , ParamFetcher $paramFetcher)
+    public function getErasAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
@@ -78,7 +78,7 @@ class AuthorsController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get an author and related datas",
+     *     description="Get an Era and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -90,7 +90,7 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author identifier"
+     *              "description"="era identifier"
      *          }
      *     },
      *     statusCodes={
@@ -101,7 +101,7 @@ class AuthorsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/author/{id}")
+     * @Get("/era/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -110,44 +110,44 @@ class AuthorsController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getAuthorAction (Request $request , $id)
+    public function getEraAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new Author",
+     *     description="Create a new Era",
      *     requirements={
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author identifier"
+     *              "description"="era identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsType",
-     *     output="AppBundle\Entity\Authors",
+     *     input="AppBundle\Form\ErasType",
+     *     output="AppBundle\Entity\Eras",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
      *     }
      * )
      *
-     * @Post("/author/")
+     * @Post("/era/")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function postAuthorAction (Request $request)
+    public function postEraAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an Author",
+     *     description="Edit an Era",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -159,11 +159,11 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author identifier"
+     *              "description"="era identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsType",
-     *     output="AppBundle\Entity\Authors",
+     *     input="AppBundle\Form\ErasType",
+     *     output="AppBundle\Entity\Eras",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -171,21 +171,21 @@ class AuthorsController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/author/{id}")
+     * @Put("/era/{id}")
      *
      * @param Request      $request
      * @param              $id
      *
      * @return Response
      */
-    public function putAuthorAction (Request $request , $id)
+    public function putEraAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an Author",
+     *     description="Edit an Era",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -197,7 +197,7 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author id"
+     *              "description"="era id"
      *          }
      *     },
      *     statusCodes={
@@ -206,7 +206,7 @@ class AuthorsController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/author/{id}")
+     * @Delete("/era/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -214,14 +214,14 @@ class AuthorsController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteEraAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new Author translation",
+     *     description="Create a new Era translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -233,11 +233,11 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author id"
+     *              "description"="era id"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsTranslationsType",
-     *     output="AppBundle\Entity\AuthorsTranslations",
+     *     input="AppBundle\Form\ErasTranslationsType",
+     *     output="AppBundle\Entity\ErasTranslations",
      *     statusCodes={
      *         200="Returned when successful",
      *         400="Returned when a parameter is not found",
@@ -245,21 +245,21 @@ class AuthorsController extends BaseApiController
      *     }
      * )
      *
-     * @Post("/author/{id}/translation/")
+     * @Post("/era/{id}/translation/")
      *
      * @param Request $request
      * @param         $id
      *
      * @return Response
      */
-    public function postAuthorTranslationAction (Request $request , $id)
+    public function postEraTranslationAction (Request $request , $id)
     {
         return BaseApiController::createTranslationAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an Author translation",
+     *     description="Edit an Era translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -271,17 +271,17 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author id"
+     *              "description"="era id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author translation id"
+     *              "description"="era translation id"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsTranslationsType",
-     *     output="AppBundle\Entity\AuthorsTranslations",
+     *     input="AppBundle\Form\ErasTranslationsType",
+     *     output="AppBundle\Entity\ErasTranslations",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -290,7 +290,7 @@ class AuthorsController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/author/{id}/translation/{idTranslation}")
+     * @Put("/era/{id}/translation/{idTranslation}")
      *
      * @param Request $request
      * @param         $id
@@ -298,14 +298,14 @@ class AuthorsController extends BaseApiController
      *
      * @return Response
      */
-    public function putAuthorTranslationAction (Request $request , $id , $idTranslation)
+    public function putEraTranslationAction (Request $request , $id , $idTranslation)
     {
         return BaseApiController::updateTranslationAction($request , $idTranslation);
     }
 
     /**
      * @ApiDoc(
-     *     description="Delete an Author translation",
+     *     description="Delete an Era translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -317,13 +317,13 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author translation id"
+     *              "description"="era translation id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author translation id"
+     *              "description"="era translation id"
      *          }
      *     },
      *     statusCodes={
@@ -332,7 +332,7 @@ class AuthorsController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/author/{id}/translation/{idTranslation}")
+     * @Delete("/era/{id}/translation/{idTranslation}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -341,7 +341,7 @@ class AuthorsController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteAuthorTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
+    public function deleteEraTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
     {
         return BaseApiController::deleteTranslationAction($request , $paramFetcher , $idTranslation);
     }

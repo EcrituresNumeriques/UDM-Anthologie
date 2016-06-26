@@ -12,15 +12,15 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use AppBundle\Annotation as AppAnnotations;
 
 /**
- * KeywordsType
+ * KeywordsCategories
  *
- * @ORM\Table(name="keywords_type")
+ * @ORM\Table(name="keywords_categories")
  * @ORM\Entity
  * @AppAnnotations\UserMeta(userTable="user_id")
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class KeywordsType
+class KeywordsCategories
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;

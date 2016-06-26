@@ -39,13 +39,13 @@ class UriTypes
     private $uri;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="uriTypes")
+     * @ManyToOne(targetEntity="User", inversedBy="uriCategories")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="uriTypes")
+     * @ManyToOne(targetEntity="Group", inversedBy="uriCategories")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;

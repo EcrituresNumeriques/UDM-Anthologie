@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Authors;
-use AppBundle\Entity\AuthorsTranslations;
-use AppBundle\Form\AuthorsTranslationsType;
-use AppBundle\Form\AuthorsType;
+use AppBundle\Entity\Keywords;
+use AppBundle\Entity\KeywordsTranslations;
+use AppBundle\Form\KeywordsTranslationsType;
+use AppBundle\Form\KeywordsType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -15,8 +15,9 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthorsController extends BaseApiController
+class KeywordsController extends BaseApiController
 {
+
     /**
      * @see BaseApiController::getParams()
      *
@@ -25,22 +26,22 @@ class AuthorsController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors') ,
-            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:AuthorsTranslations') ,
-            "entity"                => new Authors() ,
-            "entityName"            => "Authors" ,
-            "entitySetter"          => "setAuthor" ,
-            "entityForm"            => new AuthorsType() ,
-            "entityTranslation"     => new AuthorsTranslations() ,
-            "entityTranslationName" => "AuthorsTranslations" ,
-            "entityTranslationForm" => new AuthorsTranslationsType() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Keywords') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:KeywordsTranslations') ,
+            "entity"                => new Keywords() ,
+            "entityName"            => "Keywords" ,
+            "entitySetter"          => "setKeyword" ,
+            "entityForm"            => new KeywordsType() ,
+            "entityTranslation"     => new KeywordsTranslations() ,
+            "entityTranslationName" => "KeywordsTranslations" ,
+            "entityTranslationForm" => new KeywordsTranslationsType() ,
         );
     }
 
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a list of authors and related datas",
+     *     description="Get a list of keywords and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -63,7 +64,7 @@ class AuthorsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/author/")
+     * @Get("/keywords/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -78,7 +79,7 @@ class AuthorsController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get an author and related datas",
+     *     description="Get an keywords and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -90,7 +91,7 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author identifier"
+     *              "description"="keyword identifier"
      *          }
      *     },
      *     statusCodes={
@@ -101,7 +102,7 @@ class AuthorsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/author/{id}")
+     * @Get("/keywords/{id}")
      *
      * @param Request $request
      * @param         $id
