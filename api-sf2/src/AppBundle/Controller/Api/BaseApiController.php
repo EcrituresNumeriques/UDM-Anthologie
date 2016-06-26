@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller\Api;
 
-use Doctrine\Common\Collections\Criteria;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
@@ -21,19 +20,17 @@ abstract class BaseApiController extends FOSRestController
      */
     protected function createAction (Request $request)
     {
+
         $entity     = $this->getParams()["entity"];
         $entityForm = $this->getParams()["entityForm"];
-        $em         = $this->getDoctrine()->getEntityManager();
-
-        $form = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
-
+        $em         = $this->getDoctrine()->getManager();
+        $form       = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
         $form->handleRequest($request);
-        $view = $this->view($form , 400);
+        $view = $this->view($form , 404);
         if ($form->isValid()) {
-
-            $um   = $this->container->get('fos_user.user_manager');
-            $user = $um->findUserBy(array("id" => 1));
-
+            $user = $this->get('security.token_storage')
+                ->getToken()
+                ->getUser();
             $entity->setUser($user);
             $em->persist($entity);
             $em->flush();
@@ -49,11 +46,6 @@ abstract class BaseApiController extends FOSRestController
      */
     abstract function getParams ();
 
-    protected function performForm (Request $request , $entityForm , $entity)
-    {
-
-    }
-
     /**
      * Base create translation
      *
@@ -64,16 +56,37 @@ abstract class BaseApiController extends FOSRestController
      */
     protected function createTranslationAction (Request $request , $idEntity)
     {
-        $entity         = $this->getParams()["entityTranslation"];
-        $form           = $this->getParams()["entityTranslationForm"];
-        $entitySelector = "set" . $this->getParams()["entityTranslationInversedBy"];
-        $entity->$entitySelector($idEntity);
-        $em   = $this->getDoctrine()->getEntityManager();
-        $form = $this->createForm($form , $entity , array("method" => $request->getMethod()));
+        $entityTranslation   = $this->getParams()["entityTranslation"];
+        $formTypeTranslation = $this->getParams()["entityTranslationForm"];
+        $repository          = $this->getParams()["repository"];
+        $entity              = $repository->findOneBy(array('id' => $idEntity));
+        $entitySetter        = $this->getParams()["entitySetter"];
+        $em                  = $this->getDoctrine()->getManager();
+        $form                = $this->createForm($formTypeTranslation , $entityTranslation , array(
+            "method" => $request->getMethod()
+        ));
+        $user                = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+
+        if ( !$user->hasGroup($entity->getGroup()->getName())
+            || $user->getId() != $entity->getUser()->getId()) {
+            $view = $this->view($entity , 403);
+
+            return $this->handleView($view);
+        }
+
         $form->handleRequest($request);
+        $form->getErrors();
         $view = $this->view($form , 400);
         if ($form->isValid()) {
-            $em->persist($entity);
+
+            $entityTranslation->$entitySetter($entity);
+            $user = $this->get('security.token_storage')
+                ->getToken()
+                ->getUser();
+            $entityTranslation->setUser($user);
+            $em->persist($entityTranslation);
             $em->flush();
             $view = $this->view($entity , 200);
         }
@@ -85,26 +98,89 @@ abstract class BaseApiController extends FOSRestController
      * Base update translation
      *
      * @param Request $request
-     * @param         $idEntity
+     * @param         $idTranslation
      *
      * @return Response
      */
-    protected function updateTranslationAction (Request $request , $idEntity)
+    protected function updateTranslationAction (Request $request , $idTranslation)
     {
 
+        $repositoryTranslation = $this->getParams()["repositoryTranslation"];
+        $entityTranslation     = $repositoryTranslation->findOneBy(array('id' => $idTranslation));
+        $formTranslation       = $this->getParams()["entityTranslationForm"];
+        $user                  = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+        if ( !$user->hasGroup($entityTranslation->getGroup()->getName())
+            || $user->getId() != $entityTranslation->getUser()->getId()) {
+            $view = $this->view($entityTranslation , 403);
+
+            return $this->handleView($view);
+        }
+        $em   = $this->getDoctrine()->getManager();
+        $form = $this->createForm($formTranslation , $entityTranslation , array("method" => $request->getMethod()));
+        $view = $this->view($form , 400);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em->persist($entityTranslation);
+            $em->flush();
+            $view = $this->view($entityTranslation , 200);
+        }
+
+        return $this->handleView($view);
     }
 
     /**
      * Base delete translation
      *
-     * @param Request $request
-     * @param         $idEntityTranslation
+     * @param Request      $request
+     * @param ParamFetcher $paramFetcher
+     * @param              $id
      *
      * @return Response
      */
-    protected function deleteTranslationAction (Request $request , $idEntityTranslation)
+    protected function deleteTranslationAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
+        $safeDeleteParam               = new QueryParam();
+        $safeDeleteParam->name         = "safeDelete";
+        $safeDeleteParam->requirements = "\d+";
+        $safeDeleteParam->nullable     = true;
+        $paramFetcher->addParam($safeDeleteParam);
 
+        $repository        = $this->getParams()["repositoryTranslation"];
+        $entityTranslation = $repository->findOneBy(array('id' => $id));
+        $user              = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+
+        if ( !$entityTranslation) {
+            $view = $this->view($entityTranslation , 400);
+
+            return $this->handleView($view);
+        }
+
+        if ( !$user->hasGroup($entityTranslation->getGroup()->getName())
+            || $user->getId() != $entityTranslation->getUser()->getId()) {
+            $view = $this->view($entityTranslation , 403);
+
+            return $this->handleView($view);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        if ($paramFetcher->get('safeDelete')) {
+            $eventManager = $em->getEventManager();
+            $subscriber   = $this->get('knp.doctrine_behaviors.softdeletable_subscriber');
+            $eventManager->removeEventListener($subscriber->getSubscribedEvents() , $subscriber);
+            $em->remove($entityTranslation);
+            $em->flush();
+            $eventManager->addEventSubscriber($subscriber);
+        } else {
+            $em->remove($entityTranslation);
+            $em->flush();
+        }
+        $view = $this->view($entityTranslation , 200);
+
+        return $this->handleView($view);
     }
 
     /**
@@ -166,49 +242,48 @@ abstract class BaseApiController extends FOSRestController
         $lang->nullable     = true;
         $paramFetcher->addParam($lang);
 
-        $user = $this->get('security.token_storage')
-            ->getToken()
-            ->getUser();
+        $em = $this->getDoctrine()
+            ->getManager();
 
-        $repository = $this->getParams()["repository"];
-
-        $resultQuery = $repository->createQueryBuilder('q');
-        //exit(\Doctrine\Common\Util\Debug::dump());
-
+        //filters
         if ($paramFetcher->get('lang')) {
-            $criteria = Criteria::create()
-                ->where(Criteria::expr()->eq("langue" , $paramFetcher->get('lang')));
-            //exit(\Doctrine\Common\Util\Debug::dump($resultQuery));
-            $resultQuery->filterCollection($criteria);
+            $em->getFilters()
+                ->enable('translatable_class')
+                ->setParameter('lang' , $paramFetcher->get('lang'));
         }
 
         if ($paramFetcher->get('groupId')) {
-            $resultQuery->andWhere('q.group = :groupId')
+            $em->getFilters()
+                ->enable('group_acl_class')
                 ->setParameter('groupId' , $paramFetcher->get('groupId'));
         }
+
         if ($paramFetcher->get('userId')) {
-            $resultQuery->andWhere('q.user = :userId')
+            $em->getFilters()
+                ->enable('user_acl_class')
                 ->setParameter('userId' , $paramFetcher->get('userId'));
         }
 
+        if ($paramFetcher->get('deleted') == 1) {
+            $em->getFilters()
+                ->enable('soft_deletable_class')
+                ->setParameter('deleted' , $paramFetcher->get('deleted'));
+        }
+
+        $repository   = $this->getParams()["repository"];
+        $queryBuilder = $repository->createQueryBuilder('q');
+
         if ($paramFetcher->get('offset')) {
-            $resultQuery->setFirstResult($paramFetcher->get('offset'));
+            $queryBuilder->setFirstResult($paramFetcher->get('offset'));
         }
         if ($paramFetcher->get('limit')) {
-            $resultQuery->setMaxResults($paramFetcher->get('limit'));
+            $queryBuilder->setMaxResults($paramFetcher->get('limit'));
         }
-        //exit(\Doctrine\Common\Util\Debug::dump($resultQuery));
-        /*
-        if ($paramFetcher->get('orderByParam')) {
-            $resultQuery->orderBy(':orderByParam :order');
-            $resultQuery->setParameter(':orderByParam', $paramFetcher->get('orderBy'));
-            $resultQuery->setParameter(':order', $paramFetcher->get('sort') ? $paramFetcher->get('sort') : null );
 
-        }*/
-
-        $resultList = $resultQuery->getQuery()
+        $result = $queryBuilder->getQuery()
             ->getResult();
-        $view       = $this->view($resultList , 200);
+
+        $view = $this->view($result , 200);
 
         return $this->handleView($view);
     }
@@ -237,6 +312,7 @@ abstract class BaseApiController extends FOSRestController
      * @param Request      $request
      * @param              $id
      *
+     *
      * @return Response
      */
     protected function updateAction (Request $request , $id)
@@ -244,7 +320,18 @@ abstract class BaseApiController extends FOSRestController
         $repository = $this->getParams()["repository"];
         $entity     = $repository->findOneBy(array('id' => $id));
         $entityForm = $this->getParams()["entityForm"];
-        $em         = $this->getDoctrine()->getEntityManager();
+        $em         = $this->getDoctrine()->getManager();
+        $user       = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+
+        if ( !$user->hasGroup($entity->getGroup()->getName())
+            || $user->getId() != $entity->getUser()->getId()
+        ) {
+            $view = $this->view($entity , 403);
+
+            return $this->handleView($view);
+        }
 
         $form = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
         $form->handleRequest($request);
@@ -265,6 +352,8 @@ abstract class BaseApiController extends FOSRestController
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      * @param              $id
+     *
+     * @return Response
      */
     protected function deleteAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
@@ -276,15 +365,39 @@ abstract class BaseApiController extends FOSRestController
 
         $repository = $this->getParams()["repository"];
         $entity     = $repository->findOneBy(array('id' => $id));
-        if ($paramFetcher->get('safeDelete')) {
+        if ( !$entity) {
+            $view = $this->view($entity , 400);
 
-        } else {
-            $repository->remove($entity);
+            return $this->handleView($view);
         }
 
+        $user = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
 
-        $repository->flush();
+        if ( !$user->hasGroup($entity->getGroup()->getName())
+            || $user->getId() != $entity->getUser()->getId()
+        ) {
+            $view = $this->view($entity , 403);
 
+            return $this->handleView($view);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        if ($paramFetcher->get('safeDelete')) {
+            $eventManager = $em->getEventManager();
+            $subscriber   = $this->get('knp.doctrine_behaviors.softdeletable_subscriber');
+            $eventManager->removeEventListener($subscriber->getSubscribedEvents() , $subscriber);
+            $em->remove($entity);
+            $em->flush();
+            $eventManager->addEventSubscriber($subscriber);
+        } else {
+            $em->remove($entity);
+            $em->flush();
+        }
+        $view = $this->view($entity , 200);
+
+        return $this->handleView($view);
     }
 
 }
