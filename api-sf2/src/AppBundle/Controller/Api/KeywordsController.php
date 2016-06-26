@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class KeywordsController extends BaseApiController
 {
-
     /**
      * @see BaseApiController::getParams()
      *
@@ -41,7 +40,7 @@ class KeywordsController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a list of keywords and related datas",
+     *     description="Get a list of genres and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -64,14 +63,14 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/keywords/")
+     * @Get("/genre/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getAuthorsAction (Request $request , ParamFetcher $paramFetcher)
+    public function getKeywordsAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
@@ -79,7 +78,7 @@ class KeywordsController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get an keywords and related datas",
+     *     description="Get a Keyword and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -91,7 +90,7 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="keyword identifier"
+     *              "description"="genre identifier"
      *          }
      *     },
      *     statusCodes={
@@ -102,7 +101,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/keywords/{id}")
+     * @Get("/genre/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -111,44 +110,44 @@ class KeywordsController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getAuthorAction (Request $request , $id)
+    public function getKeywordAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new Author",
+     *     description="Create a new Keyword",
      *     requirements={
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author identifier"
+     *              "description"="genre identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsType",
-     *     output="AppBundle\Entity\Authors",
+     *     input="AppBundle\Form\KeywordsType",
+     *     output="AppBundle\Entity\Keywords",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
      *     }
      * )
      *
-     * @Post("/author/")
+     * @Post("/genre/")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function postAuthorAction (Request $request)
+    public function postKeywordAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an Author",
+     *     description="Edit a Keyword",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -160,11 +159,11 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author identifier"
+     *              "description"="genre identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsType",
-     *     output="AppBundle\Entity\Authors",
+     *     input="AppBundle\Form\KeywordsType",
+     *     output="AppBundle\Entity\Keywords",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -172,21 +171,21 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/author/{id}")
+     * @Put("/genre/{id}")
      *
      * @param Request      $request
      * @param              $id
      *
      * @return Response
      */
-    public function putAuthorAction (Request $request , $id)
+    public function putKeywordAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an Author",
+     *     description="Edit a Keyword",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -198,7 +197,7 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author id"
+     *              "description"="genre id"
      *          }
      *     },
      *     statusCodes={
@@ -207,7 +206,7 @@ class KeywordsController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/author/{id}")
+     * @Delete("/genre/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -215,14 +214,14 @@ class KeywordsController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteKeywordAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new Author translation",
+     *     description="Create a new Keyword translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -234,11 +233,11 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author id"
+     *              "description"="genre id"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsTranslationsType",
-     *     output="AppBundle\Entity\AuthorsTranslations",
+     *     input="AppBundle\Form\KeywordsTranslationsType",
+     *     output="AppBundle\Entity\KeywordsTranslations",
      *     statusCodes={
      *         200="Returned when successful",
      *         400="Returned when a parameter is not found",
@@ -246,21 +245,21 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Post("/author/{id}/translation/")
+     * @Post("/genre/{id}/translation/")
      *
      * @param Request $request
      * @param         $id
      *
      * @return Response
      */
-    public function postAuthorTranslationAction (Request $request , $id)
+    public function postKeywordTranslationAction (Request $request , $id)
     {
         return BaseApiController::createTranslationAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an Author translation",
+     *     description="Edit a Keyword translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -272,17 +271,17 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author id"
+     *              "description"="genre id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author translation id"
+     *              "description"="genre translation id"
      *          }
      *     },
-     *     input="AppBundle\Form\AuthorsTranslationsType",
-     *     output="AppBundle\Entity\AuthorsTranslations",
+     *     input="AppBundle\Form\KeywordsTranslationsType",
+     *     output="AppBundle\Entity\KeywordsTranslations",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -291,7 +290,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/author/{id}/translation/{idTranslation}")
+     * @Put("/genre/{id}/translation/{idTranslation}")
      *
      * @param Request $request
      * @param         $id
@@ -299,14 +298,14 @@ class KeywordsController extends BaseApiController
      *
      * @return Response
      */
-    public function putAuthorTranslationAction (Request $request , $id , $idTranslation)
+    public function putKeywordTranslationAction (Request $request , $id , $idTranslation)
     {
         return BaseApiController::updateTranslationAction($request , $idTranslation);
     }
 
     /**
      * @ApiDoc(
-     *     description="Delete an Author translation",
+     *     description="Delete a Keyword translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -318,13 +317,13 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author translation id"
+     *              "description"="genre translation id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author translation id"
+     *              "description"="genre translation id"
      *          }
      *     },
      *     statusCodes={
@@ -333,7 +332,7 @@ class KeywordsController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/author/{id}/translation/{idTranslation}")
+     * @Delete("/genre/{id}/translation/{idTranslation}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -342,7 +341,7 @@ class KeywordsController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteAuthorTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
+    public function deleteKeywordTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
     {
         return BaseApiController::deleteTranslationAction($request , $paramFetcher , $idTranslation);
     }

@@ -58,18 +58,6 @@ api_texts:
     prefix: /v1
     name_prefix: api_v1_
 
-api_uri_categories:
-    type: rest
-    resource: AppBundle\Controller\Api\UriCategoriesController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_uri_source:
-    type: rest
-    resource: AppBundle\Controller\Api\UriSourceController
-    prefix: /v1
-    name_prefix: api_v1_
-
 api_keywords:
     type: rest
     resource: AppBundle\Controller\Api\KeywordsController
