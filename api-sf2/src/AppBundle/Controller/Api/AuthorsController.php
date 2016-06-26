@@ -25,15 +25,15 @@ class AuthorsController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"                  => $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors') ,
-            "repositoryTranslation"       => $this->getDoctrine()->getManager()->getRepository('AppBundle:AuthorsTranslations') ,
-            "entity"                      => new Authors() ,
-            "entityName"                  => "Authors" ,
-            "entityForm"                  => new AuthorsType() ,
-            "entityTranslation"           => new AuthorsTranslations() ,
-            "entityTranslationInversedBy" => "author" ,
-            "entityTranslationName"       => "AuthorsTranslations" ,
-            "entityTranslationForm"       => new AuthorsTranslationsType() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:AuthorsTranslations') ,
+            "entity"                => new Authors() ,
+            "entityName"            => "Authors" ,
+            "entitySetter"          => "setAuthor" ,
+            "entityForm"            => new AuthorsType() ,
+            "entityTranslation"     => new AuthorsTranslations() ,
+            "entityTranslationName" => "AuthorsTranslations" ,
+            "entityTranslationForm" => new AuthorsTranslationsType() ,
         );
     }
 
@@ -52,7 +52,6 @@ class AuthorsController extends BaseApiController
      *     filters={
      *         {"name"="offset", "dataType"="integer"},
      *         {"name"="limit", "dataType"="integer"},
-     *         {"name"="sort", "dataType"="string", "pattern"="ASC|DESC"},
      *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
      *         {"name"="groupId", "dataType"="integer"},
      *         {"name"="userId", "dataType"="integer"},
@@ -60,8 +59,7 @@ class AuthorsController extends BaseApiController
      *     },
      *     statusCodes={
      *         200="Returned when successful",
-     *         403="Returned when the user is not authorized to say hello",
-     *         404="Returned when a parameter is not found"
+     *         401="Returned when the user is not authorized to say hello"
      *     }
      * )
      *
@@ -97,7 +95,8 @@ class AuthorsController extends BaseApiController
      *     },
      *     statusCodes={
      *         200="Returned when successful",
-     *         403="Returned when the user is not authorized to say hello",
+     *         204="Returned when no content",
+     *         401="Returned when the user is not authorized to say hello",
      *         404="Returned when a parameter is not found"
      *     }
      * )
@@ -131,8 +130,7 @@ class AuthorsController extends BaseApiController
      *     output="AppBundle\Entity\Authors",
      *     statusCodes={
      *         200="Returned when successful",
-     *         403="Returned when the user is not authorized to say hello",
-     *         404="Returned when a parameter is not found"
+     *         401="Returned when the user is not authorized to say hello",
      *     }
      * )
      *
@@ -168,7 +166,7 @@ class AuthorsController extends BaseApiController
      *     output="AppBundle\Entity\Authors",
      *     statusCodes={
      *         200="Returned when successful",
-     *         403="Returned when the user is not authorized to say hello",
+     *         401="Returned when the user is not authorized to say hello",
      *         404="Returned when a parameter is not found"
      *     }
      * )
@@ -199,12 +197,12 @@ class AuthorsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="author identifier"
+     *              "description"="author id"
      *          }
      *     },
      *     statusCodes={
      *         200="Returned when successful",
-     *         403="Returned when the user is not authorized to say hello",
+     *         401="Returned when the user is not authorized to say hello",
      *         404="Returned when a parameter is not found"
      *     }
      * )
@@ -218,9 +216,134 @@ class AuthorsController extends BaseApiController
      */
     public function deleteAuthorAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Authors');
-        $resultQuery = $repository->createQueryBuilder('q');
         return BaseApiController::deleteAction($request , $paramFetcher , $id);
+    }
+
+    /**
+     * @ApiDoc(
+     *     description="Create a new Author translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\AuthorsTranslationsType",
+     *     output="AppBundle\Entity\AuthorsTranslations",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         400="Returned when a parameter is not found",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
+     *
+     * @Post("/author/{id}/translation/")
+     *
+     * @param Request $request
+     * @param         $id
+     *
+     * @return Response
+     */
+    public function postAuthorTranslationAction (Request $request , $id)
+    {
+        return BaseApiController::createTranslationAction($request , $id);
+    }
+
+    /**
+     * @ApiDoc(
+     *     description="Edit an Author translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author translation id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\AuthorsType",
+     *     output="AppBundle\Entity\Authors",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         403="Returned when the user is not modify datas",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
+     *
+     * @Put("/author/{id}/translation/{idTranslation}")
+     *
+     * @param Request $request
+     * @param         $id
+     * @param         $idTranslation
+     *
+     * @return Response
+     */
+    public function putAuthorTranslationAction (Request $request , $id , $idTranslation)
+    {
+        return BaseApiController::updateTranslationAction($request , $idTranslation);
+    }
+
+    /**
+     * @ApiDoc(
+     *     description="Delete an Author translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author translation id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="author translation id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
+     * @Delete("/author/{id}/translation/{idTranslation}")
+     *
+     * @param Request      $request
+     * @param ParamFetcher $paramFetcher
+     * @param              $id
+     * @param              $idTranslation
+     *
+     * @return Response
+     */
+    public function deleteAuthorTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
+    {
+        return BaseApiController::deleteTranslationAction($request , $paramFetcher , $idTranslation);
     }
 
 }
