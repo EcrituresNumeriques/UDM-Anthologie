@@ -17,8 +17,8 @@ class KeywordsCategoriesTranslationsType extends AbstractType
         $builder
             ->add('label')
             ->add('description')
-            ->add('keywordCategory')
             ->add('language')
+            ->add('group')
         ;
     }
     
@@ -28,7 +28,18 @@ class KeywordsCategoriesTranslationsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\KeywordsCategoriesTranslations'
+            'data_class' => 'AppBundle\Entity\KeywordsCategoriesTranslations'  ,
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName ()
+    {
+        return '';
+    }
+
 }

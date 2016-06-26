@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,10 +16,10 @@ class MotifsTranslationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', TextType::class, array(
+                'required' => true
+            ))
             ->add('description')
-            ->add('motif')
-            ->add('user')
             ->add('group')
             ->add('language')
         ;
@@ -30,7 +31,17 @@ class MotifsTranslationsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\MotifsTranslations'
+            'data_class' => 'AppBundle\Entity\MotifsTranslations',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return '';
     }
 }

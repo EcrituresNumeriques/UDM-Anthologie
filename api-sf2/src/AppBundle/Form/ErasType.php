@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,9 +18,14 @@ class ErasType extends AbstractType
         $builder
             ->add('dateBegin')
             ->add('dateEnd')
-            ->add('user')
             ->add('group')
-            ->add('images')
+            ->add('images') 
+            ->add('eraTranslations' , CollectionType::class , array(
+                'entry_type' => ErasTranslationsType::class ,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ))
         ;
     }
     
@@ -29,7 +35,17 @@ class ErasType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Eras'
+            'data_class' => 'AppBundle\Entity\Eras',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getName ()
+    {
+        return '';
     }
 }
