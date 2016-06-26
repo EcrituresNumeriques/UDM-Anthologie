@@ -71,10 +71,10 @@ class Uri
 
     public function __construct ()
     {
-        $this->uriCategories = new ArrayCollection();
+        $this->urisCategories = new ArrayCollection();
     }
 
-    
+
 
     /**
      * Set id

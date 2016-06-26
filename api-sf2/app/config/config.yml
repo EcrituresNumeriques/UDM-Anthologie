@@ -68,18 +68,35 @@ swiftmailer:
 
 
 # app/config/config.yml
-nelmio_api_doc: ~
+nelmio_api_doc:
+    cache:
+        enabled:            true
+        file:               '%kernel.cache_dir%/api-doc.cache'
+    sandbox:
+        #endpoint:           http://anthologie.raphaelaupee.fr/
+        authentication:
+            name:           access_token
+            delivery:       http
+            type:           bearer         # `basic`, `bearer` are supported
+        accept_type:        application/json
+        body_format:
+            formats:        [ "json" ]
+            default_format: "json"
+        request_format:
+            method:         accept_header
+            formats:
+                json:       "application/json"
 
 fos_rest:
     param_fetcher_listener: true
     routing_loader:
-        default_format: json                            # All responses should be JSON formated
-        include_format: false                           # We do not include format in request, so that all responses
-                                                        # will eventually be JSON formated
+        default_format:     json                            # All responses should be JSON formated
+        include_format:     false                           # We do not include format in request, so that all responses
+                                                            # will eventually be JSON formated
 fos_user:
-    db_driver: orm
-    firewall_name: api                                  #Required byFOSUserBundle
-    user_class: AppBundle\Entity\User
+    db_driver:       orm
+    firewall_name:   api                                #Required byFOSUserBundle
+    user_class:      AppBundle\Entity\User
     group:
         group_class: AppBundle\Entity\Group
 
@@ -90,7 +107,7 @@ fos_oauth_server:
     refresh_token_class: AppBundle\Entity\RefreshToken
     auth_code_class:     AppBundle\Entity\AuthCode
     service:
-        user_provider: fos_user.user_provider.username             # This property will be used when valid credentials are given to load the user upon access token creation
+        user_provider:   fos_user.user_provider.username  # This property will be used when valid credentials are given to load the user upon access token creation
 
 jms_serializer:
     metadata:
