@@ -8,7 +8,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("CLASS")
  */
-final class TranslatableMeta
+final class GroupMeta
 {
-    public $languageTable;
+    public $groupTable;
 }

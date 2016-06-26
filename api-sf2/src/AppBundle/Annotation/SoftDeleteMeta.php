@@ -8,7 +8,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("CLASS")
  */
-final class TranslatableMeta
+final class SoftDeleteMeta
 {
-    public $languageTable;
+    public $deleteFlagTable;
 }
