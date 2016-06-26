@@ -51,7 +51,7 @@ class UriCategories
     private $group;
 
     /**
-     * @OneToMany(targetEntity="Uri", mappedBy="uriCategory", cascade={"persist"})
+     * @OneToMany(targetEntity="UriCategoriesTranslations", mappedBy="uriCategory", cascade={"persist"})
      */
     private $uriCategoryTranslations;
     
@@ -146,12 +146,13 @@ class UriCategories
     /**
      * Add uriCategoryTranslation
      *
-     * @param \AppBundle\Entity\Uri $uriCategoryTranslation
+     * @param \AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation
      *
      * @return UriCategories
      */
-    public function addUriCategoryTranslation(\AppBundle\Entity\Uri $uriCategoryTranslation)
+    public function addUriCategoryTranslation(\AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation)
     {
+        $uriCategoryTranslation->setUriCategory($this);
         $this->uriCategoryTranslations[] = $uriCategoryTranslation;
 
         return $this;
@@ -160,9 +161,9 @@ class UriCategories
     /**
      * Remove uriCategoryTranslation
      *
-     * @param \AppBundle\Entity\Uri $uriCategoryTranslation
+     * @param \AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation
      */
-    public function removeUriCategoryTranslation(\AppBundle\Entity\Uri $uriCategoryTranslation)
+    public function removeUriCategoryTranslation(\AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation)
     {
         $this->uriCategoryTranslations->removeElement($uriCategoryTranslation);
     }

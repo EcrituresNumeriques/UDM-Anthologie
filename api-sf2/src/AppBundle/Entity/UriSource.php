@@ -54,24 +54,15 @@ class UriSource
     private $uri;
     
     
+
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId ()
+    public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName ()
-    {
-        return $this->name;
     }
 
     /**
@@ -81,7 +72,7 @@ class UriSource
      *
      * @return UriSource
      */
-    public function setName ($name)
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -89,61 +80,13 @@ class UriSource
     }
 
     /**
-     * Add uriSource
+     * Get name
      *
-     * @param \AppBundle\Entity\Uri $uriSource
-     *
-     * @return UriSource
+     * @return string
      */
-    public function addUriSource (\AppBundle\Entity\Uri $uriSource)
+    public function getName()
     {
-        $this->uriSource[] = $uriSource;
-
-        return $this;
-    }
-
-    /**
-     * Remove uriSource
-     *
-     * @param \AppBundle\Entity\Uri $uriSource
-     */
-    public function removeUriSource (\AppBundle\Entity\Uri $uriSource)
-    {
-        $this->uriSource->removeElement($uriSource);
-    }
-
-    /**
-     * Get uriSource
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUriSource ()
-    {
-        return $this->uriSource;
-    }
-
-    /**
-     * Set uri
-     *
-     * @param \AppBundle\Entity\Uri $uri
-     *
-     * @return UriSource
-     */
-    public function setUri(\AppBundle\Entity\Uri $uri = null)
-    {
-        $this->uri = $uri;
-
-        return $this;
-    }
-
-    /**
-     * Get uri
-     *
-     * @return \AppBundle\Entity\Uri
-     */
-    public function getUri()
-    {
-        return $this->uri;
+        return $this->name;
     }
 
     /**
@@ -192,5 +135,29 @@ class UriSource
     public function getGroup()
     {
         return $this->group;
+    }
+
+    /**
+     * Set uri
+     *
+     * @param \AppBundle\Entity\Uri $uri
+     *
+     * @return UriSource
+     */
+    public function setUri(\AppBundle\Entity\Uri $uri = null)
+    {
+        $this->uri = $uri;
+
+        return $this;
+    }
+
+    /**
+     * Get uri
+     *
+     * @return \AppBundle\Entity\Uri
+     */
+    public function getUri()
+    {
+        return $this->uri;
     }
 }
