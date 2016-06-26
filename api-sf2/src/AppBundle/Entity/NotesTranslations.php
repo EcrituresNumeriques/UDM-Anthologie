@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -12,17 +13,16 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="notes_translations")
  * @ORM\Entity
+ * @AppAnnotations\TranslatableMeta(languageTable="language_id")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class NotesTranslations
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="text", type="text", length=65535, nullable=true)
-     */
-    private $text;
+
 
     /**
      * @var integer
@@ -34,10 +34,29 @@ class NotesTranslations
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text", length=65535, nullable=true)
+     */
+    private $text;
+
+    /**
      * @ManyToOne(targetEntity="Notes", inversedBy="noteTranslations")
      * @JoinColumn(name="note_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $note;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Group")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
 
     /**
      * @ManyToOne(targetEntity="Languages")
@@ -45,6 +64,18 @@ class NotesTranslations
      */
     private $language;
 
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set text
@@ -71,37 +102,75 @@ class NotesTranslations
     }
 
     /**
-     * Get id
+     * Set note
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set motif
-     *
-     * @param \AppBundle\Entity\Notes $motif
+     * @param \AppBundle\Entity\Notes $note
      *
      * @return NotesTranslations
      */
-    public function setMotif(\AppBundle\Entity\Notes $motif = null)
+    public function setNote(\AppBundle\Entity\Notes $note = null)
     {
-        $this->motif = $motif;
+        $this->note = $note;
 
         return $this;
     }
 
     /**
-     * Get motif
+     * Get note
      *
      * @return \AppBundle\Entity\Notes
      */
-    public function getMotif()
+    public function getNote()
     {
-        return $this->motif;
+        return $this->note;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return NotesTranslations
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return NotesTranslations
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 
     /**
@@ -126,29 +195,5 @@ class NotesTranslations
     public function getLanguage()
     {
         return $this->language;
-    }
-
-    /**
-     * Set note
-     *
-     * @param \AppBundle\Entity\Notes $note
-     *
-     * @return NotesTranslations
-     */
-    public function setNote(\AppBundle\Entity\Notes $note = null)
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    /**
-     * Get note
-     *
-     * @return \AppBundle\Entity\Notes
-     */
-    public function getNote()
-    {
-        return $this->note;
     }
 }

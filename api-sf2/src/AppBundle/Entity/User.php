@@ -3,9 +3,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 use JMS\Serializer\Annotation as JMS;
 
@@ -27,39 +27,6 @@ class User extends BaseUser
      * @JMS\Expose
      */
     protected $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=45, nullable=true)
-     * @JMS\Expose
-     */
-    private $firstName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="last_name", type="string", length=45, nullable=true)
-     * @JMS\Expose
-     */
-    private $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="institution", type="string", length=45, nullable=true)
-     * @JMS\Expose
-     */
-    private $institution;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=45, nullable=true)
-     * @JMS\Expose
-     */
-    private $country;
-
     /**
      * @ORM\ManyToMany(targetEntity="Group")
      * @ORM\JoinTable(name="fos_users_groups",
@@ -68,7 +35,34 @@ class User extends BaseUser
      * )
      */
     protected $groups;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=45, nullable=true)
+     * @JMS\Expose
+     */
+    private $firstName;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=45, nullable=true)
+     * @JMS\Expose
+     */
+    private $lastName;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="institution", type="string", length=45, nullable=true)
+     * @JMS\Expose
+     */
+    private $institution;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=45, nullable=true)
+     * @JMS\Expose
+     */
+    private $country;
     /**
      * @OneToMany(targetEntity="Authors", mappedBy="user")
      */
@@ -110,9 +104,9 @@ class User extends BaseUser
     private $keywords;
 
     /**
-     * @OneToMany(targetEntity="KeywordsType", mappedBy="user")
+     * @OneToMany(targetEntity="KeywordsCategories", mappedBy="user")
      */
-    private $keywordsTypes;
+    private $keywordsCategories;
 
     /**
      * @OneToMany(targetEntity="Manuscripts", mappedBy="user")
@@ -142,33 +136,130 @@ class User extends BaseUser
     /**
      * @OneToMany(targetEntity="Uri", mappedBy="user")
      */
-    private $uri;
+    private $uris;
 
     /**
-     * @OneToMany(targetEntity="UriTypes", mappedBy="user")
+     * @OneToMany(targetEntity="UriCategories", mappedBy="user")
      */
-    private $uriTypes;
+    private $urisCategories;
 
 
     public function __construct ()
     {
         parent::__construct();
-        $this->authors       = new ArrayCollection();
-        $this->books         = new ArrayCollection();
-        $this->cities        = new ArrayCollection();
-        $this->entities      = new ArrayCollection();
-        $this->eras          = new ArrayCollection();
-        $this->genres        = new ArrayCollection();
-        $this->images        = new ArrayCollection();
-        $this->keywords      = new ArrayCollection();
-        $this->keywordsTypes = new ArrayCollection();
-        $this->manuscripts   = new ArrayCollection();
-        $this->motifs        = new ArrayCollection();
-        $this->notes         = new ArrayCollection();
-        $this->scholies      = new ArrayCollection();
-        $this->texts         = new ArrayCollection();
-        $this->uri           = new ArrayCollection();
-        $this->uriTypes      = new ArrayCollection();
+        $this->authors            = new ArrayCollection();
+        $this->books              = new ArrayCollection();
+        $this->cities             = new ArrayCollection();
+        $this->entities           = new ArrayCollection();
+        $this->eras               = new ArrayCollection();
+        $this->genres             = new ArrayCollection();
+        $this->images             = new ArrayCollection();
+        $this->keywords           = new ArrayCollection();
+        $this->keywordsCategories = new ArrayCollection();
+        $this->manuscripts        = new ArrayCollection();
+        $this->motifs             = new ArrayCollection();
+        $this->notes              = new ArrayCollection();
+        $this->scholies           = new ArrayCollection();
+        $this->texts              = new ArrayCollection();
+        $this->uris               = new ArrayCollection();
+        $this->urisCategories     = new ArrayCollection();
+    }
+
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set institution
+     *
+     * @param string $institution
+     *
+     * @return User
+     */
+    public function setInstitution($institution)
+    {
+        $this->institution = $institution;
+
+        return $this;
+    }
+
+    /**
+     * Get institution
+     *
+     * @return string
+     */
+    public function getInstitution()
+    {
+        return $this->institution;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**
@@ -444,37 +535,37 @@ class User extends BaseUser
     }
 
     /**
-     * Add keywordsType
+     * Add keywordsCategory
      *
-     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     * @param \AppBundle\Entity\KeywordsCategories $keywordsCategory
      *
      * @return User
      */
-    public function addKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    public function addKeywordsCategory(\AppBundle\Entity\KeywordsCategories $keywordsCategory)
     {
-        $this->keywordsTypes[] = $keywordsType;
+        $this->keywordsCategories[] = $keywordsCategory;
 
         return $this;
     }
 
     /**
-     * Remove keywordsType
+     * Remove keywordsCategory
      *
-     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     * @param \AppBundle\Entity\KeywordsCategories $keywordsCategory
      */
-    public function removeKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    public function removeKeywordsCategory(\AppBundle\Entity\KeywordsCategories $keywordsCategory)
     {
-        $this->keywordsTypes->removeElement($keywordsType);
+        $this->keywordsCategories->removeElement($keywordsCategory);
     }
 
     /**
-     * Get keywordsTypes
+     * Get keywordsCategories
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getKeywordsTypes()
+    public function getKeywordsCategories()
     {
-        return $this->keywordsTypes;
+        return $this->keywordsCategories;
     }
 
     /**
@@ -656,7 +747,7 @@ class User extends BaseUser
      */
     public function addUri(\AppBundle\Entity\Uri $uri)
     {
-        $this->uri[] = $uri;
+        $this->uris[] = $uri;
 
         return $this;
     }
@@ -668,146 +759,50 @@ class User extends BaseUser
      */
     public function removeUri(\AppBundle\Entity\Uri $uri)
     {
-        $this->uri->removeElement($uri);
+        $this->uris->removeElement($uri);
     }
 
     /**
-     * Get uri
+     * Get uris
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUri()
+    public function getUris()
     {
-        return $this->uri;
+        return $this->uris;
     }
 
     /**
-     * Add uriType
+     * Add urisCategory
      *
-     * @param \AppBundle\Entity\UriTypes $uriType
+     * @param \AppBundle\Entity\UriCategories $urisCategory
      *
      * @return User
      */
-    public function addUriType(\AppBundle\Entity\UriTypes $uriType)
+    public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
     {
-        $this->uriTypes[] = $uriType;
+        $this->urisCategories[] = $urisCategory;
 
         return $this;
     }
 
     /**
-     * Remove uriType
+     * Remove urisCategory
      *
-     * @param \AppBundle\Entity\UriTypes $uriType
+     * @param \AppBundle\Entity\UriCategories $urisCategory
      */
-    public function removeUriType(\AppBundle\Entity\UriTypes $uriType)
+    public function removeUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
     {
-        $this->uriTypes->removeElement($uriType);
+        $this->urisCategories->removeElement($urisCategory);
     }
 
     /**
-     * Get uriTypes
+     * Get urisCategories
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUriTypes()
+    public function getUrisCategories()
     {
-        return $this->uriTypes;
-    }
-
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     *
-     * @return User
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set institution
-     *
-     * @param string $institution
-     *
-     * @return User
-     */
-    public function setInstitution($institution)
-    {
-        $this->institution = $institution;
-
-        return $this;
-    }
-
-    /**
-     * Get institution
-     *
-     * @return string
-     */
-    public function getInstitution()
-    {
-        return $this->institution;
-    }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     *
-     * @return User
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
+        return $this->urisCategories;
     }
 }

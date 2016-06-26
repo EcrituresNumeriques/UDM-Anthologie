@@ -12,10 +12,10 @@
             {% endif %}
 
             {% if data.https %}
-                <span class="icon lock" title="HTTPS"></span>
+            <span class="icon lock" title="HTTPS"></span>
             {% endif %}
             {% if data.authentication %}
-                <span class="icon keys" title="Needs {{ data.authenticationRoles|length > 0 ? data.authenticationRoles|join(', ') : 'authentication' }}"></span>
+            <span class="icon keys" title="Needs {{ data.authenticationRoles|length > 0 ? data.authenticationRoles|join(', ') : 'authentication' }}"></span>
             {% endif %}
 
             <span class="path">
@@ -366,8 +366,6 @@
                             <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
                         </p>
                         </script>
-
-
                         <div class="result">
                             <h4>Request URL</h4>
                             <pre class="url"></pre>

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -16,6 +17,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="entities")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Entities
 {
@@ -54,18 +58,18 @@ class Entities
     private $dateRange;
 
     /**
-     * @ManyToOne(targetEntity="Books", inversedBy="entities")
+     * @ManyToOne(targetEntity="Books", inversedBy="entities", cascade={"persist"})
      * @JoinColumn(name="book_id", referencedColumnName="id")
      */
     private $book;
 
     /**
-     * @ManyToOne(targetEntity="Eras", inversedBy="entities")
+     * @ManyToOne(targetEntity="Eras", inversedBy="entities", cascade={"persist"})
      * @JoinColumn(name="era_id", referencedColumnName="id")
      */
     private $era;
     /**
-     * @ManyToOne(targetEntity="Genres", inversedBy="entities")
+     * @ManyToOne(targetEntity="Genres", inversedBy="entities", cascade={"persist"})
      * @JoinColumn(name="genre_id", referencedColumnName="id")
      */
     private $genre;
@@ -83,59 +87,59 @@ class Entities
     private $group;
 
     /**
-     * @OneToMany(targetEntity="EntitiesTranslations", mappedBy="entity")
+     * @OneToMany(targetEntity="EntitiesTranslations", mappedBy="entity", cascade={"persist"})
      */
     private $entityTranslations;
 
     /**
-     * @OneToMany(targetEntity="Uri", mappedBy="entity")
+     * @OneToMany(targetEntity="Uri", mappedBy="entity", cascade={"persist"})
      */
     private $uris;
 
     /**
-     * @ManyToMany(targetEntity="Authors", inversedBy="entities")
+     * @ManyToMany(targetEntity="Authors", inversedBy="entities", cascade={"persist"})
      * @JoinTable(name="entities_authors_assoc")
      */
     private $authors;
 
     /**
-     * @ManyToMany(targetEntity="Manuscripts", inversedBy="entities")
+     * @ManyToMany(targetEntity="Manuscripts", inversedBy="entities", cascade={"persist"})
      * @JoinTable(name="entities_manuscripts_assoc")
      */
     private $manuscripts;
 
     /**
-     * @ManyToMany(targetEntity="Keywords", inversedBy="entities")
+     * @ManyToMany(targetEntity="Keywords", inversedBy="entities", cascade={"persist"})
      * @JoinTable(name="entities_keywords_assoc")
      */
     private $keywords;
 
     /**
-     * @ManyToMany(targetEntity="Motifs", inversedBy="entities")
+     * @ManyToMany(targetEntity="Motifs", inversedBy="entities", cascade={"persist"})
      * @JoinTable(name="entities_motifs_assoc")
      */
     private $motifs;
 
     /**
-     * @ManyToMany(targetEntity="Scholies", inversedBy="entities")
+     * @ManyToMany(targetEntity="Scholies", inversedBy="entities", cascade={"persist"})
      * @JoinTable(name="entities_scholies_assoc")
      */
     private $scholies;
 
     /**
-     * @ManyToMany(targetEntity="Notes", inversedBy="entities")
+     * @ManyToMany(targetEntity="Notes", inversedBy="entities", cascade={"persist"})
      * @JoinTable(name="entities_notes_assoc")
      */
     private $notes;
 
     /**
-     * @ManyToMany(targetEntity="Texts", inversedBy="entities")
+     * @ManyToMany(targetEntity="Texts", inversedBy="entities", cascade={"persist"})
      * @JoinTable(name="entities_texts_assoc")
      */
     private $texts;
 
     /**
-     * @ManyToMany(targetEntity="Images")
+     * @ManyToMany(targetEntity="Images", cascade={"persist"})
      * @JoinTable(name="entities_images_assoc",
      *      joinColumns={@JoinColumn(name="entity_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
@@ -249,6 +253,7 @@ class Entities
      */
     public function addEntityTranslation (\AppBundle\Entity\EntitiesTranslations $entityTranslation)
     {
+        $entityTranslation->setEntity($this);
         $this->entityTranslations[] = $entityTranslation;
 
         return $this;

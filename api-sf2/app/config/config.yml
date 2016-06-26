@@ -52,6 +52,11 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        filters:
+            translatable_class:   AppBundle\Doctrine\Filter\LanguageFilter
+            user_acl_class:       AppBundle\Doctrine\Filter\UserFilter
+            group_acl_class:      AppBundle\Doctrine\Filter\GroupFilter
+            soft_deletable_class: AppBundle\Doctrine\Filter\SoftDeletableFilter
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -92,6 +97,7 @@ jms_serializer:
         auto_detection: true
         directories:
             - { path: %kernel.root_dir%/serializer/FOSUB, namespace_prefix: 'FOS\UserBundle' }
+
 nelmio_cors:
     defaults:
         allow_credentials: false

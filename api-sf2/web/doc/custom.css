@@ -1,0 +1,143 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #f6f6f6;
+}
+
+#header {
+    background: #ffffff;
+    border-bottom: solid 1px #366870;
+    height: 50px;
+    line-height: 50px;
+}
+
+#header a {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#header h1 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #366870;
+    margin-left: 40px;
+    padding: 0;
+}
+
+#header .doc-nav {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+
+#header .doc-nav li {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000000;
+    display: inline;
+}
+
+#header .doc-nav li a {
+    margin: 0 30px;
+    display: inline;
+    padding-bottom: 2px;
+    position: relative;
+}
+
+#header .doc-nav li a:after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #366870;
+    transition: all .5s ease-out;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+#header .doc-nav li a:hover:after {
+    width: 100%;
+}
+
+li.resource {
+    border-bottom: 1px solid #366870;
+}
+
+.heading h2 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #366870;
+}
+
+li.operation.get .heading,
+li.operation.post .heading,
+li.operation.put .heading,
+li.operation.delete .heading {
+    border: none;
+    background: #434343;
+    font-family: Consolas;
+}
+
+li.operation .heading h3 {
+    color: #ffffff;
+    padding: 10px;
+    font-size: 14px;
+}
+
+li.operation.get .heading h3 span.http_method i,
+li.operation.post .heading h3 span.http_method i,
+li.operation.put .heading h3 span.http_method i,
+li.operation.delete .heading h3 span.http_method i {
+    background: #434343;
+    font-size: 14px;
+}
+
+.heading ul.options {
+    margin: 0;
+    padding: 10px;
+}
+
+li.operation.get .heading ul.options li,
+li.operation.post .heading ul.options li,
+li.operation.put .heading ul.options li,
+li.operation.delete .heading ul.options li {
+    color: #ffffff;
+    font-size: 14px;
+    padding: 7px 0 4px 0;
+}
+
+li.operation.get div.content,
+li.operation.post div.content,
+li.operation.put div.content,
+li.operation.delete div.content {
+    background: #ffffff;
+    border: solid 1px #366870;
+}
+
+li.operation.get div.content.pane,
+li.operation.post div.content.pane,
+li.operation.put div.content.pane,
+li.operation.delete div.content.pane {
+    background: #f5f5f5;
+    border: solid 1px #f6f6f6;
+}
+
+li.operation.get div.content h4 {
+    color: #2980b9;
+}
+
+li.operation.post div.content h4 {
+    color: #27ae60;
+}
+
+li.operation.put div.content h4 {
+    color: #d35400;
+}
+
+li.operation.delete div.content h4 {
+    color: #c0392b;
+}

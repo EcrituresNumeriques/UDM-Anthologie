@@ -77,9 +77,9 @@ class Group extends BaseGroup
     private $keywords;
 
     /**
-     * @OneToMany(targetEntity="KeywordsType", mappedBy="group")
+     * @OneToMany(targetEntity="KeywordsCategories", mappedBy="group")
      */
-    private $keywordsTypes;
+    private $keywordsCategories;
 
     /**
      * @OneToMany(targetEntity="Manuscripts", mappedBy="group")
@@ -109,35 +109,35 @@ class Group extends BaseGroup
     /**
      * @OneToMany(targetEntity="Uri", mappedBy="group")
      */
-    private $uri;
+    private $uris;
 
     /**
-     * @OneToMany(targetEntity="UriTypes", mappedBy="group")
+     * @OneToMany(targetEntity="UriCategories", mappedBy="group")
      */
-    private $uriTypes;
-    
+    private $urisCategories;
 
-    public function __construct($name, $roles = array())
+
+    public function __construct ($name , $roles = array())
     {
-        parent::__construct($name, $roles = array());
-        $this->name = $name;
-        $this->roles = $roles;
-        $this->authors       = new ArrayCollection();
-        $this->books         = new ArrayCollection();
-        $this->cities        = new ArrayCollection();
-        $this->entities      = new ArrayCollection();
-        $this->eras          = new ArrayCollection();
-        $this->genres        = new ArrayCollection();
-        $this->images        = new ArrayCollection();
-        $this->keywords      = new ArrayCollection();
-        $this->keywordsTypes = new ArrayCollection();
-        $this->manuscripts   = new ArrayCollection();
-        $this->motifs        = new ArrayCollection();
-        $this->notes         = new ArrayCollection();
-        $this->scholies      = new ArrayCollection();
-        $this->texts         = new ArrayCollection();
-        $this->uri           = new ArrayCollection();
-        $this->uriTypes      = new ArrayCollection();
+        parent::__construct($name , $roles = array());
+        $this->name               = $name;
+        $this->roles              = $roles;
+        $this->authors            = new ArrayCollection();
+        $this->books              = new ArrayCollection();
+        $this->cities             = new ArrayCollection();
+        $this->entities           = new ArrayCollection();
+        $this->eras               = new ArrayCollection();
+        $this->genres             = new ArrayCollection();
+        $this->images             = new ArrayCollection();
+        $this->keywords           = new ArrayCollection();
+        $this->keywordsCategories = new ArrayCollection();
+        $this->manuscripts        = new ArrayCollection();
+        $this->motifs             = new ArrayCollection();
+        $this->notes              = new ArrayCollection();
+        $this->scholies           = new ArrayCollection();
+        $this->texts              = new ArrayCollection();
+        $this->uris               = new ArrayCollection();
+        $this->urisCategories     = new ArrayCollection();
     }
 
     /**
@@ -145,23 +145,13 @@ class Group extends BaseGroup
      *
      * @return Group
      */
-    public function addRole($role)
+    public function addRole ($role)
     {
-        if (!$this->hasRole($role)) {
+        if ( !$this->hasRole($role)) {
             $this->roles[] = strtoupper($role);
         }
 
         return $this;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -169,29 +159,19 @@ class Group extends BaseGroup
      *
      * @return boolean
      */
-    public function hasRole($role)
+    public function hasRole ($role)
     {
-        return in_array(strtoupper($role), $this->roles, true);
+        return in_array(strtoupper($role) , $this->roles , true);
     }
 
-    public function getRoles()
+    public function getId ()
     {
-        return $this->roles;
+        return $this->id;
     }
 
-    /**
-     * @param string $role
-     *
-     * @return Group
-     */
-    public function removeRole($role)
+    public function getName ()
     {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
-            unset($this->roles[$key]);
-            $this->roles = array_values($this->roles);
-        }
-
-        return $this;
+        return $this->name;
     }
 
     /**
@@ -199,11 +179,16 @@ class Group extends BaseGroup
      *
      * @return Group
      */
-    public function setName($name)
+    public function setName ($name)
     {
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getRoles ()
+    {
+        return $this->roles;
     }
 
     /**
@@ -211,7 +196,7 @@ class Group extends BaseGroup
      *
      * @return Group
      */
-    public function setRoles(array $roles)
+    public function setRoles (array $roles)
     {
         $this->roles = $roles;
 
@@ -219,13 +204,30 @@ class Group extends BaseGroup
     }
 
     /**
-     * Add author
-     *
-     * @param \AppBundle\Entity\AuthorsTranslations $author
+     * @param string $role
      *
      * @return Group
      */
-    public function addAuthor(\AppBundle\Entity\AuthorsTranslations $author)
+    public function removeRole ($role)
+    {
+        if (false !== $key = array_search(strtoupper($role) , $this->roles , true)) {
+            unset($this->roles[ $key ]);
+            $this->roles = array_values($this->roles);
+        }
+
+        return $this;
+    }
+
+
+
+    /**
+     * Add author
+     *
+     * @param \AppBundle\Entity\Authors $author
+     *
+     * @return Group
+     */
+    public function addAuthor(\AppBundle\Entity\Authors $author)
     {
         $this->authors[] = $author;
 
@@ -235,9 +237,9 @@ class Group extends BaseGroup
     /**
      * Remove author
      *
-     * @param \AppBundle\Entity\AuthorsTranslations $author
+     * @param \AppBundle\Entity\Authors $author
      */
-    public function removeAuthor(\AppBundle\Entity\AuthorsTranslations $author)
+    public function removeAuthor(\AppBundle\Entity\Authors $author)
     {
         $this->authors->removeElement($author);
     }
@@ -491,37 +493,37 @@ class Group extends BaseGroup
     }
 
     /**
-     * Add keywordsType
+     * Add keywordsCategory
      *
-     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     * @param \AppBundle\Entity\KeywordsCategories $keywordsCategory
      *
      * @return Group
      */
-    public function addKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    public function addKeywordsCategory(\AppBundle\Entity\KeywordsCategories $keywordsCategory)
     {
-        $this->keywordsTypes[] = $keywordsType;
+        $this->keywordsCategories[] = $keywordsCategory;
 
         return $this;
     }
 
     /**
-     * Remove keywordsType
+     * Remove keywordsCategory
      *
-     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     * @param \AppBundle\Entity\KeywordsCategories $keywordsCategory
      */
-    public function removeKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    public function removeKeywordsCategory(\AppBundle\Entity\KeywordsCategories $keywordsCategory)
     {
-        $this->keywordsTypes->removeElement($keywordsType);
+        $this->keywordsCategories->removeElement($keywordsCategory);
     }
 
     /**
-     * Get keywordsTypes
+     * Get keywordsCategories
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getKeywordsTypes()
+    public function getKeywordsCategories()
     {
-        return $this->keywordsTypes;
+        return $this->keywordsCategories;
     }
 
     /**
@@ -703,7 +705,7 @@ class Group extends BaseGroup
      */
     public function addUri(\AppBundle\Entity\Uri $uri)
     {
-        $this->uri[] = $uri;
+        $this->uris[] = $uri;
 
         return $this;
     }
@@ -715,50 +717,50 @@ class Group extends BaseGroup
      */
     public function removeUri(\AppBundle\Entity\Uri $uri)
     {
-        $this->uri->removeElement($uri);
+        $this->uris->removeElement($uri);
     }
 
     /**
-     * Get uri
+     * Get uris
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUri()
+    public function getUris()
     {
-        return $this->uri;
+        return $this->uris;
     }
 
     /**
-     * Add uriType
+     * Add urisCategory
      *
-     * @param \AppBundle\Entity\UriTypes $uriType
+     * @param \AppBundle\Entity\UriCategories $urisCategory
      *
      * @return Group
      */
-    public function addUriType(\AppBundle\Entity\UriTypes $uriType)
+    public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
     {
-        $this->uriTypes[] = $uriType;
+        $this->urisCategories[] = $urisCategory;
 
         return $this;
     }
 
     /**
-     * Remove uriType
+     * Remove urisCategory
      *
-     * @param \AppBundle\Entity\UriTypes $uriType
+     * @param \AppBundle\Entity\UriCategories $urisCategory
      */
-    public function removeUriType(\AppBundle\Entity\UriTypes $uriType)
+    public function removeUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
     {
-        $this->uriTypes->removeElement($uriType);
+        $this->urisCategories->removeElement($urisCategory);
     }
 
     /**
-     * Get uriTypes
+     * Get urisCategories
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUriTypes()
+    public function getUrisCategories()
     {
-        return $this->uriTypes;
+        return $this->urisCategories;
     }
 }

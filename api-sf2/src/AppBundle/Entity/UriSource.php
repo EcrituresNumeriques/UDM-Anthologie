@@ -5,12 +5,16 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * UriSource
  *
  * @ORM\Table(name="URI_source")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class UriSource
 {
@@ -32,6 +36,18 @@ class UriSource
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Group")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+    
     /**
      * @OneToOne(targetEntity="Uri", mappedBy="uriSource")
      */
@@ -128,5 +144,53 @@ class UriSource
     public function getUri()
     {
         return $this->uri;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return UriSource
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return UriSource
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

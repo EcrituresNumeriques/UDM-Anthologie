@@ -9,12 +9,16 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Motifs
  *
  * @ORM\Table(name="motifs")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Motifs
 {
@@ -42,7 +46,7 @@ class Motifs
     private $group;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\MotifsTranslations", mappedBy="motif")
+     * @OneToMany(targetEntity="AppBundle\Entity\MotifsTranslations", mappedBy="motif", cascade={"persist"})
      */
     private $motifTranslations;
 
@@ -76,6 +80,7 @@ class Motifs
      */
     public function addMotifTranslation(\AppBundle\Entity\MotifsTranslations $motifTranslation)
     {
+        $motifTranslation->setMotif($this);
         $this->motifTranslations[] = $motifTranslation;
 
         return $this;
