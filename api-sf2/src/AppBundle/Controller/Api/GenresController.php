@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Genres;
-use AppBundle\Entity\GenresTranslations;
-use AppBundle\Form\GenresTranslationsType;
-use AppBundle\Form\GenresType;
+use AppBundle\Entity\KeywordsCategories;
+use AppBundle\Entity\KeywordsCategoriesTranslations;
+use AppBundle\Form\KeywordsCategoriesTranslationsType;
+use AppBundle\Form\KeywordsCategoriesType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -15,7 +15,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GenresController extends BaseApiController
+class KeywordsCategoriesController extends BaseApiController
 {
     /**
      * @see BaseApiController::getParams()
@@ -25,22 +25,22 @@ class GenresController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Genres') ,
-            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:GenresTranslations') ,
-            "entity"                => new Genres() ,
-            "entityName"            => "Genres" ,
-            "entitySetter"          => "setGenre" ,
-            "entityForm"            => new GenresType() ,
-            "entityTranslation"     => new GenresTranslations() ,
-            "entityTranslationName" => "GenresTranslations" ,
-            "entityTranslationForm" => new GenresTranslationsType() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:KeywordsCategories') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:KeywordsCategoriesTranslations') ,
+            "entity"                => new KeywordsCategories() ,
+            "entityName"            => "KeywordsCategories" ,
+            "entitySetter"          => "setKeywordCategory" ,
+            "entityForm"            => new KeywordsCategoriesType() ,
+            "entityTranslation"     => new KeywordsCategoriesTranslations() ,
+            "entityTranslationName" => "KeywordsCategoriesTranslations" ,
+            "entityTranslationForm" => new KeywordsCategoriesTranslationsType() ,
         );
     }
 
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a list of genres and related datas",
+     *     description="Get a list of keywords categories and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -63,14 +63,14 @@ class GenresController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/genre/")
+     * @Get("/keyword/category/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getGenresAction (Request $request , ParamFetcher $paramFetcher)
+    public function getKeywordsCategoriesAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
@@ -78,7 +78,7 @@ class GenresController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a Genre and related datas",
+     *     description="Get a keyword category and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -90,7 +90,7 @@ class GenresController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre identifier"
+     *              "description"="category identifier"
      *          }
      *     },
      *     statusCodes={
@@ -101,7 +101,7 @@ class GenresController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/genre/{id}")
+     * @Get("/keyword/category/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -110,44 +110,44 @@ class GenresController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getGenreAction (Request $request , $id)
+    public function getKeywordCategoryAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new Genre",
+     *     description="Create a new Keyword Category",
      *     requirements={
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre identifier"
+     *              "description"="keyword identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\GenresType",
-     *     output="AppBundle\Entity\Genres",
+     *     input="AppBundle\Form\KeywordsCategoriesType",
+     *     output="AppBundle\Entity\KeywordsCategories",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
      *     }
      * )
      *
-     * @Post("/genre/")
+     * @Post("/keyword/category/")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function postGenreAction (Request $request)
+    public function postKeywordCategoryAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit a Genre",
+     *     description="Edit a Keyword Category",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -159,11 +159,11 @@ class GenresController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre identifier"
+     *              "description"="keyword category identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\GenresType",
-     *     output="AppBundle\Entity\Genres",
+     *     input="AppBundle\Form\KeywordsCategoriesType",
+     *     output="AppBundle\Entity\KeywordsCategories",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -171,21 +171,21 @@ class GenresController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/genre/{id}")
+     * @Put("/keyword/category/{id}")
      *
      * @param Request      $request
      * @param              $id
      *
      * @return Response
      */
-    public function putGenreAction (Request $request , $id)
+    public function putKeywordCategoryAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit a Genre",
+     *     description="Edit a Keyword Category",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -197,7 +197,7 @@ class GenresController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre id"
+     *              "description"="keyword category id"
      *          }
      *     },
      *     statusCodes={
@@ -206,7 +206,7 @@ class GenresController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/genre/{id}")
+     * @Delete("/keyword/category/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -214,14 +214,14 @@ class GenresController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteGenreAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteKeywordCategoryAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new Genre translation",
+     *     description="Create a new Keyword Category translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -233,11 +233,11 @@ class GenresController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre id"
+     *              "description"="keyword category id"
      *          }
      *     },
-     *     input="AppBundle\Form\GenresTranslationsType",
-     *     output="AppBundle\Entity\GenresTranslations",
+     *     input="AppBundle\Form\KeywordsCategoriesTranslationsType",
+     *     output="AppBundle\Entity\KeywordsCategoriesTranslations",
      *     statusCodes={
      *         200="Returned when successful",
      *         400="Returned when a parameter is not found",
@@ -245,21 +245,21 @@ class GenresController extends BaseApiController
      *     }
      * )
      *
-     * @Post("/genre/{id}/translation/")
+     * @Post("/keyword/category/{id}/translation/")
      *
      * @param Request $request
      * @param         $id
      *
      * @return Response
      */
-    public function postGenreTranslationAction (Request $request , $id)
+    public function postKeywordCategoryTranslationAction (Request $request , $id)
     {
         return BaseApiController::createTranslationAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit a Genre translation",
+     *     description="Edit a Keyword Category translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -271,17 +271,17 @@ class GenresController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre id"
+     *              "description"="keyword category id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre translation id"
+     *              "description"="keyword category translation id"
      *          }
      *     },
-     *     input="AppBundle\Form\GenresTranslationsType",
-     *     output="AppBundle\Entity\GenresTranslations",
+     *     input="AppBundle\Form\KeywordsCategoriesTranslationsType",
+     *     output="AppBundle\Entity\KeywordsCategoriesTranslations",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -290,7 +290,7 @@ class GenresController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/genre/{id}/translation/{idTranslation}")
+     * @Put("/keyword/category/{id}/translation/{idTranslation}")
      *
      * @param Request $request
      * @param         $id
@@ -298,14 +298,14 @@ class GenresController extends BaseApiController
      *
      * @return Response
      */
-    public function putGenreTranslationAction (Request $request , $id , $idTranslation)
+    public function putKeywordCategoryTranslationAction (Request $request , $id , $idTranslation)
     {
         return BaseApiController::updateTranslationAction($request , $idTranslation);
     }
 
     /**
      * @ApiDoc(
-     *     description="Delete a Genre translation",
+     *     description="Delete a Keyword Category translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -317,13 +317,13 @@ class GenresController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre translation id"
+     *              "description"="keyword Category  id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre translation id"
+     *              "description"="keyword category translation id"
      *          }
      *     },
      *     statusCodes={
@@ -332,7 +332,7 @@ class GenresController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/genre/{id}/translation/{idTranslation}")
+     * @Delete("/keyword/category/{id}/translation/{idTranslation}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -341,7 +341,7 @@ class GenresController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteGenreTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
+    public function deleteKeywordCategoryTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
     {
         return BaseApiController::deleteTranslationAction($request , $paramFetcher , $idTranslation);
     }
