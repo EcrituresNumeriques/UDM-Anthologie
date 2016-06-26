@@ -53,25 +53,25 @@ class Uri
     private $entity;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="uri")
+     * @ManyToOne(targetEntity="User", inversedBy="uris")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="uri")
+     * @ManyToOne(targetEntity="Group", inversedBy="uris")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
 
     /**
-     * @OneToMany(targetEntity="UriTypes", mappedBy="uri")
+     * @OneToMany(targetEntity="UriCategories", mappedBy="uri", cascade={"persist"})
      */
-    private $uriTypes;
+    private $urisCategories;
 
     public function __construct ()
     {
-        $this->uriTypes = new ArrayCollection();
+        $this->uriCategories = new ArrayCollection();
     }
 
     
@@ -151,11 +151,11 @@ class Uri
     /**
      * Set entity
      *
-     * @param \AppBundle\Entity\Entity $entity
+     * @param \AppBundle\Entity\Entities $entity
      *
      * @return Uri
      */
-    public function setEntity(\AppBundle\Entity\Entity $entity = null)
+    public function setEntity(\AppBundle\Entity\Entities $entity = null)
     {
         $this->entity = $entity;
 
@@ -165,7 +165,7 @@ class Uri
     /**
      * Get entity
      *
-     * @return \AppBundle\Entity\Entity
+     * @return \AppBundle\Entity\Entities
      */
     public function getEntity()
     {
@@ -221,71 +221,36 @@ class Uri
     }
 
     /**
-     * Add urisType
+     * Add urisCategory
      *
-     * @param \AppBundle\Entity\UriTypes $urisType
+     * @param \AppBundle\Entity\UriCategories $urisCategory
      *
      * @return Uri
      */
-    public function addUrisType(\AppBundle\Entity\UriTypes $urisType)
+    public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
     {
-        $urisType->setUri($this);
-        $this->urisTypes[] = $urisType;
+        $this->urisCategories[] = $urisCategory;
 
         return $this;
     }
 
     /**
-     * Remove urisType
+     * Remove urisCategory
      *
-     * @param \AppBundle\Entity\UriTypes $urisType
+     * @param \AppBundle\Entity\UriCategories $urisCategory
      */
-    public function removeUrisType(\AppBundle\Entity\UriTypes $urisType)
+    public function removeUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
     {
-        $this->urisTypes->removeElement($urisType);
+        $this->urisCategories->removeElement($urisCategory);
     }
 
     /**
-     * Get urisTypes
+     * Get urisCategories
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUrisTypes()
+    public function getUrisCategories()
     {
-        return $this->urisTypes;
-    }
-
-    /**
-     * Add uriType
-     *
-     * @param \AppBundle\Entity\UriTypes $uriType
-     *
-     * @return Uri
-     */
-    public function addUriType(\AppBundle\Entity\UriTypes $uriType)
-    {
-        $this->uriTypes[] = $uriType;
-
-        return $this;
-    }
-
-    /**
-     * Remove uriType
-     *
-     * @param \AppBundle\Entity\UriTypes $uriType
-     */
-    public function removeUriType(\AppBundle\Entity\UriTypes $uriType)
-    {
-        $this->uriTypes->removeElement($uriType);
-    }
-
-    /**
-     * Get uriTypes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUriTypes()
-    {
-        return $this->uriTypes;
+        return $this->urisCategories;
     }
 }

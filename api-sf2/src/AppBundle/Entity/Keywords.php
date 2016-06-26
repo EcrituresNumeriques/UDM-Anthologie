@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -10,7 +11,6 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Keywords
@@ -55,13 +55,13 @@ class Keywords
     /**
      * @OneToMany(targetEntity="KeywordsTranslations", mappedBy="keyword", cascade={"persist"})
      */
-    private $keywordTranslations;
+    private $keywordsTranslations;
 
     /**
-     * @ManyToMany(targetEntity="AppBundle\Entity\KeywordsType", inversedBy="keywords")
-     * @JoinTable(name="keywords_type_assoc")
+     * @ManyToMany(targetEntity="KeywordsCategories", inversedBy="keywords", cascade={"persist"})
+     * @JoinTable(name="keywords_categories_assoc")
      */
-    private $keywordsTypes;
+    private $keywordsCategories;
 
     /**
      * @ManyToMany(targetEntity="Entities", mappedBy="keywords")
@@ -79,10 +79,12 @@ class Keywords
 
     public function __construct ()
     {
-        $this->keywordTranslations = new ArrayCollection();
-        $this->keywordsTypes       = new ArrayCollection();
-        $this->images              = new ArrayCollection();
+        $this->keywordsTranslations = new ArrayCollection();
+        $this->keywordsCategories   = new ArrayCollection();
+        $this->images               = new ArrayCollection();
+        $this->entities             = new ArrayCollection();
     }
+
 
 
     /**
@@ -120,72 +122,120 @@ class Keywords
     }
 
     /**
-     * Add keywordTranslation
+     * Set user
      *
-     * @param \AppBundle\Entity\KeywordsTranslations $keywordTranslation
+     * @param \AppBundle\Entity\User $user
      *
      * @return Keywords
      */
-    public function addKeywordTranslation(\AppBundle\Entity\KeywordsTranslations $keywordTranslation)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $keywordTranslation->setKeyword($this);
-        $this->keywordTranslations[] = $keywordTranslation;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Remove keywordTranslation
+     * Get user
      *
-     * @param \AppBundle\Entity\KeywordsTranslations $keywordTranslation
+     * @return \AppBundle\Entity\User
      */
-    public function removeKeywordTranslation(\AppBundle\Entity\KeywordsTranslations $keywordTranslation)
+    public function getUser()
     {
-        $this->keywordTranslations->removeElement($keywordTranslation);
+        return $this->user;
     }
 
     /**
-     * Get keywordTranslations
+     * Set group
      *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getKeywordTranslations()
-    {
-        return $this->keywordTranslations;
-    }
-
-    /**
-     * Add keywordsType
-     *
-     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     * @param \AppBundle\Entity\Group $group
      *
      * @return Keywords
      */
-    public function addKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    public function setGroup(\AppBundle\Entity\Group $group = null)
     {
-        $this->keywordsTypes[] = $keywordsType;
+        $this->group = $group;
 
         return $this;
     }
 
     /**
-     * Remove keywordsType
+     * Get group
      *
-     * @param \AppBundle\Entity\KeywordsType $keywordsType
+     * @return \AppBundle\Entity\Group
      */
-    public function removeKeywordsType(\AppBundle\Entity\KeywordsType $keywordsType)
+    public function getGroup()
     {
-        $this->keywordsTypes->removeElement($keywordsType);
+        return $this->group;
     }
 
     /**
-     * Get keywordsTypes
+     * Add keywordsTranslation
+     *
+     * @param \AppBundle\Entity\KeywordsTranslations $keywordsTranslation
+     *
+     * @return Keywords
+     */
+    public function addKeywordsTranslation(\AppBundle\Entity\KeywordsTranslations $keywordsTranslation)
+    {
+        $keywordsTranslation->setKeyword($this);
+        $this->keywordsTranslations[] = $keywordsTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Remove keywordsTranslation
+     *
+     * @param \AppBundle\Entity\KeywordsTranslations $keywordsTranslation
+     */
+    public function removeKeywordsTranslation(\AppBundle\Entity\KeywordsTranslations $keywordsTranslation)
+    {
+        $this->keywordsTranslations->removeElement($keywordsTranslation);
+    }
+
+    /**
+     * Get keywordsTranslations
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getKeywordsTypes()
+    public function getKeywordsTranslations()
     {
-        return $this->keywordsTypes;
+        return $this->keywordsTranslations;
+    }
+
+    /**
+     * Add keywordsCategory
+     *
+     * @param \AppBundle\Entity\KeywordsCategories $keywordsCategory
+     *
+     * @return Keywords
+     */
+    public function addKeywordsCategory(\AppBundle\Entity\KeywordsCategories $keywordsCategory)
+    {
+        $this->keywordsCategories[] = $keywordsCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove keywordsCategory
+     *
+     * @param \AppBundle\Entity\KeywordsCategories $keywordsCategory
+     */
+    public function removeKeywordsCategory(\AppBundle\Entity\KeywordsCategories $keywordsCategory)
+    {
+        $this->keywordsCategories->removeElement($keywordsCategory);
+    }
+
+    /**
+     * Get keywordsCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKeywordsCategories()
+    {
+        return $this->keywordsCategories;
     }
 
     /**
@@ -254,53 +304,5 @@ class Keywords
     public function getImages()
     {
         return $this->images;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Keywords
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \AppBundle\Entity\Group $group
-     *
-     * @return Keywords
-     */
-    public function setGroup(\AppBundle\Entity\Group $group = null)
-    {
-        $this->group = $group;
-
-        return $this;
-    }
-
-    /**
-     * Get group
-     *
-     * @return \AppBundle\Entity\Group
-     */
-    public function getGroup()
-    {
-        return $this->group;
     }
 }

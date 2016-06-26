@@ -11,14 +11,14 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 /**
  * KeywordsTypeTranslation
  *
- * @ORM\Table(name="keywords_type_translation")
+ * @ORM\Table(name="keywords_categories_translation")
  * @ORM\Entity
  * @AppAnnotations\TranslatableMeta(languageTable="language_id")
  * @AppAnnotations\UserMeta(userTable="user_id")
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class KeywordsTypeTranslations
+class KeywordsCategoriesTranslations
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
@@ -46,16 +46,17 @@ class KeywordsTypeTranslations
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="KeywordsType", inversedBy="keywordTypeTranslations")
-     * @JoinColumn(name="keyword_type_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ManyToOne(targetEntity="KeywordsCategories", inversedBy="keywordCategoryTranslations")
+     * @JoinColumn(name="keyword_category_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $keywordType;
+    private $keywordCategory;
 
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
+
 
 
     /**
@@ -73,7 +74,7 @@ class KeywordsTypeTranslations
      *
      * @param string $label
      *
-     * @return KeywordsTypeTranslations
+     * @return KeywordsCategoriesTranslations
      */
     public function setLabel($label)
     {
@@ -97,7 +98,7 @@ class KeywordsTypeTranslations
      *
      * @param string $description
      *
-     * @return KeywordsTypeTranslations
+     * @return KeywordsCategoriesTranslations
      */
     public function setDescription($description)
     {
@@ -117,27 +118,27 @@ class KeywordsTypeTranslations
     }
 
     /**
-     * Set keywordType
+     * Set keywordCategory
      *
-     * @param \AppBundle\Entity\KeywordsType $keywordType
+     * @param \AppBundle\Entity\KeywordsCategories $keywordCategory
      *
-     * @return KeywordsTypeTranslations
+     * @return KeywordsCategoriesTranslations
      */
-    public function setKeywordType(\AppBundle\Entity\KeywordsType $keywordType = null)
+    public function setKeywordCategory(\AppBundle\Entity\KeywordsCategories $keywordCategory = null)
     {
-        $this->keywordType = $keywordType;
+        $this->keywordCategory = $keywordCategory;
 
         return $this;
     }
 
     /**
-     * Get keywordType
+     * Get keywordCategory
      *
-     * @return \AppBundle\Entity\KeywordsType
+     * @return \AppBundle\Entity\KeywordsCategories
      */
-    public function getKeywordType()
+    public function getKeywordCategory()
     {
-        return $this->keywordType;
+        return $this->keywordCategory;
     }
 
     /**
@@ -145,7 +146,7 @@ class KeywordsTypeTranslations
      *
      * @param \AppBundle\Entity\Languages $language
      *
-     * @return KeywordsTypeTranslations
+     * @return KeywordsCategoriesTranslations
      */
     public function setLanguage(\AppBundle\Entity\Languages $language = null)
     {

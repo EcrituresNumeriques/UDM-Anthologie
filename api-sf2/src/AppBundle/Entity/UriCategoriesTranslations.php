@@ -11,14 +11,14 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 /**
  * UriTypesTranslations
  *
- * @ORM\Table(name="URI_type_translation")
+ * @ORM\Table(name="URI_categories_translation")
  * @ORM\Entity
  * @AppAnnotations\TranslatableMeta(languageTable="language_id")
  * @AppAnnotations\UserMeta(userTable="user_id")
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class UriTypesTranslations
+class UriCategoriesTranslations
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable,
         ORMBehaviors\Timestampable\Timestampable
@@ -40,10 +40,10 @@ class UriTypesTranslations
     private $label;
 
     /**
-     * @ManyToOne(targetEntity="UriTypes", inversedBy="uriTypeTranslations")
-     * @JoinColumn(name="uri_type_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ManyToOne(targetEntity="UriCategories", inversedBy="uriCategoryTranslations")
+     * @JoinColumn(name="uri_category_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $uriType;
+    private $uriCategory;
 
     /**
      * @ManyToOne(targetEntity="User")
@@ -64,6 +64,7 @@ class UriTypesTranslations
     private $language;
     
 
+
     /**
      * Get id
      *
@@ -79,7 +80,7 @@ class UriTypesTranslations
      *
      * @param string $label
      *
-     * @return UriTypesTranslations
+     * @return UriCategoriesTranslations
      */
     public function setLabel($label)
     {
@@ -99,27 +100,27 @@ class UriTypesTranslations
     }
 
     /**
-     * Set uriType
+     * Set uriCategory
      *
-     * @param \AppBundle\Entity\UriTypes $uriType
+     * @param \AppBundle\Entity\UriCategories $uriCategory
      *
-     * @return UriTypesTranslations
+     * @return UriCategoriesTranslations
      */
-    public function setUriType(\AppBundle\Entity\UriTypes $uriType = null)
+    public function setUriCategory(\AppBundle\Entity\UriCategories $uriCategory = null)
     {
-        $this->uriType = $uriType;
+        $this->uriCategory = $uriCategory;
 
         return $this;
     }
 
     /**
-     * Get uriType
+     * Get uriCategory
      *
-     * @return \AppBundle\Entity\UriTypes
+     * @return \AppBundle\Entity\UriCategories
      */
-    public function getUriType()
+    public function getUriCategory()
     {
-        return $this->uriType;
+        return $this->uriCategory;
     }
 
     /**
@@ -127,7 +128,7 @@ class UriTypesTranslations
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return UriTypesTranslations
+     * @return UriCategoriesTranslations
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -151,7 +152,7 @@ class UriTypesTranslations
      *
      * @param \AppBundle\Entity\Group $group
      *
-     * @return UriTypesTranslations
+     * @return UriCategoriesTranslations
      */
     public function setGroup(\AppBundle\Entity\Group $group = null)
     {
@@ -175,7 +176,7 @@ class UriTypesTranslations
      *
      * @param \AppBundle\Entity\Languages $language
      *
-     * @return UriTypesTranslations
+     * @return UriCategoriesTranslations
      */
     public function setLanguage(\AppBundle\Entity\Languages $language = null)
     {

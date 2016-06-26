@@ -47,7 +47,7 @@ class KeywordsTranslations
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="Keywords", inversedBy="keywordTranslations")
+     * @ManyToOne(targetEntity="Keywords", inversedBy="keywordsTranslations")
      * @JoinColumn(name="keyword_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $keyword;

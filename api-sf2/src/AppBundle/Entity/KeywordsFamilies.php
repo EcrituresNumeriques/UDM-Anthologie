@@ -34,7 +34,7 @@ class KeywordsFamilies
     private $name;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\Keywords", mappedBy="keywordFamily")
+     * @OneToMany(targetEntity="Keywords", mappedBy="keywordFamily")
      */
     private $keywords;
 

@@ -11,7 +11,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use AppBundle\Annotation as AppAnnotations;
 
 /**
- * UriTypes
+ * UriCategories
  *
  * @ORM\Table(name="URI_types")
  * @ORM\Entity
@@ -19,7 +19,7 @@ use AppBundle\Annotation as AppAnnotations;
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class UriTypes
+class UriCategories
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
@@ -33,39 +33,40 @@ class UriTypes
     private $id;
 
     /**
-     * @ManyToOne(targetEntity="Uri", inversedBy="uriTypes")
+     * @ManyToOne(targetEntity="Uri", inversedBy="urisCategories")
      * @JoinColumn(name="uri_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $uri;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="uriCategories")
+     * @ManyToOne(targetEntity="User", inversedBy="urisCategories")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="uriCategories")
+     * @ManyToOne(targetEntity="Group", inversedBy="urisCategories")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
 
     /**
-     * @OneToMany(targetEntity="UriTypesTranslations", mappedBy="uriType", cascade={"persist"})
+     * @OneToMany(targetEntity="Uri", mappedBy="uriCategory", cascade={"persist"})
      */
-    private $uriTypeTranslations;
+    private $uriCategoryTranslations;
     
     public function __construct ()
     {
-        $this->uriTypeTranslations = new ArrayCollection();
+        $this->uriCategoryTranslations = new ArrayCollection();
     }
+    
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId ()
+    public function getId()
     {
         return $this->id;
     }
@@ -75,7 +76,7 @@ class UriTypes
      *
      * @param \AppBundle\Entity\Uri $uri
      *
-     * @return UriTypes
+     * @return UriCategories
      */
     public function setUri(\AppBundle\Entity\Uri $uri = null)
     {
@@ -99,7 +100,7 @@ class UriTypes
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return UriTypes
+     * @return UriCategories
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -123,7 +124,7 @@ class UriTypes
      *
      * @param \AppBundle\Entity\Group $group
      *
-     * @return UriTypes
+     * @return UriCategories
      */
     public function setGroup(\AppBundle\Entity\Group $group = null)
     {
@@ -143,36 +144,36 @@ class UriTypes
     }
 
     /**
-     * Add UriTypesTranslations
+     * Add uriCategoryTranslation
      *
-     * @param \AppBundle\Entity\UriTypesTranslations $uriTypeTranslation
+     * @param \AppBundle\Entity\Uri $uriCategoryTranslation
      *
-     * @return UriTypes
+     * @return UriCategories
      */
-    public function addUriTypeTranslation(\AppBundle\Entity\UriTypesTranslations $uriTypeTranslation)
+    public function addUriCategoryTranslation(\AppBundle\Entity\Uri $uriCategoryTranslation)
     {
-        $this->uriTypeTranslations[] = $uriTypeTranslation;
+        $this->uriCategoryTranslations[] = $uriCategoryTranslation;
 
         return $this;
     }
 
     /**
-     * Remove UriTypesTranslations
+     * Remove uriCategoryTranslation
      *
-     * @param \AppBundle\Entity\UriTypesTranslations $uriTypeTranslation
+     * @param \AppBundle\Entity\Uri $uriCategoryTranslation
      */
-    public function removeUriTypeTranslation(\AppBundle\Entity\UriTypesTranslations $uriTypeTranslation)
+    public function removeUriCategoryTranslation(\AppBundle\Entity\Uri $uriCategoryTranslation)
     {
-        $this->uriTypeTranslations->removeElement($uriTypeTranslation);
+        $this->uriCategoryTranslations->removeElement($uriCategoryTranslation);
     }
 
     /**
-     * Get UriTypesTranslations
+     * Get uriCategoryTranslations
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUriTypeTranslations()
+    public function getUriCategoryTranslations()
     {
-        return $this->uriTypeTranslations;
+        return $this->uriCategoryTranslations;
     }
 }
