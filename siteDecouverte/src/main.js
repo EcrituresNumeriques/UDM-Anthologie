@@ -30,6 +30,8 @@ Vue.config.silent = true // Supress all Vue.js logs and warnings -> because of s
 
 // configuration Resource
 global.theme = require('./service/theme.js')
+global.apiAuth = 'http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=1_5bwl2wz11j8kss0kck440ws84k0ok48w4wwsoosskw0socso8o&client_secret=2pndls3npzuoook4ss400088gks80w408ggws84g448g0ggowo&grant_type=password&username=front&password=owiowi'
+global.api = 'anthologie.raphaelaupee.fr/api/v1/'
 
 Vue.http.options.root = '/'
 

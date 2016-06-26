@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <div class="loader-container">
-      <div class="loader-percentage">0%</div>
-      <div class="loader-bar-container">
-        <div class="loader-bar">
-          <div class="loader-bar-hide"></div>
+    <div class="fake-loader-container">
+      <div class="fake-loader-percentage">0%</div>
+      <div class="fake-loader-bar-container">
+        <div class="fake-loader-bar">
+          <div class="fake-loader-bar-hide"></div>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-/* global api */
+/* global theme */
 import MainNav from './partials/MainNav'
 import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'
@@ -54,7 +54,7 @@ export default {
       var self = this
       $('body').on('mouseenter', '.discover-list a', function () {
         var dataId = $(this).data('id')
-        return api.dataDiscover.get().then(function (response) {
+        return theme.dataDiscover.get().then(function (response) {
           self.$set('data', response.data.themes[dataId - 1].imgUrl)
         }, function (response) { console.log(response.status) })
       })
@@ -66,10 +66,11 @@ export default {
           var homeDiscoverNav = $('.home .discover-nav')
           var homeImg = $('.home .img-container')
           var homeSubtitle = $('.home .page-subtitle-container')
+          var copyright = $('.copyright')
 
-          var loaderContainer = $('.loader-container')
-          var loaderPercentage = $('.loader-percentage')
-          var loaderBarContainer = $('.loader-bar-container')
+          var loaderContainer = $('.fake-loader-container')
+          var loaderPercentage = $('.fake-loader-percentage')
+          var loaderBarContainer = $('.fake-loader-bar-container')
           var loaderBarContainerWidth = loaderBarContainer.width()
           var loaderBar = loaderBarContainer.children()
           var loaderBarHide = loaderBar.children()
@@ -83,6 +84,7 @@ export default {
             })
             clearInterval(loaderInterval)
             homeSubtitle.fadeIn('2000').addClass('visible')
+            copyright.fadeIn('2000')
             setTimeout(function () {
               mainNav.fadeIn(2000)
               homeDiscoverNav.fadeIn(2000)
@@ -102,14 +104,16 @@ export default {
         var mainNav = $('.main-nav')
         var homeDiscoverNav = $('.home .discover-nav')
         var homeImg = $('.home .img-container')
-        var loaderContainer = $('.loader-container')
+        var loaderContainer = $('.fake-loader-container')
         var homeSubtitle = $('.home .page-subtitle-container')
+        var copyright = $('.copyright')
 
         mainNav.hide(0)
         homeDiscoverNav.hide()
         homeImg.hide()
         loaderContainer.show().css('display', 'flex')
         homeSubtitle.hide()
+        copyright.hide()
       })
     }
   }
@@ -161,7 +165,7 @@ $hover: .5s all linear
       opacity: 0.65
 
 
-.loader-container
+.fake-loader-container
   width: 8.33333333%
   position: absolute
   left: 0
@@ -173,23 +177,23 @@ $hover: .5s all linear
   justify-content: flex-end
   flex-direction: column
 
-  .loader-percentage
+  .fake-loader-percentage
     font-size: 20px
     font-weight: 500
     font-style: italic
     margin-right: -20px
 
-.loader-bar-container
+.fake-loader-bar-container
   width: 100%
   height: 2px
 
-  .loader-bar
+  .fake-loader-bar
     width: 0
     height: 2px
     background: #2c2c2c
     position: relative
 
-    .loader-bar-hide
+    .fake-loader-bar-hide
       position: absolute
       top: 0
       left: 0

@@ -1,17 +1,24 @@
 <template>
   <div class="search-component">
     <div class="row scroll">
+      <loader></loader>
       <scroll-progress-bar></scroll-progress-bar>
       <div class="col-md-5 col-md-offset-1 left-column">
         <div class="search-content-container">
           <div class="search-title-container">
             <h3><span>{{ dataEra[era].era_translations[0].name }}</span><sup>{{ dataEra[era].date_begin }} / {{ dataEra[era].date_end }}</sup></h3>
           </div>
-          <div class="search-subtext-container">
+          <div
+            v-if="dataEra[era]"
+            class="search-subtext-container"
+          >
             <p>{{ dataEra[era].era_translations[0].name }}<span class="type-text-bg">ère</span></p>
           </div>
         </div>
-        <div class="search-desc-container">
+        <div
+          v-if="dataEra[era]"
+          class="search-desc-container"
+        >
           <q>{{ dataEra[era].era_translations[0].description }}</q>
         </div>
         <div class="page-subtitle-container">
@@ -23,7 +30,13 @@
         <div class="vertical-list-container">
           <div class="vertical-list-wrapper">
             <div>
-              <h4><span class="bg"></span>épigrammes liées<sup>XII</sup></h4>
+              <h4
+                v-if="dataEra[era].entities > 0"
+              >
+                <span class="bg"></span>
+                épigrammes liées
+                <sup>{{ dataEra[era].entities.length | romanize }}</sup>
+              </h4>
               <ul>
                 <li v-for="epigram in dataEra[era].entities">
                   <a v-link="{ name: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</a>
@@ -45,11 +58,16 @@
 </template>
 
 <script>
+/* global apiAuth, api */
 import ScrollProgressBar from './partials/ProgressBar.vue'
+import Loader from './partials/Loader'
+
+import $ from 'jquery'
 
 export default {
   components: {
-    ScrollProgressBar
+    ScrollProgressBar,
+    Loader
   },
   name: 'searchEra',
   data () {
@@ -71,9 +89,12 @@ export default {
   methods: {
     getAuthorsData: function () {
       var self = this
-      this.$http.get('http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=1_2on8mj00wu68oc4oso0cwck8gcc4ccogkc04owgk8g4og4wggk&client_secret=1vfwitjfzz0kkko8kw80cwk844ws8000w8cs40o88g00488www&grant_type=password&username=front&password=owiowi').then(function (response) {
+      this.$http.get(apiAuth).then(function (response) {
         self.$set('token', response.data.access_token)
-        self.$http.get('anthologie.raphaelaupee.fr/api/v1/era?access_token=' + self.token).then(function (response) {
+        self.$http.get(api + 'era?access_token=' + self.token, {progress () {
+          $('.loader').fadeIn()
+        }}).then(function (response) {
+          $('.loader').fadeOut()
           self.$set('dataEra', response.data)
         }, function (response) {
           console.log('error: ' + response)
@@ -85,91 +106,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass" scoped>
-$raleway: 'Raleway', Helvetica, Arial, sans-serif
-
-.search-component
-  width: 100%
-  height: 100%
-
-  >.row
-    width: 100%
-    height: 100%
-
-  .left-column
-    height: 100%
-    display: flex
-    flex-direction: column
-    justify-content: flex-end
-
-    .search-title-container
-      h3
-        font-size: 18px
-        font-weight: 700
-        text-transform: capitalize
-        display: inline-block
-        letter-spacing: 1px
-
-        span
-          display: inline-table
-
-          &:after
-            content: ""
-            width: 100%
-            height: 1px
-            background: #2c2c2c
-            display: inline-block
-            vertical-align: top
-
-        sup
-          font-size: 12px
-          font-style: italic
-          color: rgba(44, 44, 44, .5)
-          vertical-align: super
-
-    .search-subtext-container
-      position: relative
-      margin-left: 100px
-
-      p
-        font-size: 18px
-        font-style: italic
-
-        .type-text-bg
-          opacity: 1
-          font-style: normal
-          font-size: 48px
-          padding-left: 10px
-
-    .search-desc-container
-      width: 300px
-      margin: 80px 0
-
-      q
-        line-height: 20px
-
-        &:before
-          top: 0
-
-  .right-column
-    height: 100%
-    display: flex
-    flex-direction: column
-    justify-content: flex-end
-
-    .vertical-list-container
-      height: 27%
-
-    .img-container
-      align-self: flex-end
-      margin-right: 130px
-      margin-bottom: 45px
-      margin-top: 100px
-      width: 250px
-      height: 250px
-
-      img
-        max-width: 235px
-        max-height: 235px
-</style>

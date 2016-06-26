@@ -1,45 +1,51 @@
 <template>
     <div class="authors">
-        <div class="page-title-container">
-            <h1>Auteurs</h1>
-        </div>
-        <div class="row scroll">
-            <scroll-progress-bar></scroll-progress-bar>
-            <div class="col-md-5 col-md-offset-1">
-                <back-btn></back-btn>
-                <div class="page-subtitle-container">
-                    <span class="dash"></span>
-                    <h2>Les auteurs de<br> l'Anthologie Palatine</h2>
-                </div>
-            </div>
-            <div class="col-md-6 pull-right">
-                <div class="vertical-list-container">
-                    <div
-                      v-for="author in dataAuthors"
-                      class="vertical-list-wrapper">
-                      <h3><span class="bg"></span>{{ author.author_translations[0].name }} <sup>{{ author.id | romanize }}</sup></h3>
-                      <ul>
-                        <li
-                          v-for="epigram in author.entities"
-                        >
-                          <a v-link="{ name: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</a>
-                        </li>
-                      </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <loader></loader>
+      <div class="page-title-container">
+          <h1>Auteurs</h1>
+      </div>
+      <div class="row scroll">
+          <scroll-progress-bar></scroll-progress-bar>
+          <div class="col-md-5 col-md-offset-1">
+              <back-btn></back-btn>
+              <div class="page-subtitle-container">
+                  <span class="dash"></span>
+                  <h2>Les auteurs de<br> l'Anthologie Palatine</h2>
+              </div>
+          </div>
+          <div class="col-md-6 pull-right">
+              <div class="vertical-list-container">
+                  <div
+                    v-for="author in dataAuthors"
+                    class="vertical-list-wrapper">
+                    <h3><span class="bg"></span>{{ author.author_translations[0].name }} <sup>{{ author.id | romanize }}</sup></h3>
+                    <ul>
+                      <li
+                        v-for="epigram in author.entities"
+                      >
+                        <a v-link="{ name: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</a>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </template>
 
 <script>
+/* global apiAuth, api */
 import BackBtn from './partials/BackBtn'
 import ScrollProgressBar from './partials/ProgressBar'
+import Loader from './partials/Loader'
+
+import $ from 'jquery'
 
 export default {
   components: {
     BackBtn,
-    ScrollProgressBar
+    ScrollProgressBar,
+    Loader
   },
   name: 'Authors',
   data () {
@@ -54,9 +60,12 @@ export default {
   methods: {
     getAuthorsData: function () {
       var self = this
-      this.$http.get('http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=1_2on8mj00wu68oc4oso0cwck8gcc4ccogkc04owgk8g4og4wggk&client_secret=1vfwitjfzz0kkko8kw80cwk844ws8000w8cs40o88g00488www&grant_type=password&username=front&password=owiowi').then(function (response) {
+      this.$http.get(apiAuth).then(function (response) {
         self.$set('token', response.data.access_token)
-        self.$http.get('anthologie.raphaelaupee.fr/api/v1/author?access_token=' + self.token).then(function (response) {
+        self.$http.get(api + 'author?access_token=' + self.token, {progress () {
+          $('.loader').fadeIn()
+        }}).then(function (response) {
+          $('.loader').fadeOut()
           self.$set('dataAuthors', response.data)
         }, function (response) {
           console.log('error: ' + response)

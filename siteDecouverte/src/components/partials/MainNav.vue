@@ -1,5 +1,5 @@
 <template>
-    <search :data-search="dataSearch" :search="search"></search>
+    <search :search="search"></search>
     <div class="main-nav col-md-6 col-md-offset-1">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -53,7 +53,7 @@
             <div class="form-group search-container col-md-12">
               <input
                 v-model="search"
-                @focus="onSearchFocus"
+                @click="onSearchFocus"
                 type="search"
                 class="form-control"
                 placeholder="Recherche"
@@ -153,6 +153,9 @@ $hover: .5s all linear
 
 .navbar-link,
 .navbar-list
+  li
+    height: 24px
+
   a
     font-size: 12px
     font-weight: 400
@@ -161,6 +164,7 @@ $hover: .5s all linear
     display: inline-block
     opacity: .3
     transition: $hover
+    height: 24px
 
     &:hover,
     &.v-link-active
@@ -173,7 +177,7 @@ $hover: .5s all linear
     .dash
       width: 100%
       height: 1px
-      display: block
+      display: inline-table
       position: relative
       background: none
       vertical-align: top

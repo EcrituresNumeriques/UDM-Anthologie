@@ -103,7 +103,7 @@ sup
 q
   quotes: "\201C" "\201D" "\2018" "\2019"
   position: relative
-  padding: 0 10px 10px 0;
+  padding: 0 10px 10px 0
 
   &:before
     font-size: 30px
@@ -281,4 +281,106 @@ span.bg
   transition: $hover
   z-index: -1
   letter-spacing: 2px
+
+.search-component
+  width: 100%
+  height: 100%
+
+  >.row
+    width: 100%
+    height: 100%
+
+  .page-subtitle-container
+    position: absolute
+    bottom: 0
+    left: 0
+
+  .left-column
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    position: relative
+
+    .search-title-container
+      h3
+        font-size: 18px
+        font-weight: 700
+        text-transform: capitalize
+        display: inline-block
+        letter-spacing: 1px
+
+        span
+          display: inline-table
+          padding-bottom: 1px
+
+          &:after
+            content: ""
+            width: 100%
+            height: 1px
+            background: #2c2c2c
+            display: inline-block
+            vertical-align: top
+
+        sup
+          font-size: 12px
+          font-style: italic
+          color: rgba(44, 44, 44, .5)
+          vertical-align: super
+
+    .search-subtext-container
+      position: relative
+      margin-left: 100px
+
+      p
+        font-size: 18px
+        font-style: italic
+
+        .type-text-bg
+          opacity: 1
+          font-style: normal
+          font-size: 48px
+          padding-left: 10px
+
+    .search-desc-container
+      width: 300px
+      margin: 80px 0
+
+      q
+        line-height: 20px
+
+        &:before
+          top: 0
+
+  .right-column
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+
+    .vertical-list-container
+      height: 27%
+
+    .img-container
+      align-self: flex-end
+      margin-right: 130px
+      margin-bottom: 45px
+      margin-top: 100px
+      width: 250px
+      height: 250px
+
+.notExist
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+
+  p
+    font-size: 30px
+    color: #2c2c2c
+
+  .back-btn
+    left: 0
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class="epigram-api" :epigram="epigram">
+    <loader></loader>
     <div v-if="dataEpigrams[epigram]">
       <div class="page-title-container">
         <h1>{{ dataEpigrams[epigram].title }}</h1>
@@ -49,6 +50,7 @@
 </template>
 
 <script>
+/* global apiAuth, api */
 import Vue from 'vue'
 
 import BackBtn from './partials/BackBtn'
@@ -58,6 +60,7 @@ import Translation from './partials/epigramApi/Translation'
 import GreekText from './partials/epigramApi/GreekText'
 import Notes from './partials/epigramApi/Notes'
 import Characters from './partials/epigramApi/Characters'
+import Loader from './partials/Loader'
 
 import $ from 'jquery'
 
@@ -77,7 +80,8 @@ export default {
     Translation,
     GreekText,
     Notes,
-    Characters
+    Characters,
+    Loader
   },
   route: {
     data: function (transition) {
@@ -101,9 +105,12 @@ export default {
   methods: {
     getEpigramData: function () {
       var self = this
-      this.$http.get('http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=1_2on8mj00wu68oc4oso0cwck8gcc4ccogkc04owgk8g4og4wggk&client_secret=1vfwitjfzz0kkko8kw80cwk844ws8000w8cs40o88g00488www&grant_type=password&username=front&password=owiowi').then(function (response) {
+      this.$http.get(apiAuth).then(function (response) {
         self.$set('token', response.data.access_token)
-        self.$http.get('anthologie.raphaelaupee.fr/api/v1/entity?access_token=' + self.token).then(function (response) {
+        self.$http.get(api + 'entity?access_token=' + self.token, {progerss () {
+          $('.loader').fadeIn()
+        }}).then(function (response) {
+          $('.loader').fadeOut()
           self.$set('dataEpigrams', response.data)
         }, function (response) {
           console.log('error: ' + response)
