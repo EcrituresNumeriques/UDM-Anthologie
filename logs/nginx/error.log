@@ -8,3 +8,6 @@
 2016/06/27 15:07:45 [emerg] 1#0: getpwnam("www-data") failed in /etc/nginx/nginx.conf:1
 2016/06/27 15:08:21 [emerg] 1#0: open() "/etc/nginx/mime.types" failed (2: No such file or directory) in /etc/nginx/nginx.conf:18
 2016/06/27 15:13:02 [emerg] 1#0: open() "/nginx/nginx.conf" failed (2: No such file or directory)
+2016/06/27 17:47:03 [emerg] 1#0: getpwnam("www-data") failed in /etc/nginx/nginx.conf:1
+2016/06/27 17:48:32 [emerg] 1#0: getpwnam("www-data") failed in /etc/nginx/nginx.conf:1
+2016/06/27 17:51:09 [emerg] 1#0: getpwnam("www-data") failed in /etc/nginx/nginx.conf:1

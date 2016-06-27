@@ -22,10 +22,9 @@ RUN apk add --update \
     php5-zlib
 
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
-RUN usermod -u 1000 www-data
 
-ADD symfony.ini /etc/php5/fpm/conf.d/
-ADD symfony.ini /etc/php5/cli/conf.d/
+ADD symfony.ini /etc/php5/
+ADD symfony.ini /etc/php5/
 
 ADD symfony.pool.conf /etc/php5/fpm/pool.d/
 

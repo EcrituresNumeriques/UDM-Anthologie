@@ -4,7 +4,6 @@ MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
 
 RUN apk add --update nginx
 RUN	rm -rf /var/cache/apk/* && rm -rf /tmp/*
-RUN	groupadd -r www-data && useradd -r -g www-data www-data
 
 ADD nginx.conf /etc/nginx/
 ADD symfony.conf /etc/nginx/conf.d/
