@@ -17,15 +17,19 @@ class CitiesType extends AbstractType
     {
         $builder
             ->add('gps')
-            ->add('user')
-            ->add('group')
-            ->add('images')
+            ->add('images', CollectionType::class , array(
+                'entry_type' => CitiesTranslationsType::class ,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ))
             ->add('cityTranslations' , CollectionType::class , array(
                 'entry_type' => CitiesTranslationsType::class ,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false
             ))
+            ->add('group')
         ;
     }
 

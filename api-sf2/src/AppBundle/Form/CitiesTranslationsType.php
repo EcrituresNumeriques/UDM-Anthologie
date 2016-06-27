@@ -21,8 +21,8 @@ class CitiesTranslationsType extends AbstractType
             ))
             ->add('currentName')
             ->add('description')
-            ->add('group')
             ->add('language')
+            ->add('group')
         ;
     }
 
