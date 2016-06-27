@@ -67,13 +67,13 @@ abstract class BaseApiController extends FOSRestController
             ->getToken()
             ->getUser();
 
-
+        /* ACL a modifier
         if ( !$user->hasGroup($entity->getGroup()->getName())
             || $user->getId() != $entity->getUser()->getId()) {
             $view = $this->view($entity , 403);
 
             return $this->handleView($view);
-        }
+        }*/
 
         $entityTranslation->setUser($user);
         $form                = $this->createForm($formTypeTranslation , $entityTranslation , array(
@@ -110,12 +110,15 @@ abstract class BaseApiController extends FOSRestController
         $user                  = $this->get('security.token_storage')
             ->getToken()
             ->getUser();
-        if ( !$user->hasGroup($entityTranslation->getGroup()->getName())
-            || $user->getId() != $entityTranslation->getUser()->getId()) {
-            $view = $this->view($entityTranslation , 403);
+
+        /* ACL a modifier
+        if ( !$user->hasGroup($entity->getGroup()->getName())
+            || $user->getId() != $entity->getUser()->getId()) {
+            $view = $this->view($entity , 403);
 
             return $this->handleView($view);
-        }
+        }*/
+
         $em   = $this->getDoctrine()->getManager();
         $form = $this->createForm($formTranslation , $entityTranslation , array("method" => $request->getMethod()));
         $view = $this->view($form , 400);
@@ -158,12 +161,13 @@ abstract class BaseApiController extends FOSRestController
             return $this->handleView($view);
         }
 
-        if ( !$user->hasGroup($entityTranslation->getGroup()->getName())
-            || $user->getId() != $entityTranslation->getUser()->getId()) {
-            $view = $this->view($entityTranslation , 403);
+        /* ACL a modifier
+        if ( !$user->hasGroup($entity->getGroup()->getName())
+            || $user->getId() != $entity->getUser()->getId()) {
+            $view = $this->view($entity , 403);
 
             return $this->handleView($view);
-        }
+        }*/
 
         $em = $this->getDoctrine()->getManager();
         if ($paramFetcher->get('safeDelete')) {
@@ -243,6 +247,13 @@ abstract class BaseApiController extends FOSRestController
 
         $em = $this->getDoctrine()
             ->getManager();
+        //default activate safeDelete filter
+        $em->getFilters()
+            ->enable('soft_deletable_class')
+            ->setParameter('deleted' , $paramFetcher->get('deleted'));
+
+        $repository   = $this->getParams()["repository"];
+        $queryBuilder = $repository->createQueryBuilder('q');
 
         //filters
         if ($paramFetcher->get('lang')) {
@@ -264,13 +275,17 @@ abstract class BaseApiController extends FOSRestController
         }
 
         if ($paramFetcher->get('deleted') == 1) {
+            $queryBuilder->andWhere("q.deletedAt IS NOT NULL");
             $em->getFilters()
-                ->enable('soft_deletable_class')
+                ->disable('soft_deletable_class')
                 ->setParameter('deleted' , $paramFetcher->get('deleted'));
+        } else {
+            $queryBuilder->andWhere("q.deletedAt IS NULL");
         }
 
-        $repository   = $this->getParams()["repository"];
-        $queryBuilder = $repository->createQueryBuilder('q');
+
+
+
 
         if ($paramFetcher->get('offset')) {
             $queryBuilder->setFirstResult($paramFetcher->get('offset'));
@@ -373,14 +388,8 @@ abstract class BaseApiController extends FOSRestController
         $user = $this->get('security.token_storage')
             ->getToken()
             ->getUser();
+        //verification de l'user
 
-        if ( !$user->hasGroup($entity->getGroup()->getName())
-            || $user->getId() != $entity->getUser()->getId()
-        ) {
-            $view = $this->view($entity , 403);
-
-            return $this->handleView($view);
-        }
 
         $em = $this->getDoctrine()->getManager();
         if ($paramFetcher->get('safeDelete')) {
@@ -394,7 +403,7 @@ abstract class BaseApiController extends FOSRestController
             $em->remove($entity);
             $em->flush();
         }
-        $view = $this->view($entity , 200);
+        $view = $this->view($entity->getDeletedAt() , 200);
 
         return $this->handleView($view);
     }

@@ -87,11 +87,15 @@ class AuthorsType extends AbstractType
 
     public function onPostSubmitData (FormEvent $event)
     {
-        $author = $event->getData();
         if ($this->options['method'] == "POST") {
+            $author = $event->getData();
             $author->getBornCity()->setUser($author->getUser());
             $author->getDiedCity()->setUser($author->getUser());
             $author->getEra()->setUser($author->getUser());
+            foreach ($author->getImages() as $numObject => $object)
+            {
+                $object->setUser($author->getUser());
+            }
         }
     }
 

@@ -29,7 +29,7 @@ class BooksTranslationsType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+    $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\BooksTranslations',
             'csrf_protection' => false,
             'allow_extra_fields' => true

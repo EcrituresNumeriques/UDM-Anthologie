@@ -99,7 +99,7 @@ class Authors
     private $era;
 
     /**
-     * @ManyToOne(targetEntity="User")
+     * @ManyToOne(targetEntity="User", inversedBy="authors")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
