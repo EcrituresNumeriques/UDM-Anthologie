@@ -28,40 +28,6 @@
             </li>
         </ul>
     </div>
-    {#{% if enableSandbox %}#}
-        {#<div id="sandbox_configuration">#}
-        {#{% if bodyFormats|length > 0 %}#}
-        {#body format:#}
-        {#<select id="body_format">#}
-            {#{% if 'form' in bodyFormats %}<option value="form"{{ defaultBodyFormat == 'form' ? ' selected' : '' }}>Form Data</option>{% endif %}#}
-            {#{% if 'json' in bodyFormats %}<option value="json"{{ defaultBodyFormat == 'json' ? ' selected' : '' }}>JSON</option>{% endif %}#}
-            {#</select>#}
-        {#{% endif %}#}
-        {#{% if requestFormats|length > 0 %}#}
-        {#request format:#}
-        {#<select id="request_format">#}
-            {#{% for format, header in requestFormats %}#}
-            {#<option value="{{ header }}"{{ defaultRequestFormat == format ? ' selected' : '' }}>{{ format }}</option>#}
-            {#{% endfor %}#}
-            {#{% endif %}#}
-            {#</select>#}
-        {#{% if authentication %}#}
-        {#{% if authentication.delivery == 'http' and authentication.type == 'basic' %}#}
-        {#api login: <input type="text" id="api_login" value=""/>#}
-        {#api password: <input type="text" id="api_pass" value=""/>#}
-        {#{% elseif authentication.delivery in ['query', 'http', 'header'] %}#}
-        {#api key: <input type="text" id="api_key" value=""/>#}
-        {#{% endif %}#}
-
-        {#{% if authentication.custom_endpoint %}#}
-        {#api endpoint: <input type="text" id="api_endpoint" value=""/>#}
-        {#{% endif %}#}
-        {#<button id="save_api_auth" type="button">Save</button>#}
-        {#<button id="clear_api_auth" type="button">Clear</button>#}
-        {#{% endif %}#}
-        {#</div>#}
-    {#{% endif %}#}
-    <br style="clear: both;" />
 </div>
 {% include motdTemplate %}
 <div class="container" id="resources_container">
@@ -73,8 +39,6 @@
     &copy; Université de Montréal - 2016
 </p>
 <script type="text/javascript">
-    $('#summary').hide()
-
     var getHash = function() {
         return window.location.hash || '';
     };
