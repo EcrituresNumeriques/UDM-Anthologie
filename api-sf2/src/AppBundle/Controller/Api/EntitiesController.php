@@ -147,6 +147,52 @@ class EntitiesController extends BaseApiController
 
     /**
      * @ApiDoc(
+     *     description="Create a new Entity with all her relations",
+     *     requirements={
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="entity identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\EntitiesFullType",
+     *     output="AppBundle\Entity\Entities",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *     }
+     * )
+     *
+     * @Post("/entityRelations/")
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function postEntityRelationsAction (Request $request)
+    {
+        $entity     = $this->getParams()["entity"];
+        $entityForm = $this->getParams()["entityForm"];
+        $em         = $this->getDoctrine()->getManager();
+        $form       = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
+        $form->handleRequest($request);
+        $view = $this->view($form , 404);
+        if ($form->isValid()) {
+            $user = $this->get('security.token_storage')
+                ->getToken()
+                ->getUser();
+            $entity->setUser($user);
+            $em->persist($entity);
+            $em->flush();
+            $view = $this->view($entity , 200);
+        }
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * @ApiDoc(
      *     description="Edit an Entity",
      *     requirements={
      *          {

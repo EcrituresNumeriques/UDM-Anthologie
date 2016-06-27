@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\UriSources;
-use AppBundle\Form\UriSourcesType;
+use AppBundle\Entity\Images;
+use AppBundle\Entity\ImagesTranslations;
+use AppBundle\Form\ImagesTranslationsType;
+use AppBundle\Form\ImagesType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -13,7 +15,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UriSourcesController extends BaseApiController
+class ImagesController extends BaseApiController
 {
     /**
      * @see BaseApiController::getParams()
@@ -23,18 +25,18 @@ class UriSourcesController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"   => $this->getDoctrine()->getManager()->getRepository('AppBundle:UriSources') ,
-            "entity"       => new UriSources() ,
-            "entityName"   => "UriSources" ,
-            "entitySetter" => "setUriSource" ,
-            "entityForm"   => new UriSourcesType() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Images') ,
+            "entity"                => new Images() ,
+            "entityName"            => "Images" ,
+            "entitySetter"          => "setImage" ,
+            "entityForm"            => new ImagesType() ,
         );
     }
 
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a list of UriSources and related datas",
+     *     description="Get a list of images and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -57,14 +59,14 @@ class UriSourcesController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/uri/source/")
+     * @Get("/image/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
      *
      * @return Response
      */
-    public function getUriSourcesAction (Request $request , ParamFetcher $paramFetcher)
+    public function getImagesAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
@@ -72,7 +74,7 @@ class UriSourcesController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get an UriSource and related datas",
+     *     description="Get a Image and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -84,7 +86,7 @@ class UriSourcesController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="keyword identifier"
+     *              "description"="image identifier"
      *          }
      *     },
      *     statusCodes={
@@ -95,7 +97,7 @@ class UriSourcesController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/uri/source/{id}")
+     * @Get("/image/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -104,44 +106,44 @@ class UriSourcesController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getUriSourceAction (Request $request , $id)
+    public function getImageAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new UriSource",
+     *     description="Create a new Image",
      *     requirements={
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="keyword identifier"
+     *              "description"="image identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\UriSourcesType",
-     *     output="AppBundle\Entity\UriSources",
+     *     input="AppBundle\Form\ImagesType",
+     *     output="AppBundle\Entity\Images",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
      *     }
      * )
      *
-     * @Post("/uri/source/")
+     * @Post("/image/")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function postUriSourceAction (Request $request)
+    public function postImageAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an UriSource",
+     *     description="Edit a Image",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -153,11 +155,11 @@ class UriSourcesController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="keyword identifier"
+     *              "description"="image identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\UriSourcesType",
-     *     output="AppBundle\Entity\UriSources",
+     *     input="AppBundle\Form\ImagesType",
+     *     output="AppBundle\Entity\Images",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -165,21 +167,21 @@ class UriSourcesController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/uri/source/{id}")
+     * @Put("/image/{id}")
      *
      * @param Request      $request
      * @param              $id
      *
      * @return Response
      */
-    public function putUriSourceAction (Request $request , $id)
+    public function putImageAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit an UriSource",
+     *     description="Edit a Image",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -191,7 +193,7 @@ class UriSourcesController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="keyword id"
+     *              "description"="image id"
      *          }
      *     },
      *     statusCodes={
@@ -200,7 +202,7 @@ class UriSourcesController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/uri/source/{id}")
+     * @Delete("/image/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -208,7 +210,7 @@ class UriSourcesController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteUriSourceAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteImageAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }

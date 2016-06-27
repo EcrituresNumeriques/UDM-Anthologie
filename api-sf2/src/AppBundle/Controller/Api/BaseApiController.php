@@ -24,14 +24,14 @@ abstract class BaseApiController extends FOSRestController
         $entity     = $this->getParams()["entity"];
         $entityForm = $this->getParams()["entityForm"];
         $em         = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+        $entity->setUser($user);
         $form       = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
         $form->handleRequest($request);
         $view = $this->view($form , 404);
         if ($form->isValid()) {
-            $user = $this->get('security.token_storage')
-                ->getToken()
-                ->getUser();
-            $entity->setUser($user);
             $em->persist($entity);
             $em->flush();
             $view = $this->view($entity , 200);
@@ -62,12 +62,11 @@ abstract class BaseApiController extends FOSRestController
         $entity              = $repository->findOneBy(array('id' => $idEntity));
         $entitySetter        = $this->getParams()["entitySetter"];
         $em                  = $this->getDoctrine()->getManager();
-        $form                = $this->createForm($formTypeTranslation , $entityTranslation , array(
-            "method" => $request->getMethod()
-        ));
+
         $user                = $this->get('security.token_storage')
             ->getToken()
             ->getUser();
+
 
         if ( !$user->hasGroup($entity->getGroup()->getName())
             || $user->getId() != $entity->getUser()->getId()) {
@@ -76,16 +75,16 @@ abstract class BaseApiController extends FOSRestController
             return $this->handleView($view);
         }
 
+        $entityTranslation->setUser($user);
+        $form                = $this->createForm($formTypeTranslation , $entityTranslation , array(
+            "method" => $request->getMethod()
+        ));
         $form->handleRequest($request);
         $form->getErrors();
         $view = $this->view($form , 400);
         if ($form->isValid()) {
 
             $entityTranslation->$entitySetter($entity);
-            $user = $this->get('security.token_storage')
-                ->getToken()
-                ->getUser();
-            $entityTranslation->setUser($user);
             $em->persist($entityTranslation);
             $em->flush();
             $view = $this->view($entity , 200);

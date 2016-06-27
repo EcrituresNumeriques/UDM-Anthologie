@@ -8,7 +8,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use AppBundle\Annotation as AppAnnotations;
 
 /**
- * UriSource
+ * UriSources
  *
  * @ORM\Table(name="URI_source")
  * @ORM\Entity
@@ -16,7 +16,7 @@ use AppBundle\Annotation as AppAnnotations;
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class UriSource
+class UriSources
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
@@ -70,7 +70,7 @@ class UriSource
      *
      * @param string $name
      *
-     * @return UriSource
+     * @return UriSources
      */
     public function setName($name)
     {
@@ -94,7 +94,7 @@ class UriSource
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return UriSource
+     * @return UriSources
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -118,7 +118,7 @@ class UriSource
      *
      * @param \AppBundle\Entity\Group $group
      *
-     * @return UriSource
+     * @return UriSources
      */
     public function setGroup(\AppBundle\Entity\Group $group = null)
     {
@@ -142,7 +142,7 @@ class UriSource
      *
      * @param \AppBundle\Entity\Uri $uri
      *
-     * @return UriSource
+     * @return UriSources
      */
     public function setUri(\AppBundle\Entity\Uri $uri = null)
     {

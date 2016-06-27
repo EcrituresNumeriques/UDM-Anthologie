@@ -81,25 +81,25 @@ class Authors
     private $activityRange;
 
     /**
-     * @ManyToOne(targetEntity="Cities")
+     * @ManyToOne(targetEntity="Cities", cascade={"persist"})
      * @JoinColumn(name="city_born_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $bornCity;
 
     /**
-     * @ManyToOne(targetEntity="Cities")
+     * @ManyToOne(targetEntity="Cities", cascade={"persist"})
      * @JoinColumn(name="city_died_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $diedCity;
 
     /**
-     * @ManyToOne(targetEntity="Eras")
+     * @ManyToOne(targetEntity="Eras", cascade={"persist"})
      * @JoinColumn(name="era_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $era;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="authors")
+     * @ManyToOne(targetEntity="User")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
