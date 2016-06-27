@@ -34,7 +34,6 @@
 </template>
 
 <script>
-/* global apiAuth, api */
 import BackBtn from './partials/BackBtn'
 import ScrollProgressBar from './partials/ProgressBar'
 import Loader from './partials/Loader'
@@ -62,7 +61,7 @@ export default {
       var self = this
       this.$http.get(apiAuth).then(function (response) {
         self.$set('token', response.data.access_token)
-        self.$http.get(api + 'genre?access_token=' + self.token, {progress () {
+        self.$http.get(api + 'genre' + filterFr + 'access_token=' + self.token, {progress () {
           $('.loader').fadeIn()
         }}).then(function (response) {
           $('.loader').fadeOut()

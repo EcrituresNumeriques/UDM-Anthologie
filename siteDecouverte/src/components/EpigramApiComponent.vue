@@ -42,15 +42,10 @@
         >
       </div>
     </div>
-    <div v-else class="notExist">
-      <p>L'épigramme que vous cherchez n'existe pas</p>
-      <back-btn></back-btn>
-    </div>
   </div>
 </template>
 
 <script>
-/* global apiAuth, api */
 import Vue from 'vue'
 
 import BackBtn from './partials/BackBtn'
@@ -107,12 +102,13 @@ export default {
       var self = this
       this.$http.get(apiAuth).then(function (response) {
         self.$set('token', response.data.access_token)
-        self.$http.get(api + 'entity?access_token=' + self.token, {progerss () {
+        self.$http.get(api + 'entity' + filterFr + 'access_token=' + self.token, {progerss () {
           $('.loader').fadeIn()
         }}).then(function (response) {
           $('.loader').fadeOut()
           self.$set('dataEpigrams', response.data)
         }, function (response) {
+          $('.notExist').show()
           console.log('error: ' + response)
         })
       }, function (response) {
@@ -397,20 +393,4 @@ $(document).ready(function () {
 
       &.big
         transform: scale(1)
-
-  .notExist
-    width: 100%
-    height: 100%
-    display: flex
-    align-items: center
-    justify-content: center
-    position: relative
-
-    p
-      font-size: 30px
-      color: #2c2c2c
-
-    .back-btn
-      left: 0
-
 </style>

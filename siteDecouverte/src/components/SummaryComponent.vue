@@ -30,7 +30,6 @@
 </template>
 
 <script>
-/* global theme */
 import BackBtn from './partials/BackBtn'
 import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'

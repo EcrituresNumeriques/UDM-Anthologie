@@ -58,7 +58,6 @@
 </template>
 
 <script>
-/* global apiAuth, api */
 import ScrollProgressBar from './partials/ProgressBar.vue'
 import Loader from './partials/Loader'
 
@@ -91,7 +90,7 @@ export default {
       var self = this
       this.$http.get(apiAuth).then(function (response) {
         self.$set('token', response.data.access_token)
-        self.$http.get(api + 'era?access_token=' + self.token, {progress () {
+        self.$http.get(api + 'era' + filterFr + 'access_token=' + self.token, {progress () {
           $('.loader').fadeIn()
         }}).then(function (response) {
           $('.loader').fadeOut()

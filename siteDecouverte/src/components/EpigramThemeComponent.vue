@@ -57,7 +57,6 @@
 </template>
 
 <script>
-/* global theme */
 import Vue from 'vue'
 
 import BackBtn from './partials/BackBtn'

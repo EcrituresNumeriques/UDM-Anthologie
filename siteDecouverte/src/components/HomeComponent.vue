@@ -26,7 +26,6 @@
 </template>
 
 <script>
-/* global theme */
 import MainNav from './partials/MainNav'
 import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'
