@@ -16,7 +16,7 @@ class MotifsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('motifsTranslations' , CollectionType::class , array(
+            ->add('motifTranslations' , CollectionType::class , array(
                 'entry_type' => MotifsTranslationsType::class ,
                 'allow_add' => true,
                 'allow_delete' => true,
