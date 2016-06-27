@@ -5,61 +5,57 @@ body {
     background: #f6f6f6;
 }
 
-#header {
-    background: #ffffff;
-    border-bottom: solid 1px #366870;
-    height: 50px;
-    line-height: 50px;
+.app-header {
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #366870;
+    margin: 0 -15px;
+    background: #fff;
 }
 
-#header a {
-    display: inline-block;
-    vertical-align: middle;
+.app-header .navbar-header {
+    padding-left: 50px;
 }
 
-#header h1 {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
+.app-header .navbar-header .navbar-brand {
     color: #366870;
-    margin-left: 40px;
+    font-weight: 700;
+    transition: .2s all linear;
+    font-size: 28px;
+}
+
+.app-header .navbar-header .navbar-brand:hover,
+.app-header .navbar-header .navbar-brand:focus {
+    text-decoration: none;
+    opacity: .8;
+}
+
+.app-header .navbar-right{
+    width: 50%;
+}
+
+.app-header ul {
     padding: 0;
 }
 
-#header .doc-nav {
-    float: right;
-    width: 50%;
-    text-align: right;
+.app-header li {
+    margin: 0 10px;
 }
 
-#header .doc-nav li {
-    font-size: 24px;
-    font-weight: 600;
-    font-family: 'Source Sans Pro', sans-serif;
-    color: #000000;
-    display: inline;
+.app-header li a {
+    font-size: 22px;
+    color: #000;
+    border-bottom: 2px solid transparent;
+    transition: .2s all linear;
+    margin: 0;
 }
 
-#header .doc-nav li a {
-    margin: 0 30px;
-    display: inline;
-    padding-bottom: 2px;
-    position: relative;
-}
-
-#header .doc-nav li a:after {
-    content: '';
-    width: 0;
-    height: 2px;
-    background: #366870;
-    transition: all .5s ease-out;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-
-#header .doc-nav li a:hover:after {
-    width: 100%;
+.app-header li a:hover,
+.app-header li a:focus,
+.app-header li a.v-link-active {
+    text-decoration: none;
+    border-bottom: 2px solid #366870;
+    color: #000;
 }
 
 li.resource {
