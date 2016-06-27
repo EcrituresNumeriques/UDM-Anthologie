@@ -9,6 +9,7 @@
         {{ css|raw }}
     </style>
     {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link href="{{ asset('doc/css/custom.css') }}" rel="stylesheet" />
     {% endblock %}
     <script type="text/javascript">
@@ -16,17 +17,23 @@
     </script>
 </head>
 <body>
-<div id="header">
-    <a href="{{ path('nelmio_api_doc_index') }}"><h1>Anthologie Palatine - API</h1></a>
-    <div class="doc-nav">
-        <ul>
-            <li>
-                <a href="http://anthologie.ecrituresnumeriques.ca/">Site</a>
-            </li>
-            <li>
-                <a href="#">Back Office</a>
-            </li>
-        </ul>
+<div class="app-header">
+    <div class="row">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Palatine Anthology</a>
+                </div>
+                <div class="nav navbar-nav navbar-right">
+                    <ul class="list-inline col-xs-9 col-md-10 text-right">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/api/doc/live">Guide</a></li>
+                        <li><a href="#">Back Office</a></li>
+                        <li><a href="http://anthologie.valentin-crochemore.fr" target="_blank">Example</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
 </div>
 {% include motdTemplate %}
