@@ -97,19 +97,19 @@ li.operation.delete .heading h3 span.http_method i {
 }
 
 li.operation.get .heading h3 span.http_method i {
-    color: #2980b9;
+    color: #AFDEF4;
 }
 
 li.operation.post .heading h3 span.http_method i {
-    color: #27ae60;
+    color: #95E695;
 }
 
 li.operation.put .heading h3 span.http_method i {
-    color: #d35400;
+    color: #FFD47C;
 }
 
 li.operation.delete .heading h3 span.http_method i {
-    color: #c0392b;
+    color: #F49694;
 }
 
 
