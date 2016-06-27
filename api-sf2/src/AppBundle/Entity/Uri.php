@@ -41,7 +41,7 @@ class Uri
     private $value;
 
     /**
-     * @OneToOne(targetEntity="UriSource", inversedBy="uri")
+     * @OneToOne(targetEntity="UriSources", inversedBy="uri", cascade={"persist"})
      * @JoinColumn(name="uri_source_id", referencedColumnName="id")
      */
     private $uriSource;
@@ -127,11 +127,11 @@ class Uri
     /**
      * Set uriSource
      *
-     * @param \AppBundle\Entity\UriSource $uriSource
+     * @param \AppBundle\Entity\UriSources $uriSource
      *
      * @return Uri
      */
-    public function setUriSource(\AppBundle\Entity\UriSource $uriSource = null)
+    public function setUriSource(\AppBundle\Entity\UriSources $uriSource = null)
     {
         $this->uriSource = $uriSource;
 
@@ -141,7 +141,7 @@ class Uri
     /**
      * Get uriSource
      *
-     * @return \AppBundle\Entity\UriSource
+     * @return \AppBundle\Entity\UriSources
      */
     public function getUriSource()
     {

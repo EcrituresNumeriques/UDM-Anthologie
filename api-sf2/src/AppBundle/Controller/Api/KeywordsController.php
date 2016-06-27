@@ -40,7 +40,7 @@ class KeywordsController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a list of genres and related datas",
+     *     description="Get a list of Keywords and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -63,7 +63,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/genre/")
+     * @Get("/keyword/")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -78,7 +78,7 @@ class KeywordsController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a Keyword and related datas",
+     *     description="Get an Keyword and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -90,7 +90,7 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre identifier"
+     *              "description"="keyword identifier"
      *          }
      *     },
      *     statusCodes={
@@ -101,7 +101,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Get("/genre/{id}")
+     * @Get("/keyword/{id}")
      *
      * @param Request $request
      * @param         $id
@@ -123,7 +123,7 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre identifier"
+     *              "description"="keyword identifier"
      *          }
      *     },
      *     input="AppBundle\Form\KeywordsType",
@@ -134,7 +134,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Post("/genre/")
+     * @Post("/keyword/")
      *
      * @param Request $request
      *
@@ -147,7 +147,7 @@ class KeywordsController extends BaseApiController
 
     /**
      * @ApiDoc(
-     *     description="Edit a Keyword",
+     *     description="Edit an Keyword",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -159,7 +159,7 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre identifier"
+     *              "description"="keyword identifier"
      *          }
      *     },
      *     input="AppBundle\Form\KeywordsType",
@@ -171,7 +171,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/genre/{id}")
+     * @Put("/keyword/{id}")
      *
      * @param Request      $request
      * @param              $id
@@ -197,7 +197,7 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre id"
+     *              "description"="keyword id"
      *          }
      *     },
      *     statusCodes={
@@ -206,7 +206,7 @@ class KeywordsController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/genre/{id}")
+     * @Delete("/keyword/{id}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
@@ -233,7 +233,7 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre id"
+     *              "description"="keyword id"
      *          }
      *     },
      *     input="AppBundle\Form\KeywordsTranslationsType",
@@ -245,7 +245,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Post("/genre/{id}/translation/")
+     * @Post("/keyword/{id}/translation/")
      *
      * @param Request $request
      * @param         $id
@@ -271,13 +271,13 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre id"
+     *              "description"="keyword id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre translation id"
+     *              "description"="keyword translation id"
      *          }
      *     },
      *     input="AppBundle\Form\KeywordsTranslationsType",
@@ -290,7 +290,7 @@ class KeywordsController extends BaseApiController
      *     }
      * )
      *
-     * @Put("/genre/{id}/translation/{idTranslation}")
+     * @Put("/keyword/{id}/translation/{idTranslation}")
      *
      * @param Request $request
      * @param         $id
@@ -305,7 +305,7 @@ class KeywordsController extends BaseApiController
 
     /**
      * @ApiDoc(
-     *     description="Delete a Keyword translation",
+     *     description="Delete an Keyword translation",
      *     requirements={
      *          {
      *              "name"="access_token",
@@ -317,13 +317,13 @@ class KeywordsController extends BaseApiController
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre translation id"
+     *              "description"="keyword translation id"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="genre translation id"
+     *              "description"="keyword translation id"
      *          }
      *     },
      *     statusCodes={
@@ -332,7 +332,7 @@ class KeywordsController extends BaseApiController
      *         404="Returned when a parameter is not found"
      *     }
      * )
-     * @Delete("/genre/{id}/translation/{idTranslation}")
+     * @Delete("/keyword/{id}/translation/{idTranslation}")
      *
      * @param Request      $request
      * @param ParamFetcher $paramFetcher
