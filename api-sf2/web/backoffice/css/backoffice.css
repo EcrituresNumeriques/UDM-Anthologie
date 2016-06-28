@@ -1,0 +1,197 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a:hover,
+a:focus,
+a:active {
+    opacity: .5;
+    color: #366870;
+    transition: .5s all ease-out;
+}
+
+aside.main-sidebar {
+    background: #73959d;
+}
+
+ul.sidebar-menu li a {
+    color: rgba(216, 216, 216, .5);
+    font-size: 30px;
+    transition: .5s all ease-out;
+}
+
+ul.sidebar-menu li a i.fa-chevron-circle-right:before {
+    display: none;
+}
+
+ul.sidebar-menu li a i {
+    width: 20px!important;
+    height: 20px;
+    border-radius: 50%;
+    background: #d8d8d8;
+    opacity: .5;
+    transition: .5s all ease-out;
+}
+
+ul.sidebar-menu li a span {
+    margin-left: 15px;
+}
+
+
+ul.sidebar-menu li.active a {
+    background: none;
+    color: rgba(216, 216, 216, 1);
+    font-weight: 600;
+    border-left-color: #366870;
+}
+
+ul.sidebar-menu li.active a i {
+    opacity: 1;
+}
+
+ul.sidebar-menu li:hover a,
+ul.sidebar-menu li:focus a {
+    background: none;
+    color: rgba(216, 216, 216, 1);
+    opacity: 1;
+    border-left-color: #366870;
+}
+
+ul.sidebar-menu li:hover a i,
+ul.sidebar-menu li:focus a i {
+    opacity: 1;
+}
+
+section.content-header {
+    padding: 50px 15px 0 15px;
+}
+
+section.content-header h1.title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #366870;
+}
+
+div.content-wrapper {
+    background: #f6f6f6;
+}
+
+div.action-search input[type="search"] {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    height: 33px;
+    border: 1px solid #366870;
+}
+
+div.action-search button[type="submit"] {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: #366870;
+    border: 1px solid #366870;
+    transition: .5s all ease-out;
+}
+
+div.action-search button[type="submit"] i,
+div.action-search button[type="submit"] span {
+    color: #ffffff;
+    transition: .5s all ease-out;
+}
+
+div.action-search button[type="submit"]:hover,
+div.action-search button[type="submit"]:focus {
+    background: #f6f6f6;
+}
+
+div.action-search button[type="submit"]:hover i,
+div.action-search button[type="submit"]:focus i,
+div.action-search button[type="submit"]:hover span,
+div.action-search button[type="submit"]:focus span {
+    color: #366870;
+}
+
+div.button-action {
+    padding-left: 20px;
+}
+
+div.button-action a {
+    border: 1px solid #366870;
+    transition: .5s all ease-out;
+}
+
+div.button-action a:hover,
+div.button-action a:focus {
+    background: #f6f6f6;
+    color: #366870;
+    border: 1px solid #366870;
+}
+
+
+section#main {
+    margin: 50px 0;
+}
+
+section#main table th {
+    background: none;
+    border: 1px solid #366870;
+}
+
+section#main table th a,
+section#main table th a i,
+section#main table th span {
+    color: #ffffff;
+    transition: .5s all ease-out;
+}
+
+section#main table th a,
+section#main table th span {
+    background: #366870;
+}
+
+section#main table th a i {
+    padding: 0 10px;
+}
+
+section#main table th a:hover,
+section#main table th a:focus {
+    background: #f6f6f6;
+    color: #366870;
+}
+
+section#main table th a:hover i,
+section#main table th a:focus i {
+    color: #366870;
+}
+
+section#main table td {
+    padding: 15px;
+}
+
+.toggle-group .toggle-on,
+.toggle-group .toggle-on.btn-xs,
+.toggle-group .toggle-on:hover,
+.toggle-group .toggle-on:active,
+.toggle-group .toggle-on:active:hover {
+    background: #78b26c;
+    border-color: #78b26c;
+}
+
+.toggle-group .toggle-handle,
+.toggle-group .toggle-handle:hover,
+.toggle-group .toggle-handle:active,
+.toggle-group .toggle-handle:active:hover {
+    margin: 0;
+    border-radius: 0;
+    height: 100%;
+}
+
+.toggle-group .toggle-off, 
+.toggle-group .toggle-off.btn-xs, 
+.toggle-group .toggle-off:hover, 
+.toggle-group .toggle-off:active, 
+.toggle-group .toggle-off:active:hover {
+    background: #e28989;
+    border-color: #e28989;
+}
+
