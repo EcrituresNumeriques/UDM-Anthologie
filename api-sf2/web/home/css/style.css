@@ -51,18 +51,16 @@ body {
 }
 
 .app-header li a:hover,
-.app-header li a:focus,
-.app-header li a.v-link-active {
+.app-header li a:focus {
      text-decoration: none;
      border-bottom: 2px solid #366870;
      color: #000;
 }
 
 .title-container,
-.subtitle-container,
 .link-container,
 .desc-container{
-    margin: 10% 0;
+    margin: 5% 0;
 }
 
 .title-container h1 {
@@ -71,23 +69,17 @@ body {
     font-size: 72px;
 }
 
-.subtitle-container h2 {
-    opacity: .6;
-    padding: 0 5%;
-    font-size: 48px;
-}
-
 .link-container a {
     display: inline-block;
     background: #366870;
     color: #e6e6e6;
     font-weight: bold;
-    padding: 5% 0;
+    padding: 21px 0;
     border: 3px solid #366870;
     transition: .2s all linear;
     text-align: center;
-    font-size: 36px;
-    width: 60%;
+    font-size: 20px;
+    width: 286px;
     margin: 0;
 }
 
@@ -99,17 +91,21 @@ body {
 }
 
 .desc-container p {
-    padding: 0 20%;
+    padding: 0 15%;
     color: #000;
     line-height: 1.5em;
-    font-size: 28px;
+    font-size: 26px;
+    text-align: center;
+    opacity: 0.7;
 }
 
 .app-footer {
     border-top: 1px solid #366870;
-    padding-bottom: 50px;
-    margin: 0 -15px;
     background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .app-footer > .row:first-child {
@@ -141,8 +137,7 @@ body {
 }
 
 .app-footer ul li a:hover,
-.app-footer ul li a:focus,
-.app-footer ul li a.v-link-active {
+.app-footer ul li a:focus {
     opacity: 1;
     color: #366870;
     text-decoration: none;
