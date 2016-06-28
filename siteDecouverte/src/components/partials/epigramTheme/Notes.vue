@@ -19,7 +19,7 @@
               class="dropdown-text"
             >
               <div class="dropdown-desc">
-                <q>{{ note.content }}</q>
+                <q>{{{ note.content }}}</q>
               </div>
             </div>
           </div>

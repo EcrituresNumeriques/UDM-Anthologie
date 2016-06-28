@@ -68,20 +68,16 @@ export default {
       }
       greekSound = $('audio')[$('audio').length - 1]
       if (controlBtn.hasClass('french-sound-playing')) {
-        console.log('french: ' + $('.french-sound source').attr('src'))
         if (!frenchSound.paused) {
-          console.log('french pause: ' + $(frenchSound).attr('class'))
           frenchSound.pause()
           playBtn.addClass('paused')
           $('.french-mute span').removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
           frenchSound.volume = 1
         } else {
-          console.log('french play: ' + $(frenchSound).attr('class'))
           frenchSound.play()
           playBtn.removeClass('paused')
         }
       } else if (controlBtn.hasClass('greek-sound-playing')) {
-        console.log('greek')
         if (!greekSound.paused) {
           greekSound.pause()
           playBtn.addClass('paused')
@@ -92,15 +88,12 @@ export default {
           playBtn.removeClass('paused')
         }
       } else {
-        console.log('init')
         $('audio')[0].play()
         playBtn.removeClass('paused')
         if ($('audio').length === 1) {
           controlBtn.addClass('greek-sound-playing')
-          console.log('init greek')
         } else {
           controlBtn.addClass('french-sound-playing')
-          console.log($('.french-sound source').attr('src'))
         }
       }
     },
@@ -163,7 +156,7 @@ $hover: .5s all ease-out
 
   .play-button
     height: 10px
-    width: 10px
+    width: 11px
     display: inline-block
     overflow: hidden
     position: relative
@@ -196,7 +189,7 @@ $hover: .5s all ease-out
       background: transparent
       width: 0
       height: 0
-      border-right: 10px solid #fff
+      border-right: 4px solid #fff
       border-top: 5px solid #2c2c2c
       border-bottom: 5px solid #2c2c2c
       transition: transform 0.25s ease
@@ -205,6 +198,10 @@ $hover: .5s all ease-out
       .left,
       .right
         width: 50%
+
+      .triangle-1,
+      .triangle-2
+        border-right: 10px solid #fff
 
       .triangle-1
         transform: translate(0, -50%)

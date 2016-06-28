@@ -26,7 +26,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 .back-btn
   position: absolute
-  top: 200px
+  top: 140px
   z-index: 2
 
 </style>

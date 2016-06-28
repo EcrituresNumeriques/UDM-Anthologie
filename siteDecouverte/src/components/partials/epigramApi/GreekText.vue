@@ -107,7 +107,7 @@ export default {
     margin-left: -35px
 
     .mute
-      margin-top: -10px
+      margin-top: 8px
 
     .dropdown-content
       p

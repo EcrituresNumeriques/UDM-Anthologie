@@ -3,11 +3,6 @@
     <div class="page-title-container">
       <h1>Crédits</h1>
     </div>
-    <div class="row back-btn-container">
-      <div class="col-md-12 col-md-offset-1">
-        <back-btn></back-btn>
-      </div>
-    </div>
     <div class="row content-container">
       <div class="col-md-4 col-md-offset-1">
         <div class="desc-container">
@@ -43,7 +38,7 @@
       <div class="col-md-11 col-md-offset-1">
         <div class="page-subtitle-container">
             <span class="dash"></span>
-            <h2>L’Université de<br> Montréal & Hétic.</h2>
+            <h2>L’Université de<br> Montréal & HETIC.</h2>
         </div>
       </div>
     </div>
@@ -134,6 +129,8 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
      padding-left: 20px
 
 .team-container
+  margin-top: 64px
+
   h4
     padding-left: 10px
     font-size: 10px

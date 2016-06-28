@@ -143,17 +143,51 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
     .text-content
       width: 300px
+      height: 300px
+      overflow-y: auto
       margin: 0 auto
+      scrollbar-face-color: #2c2c2c
+      scrollbar-track-color: #fff
+      scrollbar-arrow-color: #fff
+
+      &:hover
+        &::-webkit-scrollbar-thumb,
+        &::-webkit-scrollbar-track
+          visibility: visible
+
+      &::-webkit-scrollbar
+        background: #fff
+        width: 3px
+
+      &::-webkit-scrollbar-button
+        display: none
+
+      &::-webkit-scrollbar-thumb
+        background: rgba(44, 44, 44, .3)
+        visibility: hidden
+
+        &:hover
+          background: rgba(44, 44, 44, .8)
+
+        &:active
+          background: rgba(44, 44, 44, 1)
+
+      &::-webkit-scrollbar-track
+        border-bottom: 1px solid #2c2c2c
+        border-top: 1px solid #2c2c2c
+        visibility: hidden
 
       p
         font-size: 14px
         color: #2c2c2c
         line-height: 1.5em
+        padding: 20px 0
 
         &::first-letter
           font-size: 36px
 
     .text-author
+      margin-top: 20px
 
       .dash
         width: 10px
@@ -166,5 +200,5 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
         font-style: italic
         font-size: 14px
         color: #2c2c2c
-        font-family: "Times New Roman"
+        font-family: "Times New Roman", sans-serif
 </style>

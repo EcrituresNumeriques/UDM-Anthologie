@@ -139,7 +139,7 @@ span.bg
   text-align: center
   opacity: .04
   z-index: -1
-  width: 100%
+  width: 68%
 
   h1
     text-transform: uppercase
@@ -250,7 +250,8 @@ span.bg
     font-size: 12px
     font-weight: 600
     color: #2c2c2c
-    display: inline-block
+    display: flex
+    align-items: center
     letter-spacing: 0.04em
 
     &:hover,

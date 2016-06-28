@@ -35,7 +35,7 @@
               <h4>{{ character.name | capitalize }}</h4>
             </div>
             <div class="dropdown-desc">
-              <q>{{ character.desc }}</q>
+              <q>{{{ character.desc }}}</q>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .5s all ease-out
+$hover: .7s all ease-out
 
 .characters
   margin-top: 150px
@@ -133,7 +133,7 @@ $hover: .5s all ease-out
 
             .dash
               width: 13px
-              margin-right: 15px
+              margin-right: 5px
 
   .dropdown-text-container
     opacity: 0

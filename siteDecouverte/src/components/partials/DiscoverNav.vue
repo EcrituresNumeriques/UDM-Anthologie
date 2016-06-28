@@ -146,11 +146,11 @@ ul
     margin-right: 0
 
   to
-    margin-right: 20px
+    margin-right: 10px
 
 @keyframes marginRightOut
   from
-    margin-right: 20px
+    margin-right: 10px
 
   to
     margin-right: 0

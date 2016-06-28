@@ -177,7 +177,7 @@ $hover: .5s all ease-out
 .mute
   display: inline-block
   vertical-align: top
-  margin-top: 64px
+  margin-top: 100px
   margin-right: 4px
 
   span
