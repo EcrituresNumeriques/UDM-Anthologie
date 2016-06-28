@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6414b41f-3d14-424f-82d4-76794b871cfe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/app/SymfonyRequirements.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/check.php" afterPath="$PROJECT_DIR$/app/check.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/home/css/style.css" afterPath="$PROJECT_DIR$/web/home/css/style.css" />
     </list>
     <ignored path="api-sf2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -421,12 +418,12 @@
       <workItem from="1466628946691" duration="56217000" />
       <workItem from="1466758905827" duration="38299000" />
       <workItem from="1466847433799" duration="77453000" />
-      <workItem from="1467062056252" duration="2485000" />
+      <workItem from="1467062056252" duration="3084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284452000" />
+    <option name="totallyTimeSpent" value="285051000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
