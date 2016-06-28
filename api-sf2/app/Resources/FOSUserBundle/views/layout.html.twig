@@ -1,0 +1,14 @@
+<title>Login</title>
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="{{ asset('login/css/login.css') }}" rel="stylesheet" />
+{% endblock %}
+
+<div class="login-container">
+    <div class="login-wrapper">
+        {% block content %}
+            {% block fos_user_content %}{% endblock %}
+        {% endblock %}
+    </div>
+</div>
