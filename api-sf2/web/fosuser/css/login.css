@@ -1,0 +1,128 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 70%;
+    height: 70%;
+    background: #f2f2f2;
+}
+
+.login-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+label,
+input {
+    display: block;
+}
+
+label {
+    font-size: 24px;
+    color: #366870;
+    margin: 20px auto 5px;
+    width: 400px;
+}
+
+input {
+    width: 400px;
+    border: none;
+    border-bottom: 2px solid #366870;
+    font-size: 20px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+input#remember_me,
+label[for="remember_me"] {
+    display: inline-block;
+    width: initial;
+}
+
+label[for="remember_me"] {
+    margin-left: 10px
+}
+
+input[type="submit"] {
+    background: #366870;
+    border: 2px solid #366870;
+    color: #f2f2f2;
+    font-size: 24px;
+    margin-top: 30px;
+    transition: .5s all ease-out
+}
+
+input[type="submit"]:hover {
+    background: none;
+    color: #366870;
+}
+
+.fos_user_registration_register {
+    width: 100%;
+}
+
+#fos_user_registration_form > div {
+    display: inline-block;
+    width: 50%;
+}
+
+.login-more {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.login-more.register {
+    margin-bottom: 35px
+}
+
+.login-more.login {
+    margin-bottom: 110px;
+}
+
+.login-more.forgot {
+    margin-bottom: 185px;
+}
+
+.login-more > div {
+    width: 50%;
+    display: none;
+}
+
+.login-more a {
+    font-size: 20px;
+    color: #73959d;
+    opacity: .7;
+    transition: .5s all ease-out
+}
+
+.login-more a {
+    text-decoration: none;
+    opacity: 1;
+}
+
+.register-link {
+    float: left;
+}
+
+.forgot-link {
+    float: right;
+    text-align: right;
+}
