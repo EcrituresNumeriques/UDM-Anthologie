@@ -43,23 +43,27 @@ class Cities
     private $gps;
 
     /**
+     * @var ArrayCollection
      * @ManyToOne(targetEntity="User", inversedBy="cities")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
+     * @var ArrayCollection
      * @ManyToOne(targetEntity="Group", inversedBy="cities")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
 
     /**
+     * @var ArrayCollection
      * @OneToMany(targetEntity="CitiesTranslations", mappedBy="city", cascade={"persist"})
      */
     private $cityTranslations;
 
     /**
+     * @var ArrayCollection
      * @ManyToMany(targetEntity="Images", cascade={"persist"})
      * @JoinTable(name="cities_images_assoc",
      *      joinColumns={@JoinColumn(name="city_id", referencedColumnName="id")},
@@ -224,4 +228,10 @@ class Cities
     {
         return $this->group;
     }
+
+    public function __toString()
+    {
+        return "City ".$this->getId();
+    }
+
 }

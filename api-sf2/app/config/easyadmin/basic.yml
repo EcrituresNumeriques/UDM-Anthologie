@@ -1,0 +1,7 @@
+easy_admin:
+    site_name: 'Palatine Antholgy'
+    formats:
+        date: 'd/m/Y'
+        time: 'h:i A e'
+        datetime: 'd/m/Y h:i A e'
+        number: '%0.2f'

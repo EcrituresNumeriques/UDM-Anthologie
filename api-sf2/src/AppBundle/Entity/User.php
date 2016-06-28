@@ -6,8 +6,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
-//use FOS\UserBundle\Entity\User as BaseUser;
-use Sonata\UserBundle\Entity\BaseUser as BaseUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 use JMS\Serializer\Annotation as JMS;
 
 /**

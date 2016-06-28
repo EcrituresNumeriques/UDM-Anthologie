@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@AppBundle/Resources/config/services.yml" }
     - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
+    - { resource: easyadmin/ }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -92,13 +93,21 @@ fos_rest:
     routing_loader:
         default_format:     json                            # All responses should be JSON formated
         include_format:     false                           # We do not include format in request, so that all responses
-                                                            # will eventually be JSON formated
+    format_listener:
+        enabled: false
+        rules:
+            - { path: '^/backend', stop: true }  # <-- add this line
+                                                             # will eventually be JSON formated
 fos_user:
     db_driver:       orm
     firewall_name:   api                                #Required byFOSUserBundle
     user_class:      AppBundle\Entity\User
     group:
         group_class: AppBundle\Entity\Group
+
+    registration:
+        form:
+            type: app_user_registration
 
 fos_oauth_server:
     db_driver:           orm
@@ -140,11 +149,3 @@ knp_doctrine_behaviors:
     geocodable:     ~
     loggable:       ~
     sluggable:      false
-
-a2lix_translation_form:
-    locale_provider: default
-    locales: [fr, es, de]
-    default_locale: en
-    required_locales: [en]
-    manager_registry: doctrine
-    templating: "A2lixTranslationFormBundle::default.html.twig"
