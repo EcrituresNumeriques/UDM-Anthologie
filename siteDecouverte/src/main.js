@@ -30,7 +30,13 @@ Vue.config.silent = true // Supress all Vue.js logs and warnings -> because of s
 
 // configuration Resource
 global.theme = require('./service/theme.js')
-global.apiAuth = 'http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=1_5bwl2wz11j8kss0kck440ws84k0ok48w4wwsoosskw0socso8o&client_secret=2pndls3npzuoook4ss400088gks80w408ggws84g448g0ggowo&grant_type=password&username=front&password=owiowi'
+
+var clientId = '1_5bwl2wz11j8kss0kck440ws84k0ok48w4wwsoosskw0socso8o'
+var clientSecret = '2pndls3npzuoook4ss400088gks80w408ggws84g448g0ggowo'
+var grantType = 'password'
+var username = 'front'
+var password = 'owiowi'
+global.apiAuth = 'http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=' + clientId + '&client_secret=' + clientSecret + '&grant_type=' + grantType + '&username=' + username + '&password=' + password
 global.api = 'anthologie.raphaelaupee.fr/api/v1/'
 global.filterFr = '?lang_id=1&'
 

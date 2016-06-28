@@ -253,6 +253,7 @@ span.bg
     display: inline-block
     letter-spacing: 0.04em
 
+    &:hover,
     &:hover
       text-decoration: none
 
