@@ -1,0 +1,15 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock fos_user_content %}
+{% block login_more %}
+    <div class="login-more profile">
+        <div class="profile-edit-link float-left">
+            <a href="/profile/edit">Edit profile</a>
+        </div>
+        <div class="logout-link float-right">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<div class="fos_user_user_show">
+    <p>
+        <span class="profile_show_key">{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}</span>
+        <span class="profile_show_value">{{ user.username }}</span>
+    </p>
+    <p>
+        <span class="profile_show_key">{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}</span>
+        <span class="profile_show_value">{{ user.email }}</span>
+    </p>
+    <p>
+        <span class="profile_show_key">Last name</span>
+        <span class="profile_show_value">{{ user.lastName | capitalize }}</span>
+    </p>
+    <p>
+        <span class="profile_show_key">First name</span>
+        <span class="profile_show_value">{{ user.firstName | capitalize }}</span>
+    </p>
+    <p>
+        <span class="profile_show_key">Institution</span>
+        <span class="profile_show_value">{{ user.institution | capitalize }}</span>
+    </p>
+    <p>
+        <span class="profile_show_key">Country</span>
+        <span class="profile_show_value">{{ user.country | capitalize }}</span>
+    </p>
+</div>

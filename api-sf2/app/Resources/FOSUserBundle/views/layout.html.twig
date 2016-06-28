@@ -9,34 +9,15 @@
         {% block content %}
             {% block fos_user_content %}{% endblock %}
         {% endblock %}
-        <div class="login-more">
-            <div class="register-link">
-                <a href="/register">Register</a>
+        {% block login_more %}
+            <div class="login-more login">
+                <div class="register-link float-left">
+                    <a href="/register">Register</a>
+                </div>
+                <div class="forgot-link float-right">
+                    <a href="/resetting/request">Forgot password ?</a>
+                </div>
             </div>
-            <div class="already-registered-link">
-                <a href="/login">Already registered ?</a>
-            </div>
-            <div class="login-link">
-                <a href="/login">Login</a>
-            </div>
-            <div class="forgot-link">
-                <a href="/resetting/request">Forgot password ?</a>
-            </div>
-        </div>
+        {% endblock %}
     </div>
 </div>
-
-<script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
-<script>
-    if ( $('form').hasClass('fos_user_registration_register') ) {
-        $('.already-registered-link').show()
-        $('.login-more').addClass('register').removeClass('login').removeClass('forgot')
-    } else if ( $('form').hasClass('fos_user_resetting_request') ) {
-        $('.login-link').show()
-        $('.login-more').addClass('forgot').removeClass('login').removeClass('register')
-    } else {
-        $('.register-link').show()
-        $('.forgot-link').show()
-        $('.login-more').addClass('login').removeClass('register').removeClass('forgot')
-    }
-</script>

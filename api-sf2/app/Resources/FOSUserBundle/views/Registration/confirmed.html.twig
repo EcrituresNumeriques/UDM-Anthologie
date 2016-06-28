@@ -1,0 +1,19 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+
+{% block fos_user_content %}
+    <div class="congrats-container">
+        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
+        {% if app.session is not empty %}
+            {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+            {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
+        {% endif %}
+    </div>
+{% endblock fos_user_content %}
+{%  block login_more %}
+    <div class="login-more congrats">
+        <div class="login-link">
+            <a href="/login">Login</a>
+        </div>
+    </div>
+{% endblock %}

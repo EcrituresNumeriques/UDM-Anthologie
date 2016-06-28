@@ -4,6 +4,15 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.float-left {
+    float: left;
+}
+
+.float-right {
+    text-align: right;
+    float: right;
+}
+
 .login-container {
     position: absolute;
     top: 50%;
@@ -101,9 +110,25 @@ input[type="submit"]:hover {
     margin-bottom: 185px;
 }
 
+.login-more.congrats {
+    margin-bottom: 200px;
+    text-align: center;
+}
+
+.login-more.profile {
+    margin-bottom: 10px;
+}
+
+.login-more.profile-edit {
+    margin-bottom: 85px;
+}
+
+.login-more.congrats .login-link {
+    width: 100%;
+}
+
 .login-more > div {
     width: 50%;
-    display: none;
 }
 
 .login-more a {
@@ -118,11 +143,35 @@ input[type="submit"]:hover {
     opacity: 1;
 }
 
-.register-link {
-    float: left;
+.congrats-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    text-align: center;
 }
 
-.forgot-link {
-    float: right;
-    text-align: right;
+.congrats-container p {
+    font-size: 40px;
+}
+
+.fos_user_user_show {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    text-align: center;
+}
+
+.profile_show_key {
+    font-size: 24px;
+    margin-bottom: 5px;
+    display: block;
+    font-weight: 600;
+    color: #366870;
+}
+
+.profile_show_value {
+    font-size: 20px;
+    display: block;
 }
