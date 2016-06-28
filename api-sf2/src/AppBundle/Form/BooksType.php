@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +23,11 @@ class BooksType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ))
-            ->add('group');
+            ->add('group', EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Group' ,
+                'required' => false ,
+                'multiple' => true
+            ))
         ;
     }
     

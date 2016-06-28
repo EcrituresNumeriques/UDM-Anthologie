@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,15 +17,28 @@ class KeywordsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('keywordFamily')
+            ->add('keywordFamily', EntityType::class , array(
+                'class'    => 'AppBundle\Entity\KeywordsFamilies' ,
+                'required' => false ,
+                'multiple' => false
+            ))
+            ->add('entities', EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Entities' ,
+                'required' => false ,
+                'multiple' => true
+            ))
+            ->add('images', EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Images' ,
+                'required' => false ,
+                'multiple' => true
+            ))
             ->add('keywordTranslations' , CollectionType::class , array(
                 'entry_type' => KeywordsTranslationsType::class ,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false
             ))
-            ->add('entities')
-            ->add('images')
+            
         ;
     }
     

@@ -339,13 +339,14 @@ abstract class BaseApiController extends FOSRestController
             ->getToken()
             ->getUser();
 
+        /* Temp removed acl
         if ( !$user->hasGroup($entity->getGroup()->getName())
             || $user->getId() != $entity->getUser()->getId()
         ) {
             $view = $this->view($entity , 403);
 
             return $this->handleView($view);
-        }
+        }*/
 
         $form = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
         $form->handleRequest($request);

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +20,11 @@ class ErasType extends AbstractType
             ->add('dateBegin')
             ->add('dateEnd')
             ->add('group')
-            ->add('images') 
+            ->add('images' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Images' ,
+                'required' => false ,
+                'multiple' => true
+            ))
             ->add('eraTranslations' , CollectionType::class , array(
                 'entry_type' => ErasTranslationsType::class ,
                 'allow_add' => true,

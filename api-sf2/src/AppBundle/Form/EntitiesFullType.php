@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,6 +15,7 @@ class EntitiesFullType extends AbstractType
 {
 
     private $options;
+    private $dynamicFields;
     
     /**
      * @param FormBuilderInterface $builder
@@ -21,7 +23,9 @@ class EntitiesFullType extends AbstractType
      */
     public function buildForm (FormBuilderInterface $builder , array $options)
     {
-        $this->options = $options;
+        $this->options       = $options;
+        $this->dynamicFields = ['book' , 'era' , 'genre', 'authors', 'manuscripts',
+            'keywords', 'motifs', 'scholies', 'notes','texts','images'];
         
         $builder
             ->add('title', TextType::class, array(
@@ -110,93 +114,39 @@ class EntitiesFullType extends AbstractType
         $datas = $event->getData();
         $form  = $event->getForm();
 
-        if (is_int($datas['book'])){
-            $form->remove($datas['book']);
-            $form->add('book');
+
+        foreach ($this->dynamicFields as $field) {
+            if (isset($datas[ $field ])) {
+                if (is_int($datas[ $field ])) {
+                    $form->remove($datas[ $field ]);
+                    $form->add($field);
+                }
+            }
         }
-        if (is_int($datas['era'])){
-            $form->remove($datas['era']);
-            $form->add('era');
-        }
-        if (is_int($datas['genre'])){
-            $form->remove($datas['genre']);
-            $form->add('genre');
-        }
-        if (is_int($datas['authors'])){
-            $form->remove($datas['authors']);
-            $form->add('authors');
-        }
-        if (is_int($datas['manuscripts'])){
-            $form->remove($datas['manuscripts']);
-            $form->add('manuscripts');
-        }
-        if (is_int($datas['keywords'])){
-            $form->remove($datas['keywords']);
-            $form->add('keywords');
-        }
-        if (is_int($datas['motifs'])){
-            $form->remove($datas['motifs']);
-            $form->add('motifs');
-        }
-        if (is_int($datas['scholies'])){
-            $form->remove($datas['scholies']);
-            $form->add('scholies');
-        }        
-        if (is_int($datas['notes'])){
-            $form->remove($datas['notes']);
-            $form->add('notes');
-        }        
-        if (is_int($datas['texts'])){
-            $form->remove($datas['texts']);
-            $form->add('texts');
-        }
-        if (is_int($datas['images'])){
-            $form->remove($datas['images']);
-            $form->add('images');
-        }
-        
         $form->setData($datas);
-        //exit(\Doctrine\Common\Util\Debug::dump($datas));
     }
 
     public function onPostSubmitData (FormEvent $event)
     {
         if ($this->options['method'] == "POST") {
-            $entity = $event->getData();
-            $entity->getBook()->setUser($entity->getUser());
-            $entity->getEra()->setUser($entity->getUser());
-            $entity->getGenre()->setUser($entity->getUser());
-            foreach ($entity->getAuthors() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
-            }
-            foreach ($entity->getManuscripts() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
-            }
-            foreach ($entity->getKeywords() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
-            }
-            foreach ($entity->getMotifs() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
-            }
-            foreach ($entity->getScholies() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
-            }
-            foreach ($entity->getNotes() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
-            }
-            foreach ($entity->getTexts() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
-            }
-            foreach ($entity->getImages() as $numObject => $object)
-            {
-                $object->setUser($entity->getUser());
+            $object = $event->getData();
+            foreach ($this->dynamicFields AS $subEntityGetter) {
+                $method = "get" . ucfirst($subEntityGetter);
+                if (empty($object->$method()) || !method_exists($object , $method)) {
+                    continue;
+                }
+
+                if ($object->$method() instanceof ArrayCollection) {
+                    foreach ($object->$method() as $subObject) {
+                        if (method_exists($subObject , "setUser") && empty($subObject->getUser())) {
+                            $subObject->setUser($object->getUser());
+                        }
+                    }
+                } else {
+                    if (is_object($object->$method()) && empty($object->$method()->getUser())) {
+                        $object->$method()->setUser($object->getUser());
+                    }
+                }
             }
         }
     }
