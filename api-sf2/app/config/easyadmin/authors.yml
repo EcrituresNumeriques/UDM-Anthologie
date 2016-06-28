@@ -1,0 +1,17 @@
+easy_admin:
+    entities:
+        Authors:
+            class: AppBundle\Entity\Authors
+            label: 'Authors'
+            list:
+                fields: ['id', '', 'lastName', 'phone', 'authorTranslations']
+                title: "Most recent authors"
+            form:
+                fields:
+                    - { property: 'born', type: 'integer', label: 'DOB' }
+                    - { property: 'bornRange', type: 'integer', label: 'variations' }
+                    - { property: 'died', type: 'integer', label: 'DOD' }
+                    - { property: 'diedRange', type: 'integer', label: 'variations' }
+                    - { property: 'activity', type: 'integer', label: 'activty' }
+                    - { property: 'activityRange', type: 'integer', label: 'variations' }
+                    - { property: 'bornCity' }

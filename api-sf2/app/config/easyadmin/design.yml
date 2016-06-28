@@ -1,0 +1,7 @@
+easy_admin:
+    design:
+        color_scheme: 'light'
+    list:
+        actions:
+            - { name: 'show', icon: 'search', label: '' }
+            - { name: 'edit', icon: 'pencil', label: '' }
