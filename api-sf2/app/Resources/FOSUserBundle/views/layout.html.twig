@@ -1,7 +1,6 @@
-<title>Login</title>
-
-{% block stylesheets %}
+{% block head %}
     <link href="{{ asset('fosuser/css/login.css') }}" rel="stylesheet" />
+    <title>{% block title %}Login{% endblock %} - Palatine Anthology</title>
 {% endblock %}
 
 <div class="login-container">
