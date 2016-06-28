@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,11 +25,10 @@ class CitiesType extends AbstractType
         
         $builder
             ->add('gps')
-            ->add('images', CollectionType::class , array(
-                'entry_type' => CitiesTranslationsType::class ,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false
+            ->add('images' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Images' ,
+                'required' => false ,
+                'multiple' => true
             ))
             ->add('cityTranslations' , CollectionType::class , array(
                 'entry_type' => CitiesTranslationsType::class ,
@@ -37,22 +37,7 @@ class CitiesType extends AbstractType
                 'by_reference' => false
             ))
             ->add('group')
-            ->addEventListener(
-                FormEvents::POST_SUBMIT ,
-                array($this , 'onPostSubmitData')
-            );
         ;
-    }
-
-    public function onPostSubmitData (FormEvent $event)
-    {
-        if ($this->options['method'] == "POST") {
-            $city = $event->getData();
-            foreach ($city->getImages() as $numObject => $object)
-            {
-                $object->setUser($city->getUser());
-            }
-        }
     }
     
     /**

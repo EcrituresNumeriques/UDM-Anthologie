@@ -2,17 +2,23 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Images;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class AuthorsType extends AbstractType
 {
 
     private $options;
+    private $dynamicFields;
 
     /**
      * @param FormBuilderInterface $builder
@@ -20,15 +26,28 @@ class AuthorsType extends AbstractType
      */
     public function buildForm (FormBuilderInterface $builder , array $options)
     {
-        $this->options = $options;
+        $this->options       = $options;
+        $this->dynamicFields = ['bornCity' , 'diedCity' , 'era'];
 
         $builder
-            ->add('born')
-            ->add('bornRange')
-            ->add('died')
-            ->add('diedRange')
-            ->add('activity')
-            ->add('activityRange')
+            ->add('born', IntegerType::class, array(
+                'required' => false
+            ))
+            ->add('bornRange', IntegerType::class, array(
+                'required' => false
+            ))
+            ->add('died', IntegerType::class, array(
+                'required' => false
+            ))
+            ->add('diedRange', IntegerType::class, array(
+                'required' => false
+            ))
+            ->add('activity', IntegerType::class, array(
+                'required' => false
+            ))
+            ->add('activityRange', IntegerType::class, array(
+                'required' => false
+            ))
             ->add('bornCity' , CitiesType::class , array(
                 'required' => false
             ))
@@ -36,13 +55,12 @@ class AuthorsType extends AbstractType
                 'required' => false
             ))
             ->add('era' , ErasType::class , array(
-                'required' => false
+                'required' => false ,
             ))
-            ->add('images' , CollectionType::class , array(
-                'entry_type'   => ImagesType::class ,
-                'allow_add'    => true ,
-                'allow_delete' => true ,
-                'by_reference' => false
+            ->add('images' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Images' ,
+                'required' => false ,
+                'multiple' => true
             ))
             ->add('authorTranslations' , CollectionType::class , array(
                 'entry_type'   => AuthorsTranslationsType::class ,
@@ -51,7 +69,6 @@ class AuthorsType extends AbstractType
                 'by_reference' => false
             ))
             ->add('group')
-
             ->addEventListener(
                 FormEvents::PRE_SUBMIT ,
                 array($this , 'onPreSubmitData')
@@ -60,7 +77,7 @@ class AuthorsType extends AbstractType
                 FormEvents::POST_SUBMIT ,
                 array($this , 'onPostSubmitData')
             );
-        
+
 
     }
 
@@ -69,32 +86,39 @@ class AuthorsType extends AbstractType
         $datas = $event->getData();
         $form  = $event->getForm();
 
-         if (is_int($datas['bornCity'])){
-             $form->remove($datas['bornCity']);
-             $form->add('bornCity');
-         }
-        if (is_int($datas['diedCity'])){
-            $form->remove($datas['diedCity']);
-            $form->add('diedCity');
-        }
-        if (is_int($datas['era'])){
-            $form->remove($datas['era']);
-            $form->add('era');
+
+        foreach ($this->dynamicFields as $field) {
+            if (isset($datas[ $field ])) {
+                if (is_int($datas[ $field ])) {
+                    $form->remove($datas[ $field ]);
+                    $form->add($field);
+                }
+            }
         }
         $form->setData($datas);
-        //exit(\Doctrine\Common\Util\Debug::dump($datas));
     }
 
     public function onPostSubmitData (FormEvent $event)
     {
         if ($this->options['method'] == "POST") {
-            $author = $event->getData();
-            $author->getBornCity()->setUser($author->getUser());
-            $author->getDiedCity()->setUser($author->getUser());
-            $author->getEra()->setUser($author->getUser());
-            foreach ($author->getImages() as $numObject => $object)
-            {
-                $object->setUser($author->getUser());
+            $object = $event->getData();
+            foreach ($this->dynamicFields AS $subEntityGetter) {
+                $method = "get" . ucfirst($subEntityGetter);
+                if (empty($object->$method()) || !method_exists($object , $method)) {
+                    continue;
+                }
+
+                if ($object->$method() instanceof ArrayCollection) {
+                    foreach ($object->$method() as $subObject) {
+                        if (method_exists($subObject , "setUser") && empty($subObject->getUser())) {
+                            $subObject->setUser($object->getUser());
+                        }
+                    }
+                } else {
+                    if (is_object($object->$method()) && empty($object->$method()->getUser())) {
+                        $object->$method()->setUser($object->getUser());
+                    }
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Entities;
 use AppBundle\Entity\EntitiesTranslations;
+use AppBundle\Form\EntitiesFullType;
 use AppBundle\Form\EntitiesTranslationsType;
 use AppBundle\Form\EntitiesType;
 use FOS\RestBundle\Controller\Annotations\Delete;
@@ -173,7 +174,7 @@ class EntitiesController extends BaseApiController
     public function postEntityRelationsAction (Request $request)
     {
         $entity     = $this->getParams()["entity"];
-        $entityForm = $this->getParams()["entityForm"];
+        $entityForm = new EntitiesFullType();
         $em         = $this->getDoctrine()->getManager();
         $form       = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
         $form->handleRequest($request);
