@@ -4,6 +4,10 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.main-header .logo {
+    transition: .5s all ease-out;
+}
+
 a:hover,
 a:focus,
 a:active {
@@ -18,7 +22,7 @@ aside.main-sidebar {
 
 ul.sidebar-menu li a {
     color: rgba(216, 216, 216, .5);
-    font-size: 30px;
+    font-size: 20px;
     transition: .5s all ease-out;
 }
 
@@ -27,8 +31,8 @@ ul.sidebar-menu li a i.fa-chevron-circle-right:before {
 }
 
 ul.sidebar-menu li a i {
-    width: 20px!important;
-    height: 20px;
+    width: 15px!important;
+    height: 15px;
     border-radius: 50%;
     background: #d8d8d8;
     opacity: .5;
@@ -196,10 +200,10 @@ section#main table td {
     height: 100%;
 }
 
-.toggle-group .toggle-off, 
-.toggle-group .toggle-off.btn-xs, 
-.toggle-group .toggle-off:hover, 
-.toggle-group .toggle-off:active, 
+.toggle-group .toggle-off,
+.toggle-group .toggle-off.btn-xs,
+.toggle-group .toggle-off:hover,
+.toggle-group .toggle-off:active,
 .toggle-group .toggle-off:active:hover {
     background: #e28989;
     border-color: #e28989;
@@ -207,6 +211,18 @@ section#main table td {
 
 a.text-danger {
     color: #e28989;
+}
+
+a.text-primary {
+    color: #366870;
+    opacity: .5;
+    transition: .5s all ease-out;
+}
+
+a.text-primary:hover,
+a.text-primary:focus {
+    opacity: 1;
+    color: #366870;
 }
 
 .label-danger {
@@ -288,4 +304,43 @@ a.btn.btn-default.action-delete:hover {
     background: none;
     border: 1px solid #e28989;
     color: #e28989;
+}
+
+.form-group.field-checkbox .col-sm-2 {
+    display: none;
+}
+
+#new-user-form .form-group.field-checkbox label input[type="checkbox"],
+#edit-user-form .form-group.field-checkbox label input[type="checkbox"],
+#new-user-form .form-group.field-collection label,
+#edit-user-form .form-group.field-collection label,
+#new-user-form .form-group.field-datetime label input[type="checkbox"],
+#edit-user-form .form-group.field-datetime label input[type="checkbox"],
+#new-user-form .form-group.field-datetime label,
+#edit-user-form .form-group.field-datetime label {
+    display: inline;
+    width: initial;
+}
+
+.form-group.field-collection .form-group.field-text {
+    margin-top: 0;
+}
+
+.text-right.field-collection-action {
+    width: 50%;
+    margin: -15px auto 0!important;
+    text-align: center;
+}
+
+#new-user-form .form-group.field-datetime,
+#edit-user-form .form-group.field-datetime {
+    margin-top: 30px;
+}
+
+.form-group.field-datetime .nullable-control {
+    padding-top: 8px;
+}
+
+.form-group.field-datetime .nullable-control input {
+    margin-right: 10px;
 }
