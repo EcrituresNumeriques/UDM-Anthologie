@@ -72,7 +72,7 @@ class Keywords
      * @ManyToMany(targetEntity="Images")
      * @JoinTable(name="keywords_images_assoc",
      *      joinColumns={@JoinColumn(name="keyword_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id", unique=true)}
+     *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
      *      )
      */
     private $images;

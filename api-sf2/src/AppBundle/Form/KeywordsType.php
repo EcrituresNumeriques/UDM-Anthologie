@@ -32,7 +32,12 @@ class KeywordsType extends AbstractType
                 'required' => false ,
                 'multiple' => true
             ))
-            ->add('keywordTranslations' , CollectionType::class , array(
+            ->add('keywordsCategories' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\KeywordsCategories' ,
+                'required' => false ,
+                'multiple' => true
+            ))
+            ->add('keywordsTranslations' , CollectionType::class , array(
                 'entry_type' => KeywordsTranslationsType::class ,
                 'allow_add' => true,
                 'allow_delete' => true,

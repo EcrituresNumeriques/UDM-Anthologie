@@ -12,9 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GenresType extends AbstractType
 {
-
-    private $options;
-    private $dynamicFields;
+    
 
     /**
      * @param FormBuilderInterface $builder
@@ -22,9 +20,6 @@ class GenresType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->options       = $options;
-        $this->dynamicFields = ['genreTranslations'];
-
         $builder
             ->add('genreTranslations' , CollectionType::class , array(
                 'entry_type' => GenresTranslationsType::class ,
