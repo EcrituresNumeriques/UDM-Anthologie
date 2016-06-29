@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,11 +17,22 @@ class UriType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id')
-            ->add('value')
-            ->add('uriSource')
-            ->add('entity')
-            ->add('user')
+            ->add('value', TextType::class , array(
+                'required' => true
+            ))
+            ->add('entities', EntityType::class , array(
+                'class' => 'AppBundle\Entity\Entities' ,
+                'required' => false ,
+                'multiple' => true
+            ))
+            ->add('uriSource' , UriType::class , array(
+                'required' => false
+            ))
+            ->add('urisCategories' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\UriCategories' ,
+                'required' => false ,
+                'multiple' => true
+            ))
             ->add('group')
         ;
     }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
@@ -49,10 +50,13 @@ class UriSources
     private $group;
     
     /**
-     * @OneToOne(targetEntity="Uri", mappedBy="uriSource")
+     * @ORM\OneToMany(targetEntity="Uri", mappedBy="uriSources", cascade={"persist"})
      */
     private $uri;
-    
+
+    public function __construct() {
+        $this->uri = new ArrayCollection();
+    }
     
 
     /**
@@ -138,27 +142,37 @@ class UriSources
     }
 
     /**
-     * Set uri
+     * Add uri
      *
      * @param \AppBundle\Entity\Uri $uri
      *
      * @return UriSources
      */
-    public function setUri(\AppBundle\Entity\Uri $uri = null)
+    public function addUri(\AppBundle\Entity\Uri $uri)
     {
         if (empty($uri->getUser())) {
             $uri->setUser($this->getUser());
         }
         $uri->setUriSource($this);
-        $this->uri = $uri;
+        $this->uri[] = $uri;
 
         return $this;
     }
 
     /**
+     * Remove uri
+     *
+     * @param \AppBundle\Entity\Uri $uri
+     */
+    public function removeUri(\AppBundle\Entity\Uri $uri)
+    {
+        $this->uri->removeElement($uri);
+    }
+
+    /**
      * Get uri
      *
-     * @return \AppBundle\Entity\Uri
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUri()
     {

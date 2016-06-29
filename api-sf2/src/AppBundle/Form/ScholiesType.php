@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,9 +23,17 @@ class ScholiesType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ))
+            ->add('entities', EntityType::class , array(
+                'class' => 'AppBundle\Entity\Entities' ,
+                'required' => false ,
+                'multiple' => true
+            ))
+            ->add('images', EntityType::class , array(
+                'class' => 'AppBundle\Entity\Images' ,
+                'required' => false ,
+                'multiple' => true
+            ))
             ->add('group')
-            ->add('entities')
-            ->add('images')
         ;
     }
     

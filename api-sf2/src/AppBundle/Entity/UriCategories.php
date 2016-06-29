@@ -13,7 +13,7 @@ use AppBundle\Annotation as AppAnnotations;
 /**
  * UriCategories
  *
- * @ORM\Table(name="URI_types")
+ * @ORM\Table(name="URI_categories")
  * @ORM\Entity
  * @AppAnnotations\UserMeta(userTable="user_id")
  * @AppAnnotations\GroupMeta(groupTable="group_id")

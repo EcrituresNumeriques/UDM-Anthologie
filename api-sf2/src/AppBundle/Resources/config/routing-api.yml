@@ -81,3 +81,33 @@ api_genres:
     resource: AppBundle\Controller\Api\GenresController
     prefix: /v1
     name_prefix: api_v1_
+
+api_images:
+    type: rest
+    resource: AppBundle\Controller\Api\ImagesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_languages:
+    type: rest
+    resource: AppBundle\Controller\Api\LanguagesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_uri:
+    type: rest
+    resource: AppBundle\Controller\Api\UriController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_uriCategories:
+    type: rest
+    resource: AppBundle\Controller\Api\UriCategoriesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_uriSourceCategories:
+    type: rest
+    resource: AppBundle\Controller\Api\UriSourceController
+    prefix: /v1
+    name_prefix: api_v1_
