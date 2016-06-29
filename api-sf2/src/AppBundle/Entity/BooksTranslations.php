@@ -7,6 +7,7 @@ use AppBundle\Annotation\TranslatableMeta;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JMS\Serializer\Annotation\Exclude;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -43,6 +44,7 @@ class BooksTranslations
     /**
      * @ManyToOne(targetEntity="Books", inversedBy="bookTranslations")
      * @JoinColumn(name="book_id", referencedColumnName="id", onDelete="CASCADE")
+     * @Exclude
      */
     private $book;
     

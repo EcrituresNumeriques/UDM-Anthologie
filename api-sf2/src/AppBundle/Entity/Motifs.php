@@ -80,6 +80,9 @@ class Motifs
      */
     public function addMotifTranslation(\AppBundle\Entity\MotifsTranslations $motifTranslation)
     {
+        if (empty($motifTranslation->getUser())) {
+            $motifTranslation->setUser($this->getUser());
+        }
         $motifTranslation->setMotif($this);
         $this->motifTranslations[] = $motifTranslation;
 
@@ -115,6 +118,10 @@ class Motifs
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addMotif($this);
         $this->entities[] = $entity;
 
         return $this;

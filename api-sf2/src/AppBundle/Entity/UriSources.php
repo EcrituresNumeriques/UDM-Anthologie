@@ -146,6 +146,10 @@ class UriSources
      */
     public function setUri(\AppBundle\Entity\Uri $uri = null)
     {
+        if (empty($uri->getUser())) {
+            $uri->setUser($this->getUser());
+        }
+        $uri->setUriSource($this);
         $this->uri = $uri;
 
         return $this;

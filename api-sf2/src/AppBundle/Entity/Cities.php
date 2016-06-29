@@ -121,6 +121,9 @@ class Cities
      */
     public function addCityTranslation (\AppBundle\Entity\CitiesTranslations $cityTranslation)
     {
+        if (empty($cityTranslation->getUser())) {
+            $cityTranslation->setUser($this->getUser());
+        }
         $cityTranslation->setCity($this);
         $this->cityTranslations[] = $cityTranslation;
 
@@ -156,6 +159,9 @@ class Cities
      */
     public function addImage (\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;

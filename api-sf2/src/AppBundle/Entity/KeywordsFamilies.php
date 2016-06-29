@@ -88,6 +88,7 @@ class KeywordsFamilies
      */
     public function addKeyword(\AppBundle\Entity\Keywords $keyword)
     {
+        $keyword->setKeywordFamily($this);
         $this->keywords[] = $keyword;
 
         return $this;

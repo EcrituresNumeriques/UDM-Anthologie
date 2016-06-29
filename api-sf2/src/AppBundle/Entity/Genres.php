@@ -82,6 +82,9 @@ class Genres
      */
     public function addGenreTranslation (\AppBundle\Entity\GenresTranslations $genreTranslation)
     {
+        if (empty($genreTranslation->getUser())) {
+            $genreTranslation->setUser($this->getUser());
+        }
         $genreTranslation->setGenre($this);
         $this->genreTranslations[] = $genreTranslation;
 
@@ -165,6 +168,10 @@ class Genres
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->setGenre($this);
         $this->entities[] = $entity;
 
         return $this;

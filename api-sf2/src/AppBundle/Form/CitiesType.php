@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -12,8 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CitiesType extends AbstractType
 {
-
-    private $options;
     
     /**
      * @param FormBuilderInterface $builder
@@ -21,7 +20,8 @@ class CitiesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->options = $options;
+
+        $this->options       = $options;
         
         $builder
             ->add('gps')

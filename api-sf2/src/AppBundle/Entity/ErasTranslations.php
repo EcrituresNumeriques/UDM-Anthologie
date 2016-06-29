@@ -6,6 +6,7 @@ use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JMS\Serializer\Annotation\Exclude;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -56,6 +57,7 @@ class ErasTranslations
     /**
      * @ManyToOne(targetEntity="Eras", inversedBy="eraTranslations")
      * @JoinColumn(name="era_id", referencedColumnName="id")
+     * @Exclude
      */
     private $era;
 

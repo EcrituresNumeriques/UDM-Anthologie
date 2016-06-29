@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +21,11 @@ class EntitiesTranslationsType extends AbstractType
                 'required' => true
             ))
             ->add('group')
-            ->add('language')
+            ->add('language' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Languages' ,
+                'required' => true ,
+                'multiple' => false
+            ))
         ;
     }
     

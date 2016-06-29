@@ -19,7 +19,7 @@ class SoftDeletableFilter extends SQLFilter
         }
 
         try {
-            $softDelete = $this->getParameter('deleted') ? "IS NULL" : "IS NOT NULL" ;
+            $softDelete = ($this->getParameter('deleted') != 1) ? "IS NULL" : "IS NOT NULL" ;
         } catch (\InvalidArgumentException $e) {
             return '';
         }

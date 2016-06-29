@@ -116,7 +116,7 @@ class Authors
     private $authorTranslations;
 
     /**
-     * @ManyToMany(targetEntity="Entities", mappedBy="authors")
+     * @ManyToMany(targetEntity="Entities", mappedBy="authors", cascade={"persist"})
      */
     private $entities;
 
@@ -300,6 +300,10 @@ class Authors
      */
     public function addAuthorTranslation (\AppBundle\Entity\AuthorsTranslations $authorTranslation)
     {
+
+        if (empty($authorTranslation->getUser())) {
+            $authorTranslation->setUser($this->getUser());
+        }
         $authorTranslation->setAuthor($this);
         $this->authorTranslations[] = $authorTranslation;
 
@@ -345,6 +349,9 @@ class Authors
      */
     public function setBornCity (\AppBundle\Entity\Cities $bornCity = null)
     {
+        if (empty($bornCity->getUser())) {
+            $bornCity->setUser($this->getUser());
+        }
         $this->bornCity = $bornCity;
 
         return $this;
@@ -369,6 +376,9 @@ class Authors
      */
     public function setDiedCity (\AppBundle\Entity\Cities $diedCity = null)
     {
+        if (empty($diedCity->getUser())) {
+            $diedCity->setUser($this->getUser());
+        }
         $this->diedCity = $diedCity;
 
         return $this;
@@ -393,6 +403,9 @@ class Authors
      */
     public function setEra (\AppBundle\Entity\Eras $era = null)
     {
+        if (empty($era->getUser())) {
+            $era->setUser($this->getUser());
+        }
         $this->era = $era;
 
         return $this;
@@ -407,6 +420,10 @@ class Authors
      */
     public function addEntity (\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addAuthor($this);
         $this->entities[] = $entity;
 
         return $this;
@@ -441,6 +458,9 @@ class Authors
      */
     public function addImage (\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;
@@ -516,7 +536,7 @@ class Authors
 
     public function __toString()
     {
-        return 'test';
+        return "ID ".$this->getId();
     }
 
 }

@@ -133,6 +133,9 @@ class Uri
      */
     public function setUriSource(\AppBundle\Entity\UriSources $uriSource = null)
     {
+        if (empty($uriSource->getUser())) {
+            $uriSource->setUser($this->getUser());
+        }
         $this->uriSource = $uriSource;
 
         return $this;
@@ -157,6 +160,10 @@ class Uri
      */
     public function setEntity(\AppBundle\Entity\Entities $entity = null)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addUri($this);
         $this->entity = $entity;
 
         return $this;
@@ -229,6 +236,10 @@ class Uri
      */
     public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
     {
+        if (empty($urisCategory->getUser())) {
+            $urisCategory->setUser($this->getUser());
+        }
+        $urisCategory->setUri($this);
         $this->urisCategories[] = $urisCategory;
 
         return $this;

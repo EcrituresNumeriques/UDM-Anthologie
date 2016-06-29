@@ -129,6 +129,9 @@ class KeywordsCategories
      */
     public function addKeywordCategoryTranslation(\AppBundle\Entity\KeywordsCategoriesTranslations $keywordCategoryTranslation)
     {
+        if (empty($keywordCategoryTranslation->getUser())) {
+            $keywordCategoryTranslation->setUser($this->getUser());
+        }
         $keywordCategoryTranslation->setKeywordCategory($this);
         $this->keywordCategoryTranslations[] = $keywordCategoryTranslation;
 
@@ -164,6 +167,10 @@ class KeywordsCategories
      */
     public function addKeyword(\AppBundle\Entity\Keywords $keyword)
     {
+        if (empty($keyword->getUser())) {
+            $keyword->setUser($this->getUser());
+        }
+        $keyword->addKeywordsCategory($this);
         $this->keywords[] = $keyword;
 
         return $this;
