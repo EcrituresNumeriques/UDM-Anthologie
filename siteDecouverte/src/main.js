@@ -31,8 +31,8 @@ Vue.config.silent = true // Supress all Vue.js logs and warnings -> because of s
 // configuration Resource
 global.theme = require('./service/theme.js')
 
-var clientId = '1_5bwl2wz11j8kss0kck440ws84k0ok48w4wwsoosskw0socso8o'
-var clientSecret = '2pndls3npzuoook4ss400088gks80w408ggws84g448g0ggowo'
+var clientId = '2_2pbd2c7wctes4oogk844ckc4wsw00g04kggwkwggcg4c8sccw4'
+var clientSecret = '4u08cwjiogmc0sc8ks0wscsww4wck88s08ogg0g04440o44kkk'
 var grantType = 'password'
 var username = 'front'
 var password = 'owiowi'

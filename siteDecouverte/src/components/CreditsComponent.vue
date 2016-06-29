@@ -19,11 +19,11 @@
         <div class="team-container">
           <h4><span class="bg"></span>Notre équipe <sup>V</sup></h4>
           <ul>
-            <li>Miléna Tarrière : Chef de Projet</li>
-            <li>Nahel Moussi : UX/UI Designer</li>
-            <li>Raphaël Aupée : Développeur Back</li>
-            <li>Paul Chagnon : UX/UI Designer</li>
-            <li>Valentin Crochemore : Développeur Front</li>
+            <li><a href="https://www.linkedin.com/in/milenatarriere" target="_blank">Miléna Tarrière : Chef de Projet<span class="dash"></span></a></li>
+            <li><a href="http://nahelmoussi.com/" target="_blank">Nahel Moussi : UX/UI Designer site web<span class="dash"></span></a></li>
+            <li><a href="http://raphaelaupee.fr/" target="_blank">Raphaël Aupée : Développeur Back<span class="dash"></span></a></li>
+            <li><a href="http://paulchagnon.fr/" target="_blank">Paul Chagnon : UX/UI Designer documentation et back office<span class="dash"></span></a></li>
+            <li><a href="http://valentin-crochemore.fr/" target="_blank">Valentin Crochemore : Développeur Front<span class="dash"></span></a></li>
           </ul>
           <ul>
             <li>Marcello Vitali-Rosati : Professeur à l’Univeristé de Montréal</li>
@@ -113,7 +113,6 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
   q
     font-size: 14px
-    line-height: 20px;
     margin-top: 80px
     display: inline-block
     quotes: "\201C""\201D""\2018""\2019"
@@ -157,8 +156,60 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
     li
       font-size: 12px
-      color: #2c2c2c
       line-height: 2em
+      height: 24px
+
+      a
+        color: #2c2c2c
+        transition: $hover
+        display: inline-block
+
+        .dash
+          width: 100%
+          height: 1px
+          display: inline-table
+          position: relative
+          background: none
+          vertical-align: top
+
+          &:before
+            content: ''
+            display: block
+            position: absolute
+            left: 0
+            bottom: 0
+            height: 1px
+            width: 0
+            transition: width 0s ease, background .5s ease
+
+          &:after
+            content: ''
+            display: block
+            position: absolute
+            right: 0
+            bottom: 0
+            height: 1px
+            width: 0
+            background: #2c2c2c
+            transition: width .5s ease
+
+        &:hover,
+        &:focus
+          text-decoration: none
+          color: #000000
+
+          .dash
+            &:before
+              width: 100%
+              background: #2c2c2c
+              transition: width .5s ease
+
+            &:after
+              width: 100%
+              background: transparent
+              transition: all 0s ease
+
+
 
 .page-subtitle-container
   margin-top: 0

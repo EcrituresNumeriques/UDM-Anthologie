@@ -6,7 +6,7 @@
         <div
           v-if="dataEpigram.length == 0 && dataGenre.length == 0 && dataAuthor.length == 0 && dataEra.length ==  0 && dataCity.length == 0"
         >
-          <p>Il n'y a aucune donnée à aficher</p>
+          <p>Il n'y a aucune donnée à afficher</p>
         </div>
         <div class="search-list vertical-list-container">
           <ul
