@@ -85,29 +85,38 @@ div.action-search input[type="search"] {
     border: 1px solid #366870;
 }
 
-div.action-search button[type="submit"] {
+button[type="submit"],
+a.btn.btn-primary.action-edit {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     background: #366870;
-    border: 1px solid #366870;
+    border: 1px solid #366870!important;
     transition: .5s all ease-out;
 }
 
-div.action-search button[type="submit"] i,
-div.action-search button[type="submit"] span {
+button[type="submit"] i,
+button[type="submit"] span,
+a.btn.btn-primary.action-edit i {
     color: #ffffff;
     transition: .5s all ease-out;
 }
 
-div.action-search button[type="submit"]:hover,
-div.action-search button[type="submit"]:focus {
+button[type="submit"]:hover,
+button[type="submit"]:focus,
+a.btn.btn-primary.action-edit:hover,
+a.btn.btn-primary.action-edit:focus {
     background: #f6f6f6;
+    color: #366870;
 }
 
-div.action-search button[type="submit"]:hover i,
-div.action-search button[type="submit"]:focus i,
-div.action-search button[type="submit"]:hover span,
-div.action-search button[type="submit"]:focus span {
+button[type="submit"]:hover i,
+button[type="submit"]:focus i,
+button[type="submit"]:hover span,
+button[type="submit"]:focus span,
+a.btn.btn-primary.action-edit:hover i,
+a.btn.btn-primary.action-edit:focus i,
+a.btn.btn-primary.action-edit:hover span,
+a.btn.btn-primary.action-edit:focus span {
     color: #366870;
 }
 
@@ -157,6 +166,7 @@ section#main table th a:hover,
 section#main table th a:focus {
     background: #f6f6f6;
     color: #366870;
+    opacity: 1;
 }
 
 section#main table th a:hover i,
@@ -195,3 +205,87 @@ section#main table td {
     border-color: #e28989;
 }
 
+a.text-danger {
+    color: #e28989;
+}
+
+.label-danger {
+    background: #e28989!important;
+    padding: 8px;
+}
+
+.label {
+    padding: 8px;
+}
+
+.badge {
+    padding: 6px 10px;
+    border-radius: 50%;
+}
+
+.form-horizontal .form-group {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.form-horizontal input,
+.form-horizontal label {
+    display: block;
+    width: 100%;
+}
+
+.form-horizontal input {
+    border: none;
+    border-bottom: 2px solid #366870;
+}
+
+.form-horizontal label.control-label {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+a.action-list {
+    font-size: 20px;
+    color: #73959d;
+    opacity: .7;
+    transition: .5s all ease-out;
+    text-decoration: none;
+}
+
+a.action-list:hover,
+a.action-list:focus,
+a.action-list:active,
+a.action-list:active:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+
+.navbar-custom-menu {
+    position: relative;
+}
+
+.backoffice-profile-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.form-control {
+    padding: 15px;
+}
+
+a.btn.btn-default.action-delete {
+    border: 1px solid #e28989;
+    transition: .5s all ease-out;
+    background: #e28989;
+    color: #ffffff;
+}
+
+a.btn.btn-default.action-delete:hover {
+    background: none;
+    border: 1px solid #e28989;
+    color: #e28989;
+}

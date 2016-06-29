@@ -5,7 +5,8 @@ easy_admin:
         assets:
             css:
                 - 'backoffice/css/backoffice.css'
-                
+            js:
+                - 'backoffice/js/backoffice.js'
     list:
         actions:
             - { name: 'show', icon: 'search', label: '' }
