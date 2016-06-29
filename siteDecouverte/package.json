@@ -54,6 +54,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.24",
     "karma-webpack": "^1.7.0",
+    "kysonic-es6-xhr": "0.0.5",
     "lolex": "^1.4.0",
     "mocha": "^2.4.5",
     "nightwatch": "^0.8.18",

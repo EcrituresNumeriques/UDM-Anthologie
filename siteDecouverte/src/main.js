@@ -38,7 +38,7 @@ var username = 'front'
 var password = 'owiowi'
 global.apiAuth = 'http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=' + clientId + '&client_secret=' + clientSecret + '&grant_type=' + grantType + '&username=' + username + '&password=' + password
 global.api = 'anthologie.raphaelaupee.fr/api/v1/'
-global.filterFr = '?lang_id=1&'
+global.filterFr = '?lang=1&'
 
 Vue.http.options.root = '/'
 

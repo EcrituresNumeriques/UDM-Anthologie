@@ -177,6 +177,7 @@ export default {
         })
       }, function (response) {
         console.log('global error: ' + response.status)
+        throw (response)
       })
     }
   }

@@ -16,9 +16,9 @@
           <div class="col-md-6 pull-right">
               <div class="vertical-list-container">
                 <div
-                  v-for="character in dataCharacters"
+                  v-for="character in dataCharacters.keywords"
                   class="vertical-list-wrapper">
-                  <h3><span class="bg"></span>{{ character.character_translations[0].name }} <sup>{{ character.id | romanize }}</sup></h3>
+                  <h3><span class="bg"></span>{{ character.keywords_translations[0].title }} <sup>{{ character.keywords_translations[0].id | romanize }}</sup></h3>
                   <ul>
                     <li
                       v-for="epigram in character.entities"
@@ -61,7 +61,7 @@ export default {
       var self = this
       this.$http.get(apiAuth).then(function (response) {
         self.$set('token', response.data.access_token)
-        self.$http.get(api + 'keyword/family' + filterFr + 'access_token=' + self.token, {progress () {
+        self.$http.get(api + 'keyword/family/1' + filterFr + 'access_token=' + self.token, {progress () {
           $('.loader').fadeIn()
         }}).then(function (response) {
           $('.loader').fadeOut()
