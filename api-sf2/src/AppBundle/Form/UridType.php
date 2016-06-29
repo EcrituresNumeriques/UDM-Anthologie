@@ -26,7 +26,7 @@ class UridType extends AbstractType
             ->add('uridsCategories', EntityType::class , array(
                 'class' => 'AppBundle\Entity\UridCategories' ,
                 'required' => false ,
-                'multiple' => true
+                'multiple' => false
             ))
             ->add('entity', EntityType::class , array(
                 'class' => 'AppBundle\Entity\Entities' ,

@@ -33,12 +33,6 @@ class UridCategories
     private $id;
 
     /**
-     * @ManyToOne(targetEntity="Urid", inversedBy="uridsCategories")
-     * @JoinColumn(name="urid_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $urid;
-
-    /**
      * @ManyToOne(targetEntity="User", inversedBy="uridsCategories")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
@@ -54,12 +48,37 @@ class UridCategories
      * @OneToMany(targetEntity="UridCategoriesTranslations", mappedBy="uridCategory", cascade={"persist"})
      */
     private $uridCategoryTranslations;
-    
+
+    /**
+     * @OneToMany(targetEntity="Urid", mappedBy="uridsCategories", cascade={"persist"})
+     */
+    private $urid;
+
     public function __construct ()
     {
+        $this->urid = new ArrayCollection();
         $this->uridCategoryTranslations = new ArrayCollection();
     }
-    
+
+
+    /**
+     * Add uridCategoryTranslation
+     *
+     * @param \AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation
+     *
+     * @return UridCategories
+     */
+    public function addUridCategoryTranslation(\AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation)
+    {
+        if (empty($uridCategoryTranslation->getUser())) {
+            $uridCategoryTranslation->setUser($this->getUser());
+        }
+        $uridCategoryTranslation->setUridCategory($this);
+        $this->uridCategoryTranslations[] = $uridCategoryTranslation;
+
+        return $this;
+    }
+
 
     /**
      * Get id
@@ -69,34 +88,6 @@ class UridCategories
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set urid
-     *
-     * @param \AppBundle\Entity\Urid $urid
-     *
-     * @return UridCategories
-     */
-    public function setUrid(\AppBundle\Entity\Urid $urid = null)
-    {
-        if (empty($urid->getUser())) {
-            $urid->setUser($this->getUser());
-        }
-        $urid->addUridsCategory($this);
-        $this->urid = $urid;
-
-        return $this;
-    }
-
-    /**
-     * Get urid
-     *
-     * @return \AppBundle\Entity\Urid
-     */
-    public function getUrid()
-    {
-        return $this->urid;
     }
 
     /**
@@ -148,24 +139,6 @@ class UridCategories
     }
 
     /**
-     * Add uridCategoryTranslation
-     *
-     * @param \AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation
-     *
-     * @return UridCategories
-     */
-    public function addUridCategoryTranslation(\AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation)
-    {
-        if (empty($uridCategoryTranslation->getUser())) {
-            $uridCategoryTranslation->setUser($this->getUser());
-        }
-        $uridCategoryTranslation->setUridCategory($this);
-        $this->uridCategoryTranslations[] = $uridCategoryTranslation;
-
-        return $this;
-    }
-
-    /**
      * Remove uridCategoryTranslation
      *
      * @param \AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation
@@ -183,5 +156,39 @@ class UridCategories
     public function getUridCategoryTranslations()
     {
         return $this->uridCategoryTranslations;
+    }
+
+    /**
+     * Add urid
+     *
+     * @param \AppBundle\Entity\Urid $urid
+     *
+     * @return UridCategories
+     */
+    public function addUrid(\AppBundle\Entity\Urid $urid)
+    {
+        $this->urid[] = $urid;
+
+        return $this;
+    }
+
+    /**
+     * Remove urid
+     *
+     * @param \AppBundle\Entity\Urid $urid
+     */
+    public function removeUrid(\AppBundle\Entity\Urid $urid)
+    {
+        $this->urid->removeElement($urid);
+    }
+
+    /**
+     * Get urid
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUrid()
+    {
+        return $this->urid;
     }
 }

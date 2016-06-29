@@ -2,14 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\OneToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Urid
@@ -41,76 +37,36 @@ class Urid
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UridSources", inversedBy="urid", cascade={"persist"})
-     * @JoinColumn(name="urid_source_id", referencedColumnName="id")
-     */
-    private $uridSources;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Entities", inversedBy="urids")
      * @ORM\JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $entity;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="urids")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="urids")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="urids")
+     * @ORM\ManyToOne(targetEntity="Group", inversedBy="urids")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
 
     /**
-     * @OneToMany(targetEntity="UridCategories", mappedBy="urid", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="UridCategories", inversedBy="urid", cascade={"persist"})
+     * @JoinColumn(name="urid_category_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $uridsCategories;
 
-    public function __construct ()
-    {
-        $this->uridsCategories = new ArrayCollection();
-    }
-
     /**
-     * Set entity
-     *
-     * @param \AppBundle\Entity\Entities $entity
-     *
-     * @return Urid
+     * @ORM\ManyToOne(targetEntity="UridSources", inversedBy="urid", cascade={"persist"})
+     * @JoinColumn(name="urid_source_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    public function setEntity(\AppBundle\Entity\Entities $entity = null)
-    {
-        if (empty($entity->getUser())) {
-            $entity->setUser($this->getUser());
-        }
-        $entity->addUrid($this);
-        $this->entity = $entity;
+    private $uridSources;
 
-        return $this;
-    }
-
-    /**
-     * Add uridsCategory
-     *
-     * @param \AppBundle\Entity\UridCategories $uridsCategory
-     *
-     * @return Urid
-     */
-    public function addUridsCategory(\AppBundle\Entity\UridCategories $uridsCategory)
-    {
-        if (empty($uridsCategory->getUser())) {
-            $uridsCategory->setUser($this->getUser());
-        }
-        $uridsCategory->setUrid($this);
-        $this->uridsCategories[] = $uridsCategory;
-
-        return $this;
-    }
     
-
     /**
      * Get id
      *
@@ -146,27 +102,17 @@ class Urid
     }
 
     /**
-     * Set uridSource
+     * Set entity
      *
-     * @param \AppBundle\Entity\UridSources $uridSource
+     * @param \AppBundle\Entity\Entities $entity
      *
      * @return Urid
      */
-    public function setUridSource(\AppBundle\Entity\UridSources $uridSource = null)
+    public function setEntity(\AppBundle\Entity\Entities $entity = null)
     {
-        $this->uridSources = $uridSource;
+        $this->entity = $entity;
 
         return $this;
-    }
-
-    /**
-     * Get uridSource
-     *
-     * @return \AppBundle\Entity\UridSources
-     */
-    public function getUridSource()
-    {
-        return $this->uridSources;
     }
 
     /**
@@ -228,19 +174,26 @@ class Urid
     }
 
     /**
-     * Remove uridsCategory
+     * Set uridsCategories
      *
-     * @param \AppBundle\Entity\UridCategories $uridsCategory
+     * @param \AppBundle\Entity\UridCategories $uridsCategories
+     *
+     * @return Urid
      */
-    public function removeUridsCategory(\AppBundle\Entity\UridCategories $uridsCategory)
+    public function setUridsCategories(\AppBundle\Entity\UridCategories $uridsCategories = null)
     {
-        $this->uridsCategories->removeElement($uridsCategory);
+        if (empty($uridsCategories->getUser())) {
+            $uridsCategories->setUser($this->getUser());
+        }
+        $this->uridsCategories = $uridsCategories;
+
+        return $this;
     }
 
     /**
-     * Get urisCategories
+     * Get uridsCategories
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \AppBundle\Entity\UridCategories
      */
     public function getUridsCategories()
     {
@@ -256,6 +209,9 @@ class Urid
      */
     public function setUridSources(\AppBundle\Entity\UridSources $uridSources = null)
     {
+        if (empty($uridSources->getUser())) {
+            $uridSources->setUser($this->getUser());
+        }
         $this->uridSources = $uridSources;
 
         return $this;

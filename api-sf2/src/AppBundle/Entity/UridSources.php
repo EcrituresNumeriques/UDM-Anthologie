@@ -153,7 +153,7 @@ class UridSources
         if (empty($urid->getUser())) {
             $urid->setUser($this->getUser());
         }
-        $urid->setUridSource($this);
+        $urid->setUridSources($this);
         $this->urid[] = $urid;
 
         return $this;

@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,8 +17,12 @@ class UridCategoriesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('urid')
-            ->add('user')
+            ->add('uridCategoryTranslations' , CollectionType::class , array(
+                'entry_type' => UridCategoriesTranslationsType::class ,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ))
             ->add('group')
         ;
     }
@@ -29,7 +35,6 @@ class UridCategoriesType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\UridCategories',
             'csrf_protection'    => false ,
-            'allow_extra_fields' => true
         ));
     }
 

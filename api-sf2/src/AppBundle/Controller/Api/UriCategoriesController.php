@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\UriCategories;
-use AppBundle\Entity\UriCategoriesTranslations;
-use AppBundle\Form\UriCategoriesTranslationsType;
-use AppBundle\Form\UriCategoriesType;
+use AppBundle\Entity\UridCategories;
+use AppBundle\Entity\UridCategoriesTranslations;
+use AppBundle\Form\UridCategoriesTranslationsType;
+use AppBundle\Form\UridCategoriesType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -28,11 +28,11 @@ class UriCategoriesController extends BaseApiController
             "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:UridCategories') ,
             "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:UridCategoriesTranslations') ,
             "entity"                => new UridCategories() ,
-            "entityName"            => "UriCategories" ,
-            "entitySetter"          => "setUriCategory" ,
+            "entityName"            => "UridCategories" ,
+            "entitySetter"          => "setUridCategory" ,
             "entityForm"            => new UridCategoriesType() ,
             "entityTranslation"     => new UridCategoriesTranslations() ,
-            "entityTranslationName" => "UriCategoriesTranslations" ,
+            "entityTranslationName" => "UridCategoriesTranslations" ,
             "entityTranslationForm" => new UridCategoriesTranslationsType() ,
         );
     }
