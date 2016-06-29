@@ -25,15 +25,15 @@ class UriCategoriesController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:UriCategories') ,
-            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:UriCategoriesTranslations') ,
-            "entity"                => new UriCategories() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:UridCategories') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:UridCategoriesTranslations') ,
+            "entity"                => new UridCategories() ,
             "entityName"            => "UriCategories" ,
             "entitySetter"          => "setUriCategory" ,
-            "entityForm"            => new UriCategoriesType() ,
-            "entityTranslation"     => new UriCategoriesTranslations() ,
+            "entityForm"            => new UridCategoriesType() ,
+            "entityTranslation"     => new UridCategoriesTranslations() ,
             "entityTranslationName" => "UriCategoriesTranslations" ,
-            "entityTranslationForm" => new UriCategoriesTranslationsType() ,
+            "entityTranslationForm" => new UridCategoriesTranslationsType() ,
         );
     }
 

@@ -11,15 +11,15 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use AppBundle\Annotation as AppAnnotations;
 
 /**
- * UriCategories
+ * UridCategories
  *
- * @ORM\Table(name="URI_categories")
+ * @ORM\Table(name="URId_categories")
  * @ORM\Entity
  * @AppAnnotations\UserMeta(userTable="user_id")
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class UriCategories
+class UridCategories
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
@@ -33,31 +33,31 @@ class UriCategories
     private $id;
 
     /**
-     * @ManyToOne(targetEntity="Uri", inversedBy="urisCategories")
-     * @JoinColumn(name="uri_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ManyToOne(targetEntity="Urid", inversedBy="uridsCategories")
+     * @JoinColumn(name="urid_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $uri;
+    private $urid;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="urisCategories")
+     * @ManyToOne(targetEntity="User", inversedBy="uridsCategories")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="urisCategories")
+     * @ManyToOne(targetEntity="Group", inversedBy="uridsCategories")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
 
     /**
-     * @OneToMany(targetEntity="UriCategoriesTranslations", mappedBy="uriCategory", cascade={"persist"})
+     * @OneToMany(targetEntity="UridCategoriesTranslations", mappedBy="uridCategory", cascade={"persist"})
      */
-    private $uriCategoryTranslations;
+    private $uridCategoryTranslations;
     
     public function __construct ()
     {
-        $this->uriCategoryTranslations = new ArrayCollection();
+        $this->uridCategoryTranslations = new ArrayCollection();
     }
     
 
@@ -72,31 +72,31 @@ class UriCategories
     }
 
     /**
-     * Set uri
+     * Set urid
      *
-     * @param \AppBundle\Entity\Uri $uri
+     * @param \AppBundle\Entity\Urid $urid
      *
-     * @return UriCategories
+     * @return UridCategories
      */
-    public function setUri(\AppBundle\Entity\Uri $uri = null)
+    public function setUrid(\AppBundle\Entity\Urid $urid = null)
     {
-        if (empty($uri->getUser())) {
-            $uri->setUser($this->getUser());
+        if (empty($urid->getUser())) {
+            $urid->setUser($this->getUser());
         }
-        $uri->addUrisCategory($this);
-        $this->uri = $uri;
+        $urid->addUridsCategory($this);
+        $this->urid = $urid;
 
         return $this;
     }
 
     /**
-     * Get uri
+     * Get urid
      *
-     * @return \AppBundle\Entity\Uri
+     * @return \AppBundle\Entity\Urid
      */
-    public function getUri()
+    public function getUrid()
     {
-        return $this->uri;
+        return $this->urid;
     }
 
     /**
@@ -104,7 +104,7 @@ class UriCategories
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return UriCategories
+     * @return UridCategories
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -128,7 +128,7 @@ class UriCategories
      *
      * @param \AppBundle\Entity\Group $group
      *
-     * @return UriCategories
+     * @return UridCategories
      */
     public function setGroup(\AppBundle\Entity\Group $group = null)
     {
@@ -148,40 +148,40 @@ class UriCategories
     }
 
     /**
-     * Add uriCategoryTranslation
+     * Add uridCategoryTranslation
      *
-     * @param \AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation
+     * @param \AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation
      *
-     * @return UriCategories
+     * @return UridCategories
      */
-    public function addUriCategoryTranslation(\AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation)
+    public function addUridCategoryTranslation(\AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation)
     {
-        if (empty($uriCategoryTranslation->getUser())) {
-            $uriCategoryTranslation->setUser($this->getUser());
+        if (empty($uridCategoryTranslation->getUser())) {
+            $uridCategoryTranslation->setUser($this->getUser());
         }
-        $uriCategoryTranslation->setUriCategory($this);
-        $this->uriCategoryTranslations[] = $uriCategoryTranslation;
+        $uridCategoryTranslation->setUridCategory($this);
+        $this->uridCategoryTranslations[] = $uridCategoryTranslation;
 
         return $this;
     }
 
     /**
-     * Remove uriCategoryTranslation
+     * Remove uridCategoryTranslation
      *
-     * @param \AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation
+     * @param \AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation
      */
-    public function removeUriCategoryTranslation(\AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation)
+    public function removeUridCategoryTranslation(\AppBundle\Entity\UridCategoriesTranslations $uridCategoryTranslation)
     {
-        $this->uriCategoryTranslations->removeElement($uriCategoryTranslation);
+        $this->uridCategoryTranslations->removeElement($uridCategoryTranslation);
     }
 
     /**
-     * Get uriCategoryTranslations
+     * Get uridCategoryTranslations
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUriCategoryTranslations()
+    public function getUridCategoryTranslations()
     {
-        return $this->uriCategoryTranslations;
+        return $this->uridCategoryTranslations;
     }
 }

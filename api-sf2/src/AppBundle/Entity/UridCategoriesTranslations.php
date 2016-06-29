@@ -10,16 +10,16 @@ use JMS\Serializer\Annotation\Exclude;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * UriTypesTranslations
+ * UridTranslations
  *
- * @ORM\Table(name="URI_categories_translation")
+ * @ORM\Table(name="URId_categories_translation")
  * @ORM\Entity
  * @AppAnnotations\TranslatableMeta(languageTable="language_id")
  * @AppAnnotations\UserMeta(userTable="user_id")
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class UriCategoriesTranslations
+class UridCategoriesTranslations
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable,
         ORMBehaviors\Timestampable\Timestampable
@@ -41,11 +41,11 @@ class UriCategoriesTranslations
     private $label;
 
     /**
-     * @ManyToOne(targetEntity="UriCategories", inversedBy="uriCategoryTranslations")
-     * @JoinColumn(name="uri_category_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ManyToOne(targetEntity="UridCategories", inversedBy="uridCategoryTranslations")
+     * @JoinColumn(name="urid_category_id", referencedColumnName="id", onDelete="CASCADE")
      * @Exclude
      */
-    private $uriCategory;
+    private $uridCategory;
 
     /**
      * @ManyToOne(targetEntity="User")
@@ -58,13 +58,13 @@ class UriCategoriesTranslations
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
-    
+
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-    
+
 
 
     /**
@@ -82,7 +82,7 @@ class UriCategoriesTranslations
      *
      * @param string $label
      *
-     * @return UriCategoriesTranslations
+     * @return UridCategoriesTranslations
      */
     public function setLabel($label)
     {
@@ -102,27 +102,27 @@ class UriCategoriesTranslations
     }
 
     /**
-     * Set uriCategory
+     * Set uridCategory
      *
-     * @param \AppBundle\Entity\UriCategories $uriCategory
+     * @param \AppBundle\Entity\UridCategories $uridCategory
      *
-     * @return UriCategoriesTranslations
+     * @return UridCategoriesTranslations
      */
-    public function setUriCategory(\AppBundle\Entity\UriCategories $uriCategory = null)
+    public function setUridCategory(\AppBundle\Entity\UridCategories $uridCategory = null)
     {
-        $this->uriCategory = $uriCategory;
+        $this->uridCategory = $uridCategory;
 
         return $this;
     }
 
     /**
-     * Get uriCategory
+     * Get uridCategory
      *
-     * @return \AppBundle\Entity\UriCategories
+     * @return \AppBundle\Entity\UridCategories
      */
-    public function getUriCategory()
+    public function getUridCategory()
     {
-        return $this->uriCategory;
+        return $this->uridCategory;
     }
 
     /**
@@ -130,7 +130,7 @@ class UriCategoriesTranslations
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return UriCategoriesTranslations
+     * @return UridCategoriesTranslations
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -154,7 +154,7 @@ class UriCategoriesTranslations
      *
      * @param \AppBundle\Entity\Group $group
      *
-     * @return UriCategoriesTranslations
+     * @return UridCategoriesTranslations
      */
     public function setGroup(\AppBundle\Entity\Group $group = null)
     {
@@ -178,7 +178,7 @@ class UriCategoriesTranslations
      *
      * @param \AppBundle\Entity\Languages $language
      *
-     * @return UriCategoriesTranslations
+     * @return UridCategoriesTranslations
      */
     public function setLanguage(\AppBundle\Entity\Languages $language = null)
     {

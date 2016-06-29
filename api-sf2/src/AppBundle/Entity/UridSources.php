@@ -17,7 +17,7 @@ use AppBundle\Annotation as AppAnnotations;
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class UriSources
+class UridSources
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
@@ -48,16 +48,16 @@ class UriSources
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
-    
+
     /**
-     * @ORM\OneToMany(targetEntity="Uri", mappedBy="uriSources", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Urid", mappedBy="uridSources", cascade={"persist"})
      */
-    private $uri;
+    private $urid;
 
     public function __construct() {
-        $this->uri = new ArrayCollection();
+        $this->urid = new ArrayCollection();
     }
-    
+
 
     /**
      * Get id
@@ -74,7 +74,7 @@ class UriSources
      *
      * @param string $name
      *
-     * @return UriSources
+     * @return UridSources
      */
     public function setName($name)
     {
@@ -98,7 +98,7 @@ class UriSources
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return UriSources
+     * @return UridSources
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -122,7 +122,7 @@ class UriSources
      *
      * @param \AppBundle\Entity\Group $group
      *
-     * @return UriSources
+     * @return UridSources
      */
     public function setGroup(\AppBundle\Entity\Group $group = null)
     {
@@ -142,40 +142,40 @@ class UriSources
     }
 
     /**
-     * Add uri
+     * Add urid
      *
-     * @param \AppBundle\Entity\Uri $uri
+     * @param \AppBundle\Entity\Urid $urid
      *
-     * @return UriSources
+     * @return UridSources
      */
-    public function addUri(\AppBundle\Entity\Uri $uri)
+    public function addUrid(\AppBundle\Entity\Urid $urid)
     {
-        if (empty($uri->getUser())) {
-            $uri->setUser($this->getUser());
+        if (empty($urid->getUser())) {
+            $urid->setUser($this->getUser());
         }
-        $uri->setUriSource($this);
-        $this->uri[] = $uri;
+        $urid->setUridSource($this);
+        $this->urid[] = $urid;
 
         return $this;
     }
 
     /**
-     * Remove uri
+     * Remove urid
      *
-     * @param \AppBundle\Entity\Uri $uri
+     * @param \AppBundle\Entity\Urid $urid
      */
-    public function removeUri(\AppBundle\Entity\Uri $uri)
+    public function removeUrid(\AppBundle\Entity\Urid $urid)
     {
-        $this->uri->removeElement($uri);
+        $this->urid->removeElement($urid);
     }
 
     /**
-     * Get uri
+     * Get urid
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUri()
+    public function getUrid()
     {
-        return $this->uri;
+        return $this->urid;
     }
 }

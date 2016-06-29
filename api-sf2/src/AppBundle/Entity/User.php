@@ -134,14 +134,14 @@ class User extends BaseUser
     private $texts;
 
     /**
-     * @OneToMany(targetEntity="Uri", mappedBy="user")
+     * @OneToMany(targetEntity="Urid", mappedBy="user")
      */
-    private $uris;
+    private $urids;
 
     /**
-     * @OneToMany(targetEntity="UriCategories", mappedBy="user")
+     * @OneToMany(targetEntity="UridCategories", mappedBy="user")
      */
-    private $urisCategories;
+    private $uridsCategories;
 
 
     public function __construct ()
@@ -161,8 +161,8 @@ class User extends BaseUser
         $this->notes              = new ArrayCollection();
         $this->scholies           = new ArrayCollection();
         $this->texts              = new ArrayCollection();
-        $this->uris               = new ArrayCollection();
-        $this->urisCategories     = new ArrayCollection();
+        $this->urids               = new ArrayCollection();
+        $this->uridsCategories     = new ArrayCollection();
     }
 
 
@@ -739,70 +739,70 @@ class User extends BaseUser
     }
 
     /**
-     * Add uri
+     * Add urid
      *
-     * @param \AppBundle\Entity\Uri $uri
+     * @param \AppBundle\Entity\Urid $urid
      *
      * @return User
      */
-    public function addUri(\AppBundle\Entity\Uri $uri)
+    public function addUrid(\AppBundle\Entity\Urid $urid)
     {
-        $this->uris[] = $uri;
+        $this->urids[] = $urid;
 
         return $this;
     }
 
     /**
-     * Remove uri
+     * Remove urid
      *
-     * @param \AppBundle\Entity\Uri $uri
+     * @param \AppBundle\Entity\Urid $urid
      */
-    public function removeUri(\AppBundle\Entity\Uri $uri)
+    public function removeUrid(\AppBundle\Entity\Urid $urid)
     {
-        $this->uris->removeElement($uri);
+        $this->urids->removeElement($urid);
     }
 
     /**
-     * Get uris
+     * Get urids
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUris()
+    public function getUrids()
     {
-        return $this->uris;
+        return $this->urids;
     }
 
     /**
-     * Add urisCategory
+     * Add uridsCategory
      *
-     * @param \AppBundle\Entity\UriCategories $urisCategory
+     * @param \AppBundle\Entity\UridCategories $uridsCategory
      *
      * @return User
      */
-    public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
+    public function addUridsCategory(\AppBundle\Entity\UridCategories $urisCategory)
     {
-        $this->urisCategories[] = $urisCategory;
+        $this->uridsCategories[] = $urisCategory;
 
         return $this;
     }
 
     /**
-     * Remove urisCategory
+     * Remove uridsCategory
      *
-     * @param \AppBundle\Entity\UriCategories $urisCategory
+     * @param \AppBundle\Entity\UridCategories $uridsCategory
      */
-    public function removeUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
+    public function removeUridsCategory(\AppBundle\Entity\UridCategories $urisCategory)
     {
-        $this->urisCategories->removeElement($urisCategory);
+        $this->uridsCategories->removeElement($uridsCategory);
     }
 
     /**
-     * Get urisCategories
+     * Get uridsCategories
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUrisCategories()
+    public function getUridsCategories()
     {
-        return $this->urisCategories;
+        return $this->uridsCategories;
     }
 }

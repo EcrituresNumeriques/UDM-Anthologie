@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UriCategoriesTranslationsType extends AbstractType
+class UridCategoriesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,9 @@ class UriCategoriesTranslationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('label')
-            ->add('uriCategory')
+            ->add('urid')
             ->add('user')
             ->add('group')
-            ->add('language')
         ;
     }
     
@@ -29,8 +27,8 @@ class UriCategoriesTranslationsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\UriCategoriesTranslations',
-            'csrf_protection' => false,
+            'data_class' => 'AppBundle\Entity\UridCategories',
+            'csrf_protection'    => false ,
             'allow_extra_fields' => true
         ));
     }
@@ -38,7 +36,7 @@ class UriCategoriesTranslationsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName ()
     {
         return '';
     }
