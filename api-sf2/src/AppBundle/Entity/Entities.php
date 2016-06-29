@@ -754,4 +754,9 @@ class Entities
     {
         return $this->images;
     }
+
+    public function __toString()
+    {
+        return "ID ".$this->getId();
+    }
 }

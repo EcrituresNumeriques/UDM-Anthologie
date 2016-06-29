@@ -197,4 +197,9 @@ class BooksTranslations
     {
         return $this->language;
     }
+
+    public function __toString()
+    {
+        return "ID ".$this->getId();
+    }
 }

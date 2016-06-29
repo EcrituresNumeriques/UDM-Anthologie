@@ -1,0 +1,17 @@
+easy_admin:
+    entities:
+        Entities:
+            class: AppBundle\Entity\Entities
+            label: 'Entities'
+            list:
+                fields: ['id', 'title', 'date', 'entityTranslations']
+                title: "All the Entities"
+            form:
+                fields:
+                    - { property: 'book', type: 'easyadmin_autocomplete', label: 'Book ID' }
+                    - { property: 'era', type: 'easyadmin_autocomplete', label: 'Era ID' }
+                    - { property: 'genre', type: 'easyadmin_autocomplete', label: 'Genre ID' }
+                    - { property: 'title', type: 'text', label: 'Title' }
+                    - { property: 'date', type: 'integer', label: 'Date' }
+                    - { property: 'dateRange', type: 'integer', label: 'Variations' }
+                    - { property: 'entityTranslations', label: 'Entity translations' }

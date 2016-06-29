@@ -1,0 +1,13 @@
+easy_admin:
+    entities:
+        AuthorsTranslations:
+            class: AppBundle\Entity\AuthorsTranslations
+            label: 'Authors Translations'
+            list:
+                fields: ['id', 'name', 'about']
+                title: "All the authors translations"
+            form:
+                fields:
+                    - { property: 'name', type: 'text', label: 'Name' }
+                    - { property: 'about', type: 'textarea', label: 'About' }
+                    - { property: 'author', type: 'easyadmin_autocomplete', label: 'Author ID' }

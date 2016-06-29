@@ -1,0 +1,12 @@
+easy_admin:
+    entities:
+        Cities:
+            class: AppBundle\Entity\Cities
+            label: 'Cities'
+            list:
+                fields: ['id', 'GPS', 'cityTranslations']
+                title: "All the Cities"
+            form:
+                fields:
+                    - { property: 'GPS', type: 'text', label: 'GPS' }
+                    - { property: 'cityTranslations', label: 'City ID' }

@@ -310,14 +310,14 @@ a.btn.btn-default.action-delete:hover {
     display: none;
 }
 
-#new-user-form .form-group.field-checkbox label input[type="checkbox"],
-#edit-user-form .form-group.field-checkbox label input[type="checkbox"],
-#new-user-form .form-group.field-collection label,
-#edit-user-form .form-group.field-collection label,
-#new-user-form .form-group.field-datetime label input[type="checkbox"],
-#edit-user-form .form-group.field-datetime label input[type="checkbox"],
-#new-user-form .form-group.field-datetime label,
-#edit-user-form .form-group.field-datetime label {
+.new-form .form-group.field-checkbox label input[type="checkbox"],
+.edit-form .form-group.field-checkbox label input[type="checkbox"],
+.new-form .form-group.field-collection label,
+.edit-form .form-group.field-collection label,
+.new-form .form-group.field-datetime label input[type="checkbox"],
+.edit-form .form-group.field-datetime label input[type="checkbox"],
+.new-form .form-group.field-datetime label,
+.edit-form .form-group.field-datetime label {
     display: inline;
     width: initial;
 }

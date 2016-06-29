@@ -1,0 +1,14 @@
+easy_admin:
+    entities:
+        CitiesTranslations:
+            class: AppBundle\Entity\CitiesTranslations
+            label: 'Cities Translations'
+            list:
+                fields: ['id', 'name']
+                title: "All the Cities translations"
+            form:
+                fields:
+                    - { property: 'name', type: 'text', label: 'Name' }
+                    - { property: 'currentName', type: 'text', label: 'Current name' }
+                    - { property: 'description', type: 'textarea', label: 'Description' }
+                    - { property: 'city', type: 'easyadmin_autocomplete', label: 'City ID' }

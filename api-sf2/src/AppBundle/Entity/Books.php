@@ -196,4 +196,9 @@ class Books
     {
         return $this->entities;
     }
+
+    public function __toString()
+    {
+        return "ID ".$this->getId();
+    }
 }
