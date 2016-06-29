@@ -20,7 +20,6 @@ abstract class BaseApiController extends FOSRestController
      */
     protected function createAction (Request $request)
     {
-
         $entity     = $this->getParams()["entity"];
         $entityForm = $this->getParams()["entityForm"];
         $em         = $this->getDoctrine()->getManager();
@@ -293,10 +292,8 @@ abstract class BaseApiController extends FOSRestController
         if ($paramFetcher->get('limit')) {
             $queryBuilder->setMaxResults($paramFetcher->get('limit'));
         }
-
         $result = $queryBuilder->getQuery()
             ->getResult();
-
         $view = $this->view($result , 200);
 
         return $this->handleView($view);

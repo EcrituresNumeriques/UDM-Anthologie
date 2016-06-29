@@ -2,13 +2,13 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\UridCategories;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UriType extends AbstractType
+class UridType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,21 +17,21 @@ class UriType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('value', TextType::class , array(
-                'required' => true
+            ->add('value')
+            ->add('uridSources', EntityType::class , array(
+                'class' => 'AppBundle\Entity\UridSources' ,
+                'required' => false ,
+                'multiple' => false
             ))
-            ->add('entities', EntityType::class , array(
+            ->add('uridsCategories', EntityType::class , array(
+                'class' => 'AppBundle\Entity\UridCategories' ,
+                'required' => false ,
+                'multiple' => false
+            ))
+            ->add('entity', EntityType::class , array(
                 'class' => 'AppBundle\Entity\Entities' ,
                 'required' => false ,
-                'multiple' => true
-            ))
-            ->add('uriSource' , UriType::class , array(
-                'required' => false
-            ))
-            ->add('urisCategories' , EntityType::class , array(
-                'class'    => 'AppBundle\Entity\UriCategories' ,
-                'required' => false ,
-                'multiple' => true
+                'multiple' => false
             ))
             ->add('group')
         ;
@@ -43,7 +43,7 @@ class UriType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Uri',
+            'data_class' => 'AppBundle\Entity\Urid',
             'csrf_protection' => false,
             'allow_extra_fields' => true
         ));
@@ -52,7 +52,7 @@ class UriType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName ()
     {
         return '';
     }

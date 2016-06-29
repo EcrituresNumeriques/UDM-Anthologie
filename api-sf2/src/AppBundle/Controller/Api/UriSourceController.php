@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\UriSources;
-use AppBundle\Form\UriSourcesType;
+use AppBundle\Entity\UridSources;
+use AppBundle\Form\UridSourcesType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -23,11 +23,11 @@ class UriSourceController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"   => $this->getDoctrine()->getManager()->getRepository('AppBundle:UriSources') ,
-            "entity"       => new UriSources() ,
-            "entityName"   => "UriSources" ,
-            "entitySetter" => "setUriSource" ,
-            "entityForm"   => new UriSourcesType() ,
+            "repository"   => $this->getDoctrine()->getManager()->getRepository('AppBundle:UridSources') ,
+            "entity"       => new UridSources() ,
+            "entityName"   => "UridSources" ,
+            "entitySetter" => "setUridSource" ,
+            "entityForm"   => new UridSourcesType() ,
         );
     }
 

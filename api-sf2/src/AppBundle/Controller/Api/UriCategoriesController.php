@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\UriCategories;
-use AppBundle\Entity\UriCategoriesTranslations;
-use AppBundle\Form\UriCategoriesTranslationsType;
-use AppBundle\Form\UriCategoriesType;
+use AppBundle\Entity\UridCategories;
+use AppBundle\Entity\UridCategoriesTranslations;
+use AppBundle\Form\UridCategoriesTranslationsType;
+use AppBundle\Form\UridCategoriesType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -25,15 +25,15 @@ class UriCategoriesController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:UriCategories') ,
-            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:UriCategoriesTranslations') ,
-            "entity"                => new UriCategories() ,
-            "entityName"            => "UriCategories" ,
-            "entitySetter"          => "setUriCategory" ,
-            "entityForm"            => new UriCategoriesType() ,
-            "entityTranslation"     => new UriCategoriesTranslations() ,
-            "entityTranslationName" => "UriCategoriesTranslations" ,
-            "entityTranslationForm" => new UriCategoriesTranslationsType() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:UridCategories') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:UridCategoriesTranslations') ,
+            "entity"                => new UridCategories() ,
+            "entityName"            => "UridCategories" ,
+            "entitySetter"          => "setUridCategory" ,
+            "entityForm"            => new UridCategoriesType() ,
+            "entityTranslation"     => new UridCategoriesTranslations() ,
+            "entityTranslationName" => "UridCategoriesTranslations" ,
+            "entityTranslationForm" => new UridCategoriesTranslationsType() ,
         );
     }
 

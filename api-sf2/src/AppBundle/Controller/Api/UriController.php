@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Uri;
-use AppBundle\Form\UriType;
+use AppBundle\Entity\Urid;
+use AppBundle\Form\UridType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -23,24 +23,24 @@ class UriController extends BaseApiController
     public function getParams ()
     {
         return array(
-            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Uri') ,
-            "entity"                => new Uri() ,
-            "entityName"            => "Uri" ,
-            "entitySetter"          => "setUri" ,
-            "entityForm"            => new UriType() ,
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Urid') ,
+            "entity"                => new Urid() ,
+            "entityName"            => "Urid" ,
+            "entitySetter"          => "setUrid" ,
+            "entityForm"            => new UridType() ,
         );
     }
 
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a list of uris and related datas",
+     *     description="Get a list of urids and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
      *              "dataType"="String",
      *              "requirement"="\d+",
-     *              "description"="OAuth token is needed for security"
+     *              "description"="OAuth token is needed for securidty"
      *          }
      *     },
      *     filters={
@@ -64,7 +64,7 @@ class UriController extends BaseApiController
      *
      * @return Response
      */
-    public function getUrisAction (Request $request , ParamFetcher $paramFetcher)
+    public function getUridsAction (Request $request , ParamFetcher $paramFetcher)
     {
         return BaseApiController::listAction($request , $paramFetcher);
     }
@@ -72,19 +72,19 @@ class UriController extends BaseApiController
     /**
      * @ApiDoc(
      *     resource=true,
-     *     description="Get a Uri and related datas",
+     *     description="Get a Urid and related datas",
      *     requirements={
      *          {
      *              "name"="access_token",
      *              "dataType"="String",
      *              "requirement"="\d+",
-     *              "description"="OAuth token is needed for security"
+     *              "description"="OAuth token is needed for securidty"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="uri identifier"
+     *              "description"="urid identifier"
      *          }
      *     },
      *     statusCodes={
@@ -104,24 +104,24 @@ class UriController extends BaseApiController
      * @internal param ParamFetcher $paramFetcher
      *
      */
-    public function getUriAction (Request $request , $id)
+    public function getUridAction (Request $request , $id)
     {
         return BaseApiController::readAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Create a new Uri",
+     *     description="Create a new Urid",
      *     requirements={
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="uri identifier"
+     *              "description"="urid identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\UriType",
-     *     output="AppBundle\Entity\Uri",
+     *     input="AppBundle\Form\UridType",
+     *     output="AppBundle\Entity\Urid",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -134,30 +134,30 @@ class UriController extends BaseApiController
      *
      * @return Response
      */
-    public function postUriAction (Request $request)
+    public function postUridAction (Request $request)
     {
         return BaseApiController::createAction($request);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit a Uri",
+     *     description="Edit a Urid",
      *     requirements={
      *          {
      *              "name"="access_token",
      *              "dataType"="String",
      *              "requirement"="\d+",
-     *              "description"="OAuth token is needed for security"
+     *              "description"="OAuth token is needed for securidty"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="uri identifier"
+     *              "description"="urid identifier"
      *          }
      *     },
-     *     input="AppBundle\Form\UriType",
-     *     output="AppBundle\Entity\Uri",
+     *     input="AppBundle\Form\UridType",
+     *     output="AppBundle\Entity\Urid",
      *     statusCodes={
      *         200="Returned when successful",
      *         401="Returned when the user is not authorized to say hello",
@@ -172,26 +172,26 @@ class UriController extends BaseApiController
      *
      * @return Response
      */
-    public function putUriAction (Request $request , $id)
+    public function putUridAction (Request $request , $id)
     {
         return BaseApiController::updateAction($request , $id);
     }
 
     /**
      * @ApiDoc(
-     *     description="Edit a Uri",
+     *     description="Edit a Urid",
      *     requirements={
      *          {
      *              "name"="access_token",
      *              "dataType"="String",
      *              "requirement"="\d+",
-     *              "description"="OAuth token is needed for security"
+     *              "description"="OAuth token is needed for securidty"
      *          },
      *          {
      *              "name"="id",
      *              "dataType"="Integer",
      *              "requirement"="\d+",
-     *              "description"="uri id"
+     *              "description"="urid id"
      *          }
      *     },
      *     statusCodes={
@@ -208,7 +208,7 @@ class UriController extends BaseApiController
      *
      * @return Response
      */
-    public function deleteUriAction (Request $request , ParamFetcher $paramFetcher , $id)
+    public function deleteUridAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
         return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }

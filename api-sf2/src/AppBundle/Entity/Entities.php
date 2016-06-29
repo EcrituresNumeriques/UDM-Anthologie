@@ -92,9 +92,9 @@ class Entities
     private $entityTranslations;
 
     /**
-     * @OneToMany(targetEntity="Uri", mappedBy="entity", cascade={"persist"})
+     * @OneToMany(targetEntity="Urid", mappedBy="entity", cascade={"persist"})
      */
-    private $uris;
+    private $urids;
 
     /**
      * @ManyToMany(targetEntity="Authors", inversedBy="entities", cascade={"persist"})
@@ -157,7 +157,7 @@ class Entities
         $this->scholies           = new ArrayCollection();
         $this->notes              = new ArrayCollection();
         $this->texts              = new ArrayCollection();
-        $this->uris               = new ArrayCollection();
+        $this->urids               = new ArrayCollection();
         $this->images             = new ArrayCollection();
     }
 
@@ -681,41 +681,41 @@ class Entities
     }
 
     /**
-     * Add uri
+     * Add urid
      *
-     * @param \AppBundle\Entity\Uri $uri
+     * @param \AppBundle\Entity\Urid $urid
      *
      * @return Entities
      */
-    public function addUri (\AppBundle\Entity\Uri $uri)
+    public function addUrid (\AppBundle\Entity\Urid $urid)
     {
-        if (empty($uri->getUser())) {
-            $uri->setUser($this->getUser());
+        if (empty($urid->getUser())) {
+            $urid->setUser($this->getUser());
         }
-        $uri->setEntity($this);
-        $this->uris[] = $uri;
+        $urid->setEntity($this);
+        $this->urids[] = $urid;
 
         return $this;
     }
 
     /**
-     * Remove uri
+     * Remove urid
      *
-     * @param \AppBundle\Entity\Uri $uri
+     * @param \AppBundle\Entity\Urid $urid
      */
-    public function removeUri (\AppBundle\Entity\Uri $uri)
+    public function removeUrid (\AppBundle\Entity\Urid $urid)
     {
-        $this->uris->removeElement($uri);
+        $this->urids->removeElement($urid);
     }
 
     /**
-     * Get uris
+     * Get urids
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUris ()
+    public function getUrids ()
     {
-        return $this->uris;
+        return $this->urids;
     }
 
     /**

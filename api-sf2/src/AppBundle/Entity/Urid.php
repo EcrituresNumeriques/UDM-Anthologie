@@ -2,25 +2,21 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\OneToOne;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use AppBundle\Annotation as AppAnnotations;
 
 /**
- * Uri
+ * Urid
  *
- * @ORM\Table(name="URI")
+ * @ORM\Table(name="URId")
  * @ORM\Entity
  * @AppAnnotations\UserMeta(userTable="user_id")
  * @AppAnnotations\GroupMeta(groupTable="group_id")
  * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
-class Uri
+class Urid
 {
     use ORMBehaviors\SoftDeletable\SoftDeletable ,
         ORMBehaviors\Timestampable\Timestampable;
@@ -41,76 +37,36 @@ class Uri
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UriSources", inversedBy="uri", cascade={"persist"})
-     * @JoinColumn(name="uri_source_id", referencedColumnName="id")
-     */
-    private $uriSources;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Entities", inversedBy="uris")
+     * @ORM\ManyToOne(targetEntity="Entities", inversedBy="urids")
      * @ORM\JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $entity;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="uris")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="urids")
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="Group", inversedBy="uris")
+     * @ORM\ManyToOne(targetEntity="Group", inversedBy="urids")
      * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $group;
 
     /**
-     * @OneToMany(targetEntity="UriCategories", mappedBy="uri", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="UridCategories", inversedBy="urid", cascade={"persist"})
+     * @JoinColumn(name="urid_category_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $urisCategories;
-
-    public function __construct ()
-    {
-        $this->urisCategories = new ArrayCollection();
-    }
+    private $uridsCategories;
 
     /**
-     * Set entity
-     *
-     * @param \AppBundle\Entity\Entities $entity
-     *
-     * @return Uri
+     * @ORM\ManyToOne(targetEntity="UridSources", inversedBy="urid", cascade={"persist"})
+     * @JoinColumn(name="urid_source_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    public function setEntity(\AppBundle\Entity\Entities $entity = null)
-    {
-        if (empty($entity->getUser())) {
-            $entity->setUser($this->getUser());
-        }
-        $entity->addUri($this);
-        $this->entity = $entity;
+    private $uridSources;
 
-        return $this;
-    }
-
-    /**
-     * Add urisCategory
-     *
-     * @param \AppBundle\Entity\UriCategories $urisCategory
-     *
-     * @return Uri
-     */
-    public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
-    {
-        if (empty($urisCategory->getUser())) {
-            $urisCategory->setUser($this->getUser());
-        }
-        $urisCategory->setUri($this);
-        $this->urisCategories[] = $urisCategory;
-
-        return $this;
-    }
     
-
     /**
      * Get id
      *
@@ -126,7 +82,7 @@ class Uri
      *
      * @param string $value
      *
-     * @return Uri
+     * @return Urid
      */
     public function setValue($value)
     {
@@ -146,27 +102,17 @@ class Uri
     }
 
     /**
-     * Set uriSource
+     * Set entity
      *
-     * @param \AppBundle\Entity\UriSources $uriSource
+     * @param \AppBundle\Entity\Entities $entity
      *
-     * @return Uri
+     * @return Urid
      */
-    public function setUriSource(\AppBundle\Entity\UriSources $uriSource = null)
+    public function setEntity(\AppBundle\Entity\Entities $entity = null)
     {
-        $this->uriSources = $uriSource;
+        $this->entity = $entity;
 
         return $this;
-    }
-
-    /**
-     * Get uriSource
-     *
-     * @return \AppBundle\Entity\UriSources
-     */
-    public function getUriSource()
-    {
-        return $this->uriSources;
     }
 
     /**
@@ -184,7 +130,7 @@ class Uri
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return Uri
+     * @return Urid
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -208,7 +154,7 @@ class Uri
      *
      * @param \AppBundle\Entity\Group $group
      *
-     * @return Uri
+     * @return Urid
      */
     public function setGroup(\AppBundle\Entity\Group $group = null)
     {
@@ -228,22 +174,56 @@ class Uri
     }
 
     /**
-     * Remove urisCategory
+     * Set uridsCategories
      *
-     * @param \AppBundle\Entity\UriCategories $urisCategory
+     * @param \AppBundle\Entity\UridCategories $uridsCategories
+     *
+     * @return Urid
      */
-    public function removeUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
+    public function setUridsCategories(\AppBundle\Entity\UridCategories $uridsCategories = null)
     {
-        $this->urisCategories->removeElement($urisCategory);
+        if (empty($uridsCategories->getUser())) {
+            $uridsCategories->setUser($this->getUser());
+        }
+        $this->uridsCategories = $uridsCategories;
+
+        return $this;
     }
 
     /**
-     * Get urisCategories
+     * Get uridsCategories
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \AppBundle\Entity\UridCategories
      */
-    public function getUrisCategories()
+    public function getUridsCategories()
     {
-        return $this->urisCategories;
+        return $this->uridsCategories;
+    }
+
+    /**
+     * Set uridSources
+     *
+     * @param \AppBundle\Entity\UridSources $uridSources
+     *
+     * @return Urid
+     */
+    public function setUridSources(\AppBundle\Entity\UridSources $uridSources = null)
+    {
+        if (empty($uridSources->getUser())) {
+            $uridSources->setUser($this->getUser());
+        }
+        $this->uridSources = $uridSources;
+
+        return $this;
+    }
+
+    /**
+     * Get uridSources
+     *
+     * @return \AppBundle\Entity\UridSources
+     */
+    public function getUridSources()
+    {
+        return $this->uridSources;
     }
 }
