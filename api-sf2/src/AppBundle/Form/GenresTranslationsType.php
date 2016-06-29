@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,9 +20,15 @@ class GenresTranslationsType extends AbstractType
             ->add('title', TextType::class, array(
                 'required' => true
             ))
-            ->add('description')
+            ->add('description', TextType::class, array(
+                'required' => false
+            ))
+            ->add('language' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Languages' ,
+                'required' => true ,
+                'multiple' => false
+            ))
             ->add('group')
-            ->add('language')
         ;
     }
     

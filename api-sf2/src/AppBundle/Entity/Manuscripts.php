@@ -99,6 +99,9 @@ class Manuscripts
      */
     public function addManuscriptTranslation(\AppBundle\Entity\ManuscriptsTranslations $manuscriptTranslation)
     {
+        if (empty($manuscriptTranslation->getUser())) {
+            $manuscriptTranslation->setUser($this->getUser());
+        }
         $manuscriptTranslation->setManuscript($this);
         $this->manuscriptTranslations[] = $manuscriptTranslation;
 
@@ -134,6 +137,10 @@ class Manuscripts
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addManuscript($this);
         $this->entities[] = $entity;
 
         return $this;
@@ -162,25 +169,29 @@ class Manuscripts
     /**
      * Add scholy
      *
-     * @param \AppBundle\Entity\Scholies $scholy
+     * @param \AppBundle\Entity\Scholies $scholie
      *
      * @return Manuscripts
      */
-    public function addScholy(\AppBundle\Entity\Scholies $scholy)
+    public function addScholie(\AppBundle\Entity\Scholies $scholie)
     {
-        $this->scholies[] = $scholy;
+        if (empty($scholie->getUser())) {
+            $scholie->setUser($this->getUser());
+        }
+        $scholie->addManuscript($this);
+        $this->scholies[] = $scholie;
 
         return $this;
     }
 
     /**
-     * Remove scholy
+     * Remove scholie
      *
-     * @param \AppBundle\Entity\Scholies $scholy
+     * @param \AppBundle\Entity\Scholies $scholie
      */
-    public function removeScholy(\AppBundle\Entity\Scholies $scholy)
+    public function removeScholie(\AppBundle\Entity\Scholies $scholie)
     {
-        $this->scholies->removeElement($scholy);
+        $this->scholies->removeElement($scholie);
     }
 
     /**
@@ -202,6 +213,9 @@ class Manuscripts
      */
     public function addImage(\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;

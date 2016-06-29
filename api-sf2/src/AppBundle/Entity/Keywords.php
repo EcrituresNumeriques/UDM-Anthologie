@@ -106,6 +106,7 @@ class Keywords
      */
     public function setKeywordFamily(\AppBundle\Entity\KeywordsFamilies $keywordFamily = null)
     {
+
         $this->keywordFamily = $keywordFamily;
 
         return $this;
@@ -178,6 +179,9 @@ class Keywords
      */
     public function addKeywordsTranslation(\AppBundle\Entity\KeywordsTranslations $keywordsTranslation)
     {
+        if (empty($keywordsTranslation->getUser())) {
+            $keywordsTranslation->setUser($this->getUser());
+        }
         $keywordsTranslation->setKeyword($this);
         $this->keywordsTranslations[] = $keywordsTranslation;
 
@@ -213,6 +217,10 @@ class Keywords
      */
     public function addKeywordsCategory(\AppBundle\Entity\KeywordsCategories $keywordsCategory)
     {
+        if (empty($keywordsCategory->getUser())) {
+            $keywordsCategory->setUser($this->getUser());
+        }
+        $keywordsCategory->addKeyword($this);
         $this->keywordsCategories[] = $keywordsCategory;
 
         return $this;
@@ -247,6 +255,10 @@ class Keywords
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addKeyword($this);
         $this->entities[] = $entity;
 
         return $this;
@@ -281,6 +293,9 @@ class Keywords
      */
     public function addImage(\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;

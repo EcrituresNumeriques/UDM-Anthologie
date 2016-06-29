@@ -27,7 +27,7 @@ class EntitiesType extends AbstractType
     {
         $this->options       = $options;
         $this->dynamicFields = ['book' , 'era' , 'genre', 'authors', 'manuscripts',
-            'keywords', 'motifs', 'scholies', 'notes','texts','images'];
+            'keywords', 'motifs', 'scholies', 'notes','texts','entityTranslations'];
 
 
         $this->options = $options;
@@ -47,9 +47,8 @@ class EntitiesType extends AbstractType
             ->add('genre', GenresType::class , array(
                 'required' => false
             ))
-
             ->add('authors', EntityType::class , array(
-            'class'    => 'AppBundle\Entity\Authors' ,
+                'class' => 'AppBundle\Entity\Authors' ,
                 'required' => false ,
                 'multiple' => true
             ))
@@ -98,10 +97,6 @@ class EntitiesType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SUBMIT ,
                 array($this , 'onPreSubmitData')
-            )
-            ->addEventListener(
-                FormEvents::POST_SUBMIT ,
-                array($this , 'onPostSubmitData')
             );
     }
 
@@ -120,31 +115,6 @@ class EntitiesType extends AbstractType
             }
         }
         $form->setData($datas);
-    }
-
-    public function onPostSubmitData (FormEvent $event)
-    {
-        if ($this->options['method'] == "POST") {
-            $object = $event->getData();
-            foreach ($this->dynamicFields AS $subEntityGetter) {
-                $method = "get" . ucfirst($subEntityGetter);
-                if (empty($object->$method()) || !method_exists($object , $method)) {
-                    continue;
-                }
-
-                if ($object->$method() instanceof ArrayCollection) {
-                    foreach ($object->$method() as $subObject) {
-                        if (method_exists($subObject , "setUser") && empty($subObject->getUser())) {
-                            $subObject->setUser($object->getUser());
-                        }
-                    }
-                } else {
-                    if (is_object($object->$method()) && empty($object->$method()->getUser())) {
-                        $object->$method()->setUser($object->getUser());
-                    }
-                }
-            }
-        }
     }
     
     /**

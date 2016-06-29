@@ -82,6 +82,9 @@ class Books
      */
     public function addBookTranslation (\AppBundle\Entity\BooksTranslations $bookTranslation)
     {
+        if (empty($bookTranslation->getUser())) {
+            $bookTranslation->setUser($this->getUser());
+        }
         $bookTranslation->setBook($this);
         $this->bookTranslations[] = $bookTranslation;
 
@@ -165,6 +168,10 @@ class Books
      */
     public function addEntity (\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->setBook($this);
         $this->entities[] = $entity;
 
         return $this;

@@ -2,20 +2,31 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class BooksType extends AbstractType
 {
+
+    private $options;
+    private $dynamicFields;
+    
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->options       = $options;
+        $this->dynamicFields = ['bookTranslations'];
+
         $builder
             ->add('bookTranslations' , CollectionType::class , array(
                 'entry_type' => BooksTranslationsType::class ,
@@ -23,13 +34,10 @@ class BooksType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ))
-            ->add('group', EntityType::class , array(
-                'class'    => 'AppBundle\Entity\Group' ,
-                'required' => false ,
-                'multiple' => true
-            ))
+            ->add('group')
         ;
     }
+
     
     /**
      * @param OptionsResolver $resolver

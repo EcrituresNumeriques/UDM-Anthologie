@@ -173,17 +173,18 @@ class EntitiesController extends BaseApiController
      */
     public function postEntityRelationsAction (Request $request)
     {
-        $entity     = $this->getParams()["entity"];
+        $entity     = new Entities();
         $entityForm = new EntitiesFullType();
         $em         = $this->getDoctrine()->getManager();
-        $form       = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
+
+        $form = $this->createForm($entityForm , $entity , array("method" => $request->getMethod()));
         $form->handleRequest($request);
         $view = $this->view($form , 404);
+        $user = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+        $entity->setUser($user);
         if ($form->isValid()) {
-            $user = $this->get('security.token_storage')
-                ->getToken()
-                ->getUser();
-            $entity->setUser($user);
             $em->persist($entity);
             $em->flush();
             $view = $this->view($entity , 200);

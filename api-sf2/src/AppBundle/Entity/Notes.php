@@ -130,6 +130,9 @@ class Notes
      */
     public function addNoteTranslation(\AppBundle\Entity\NotesTranslations $noteTranslation)
     {
+        if (empty($noteTranslation->getUser())) {
+            $noteTranslation->setUser($this->getUser());
+        }
         $noteTranslation->setNote($this);
         $this->noteTranslations[] = $noteTranslation;
 
@@ -165,6 +168,10 @@ class Notes
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->setNote($this);
         $this->entities[] = $entity;
 
         return $this;

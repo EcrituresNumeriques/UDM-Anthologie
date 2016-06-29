@@ -82,6 +82,9 @@ class Texts
      */
     public function addTextTranslation(\AppBundle\Entity\TextsTranslations $textTranslation)
     {
+        if (empty($textTranslation->getUser())) {
+            $textTranslation->setUser($this->getUser());
+        }
         $textTranslation->setText($this);
         $this->textTranslations[] = $textTranslation;
 
@@ -117,6 +120,10 @@ class Texts
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->setText($this);
         $this->entities[] = $entity;
 
         return $this;

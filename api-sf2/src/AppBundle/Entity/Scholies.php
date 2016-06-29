@@ -98,6 +98,9 @@ class Scholies
      */
     public function addScholieTranslation (\AppBundle\Entity\ScholiesTranslations $scholieTranslation)
     {
+        if (empty($scholieTranslation->getUser())) {
+            $scholieTranslation->setUser($this->getUser());
+        }
         $scholieTranslation->setScholie($this);
         $this->scholieTranslations[] = $scholieTranslation;
 
@@ -133,6 +136,10 @@ class Scholies
      */
     public function addManuscript (\AppBundle\Entity\Manuscripts $manuscript)
     {
+        if (empty($manuscript->getUser())) {
+            $manuscript->setUser($this->getUser());
+        }
+        $manuscript->addScholie($this);
         $this->manuscripts[] = $manuscript;
 
         return $this;
@@ -167,6 +174,10 @@ class Scholies
      */
     public function addEntity (\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addScholie($this);
         $this->entities[] = $entity;
 
         return $this;
@@ -249,6 +260,9 @@ class Scholies
      */
     public function addImage(\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;

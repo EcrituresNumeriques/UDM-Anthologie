@@ -154,6 +154,9 @@ class Eras
      */
     public function addEraTranslation (\AppBundle\Entity\ErasTranslations $eraTranslation)
     {
+        if (empty($eraTranslation->getUser())) {
+            $eraTranslation->setUser($this->getUser());
+        }
         $eraTranslation->setEra($this);
         $this->eraTranslations[] = $eraTranslation;
 
@@ -237,6 +240,10 @@ class Eras
      */
     public function addEntity (\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->setEra($this);
         $this->entities[] = $entity;
 
         return $this;
@@ -271,6 +278,9 @@ class Eras
      */
     public function addImage (\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;

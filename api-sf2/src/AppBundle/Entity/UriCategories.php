@@ -80,6 +80,10 @@ class UriCategories
      */
     public function setUri(\AppBundle\Entity\Uri $uri = null)
     {
+        if (empty($uri->getUser())) {
+            $uri->setUser($this->getUser());
+        }
+        $uri->addUrisCategory($this);
         $this->uri = $uri;
 
         return $this;
@@ -152,6 +156,9 @@ class UriCategories
      */
     public function addUriCategoryTranslation(\AppBundle\Entity\UriCategoriesTranslations $uriCategoryTranslation)
     {
+        if (empty($uriCategoryTranslation->getUser())) {
+            $uriCategoryTranslation->setUser($this->getUser());
+        }
         $uriCategoryTranslation->setUriCategory($this);
         $this->uriCategoryTranslations[] = $uriCategoryTranslation;
 

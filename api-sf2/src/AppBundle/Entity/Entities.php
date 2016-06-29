@@ -253,8 +253,35 @@ class Entities
      */
     public function addEntityTranslation (\AppBundle\Entity\EntitiesTranslations $entityTranslation)
     {
+        if (empty($entityTranslation->getUser())) {
+            $entityTranslation->setUser($this->getUser());
+        }
         $entityTranslation->setEntity($this);
         $this->entityTranslations[] = $entityTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser ()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Entities
+     */
+    public function setUser (\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
 
         return $this;
     }
@@ -298,6 +325,10 @@ class Entities
      */
     public function setBook (\AppBundle\Entity\Books $book = null)
     {
+
+        if (empty($book->getUser())) {
+            $book->setUser($this->getUser());
+        }
         $this->book = $book;
 
         return $this;
@@ -310,6 +341,7 @@ class Entities
      */
     public function getEra ()
     {
+
         return $this->era;
     }
 
@@ -322,6 +354,9 @@ class Entities
      */
     public function setEra (\AppBundle\Entity\Eras $era = null)
     {
+        if (empty($era->getUser())) {
+            $era->setUser($this->getUser());
+        }
         $this->era = $era;
 
         return $this;
@@ -346,6 +381,9 @@ class Entities
      */
     public function setGenre (\AppBundle\Entity\Genres $genre = null)
     {
+        if (empty($genre->getUser())) {
+            $genre->setUser($this->getUser());
+        }
         $this->genre = $genre;
 
         return $this;
@@ -360,6 +398,10 @@ class Entities
      */
     public function addAuthor (\AppBundle\Entity\Authors $author)
     {
+        if (empty($author->getUser())) {
+            $author->setUser($this->getUser());
+        }
+        $author->addEntity($this);
         $this->authors[] = $author;
 
         return $this;
@@ -394,6 +436,10 @@ class Entities
      */
     public function addManuscript (\AppBundle\Entity\Manuscripts $manuscript)
     {
+        if (empty($manuscript->getUser())) {
+            $manuscript->setUser($this->getUser());
+        }
+        $manuscript->addEntity($this);
         $this->manuscripts[] = $manuscript;
 
         return $this;
@@ -428,6 +474,10 @@ class Entities
      */
     public function addKeyword (\AppBundle\Entity\Keywords $keyword)
     {
+        if (empty($keyword->getUser())) {
+            $keyword->setUser($this->getUser());
+        }
+        $keyword->addEntity($this);
         $this->keywords[] = $keyword;
 
         return $this;
@@ -462,6 +512,10 @@ class Entities
      */
     public function addMotif (\AppBundle\Entity\Motifs $motif)
     {
+        if (empty($motif->getUser())) {
+            $motif->setUser($this->getUser());
+        }
+        $motif->addEntity($this);
         $this->motifs[] = $motif;
 
         return $this;
@@ -488,27 +542,31 @@ class Entities
     }
 
     /**
-     * Add scholy
+     * Add scholie
      *
-     * @param \AppBundle\Entity\Scholies $scholy
+     * @param \AppBundle\Entity\Scholies $scholie
      *
      * @return Entities
      */
-    public function addScholy (\AppBundle\Entity\Scholies $scholy)
+    public function addScholie (\AppBundle\Entity\Scholies $scholie)
     {
-        $this->scholies[] = $scholy;
+        if (empty($scholie->getUser())) {
+            $scholie->setUser($this->getUser());
+        }
+        $scholie->addEntity($this);
+        $this->scholies[] = $scholie;
 
         return $this;
     }
 
     /**
-     * Remove scholy
+     * Remove scholie
      *
-     * @param \AppBundle\Entity\Scholies $scholy
+     * @param \AppBundle\Entity\Scholies $scholie
      */
-    public function removeScholy (\AppBundle\Entity\Scholies $scholy)
+    public function removeScholie (\AppBundle\Entity\Scholies $scholie)
     {
-        $this->scholies->removeElement($scholy);
+        $this->scholies->removeElement($scholie);
     }
 
     /**
@@ -530,6 +588,10 @@ class Entities
      */
     public function addNote (\AppBundle\Entity\Notes $note)
     {
+        if (empty($note->getUser())) {
+            $note->setUser($this->getUser());
+        }
+        $note->addEntity($this);
         $this->notes[] = $note;
 
         return $this;
@@ -552,6 +614,7 @@ class Entities
      */
     public function getNotes ()
     {
+        
         return $this->notes;
     }
 
@@ -564,6 +627,10 @@ class Entities
      */
     public function addText (\AppBundle\Entity\Texts $text)
     {
+        if (empty($text->getUser())) {
+            $text->setUser($this->getUser());
+        }
+        $text->addEntity($this);
         $this->texts[] = $text;
 
         return $this;
@@ -587,30 +654,6 @@ class Entities
     public function getTexts ()
     {
         return $this->texts;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser ()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Entities
-     */
-    public function setUser (\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
     }
 
     /**
@@ -646,6 +689,10 @@ class Entities
      */
     public function addUri (\AppBundle\Entity\Uri $uri)
     {
+        if (empty($uri->getUser())) {
+            $uri->setUser($this->getUser());
+        }
+        $uri->setEntity($this);
         $this->uris[] = $uri;
 
         return $this;
@@ -678,8 +725,11 @@ class Entities
      *
      * @return Entities
      */
-    public function addImage(\AppBundle\Entity\Images $image)
+    public function addImage (\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;
@@ -690,7 +740,7 @@ class Entities
      *
      * @param \AppBundle\Entity\Images $image
      */
-    public function removeImage(\AppBundle\Entity\Images $image)
+    public function removeImage (\AppBundle\Entity\Images $image)
     {
         $this->images->removeElement($image);
     }
@@ -700,7 +750,7 @@ class Entities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getImages()
+    public function getImages ()
     {
         return $this->images;
     }

@@ -6,6 +6,7 @@ use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JMS\Serializer\Annotation\Exclude;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -43,6 +44,7 @@ class NotesTranslations
     /**
      * @ManyToOne(targetEntity="Notes", inversedBy="noteTranslations")
      * @JoinColumn(name="note_id", referencedColumnName="id", onDelete="CASCADE")
+     * @Exclude
      */
     private $note;
     
