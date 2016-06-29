@@ -17,6 +17,7 @@ class UriCategoriesTranslationsType extends AbstractType
         $builder
             ->add('label')
             ->add('uriCategory')
+            ->add('user')
             ->add('group')
             ->add('language')
         ;

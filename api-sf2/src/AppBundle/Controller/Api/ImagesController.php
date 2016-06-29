@@ -3,8 +3,6 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Images;
-use AppBundle\Entity\ImagesTranslations;
-use AppBundle\Form\ImagesTranslationsType;
 use AppBundle\Form\ImagesType;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;

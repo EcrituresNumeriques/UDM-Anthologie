@@ -19,8 +19,9 @@ class NotesTranslationsType extends AbstractType
             ->add('text', TextType::class, array(
                 'required' => true
             ))
-            ->add('group')
             ->add('language')
+            ->add('group')
+
         ;
     }
     

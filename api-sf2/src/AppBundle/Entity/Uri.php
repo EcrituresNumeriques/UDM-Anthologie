@@ -29,7 +29,7 @@ class Uri
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -41,10 +41,10 @@ class Uri
     private $value;
 
     /**
-     * @OneToOne(targetEntity="UriSources", inversedBy="uri", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="UriSources", inversedBy="uri", cascade={"persist"})
      * @JoinColumn(name="uri_source_id", referencedColumnName="id")
      */
-    private $uriSource;
+    private $uriSources;
 
     /**
      * @ORM\ManyToOne(targetEntity="Entities", inversedBy="uris")
@@ -74,21 +74,42 @@ class Uri
         $this->urisCategories = new ArrayCollection();
     }
 
-
-
     /**
-     * Set id
+     * Set entity
      *
-     * @param integer $id
+     * @param \AppBundle\Entity\Entities $entity
      *
      * @return Uri
      */
-    public function setId($id)
+    public function setEntity(\AppBundle\Entity\Entities $entity = null)
     {
-        $this->id = $id;
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addUri($this);
+        $this->entity = $entity;
 
         return $this;
     }
+
+    /**
+     * Add urisCategory
+     *
+     * @param \AppBundle\Entity\UriCategories $urisCategory
+     *
+     * @return Uri
+     */
+    public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
+    {
+        if (empty($urisCategory->getUser())) {
+            $urisCategory->setUser($this->getUser());
+        }
+        $urisCategory->setUri($this);
+        $this->urisCategories[] = $urisCategory;
+
+        return $this;
+    }
+    
 
     /**
      * Get id
@@ -133,10 +154,7 @@ class Uri
      */
     public function setUriSource(\AppBundle\Entity\UriSources $uriSource = null)
     {
-        if (empty($uriSource->getUser())) {
-            $uriSource->setUser($this->getUser());
-        }
-        $this->uriSource = $uriSource;
+        $this->uriSources = $uriSource;
 
         return $this;
     }
@@ -148,25 +166,7 @@ class Uri
      */
     public function getUriSource()
     {
-        return $this->uriSource;
-    }
-
-    /**
-     * Set entity
-     *
-     * @param \AppBundle\Entity\Entities $entity
-     *
-     * @return Uri
-     */
-    public function setEntity(\AppBundle\Entity\Entities $entity = null)
-    {
-        if (empty($entity->getUser())) {
-            $entity->setUser($this->getUser());
-        }
-        $entity->addUri($this);
-        $this->entity = $entity;
-
-        return $this;
+        return $this->uriSources;
     }
 
     /**
@@ -225,24 +225,6 @@ class Uri
     public function getGroup()
     {
         return $this->group;
-    }
-
-    /**
-     * Add urisCategory
-     *
-     * @param \AppBundle\Entity\UriCategories $urisCategory
-     *
-     * @return Uri
-     */
-    public function addUrisCategory(\AppBundle\Entity\UriCategories $urisCategory)
-    {
-        if (empty($urisCategory->getUser())) {
-            $urisCategory->setUser($this->getUser());
-        }
-        $urisCategory->setUri($this);
-        $this->urisCategories[] = $urisCategory;
-
-        return $this;
     }
 
     /**

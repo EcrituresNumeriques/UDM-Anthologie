@@ -19,9 +19,11 @@ class MotifsTranslationsType extends AbstractType
             ->add('title', TextType::class, array(
                 'required' => true
             ))
-            ->add('description')
-            ->add('group')
+            ->add('description', TextType::class, array(
+                'required' => false
+            ))
             ->add('language')
+            ->add('group')
         ;
     }
     

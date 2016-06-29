@@ -3,11 +3,11 @@ app:
     resource: "@AppBundle/Controller/Front/"
     type:     annotation
 
-#Backend
-app_back_end:
-    resource: "@AppBundle/Controller/Back/"
+# Back
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin/
+    prefix:   /backend
 
 #Api
 app_api:
@@ -27,11 +27,6 @@ fos_oauth_server_token:
 fos_oauth_server_authorize:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
-# Back
-easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /backend
 
 # app/config/routing.yml
 fos_user_security:

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +17,11 @@ class MotifsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('entities', EntityType::class , array(
+                'class' => 'AppBundle\Entity\Entities' ,
+                'required' => false ,
+                'multiple' => true
+            ))
             ->add('motifTranslations' , CollectionType::class , array(
                 'entry_type' => MotifsTranslationsType::class ,
                 'allow_add' => true,
@@ -23,7 +29,6 @@ class MotifsType extends AbstractType
                 'by_reference' => false
             ))
             ->add('group')
-            ->add('entities')
         ;
     }
     

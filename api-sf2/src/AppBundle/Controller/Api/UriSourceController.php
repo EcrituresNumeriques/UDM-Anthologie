@@ -13,7 +13,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UriSourcesController extends BaseApiController
+class UriSourceController extends BaseApiController
 {
     /**
      * @see BaseApiController::getParams()
