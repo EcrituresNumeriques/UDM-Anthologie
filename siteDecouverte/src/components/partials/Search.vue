@@ -21,7 +21,6 @@
                   <span class="inner-dash"></span>
                 </span>
                 {{ epigram.title }}
-                <sup>I</sup>
                 <span class="type-text-bg">épigramme</span>
               </a>
             </li>
@@ -39,7 +38,6 @@
                   <span class="inner-dash"></span>
                 </span>
                 {{ genre.title }}
-                <sup>I</sup>
                 <span class="type-text-bg">genre</span>
               </a>
             </li>
@@ -57,7 +55,6 @@
                   <span class="inner-dash"></span>
                 </span>
                 {{ author.name }}
-                <sup>I</sup>
                 <span class="type-text-bg">Auteur</span>
               </a>
             </li>
@@ -75,7 +72,6 @@
                   <span class="inner-dash"></span>
                 </span>
                 {{ era.name }}
-                <sup>I</sup>
                 <span class="type-text-bg">ère</span>
               </a>
             </li>
@@ -93,8 +89,24 @@
                   <span class="inner-dash"></span>
                 </span>
                 {{ city.name }}
-                <sup>I</sup>
                 <span class="type-text-bg">Ville</span>
+              </a>
+            </li>
+          </ul>
+          <ul
+            v-if="dataCharacter.keywords.length > 0"
+            v-for="characters in dataCharacter.keywords"
+            class="vertical-list-wrapper"
+          >
+            <li v-for="character in characters.keywords_translations | filterBy search in 'title' ">
+              <a
+                @click="closeSearchPartial"
+                v-link="{ name: 'searchCharacter', params: { id: character.id }}">
+                <span class="dash">
+                  <span class="inner-dash"></span>
+                </span>
+                {{ character.title }}
+                <span class="type-text-bg">Personnage</span>
               </a>
             </li>
           </ul>
@@ -129,7 +141,8 @@ export default {
       dataGenre: {},
       dataAuthor: {},
       dataEra: {},
-      dataCity: {}
+      dataCity: {},
+      dataCharacter: {}
     }
   },
   props: {
@@ -172,6 +185,11 @@ export default {
         })
         self.$http.get(api + 'city' + filterFr + 'access_token=' + self.token).then(function (response) {
           self.$set('dataCity', response.data)
+        }, function (response) {
+          console.log('error: ' + response)
+        })
+        self.$http.get(api + 'keyword/family/1' + filterFr + 'access_token=' + self.token).then(function (response) {
+          self.$set('dataCharacter', response.data)
         }, function (response) {
           console.log('error: ' + response)
         })

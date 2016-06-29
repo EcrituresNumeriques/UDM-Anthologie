@@ -154,7 +154,8 @@ $hover: .5s all linear
 .navbar-link,
 .navbar-list
   li
-    height: 24px
+    height: 20px
+    margin-bottom: 5px
 
   a
     font-size: 12px
@@ -164,7 +165,7 @@ $hover: .5s all linear
     display: inline-block
     opacity: .3
     transition: $hover
-    height: 24px
+    height: 20px
 
     &:hover,
     &.v-link-active

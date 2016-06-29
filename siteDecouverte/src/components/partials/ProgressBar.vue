@@ -24,7 +24,7 @@ export default {
   name: 'ScrollProgressBar',
   ready: function () {
     if ($('.scroll')[0].scrollWidth <= $('.scroll').width()) {
-      $('.scroll-dot').addClass('active').addClass('disable')
+      $('.scroll-progress-bar').hide()
       $('.scroll-arrows').hide()
     }
     this.onScrollProgressBar()

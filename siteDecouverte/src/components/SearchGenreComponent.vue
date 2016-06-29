@@ -31,7 +31,7 @@
           <div class="vertical-list-wrapper">
             <div>
               <h4
-                v-if="dataGenre[genre].entities > 0"
+                v-if="dataGenre[genre].entities.length > 0"
               >
                 <span class="bg"></span>
                 épigrammes liées

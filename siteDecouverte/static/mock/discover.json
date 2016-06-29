@@ -22,9 +22,9 @@
           ],
           "sounds": {
             "french": "/static/sounds/french-sound.mp3",
-            "greek": "/static/sounds/greek-sound.mp3"
+            "greek": "/static/sounds/epitaphes/1.mp3"
           },
-          "imageUrl": "/static/img/popin/meleagre-in-love/1.png",
+          "imageUrl": "/static/img/popin/les-serments-trahis/1.png",
           "notes": [
             {
               "id": 1,

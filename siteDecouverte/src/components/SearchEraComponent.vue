@@ -31,7 +31,7 @@
           <div class="vertical-list-wrapper">
             <div>
               <h4
-                v-if="dataEra[era].entities > 0"
+                v-if="dataEra[era].entities.length > 0"
               >
                 <span class="bg"></span>
                 épigrammes liées

@@ -19,6 +19,7 @@ import SearchGenreComponent from './components/SearchGenreComponent'
 import SearchAuthorComponent from './components/SearchAuthorComponent'
 import SearchEraComponent from './components/SearchEraComponent'
 import SearchCityComponent from './components/SearchCityComponent'
+import SearchCharacterComponent from './components/SearchCharacterComponent'
 import NotFound from './components/404Component'
 
 // install router & resource
@@ -99,6 +100,10 @@ router.map({
   'recherche/ville/:id': {
     component: SearchCityComponent,
     name: 'searchCity'
+  },
+  'recherche/personnage/:id': {
+    component: SearchCharacterComponent,
+    name: 'searchCharacter'
   },
   '/404': {
     component: NotFound,
