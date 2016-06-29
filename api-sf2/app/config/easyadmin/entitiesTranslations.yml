@@ -4,14 +4,11 @@ easy_admin:
             class: AppBundle\Entity\EntitiesTranslations
             label: 'Entities translations'
             list:
-                fields: ['id', 'title', 'date', 'entityTranslations']
+                fields: ['id', 'textTranslated']
                 title: "All the Entities translations"
             form:
                 fields:
-                    - { property: 'book', type: 'easyadmin_autocomplete', label: 'Book ID' }
-                    - { property: 'era', type: 'easyadmin_autocomplete', label: 'Era ID' }
-                    - { property: 'genre', type: 'easyadmin_autocomplete', label: 'Genre ID' }
-                    - { property: 'title', type: 'text', label: 'Title' }
-                    - { property: 'date', type: 'integer', label: 'Date' }
-                    - { property: 'dateRange', type: 'integer', label: 'Variations' }
-                    - { property: 'entityTranslations', label: 'Entity translations' }
+                    - { property: 'entity', type: 'easyadmin_autocomplete', label: 'Entity ID' }
+                    - { property: 'language', type: 'easyadmin_autocomplete', label: 'Language ID' }
+                    - { property: 'language', label: 'Language' }
+                    - { property: 'textTranslated', type: 'textarea', label: 'Tanslation of the text' }

@@ -199,6 +199,6 @@ class Books
 
     public function __toString()
     {
-        return "ID ".$this->getId();
+        return "Book ".$this->getId();
     }
 }

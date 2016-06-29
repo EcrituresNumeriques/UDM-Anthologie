@@ -536,7 +536,7 @@ class Authors
 
     public function __toString()
     {
-        return "ID ".$this->getId();
+        return "Author ".$this->getId();
     }
 
 }

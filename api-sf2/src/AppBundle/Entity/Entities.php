@@ -757,6 +757,6 @@ class Entities
 
     public function __toString()
     {
-        return "ID ".$this->getId();
+        return $this->getId()." ".$this->getTitle();
     }
 }

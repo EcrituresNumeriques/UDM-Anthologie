@@ -1,0 +1,12 @@
+easy_admin:
+    entities:
+        Keywords:
+            class: AppBundle\Entity\Keywords
+            label: 'Keywords'
+            list:
+                fields: ['id', 'keywordFamily']
+                title: "All the Keywords"
+
+            form:
+                fields:
+                    - { property: 'keywordFamily', label: 'Keyword family' }

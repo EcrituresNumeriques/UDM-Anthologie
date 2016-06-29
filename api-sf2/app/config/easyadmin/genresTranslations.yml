@@ -1,0 +1,14 @@
+easy_admin:
+    entities:
+        GenresTranslations:
+            class: AppBundle\Entity\GenresTranslations
+            label: 'Genres translations'
+            list:
+                fields: ['id', 'genre', 'title']
+                title: "All the Genres translations"
+            form:
+                fields:
+                    - { property: 'title', type: 'text', label: 'Title' }
+                    - { property: 'description', type: 'textarea', label: 'Description' }
+                    - { property: 'language', label: 'Language' }
+                    - { property: 'genre', label: 'Genre ID' }

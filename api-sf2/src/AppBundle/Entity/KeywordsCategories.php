@@ -195,4 +195,9 @@ class KeywordsCategories
     {
         return $this->keywords;
     }
+
+    public function __toString()
+    {
+        return "Keyword Category ".$this->getId();
+    }
 }

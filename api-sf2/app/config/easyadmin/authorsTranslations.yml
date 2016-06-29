@@ -10,4 +10,5 @@ easy_admin:
                 fields:
                     - { property: 'name', type: 'text', label: 'Name' }
                     - { property: 'about', type: 'textarea', label: 'About' }
+                    - { property: 'language', label: 'Language' }
                     - { property: 'author', type: 'easyadmin_autocomplete', label: 'Author ID' }

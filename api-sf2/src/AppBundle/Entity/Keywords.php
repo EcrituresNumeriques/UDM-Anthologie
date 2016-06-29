@@ -320,4 +320,9 @@ class Keywords
     {
         return $this->images;
     }
+
+    public function __toString()
+    {
+        return "Keyword ".$this->getId();
+    }
 }

@@ -199,7 +199,7 @@ class EntitiesTranslations
 
     public function __toString()
     {
-        return "ID ".$this->getId();
+        return "Text ".$this->getId();
     }
 
 }

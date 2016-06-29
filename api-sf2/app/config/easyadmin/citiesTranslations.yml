@@ -11,4 +11,5 @@ easy_admin:
                     - { property: 'name', type: 'text', label: 'Name' }
                     - { property: 'currentName', type: 'text', label: 'Current name' }
                     - { property: 'description', type: 'textarea', label: 'Description' }
+                    - { property: 'language', label: 'Language' }
                     - { property: 'city', type: 'easyadmin_autocomplete', label: 'City ID' }

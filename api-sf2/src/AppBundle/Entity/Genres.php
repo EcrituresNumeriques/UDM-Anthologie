@@ -199,7 +199,7 @@ class Genres
 
     public function __toString()
     {
-        return "ID ".$this->getId();
+        return "Genre ".$this->getId();
     }
 
 }

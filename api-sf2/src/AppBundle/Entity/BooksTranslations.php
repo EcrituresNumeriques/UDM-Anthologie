@@ -200,6 +200,6 @@ class BooksTranslations
 
     public function __toString()
     {
-        return "ID ".$this->getId();
+        return $this->getId()." ".$this->getName();
     }
 }

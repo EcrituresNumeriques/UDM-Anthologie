@@ -9,4 +9,5 @@ easy_admin:
             form:
                 fields:
                     - { property: 'name', label: 'Book name' }
+                    - { property: 'language', label: 'Language' }
                     - { property: 'book', type: 'easyadmin_autocomplete', label: 'Book ID' }

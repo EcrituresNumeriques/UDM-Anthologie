@@ -308,7 +308,7 @@ class Eras
 
     public function __toString()
     {
-        return "ID ".$this->getId();
+        return "Era ".$this->getId();
     }
 
 }

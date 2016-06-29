@@ -113,4 +113,9 @@ class KeywordsFamilies
     {
         return $this->keywords;
     }
+
+    public function __toString()
+    {
+        return $this->getId()." ".$this->getName();
+    }
 }

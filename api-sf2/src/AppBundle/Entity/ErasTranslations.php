@@ -257,4 +257,9 @@ class ErasTranslations
     {
         return $this->language;
     }
+
+    public function __toString()
+    {
+        return $this->getId()." ".$this->getName();
+    }
 }
