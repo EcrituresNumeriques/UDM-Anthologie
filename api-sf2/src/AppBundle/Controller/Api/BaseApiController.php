@@ -282,16 +282,13 @@ abstract class BaseApiController extends FOSRestController
             $queryBuilder->andWhere("q.deletedAt IS NULL");
         }
 
-
-
-
-
         if ($paramFetcher->get('offset')) {
             $queryBuilder->setFirstResult($paramFetcher->get('offset'));
         }
         if ($paramFetcher->get('limit')) {
             $queryBuilder->setMaxResults($paramFetcher->get('limit'));
         }
+
         $result = $queryBuilder->getQuery()
             ->getResult();
         $view = $this->view($result , 200);
@@ -391,12 +388,23 @@ abstract class BaseApiController extends FOSRestController
 
         $em = $this->getDoctrine()->getManager();
         if ($paramFetcher->get('safeDelete')) {
-            $eventManager = $em->getEventManager();
-            $subscriber   = $this->get('knp.doctrine_behaviors.softdeletable_subscriber');
-            $eventManager->removeEventListener($subscriber->getSubscribedEvents() , $subscriber);
+            //loop to get listener => dirty but not fixed yet
+            $originalEventListeners = array();
+            $eventManager = $this->getDoctrine()->getManager()->getEventManager();
+            foreach ($em->getEventManager()->getListeners() as $eventName => $listeners) {
+                foreach ($listeners as $listener) {
+                    if ($listener instanceof \Knp\DoctrineBehaviors\ORM\SoftDeletable\SoftDeletableSubscriber) {
+                        $originalEventListeners[$eventName] = $listener;
+                        $em->getEventManager()->removeEventListener($eventName, $listener);
+                    }
+                }
+            }
             $em->remove($entity);
             $em->flush();
-            $eventManager->addEventSubscriber($subscriber);
+            //readd listeners
+            foreach ($originalEventListeners as $eventName => $listener) {
+                $em->getEventManager()->addEventListener($eventName, $listener);
+            }
         } else {
             $em->remove($entity);
             $em->flush();

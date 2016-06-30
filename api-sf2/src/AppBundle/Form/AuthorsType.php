@@ -1,8 +1,8 @@
 <?php
 
 namespace AppBundle\Form;
+
 use AppBundle\Entity\Images;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -11,57 +11,73 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class AuthorsType extends AbstractType
 {
     private $options;
-    private $dynamicFields;
+    private $simpleFieldTranformer;
+    private $arrayFieldTransformer;
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm (FormBuilderInterface $builder , array $options)
     {
-        $this->options       = $options;
-        $this->dynamicFields = ['bornCity' , 'diedCity' , 'era'];
-        
+        $this->options               = $options;
+        $this->simpleFieldTranformer = [
+            "bornCity" => CitiesType::class ,
+            "diedCity" => CitiesType::class ,
+            "era"      => ErasType::class ,
+        ];
+        $this->arrayFieldTransformer = [
+            "images"             => ImagesType::class ,
+            "authorTranslations" => AuthorsTranslationsType::class ,
+        ];
+
         $builder
-            ->add('born', IntegerType::class, array(
+            ->add('born' , IntegerType::class , array(
                 'required' => false
             ))
-            ->add('bornRange', IntegerType::class, array(
+            ->add('bornRange' , IntegerType::class , array(
                 'required' => false
             ))
-            ->add('died', IntegerType::class, array(
+            ->add('died' , IntegerType::class , array(
                 'required' => false
             ))
-            ->add('diedRange', IntegerType::class, array(
+            ->add('diedRange' , IntegerType::class , array(
                 'required' => false
             ))
-            ->add('activity', IntegerType::class, array(
+            ->add('activity' , IntegerType::class , array(
                 'required' => false
             ))
-            ->add('activityRange', IntegerType::class, array(
+            ->add('activityRange' , IntegerType::class , array(
                 'required' => false
             ))
-            ->add('bornCity' , CitiesType::class , array(
-                'required' => false
-            ))
-            ->add('diedCity' , CitiesType::class , array(
-                'required' => false
-            ))
-            ->add('era' , ErasType::class , array(
+            ->add('bornCity' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Cities' ,
                 'required' => false ,
+                'multiple' => false
+            ))
+            ->add('diedCity' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Cities' ,
+                'required' => false ,
+                'multiple' => false
+            ))
+            ->add('era' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Eras' ,
+                'required' => false ,
+                'multiple' => false
             ))
             ->add('images' , EntityType::class , array(
                 'class'    => 'AppBundle\Entity\Images' ,
                 'required' => false ,
                 'multiple' => true
             ))
-            ->add('authorTranslations' , CollectionType::class , array(
-                'entry_type'   => AuthorsTranslationsType::class ,
-                'allow_add'    => true ,
-                'allow_delete' => true ,
-                'by_reference' => false
+            ->add('authorTranslations' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\AuthorsTranslations' ,
+                'required' => false ,
+                'multiple' => true
             ))
             ->add('group')
             ->addEventListener(
@@ -72,18 +88,38 @@ class AuthorsType extends AbstractType
 
     public function onPreSubmitData (FormEvent $event)
     {
-        $datas = $event->getData();
-        $form  = $event->getForm();
-        foreach ($this->dynamicFields as $field) {
-            if (isset($datas[ $field ])) {
-                if (is_int($datas[ $field ]) && !is_array($datas[ $field ])) {
-                    $form->remove($datas[ $field ]);
-                    $form->add($field);
+        $fields = $event->getData();
+        $form   = $event->getForm();
+
+        foreach ($fields as $fieldKey => $field) {
+            if (array_key_exists($fieldKey , $this->simpleFieldTranformer)) {
+                if (isset($field) && !is_int($fields[$fieldKey])) {
+                    $fieldValue = $fields[$fieldKey];
+                    $form->remove($fieldKey);
+                    $form->add($fieldKey ,
+                        $this->simpleFieldTranformer[ $fieldKey ]);
+                    $fields[$fieldKey] = $fieldValue;
+                }
+            }
+            if (array_key_exists($fieldKey , $this->arrayFieldTransformer)) {
+                if (isset($field) && is_array($field)) {
+                    foreach ($field as $subField) {
+                        if (isset($subField) && !is_int($subField)) {
+                            $fieldValue = $fields[$fieldKey];
+                            $form->remove($fieldKey);
+                            $form->add($fieldKey, CollectionType::class , array(
+                                'entry_type'   => $this->arrayFieldTransformer[ $fieldKey ] ,
+                                'allow_add'    => true ,
+                                'allow_delete' => true ,
+                                'by_reference' => false
+                            ));
+                            $fields[$fieldKey] = $fieldValue;
+
+                        }
+                    }
                 }
             }
         }
-
-        //$form->setData($datas);
     }
 
     /**
@@ -94,9 +130,9 @@ class AuthorsType extends AbstractType
         $resolver->setDefaults(array(
             'data_class'         => 'AppBundle\Entity\Authors' ,
             'csrf_protection'    => false ,
-            'allow_extra_fields' => true ,
         ));
     }
+
     /**
      * {@inheritdoc}
      */

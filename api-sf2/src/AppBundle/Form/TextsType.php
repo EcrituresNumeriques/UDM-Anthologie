@@ -10,37 +10,45 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextsType extends AbstractType
 {
+    private $options;
+    private $simpleFieldTranformer;
+    private $arrayFieldTransformer;
+
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm (FormBuilderInterface $builder , array $options)
     {
+        $this->options               = $options;
+        $this->simpleFieldTranformer = [];
+        $this->arrayFieldTransformer = [
+            "entities"         => EntitiesType::class ,
+            "textTranslations" => TextsTranslationsType::class ,
+        ];
+
         $builder
-            ->add('entities', EntityType::class , array(
-                'class' => 'AppBundle\Entity\Entities' ,
+            ->add('entities' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\Entities' ,
                 'required' => false ,
                 'multiple' => true
             ))
-            ->add('textTranslations' , CollectionType::class , array(
-                'entry_type' => TextsTranslationsType::class ,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false
+            ->add('textTranslations' , EntityType::class , array(
+                'class'    => 'AppBundle\Entity\TextsTranslations' ,
+                'required' => false ,
+                'multiple' => true
             ))
-            ->add('group')
-        ;
+            ->add('group');
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions (OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Texts',
-            'csrf_protection' => false,
-            'allow_extra_fields' => true
+            'data_class'         => 'AppBundle\Entity\Texts' ,
+            'csrf_protection'    => false ,
         ));
     }
 
