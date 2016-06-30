@@ -24,4 +24,7 @@ npm run e2e
 npm test
 ```
 
+# Don't forget to change global.apiAuth and global.api to the api url as well as clientId, clientSecret, username and password to get the token
+# You also have to change global.theme to site url to get themes
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
