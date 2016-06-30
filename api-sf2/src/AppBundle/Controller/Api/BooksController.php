@@ -4,19 +4,64 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Books;
 use AppBundle\Entity\BooksTranslations;
+use AppBundle\Form\BooksTranslationsType;
 use AppBundle\Form\BooksType;
-use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class BooksController extends BaseApiController
 {
     /**
+     * @see BaseApiController::getParams()
+     *
+     * @return Object[]
+     */
+    public function getParams ()
+    {
+        return array(
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Books') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:BooksTranslations') ,
+            "entity"                => new Books() ,
+            "entityName"            => "Books" ,
+            "entitySetter"          => "setBook" ,
+            "entityForm"            => new BooksType() ,
+            "entityTranslation"     => new BooksTranslations() ,
+            "entityTranslationName" => "BooksTranslations" ,
+            "entityTranslationForm" => new BooksTranslationsType() ,
+        );
+    }
+
+    /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a list of books and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          }
+     *     },
+     *     filters={
+     *         {"name"="offset", "dataType"="integer"},
+     *         {"name"="limit", "dataType"="integer"},
+     *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
+     *         {"name"="groupId", "dataType"="integer"},
+     *         {"name"="userId", "dataType"="integer"},
+     *         {"name"="lang", "dataType"="integer"}
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
      *
      * @Get("/book/")
      *
@@ -31,6 +76,30 @@ class BooksController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a Book and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book identifier"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         204="Returned when no content",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Get("/book/{id}")
      *
@@ -47,6 +116,23 @@ class BooksController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Create a new Book",
+     *     requirements={
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\BooksType",
+     *     output="AppBundle\Entity\Books",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *     }
+     * )
      *
      * @Post("/book/")
      *
@@ -60,11 +146,35 @@ class BooksController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Edit a Book",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\BooksType",
+     *     output="AppBundle\Entity\Books",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Put("/book/{id}")
      *
-     * @param Request $request
-     * @param         $id
+     * @param Request      $request
+     * @param              $id
      *
      * @return Response
      */
@@ -74,7 +184,28 @@ class BooksController extends BaseApiController
     }
 
     /**
-     *
+     * @ApiDoc(
+     *     description="Edit a Book",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      * @Delete("/book/{id}")
      *
      * @param Request      $request
@@ -85,47 +216,134 @@ class BooksController extends BaseApiController
      */
     public function deleteBookAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
-        return BaseApiController::updateAction($request , $paramFetcher , $id);
+        return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
     /**
-     * @see BaseApiController::getRepository()
+     * @ApiDoc(
+     *     description="Create a new Book translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\BooksTranslationsType",
+     *     output="AppBundle\Entity\BooksTranslations",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         400="Returned when a parameter is not found",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
      *
-     * @return EntityRepository
+     * @Post("/book/{id}/translation/")
+     *
+     * @param Request $request
+     * @param         $id
+     *
+     * @return Response
      */
-    public function getRepository ()
+    public function postBookTranslationAction (Request $request , $id)
     {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Books');
+        return BaseApiController::createTranslationAction($request , $id);
     }
 
     /**
-     * @see BaseApiController::getNewEntity()
+     * @ApiDoc(
+     *     description="Edit a Book translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book translation id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\BooksTranslationsType",
+     *     output="AppBundle\Entity\BooksTranslations",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         403="Returned when the user is not modify datas",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
-     * @return Object
+     * @Put("/book/{id}/translation/{idTranslation}")
+     *
+     * @param Request $request
+     * @param         $id
+     * @param         $idTranslation
+     *
+     * @return Response
      */
-    public function getNewEntity ()
+    public function putBookTranslationAction (Request $request , $id , $idTranslation)
     {
-        return new Books();
+        return BaseApiController::updateTranslationAction($request , $idTranslation);
     }
 
     /**
-     * @see BaseApiController::getNewEntity()
+     * @ApiDoc(
+     *     description="Delete a Book translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book translation id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="book translation id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
+     * @Delete("/book/{id}/translation/{idTranslation}")
      *
-     * @return Object
-     */
-    public function getEntityTranslation ()
-    {
-        return new BooksTranslations();
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
+     * @param Request      $request
+     * @param ParamFetcher $paramFetcher
+     * @param              $id
+     * @param              $idTranslation
      *
-     * @return Object
+     * @return Response
      */
-    public function getFormType ()
+    public function deleteBookTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
     {
-        return BooksType::class;
+        return BaseApiController::deleteTranslationAction($request , $paramFetcher , $idTranslation);
     }
 
 }

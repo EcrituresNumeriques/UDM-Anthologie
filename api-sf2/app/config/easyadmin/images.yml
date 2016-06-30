@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        Images:
+            class: AppBundle\Entity\Images
+            label: 'Images'
+            list:
+                fields: ['id', 'date', 'URL']
+                title: "All the Images"
+
+            form:
+                fields:
+                    - { property: 'date', type: 'integer', label: 'Date' }
+                    - { property: 'dateRange', type: 'integer', label: 'Variations' }
+                    - { property: 'URL', type: 'text', label: 'Image URL' }
+                    - { property: 'credit', type: 'text', label: 'Credit' }

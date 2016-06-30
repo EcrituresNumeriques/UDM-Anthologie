@@ -1,8 +1,3 @@
-api_demo:
-    type: rest
-    resource: AppBundle\Controller\Api\DemoController
-    prefix: /v1
-
 api_authors:
     type: rest
     resource: AppBundle\Controller\Api\AuthorsController
@@ -27,27 +22,9 @@ api_entities:
     prefix: /v1
     name_prefix: api_v1_
 
-api_era:
+api_eras:
     type: rest
     resource: AppBundle\Controller\Api\ErasController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_genres:
-    type: rest
-    resource: AppBundle\Controller\Api\GenresController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_images:
-    type: rest
-    resource: AppBundle\Controller\Api\ImagesController
-    prefix: /v1
-    name_prefix: api_v1_
-
-api_langs:
-    type: rest
-    resource: AppBundle\Controller\Api\LangController
     prefix: /v1
     name_prefix: api_v1_
 
@@ -69,14 +46,68 @@ api_notes:
     prefix: /v1
     name_prefix: api_v1_
 
-api_Scholies:
+api_scholies:
     type: rest
     resource: AppBundle\Controller\Api\ScholiesController
     prefix: /v1
     name_prefix: api_v1_
 
-api_Texts:
+api_texts:
     type: rest
     resource: AppBundle\Controller\Api\TextsController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_keywords:
+    type: rest
+    resource: AppBundle\Controller\Api\KeywordsController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_keywords_categories:
+    type: rest
+    resource: AppBundle\Controller\Api\KeywordsCategoriesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_keywords_families:
+    type: rest
+    resource: AppBundle\Controller\Api\KeywordsFamiliesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_genres:
+    type: rest
+    resource: AppBundle\Controller\Api\GenresController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_images:
+    type: rest
+    resource: AppBundle\Controller\Api\ImagesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_languages:
+    type: rest
+    resource: AppBundle\Controller\Api\LanguagesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_uri:
+    type: rest
+    resource: AppBundle\Controller\Api\UriController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_uriCategories:
+    type: rest
+    resource: AppBundle\Controller\Api\UriCategoriesController
+    prefix: /v1
+    name_prefix: api_v1_
+
+api_uriSourceCategories:
+    type: rest
+    resource: AppBundle\Controller\Api\UriSourceController
     prefix: /v1
     name_prefix: api_v1_

@@ -2,11 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -15,6 +17,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="cities")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Cities
 {
@@ -38,12 +43,28 @@ class Cities
     private $gps;
 
     /**
-     * @OneToMany(targetEntity="CitiesTranslations", mappedBy="city")
+     * @var ArrayCollection
+     * @ManyToOne(targetEntity="User", inversedBy="cities")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @var ArrayCollection
+     * @ManyToOne(targetEntity="Group", inversedBy="cities")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @var ArrayCollection
+     * @OneToMany(targetEntity="CitiesTranslations", mappedBy="city", cascade={"persist"})
      */
     private $cityTranslations;
 
     /**
-     * @ManyToMany(targetEntity="Images")
+     * @var ArrayCollection
+     * @ManyToMany(targetEntity="Images", cascade={"persist"})
      * @JoinTable(name="cities_images_assoc",
      *      joinColumns={@JoinColumn(name="city_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
@@ -62,9 +83,19 @@ class Cities
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * Get gps
+     *
+     * @return string
+     */
+    public function getGps ()
+    {
+        return $this->gps;
     }
 
     /**
@@ -74,21 +105,11 @@ class Cities
      *
      * @return Cities
      */
-    public function setGps($gps)
+    public function setGps ($gps)
     {
         $this->gps = $gps;
 
         return $this;
-    }
-
-    /**
-     * Get gps
-     *
-     * @return string
-     */
-    public function getGps()
-    {
-        return $this->gps;
     }
 
     /**
@@ -98,8 +119,12 @@ class Cities
      *
      * @return Cities
      */
-    public function addCityTranslation(\AppBundle\Entity\CitiesTranslations $cityTranslation)
+    public function addCityTranslation (\AppBundle\Entity\CitiesTranslations $cityTranslation)
     {
+        if (empty($cityTranslation->getUser())) {
+            $cityTranslation->setUser($this->getUser());
+        }
+        $cityTranslation->setCity($this);
         $this->cityTranslations[] = $cityTranslation;
 
         return $this;
@@ -110,7 +135,7 @@ class Cities
      *
      * @param \AppBundle\Entity\CitiesTranslations $cityTranslation
      */
-    public function removeCityTranslation(\AppBundle\Entity\CitiesTranslations $cityTranslation)
+    public function removeCityTranslation (\AppBundle\Entity\CitiesTranslations $cityTranslation)
     {
         $this->cityTranslations->removeElement($cityTranslation);
     }
@@ -120,7 +145,7 @@ class Cities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCityTranslations()
+    public function getCityTranslations ()
     {
         return $this->cityTranslations;
     }
@@ -132,8 +157,11 @@ class Cities
      *
      * @return Cities
      */
-    public function addImage(\AppBundle\Entity\Images $image)
+    public function addImage (\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;
@@ -144,7 +172,7 @@ class Cities
      *
      * @param \AppBundle\Entity\Images $image
      */
-    public function removeImage(\AppBundle\Entity\Images $image)
+    public function removeImage (\AppBundle\Entity\Images $image)
     {
         $this->images->removeElement($image);
     }
@@ -154,8 +182,62 @@ class Cities
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getImages()
+    public function getImages ()
     {
         return $this->images;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Cities
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Cities
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    public function __toString()
+    {
+        return "City ".$this->getId();
+    }
+
 }

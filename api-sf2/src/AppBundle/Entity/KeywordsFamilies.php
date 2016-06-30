@@ -34,7 +34,7 @@ class KeywordsFamilies
     private $name;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\Keywords", mappedBy="keywordFamily")
+     * @OneToMany(targetEntity="Keywords", mappedBy="keywordFamily")
      */
     private $keywords;
 
@@ -88,6 +88,7 @@ class KeywordsFamilies
      */
     public function addKeyword(\AppBundle\Entity\Keywords $keyword)
     {
+        $keyword->setKeywordFamily($this);
         $this->keywords[] = $keyword;
 
         return $this;
@@ -111,5 +112,10 @@ class KeywordsFamilies
     public function getKeywords()
     {
         return $this->keywords;
+    }
+
+    public function __toString()
+    {
+        return $this->getId()." ".$this->getName();
     }
 }

@@ -2,16 +2,23 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use AppBundle\Annotation as AppAnnotations;
 
 /**
  * Motifs
  *
  * @ORM\Table(name="motifs")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Motifs
 {
@@ -27,7 +34,19 @@ class Motifs
     private $id;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\MotifsTranslations", mappedBy="motif")
+     * @ManyToOne(targetEntity="User", inversedBy="motifs")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="motifs")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @OneToMany(targetEntity="AppBundle\Entity\MotifsTranslations", mappedBy="motif", cascade={"persist"})
      */
     private $motifTranslations;
 
@@ -61,6 +80,10 @@ class Motifs
      */
     public function addMotifTranslation(\AppBundle\Entity\MotifsTranslations $motifTranslation)
     {
+        if (empty($motifTranslation->getUser())) {
+            $motifTranslation->setUser($this->getUser());
+        }
+        $motifTranslation->setMotif($this);
         $this->motifTranslations[] = $motifTranslation;
 
         return $this;
@@ -95,6 +118,10 @@ class Motifs
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addMotif($this);
         $this->entities[] = $entity;
 
         return $this;
@@ -118,5 +145,53 @@ class Motifs
     public function getEntities()
     {
         return $this->entities;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Motifs
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Motifs
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

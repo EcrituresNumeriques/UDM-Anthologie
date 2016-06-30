@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        Authors:
+            class: AppBundle\Entity\Authors
+            label: 'Authors'
+            list:
+                fields: ['id', 'born', 'died', 'activity', 'authorTranslations']
+                title: "All the authors"
+            form:
+                fields:
+                    - { property: 'born', type: 'integer', label: 'Date of birth' }
+                    - { property: 'bornRange', type: 'integer', label: 'Variations' }
+                    - { property: 'died', type: 'integer', label: 'Date of death' }
+                    - { property: 'diedRange', type: 'integer', label: 'Variations' }
+                    - { property: 'activity', type: 'integer', label: 'Activty' }
+                    - { property: 'activityRange', type: 'integer', label: 'Variations' }
+                    - { property: 'bornCity', label: 'City of birth' }
+                    - { property: 'diedCity', label: 'City of death' }
+                    - { property: 'authorTranslations', label: 'Author Translations' }

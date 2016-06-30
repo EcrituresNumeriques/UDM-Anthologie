@@ -3,11 +3,13 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImagesType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -18,9 +20,8 @@ class ImagesType extends AbstractType
             ->add('date')
             ->add('dateRange')
             ->add('url')
-            ->add('author')
-            ->add('era')
-        ;
+            ->add('credit')
+            ->add('group');  
     }
     
     /**
@@ -29,7 +30,16 @@ class ImagesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Images'
+            'data_class' => 'AppBundle\Entity\Images',
+            'csrf_protection' => false,
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName ()
+    {
+        return '';
     }
 }

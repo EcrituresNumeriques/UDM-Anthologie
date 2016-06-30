@@ -4,19 +4,64 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Eras;
 use AppBundle\Entity\ErasTranslations;
+use AppBundle\Form\ErasTranslationsType;
 use AppBundle\Form\ErasType;
-use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ErasController extends BaseApiController
 {
     /**
+     * @see BaseApiController::getParams()
+     *
+     * @return Object[]
+     */
+    public function getParams ()
+    {
+        return array(
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Eras') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:ErasTranslations') ,
+            "entity"                => new Eras() ,
+            "entityName"            => "Eras" ,
+            "entitySetter"          => "setEra" ,
+            "entityForm"            => new ErasType() ,
+            "entityTranslation"     => new ErasTranslations() ,
+            "entityTranslationName" => "ErasTranslations" ,
+            "entityTranslationForm" => new ErasTranslationsType() ,
+        );
+    }
+
+    /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a list of Eras and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          }
+     *     },
+     *     filters={
+     *         {"name"="offset", "dataType"="integer"},
+     *         {"name"="limit", "dataType"="integer"},
+     *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
+     *         {"name"="groupId", "dataType"="integer"},
+     *         {"name"="userId", "dataType"="integer"},
+     *         {"name"="lang", "dataType"="integer"}
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
      *
      * @Get("/era/")
      *
@@ -31,6 +76,30 @@ class ErasController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get an Era and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era identifier"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         204="Returned when no content",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Get("/era/{id}")
      *
@@ -47,6 +116,23 @@ class ErasController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Create a new Era",
+     *     requirements={
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\ErasType",
+     *     output="AppBundle\Entity\Eras",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *     }
+     * )
      *
      * @Post("/era/")
      *
@@ -60,11 +146,35 @@ class ErasController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Edit an Era",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\ErasType",
+     *     output="AppBundle\Entity\Eras",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Put("/era/{id}")
      *
-     * @param Request $request
-     * @param         $id
+     * @param Request      $request
+     * @param              $id
      *
      * @return Response
      */
@@ -74,7 +184,28 @@ class ErasController extends BaseApiController
     }
 
     /**
-     *
+     * @ApiDoc(
+     *     description="Edit an Era",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      * @Delete("/era/{id}")
      *
      * @param Request      $request
@@ -85,47 +216,134 @@ class ErasController extends BaseApiController
      */
     public function deleteEraAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
-        return BaseApiController::updateAction($request , $paramFetcher , $id);
+        return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
     /**
-     * @see BaseApiController::getRepository()
+     * @ApiDoc(
+     *     description="Create a new Era translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\ErasTranslationsType",
+     *     output="AppBundle\Entity\ErasTranslations",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         400="Returned when a parameter is not found",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
      *
-     * @return EntityRepository
+     * @Post("/era/{id}/translation/")
+     *
+     * @param Request $request
+     * @param         $id
+     *
+     * @return Response
      */
-    public function getRepository ()
+    public function postEraTranslationAction (Request $request , $id)
     {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Eras');
+        return BaseApiController::createTranslationAction($request , $id);
     }
 
     /**
-     * @see BaseApiController::getNewEntity()
+     * @ApiDoc(
+     *     description="Edit an Era translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era translation id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\ErasTranslationsType",
+     *     output="AppBundle\Entity\ErasTranslations",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         403="Returned when the user is not modify datas",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
-     * @return Object
+     * @Put("/era/{id}/translation/{idTranslation}")
+     *
+     * @param Request $request
+     * @param         $id
+     * @param         $idTranslation
+     *
+     * @return Response
      */
-    public function getNewEntity ()
+    public function putEraTranslationAction (Request $request , $id , $idTranslation)
     {
-        return new Eras();
+        return BaseApiController::updateTranslationAction($request , $idTranslation);
     }
 
     /**
-     * @see BaseApiController::getNewEntity()
+     * @ApiDoc(
+     *     description="Delete an Era translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era translation id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="era translation id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
+     * @Delete("/era/{id}/translation/{idTranslation}")
      *
-     * @return Object
-     */
-    public function getEntityTranslation ()
-    {
-        return new ErasTranslations();
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
+     * @param Request      $request
+     * @param ParamFetcher $paramFetcher
+     * @param              $id
+     * @param              $idTranslation
      *
-     * @return Object
+     * @return Response
      */
-    public function getFormType ()
+    public function deleteEraTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
     {
-        return ErasType::class;
+        return BaseApiController::deleteTranslationAction($request , $paramFetcher , $idTranslation);
     }
 
 }

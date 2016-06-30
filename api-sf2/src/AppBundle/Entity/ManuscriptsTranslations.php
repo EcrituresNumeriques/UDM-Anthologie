@@ -2,9 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JMS\Serializer\Annotation\Exclude;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -12,6 +14,10 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="manuscripts_translations")
  * @ORM\Entity
+ * @AppAnnotations\TranslatableMeta(languageTable="language_id")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class ManuscriptsTranslations
 {
@@ -41,17 +47,30 @@ class ManuscriptsTranslations
     private $page;
 
     /**
-     * @ManyToOne(targetEntity="AppBundle\Entity\Manuscripts", inversedBy="manuscriptTranslations")
+     * @ManyToOne(targetEntity="Manuscripts", inversedBy="manuscriptTranslations")
      * @JoinColumn(name="manuscript_id", referencedColumnName="id", onDelete="CASCADE")
+     * @Exclude
      */
-    private $manuscripts;
+    private $manuscript;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Group")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+    
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-
+    
 
     /**
      * Get id
@@ -112,27 +131,75 @@ class ManuscriptsTranslations
     }
 
     /**
-     * Set manuscripts
+     * Set manuscript
      *
-     * @param \AppBundle\Entity\Manuscripts $manuscripts
+     * @param \AppBundle\Entity\Manuscripts $manuscript
      *
      * @return ManuscriptsTranslations
      */
-    public function setManuscripts(\AppBundle\Entity\Manuscripts $manuscripts = null)
+    public function setManuscript(\AppBundle\Entity\Manuscripts $manuscript = null)
     {
-        $this->manuscripts = $manuscripts;
+        $this->manuscript = $manuscript;
 
         return $this;
     }
 
     /**
-     * Get manuscripts
+     * Get manuscript
      *
      * @return \AppBundle\Entity\Manuscripts
      */
-    public function getManuscripts()
+    public function getManuscript()
     {
-        return $this->manuscripts;
+        return $this->manuscript;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return ManuscriptsTranslations
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return ManuscriptsTranslations
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 
     /**

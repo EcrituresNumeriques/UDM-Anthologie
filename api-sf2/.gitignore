@@ -13,3 +13,5 @@
 **/.idea/workspace.xml
 **/.idea/tasks.xml
 **/Entity/*.php~
+/.idea/
+/bower_components/

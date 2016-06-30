@@ -1,0 +1,347 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.main-header .logo {
+    transition: .5s all ease-out;
+}
+
+a:hover,
+a:focus,
+a:active {
+    opacity: .5;
+    color: #366870;
+    transition: .5s all ease-out;
+}
+
+aside.main-sidebar {
+    background: #73959d;
+}
+
+ul.sidebar-menu li a {
+    color: rgba(216, 216, 216, .5);
+    font-size: 20px;
+    transition: .5s all ease-out;
+}
+
+ul.sidebar-menu li a i.fa-chevron-circle-right:before {
+    display: none;
+}
+
+ul.sidebar-menu li a i {
+    width: 15px!important;
+    height: 15px;
+    border-radius: 50%;
+    background: #d8d8d8;
+    opacity: .5;
+    transition: .5s all ease-out;
+}
+
+ul.sidebar-menu li a span {
+    margin-left: 15px;
+}
+
+
+ul.sidebar-menu li.active a {
+    background: none;
+    color: rgba(216, 216, 216, 1);
+    font-weight: 600;
+    border-left-color: #366870;
+}
+
+ul.sidebar-menu li.active a i {
+    opacity: 1;
+}
+
+ul.sidebar-menu li:hover a,
+ul.sidebar-menu li:focus a {
+    background: none;
+    color: rgba(216, 216, 216, 1);
+    opacity: 1;
+    border-left-color: #366870;
+}
+
+ul.sidebar-menu li:hover a i,
+ul.sidebar-menu li:focus a i {
+    opacity: 1;
+}
+
+section.content-header {
+    padding: 50px 15px 0 15px;
+}
+
+section.content-header h1.title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #366870;
+}
+
+div.content-wrapper {
+    background: #f6f6f6;
+}
+
+div.action-search input[type="search"] {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    height: 33px;
+    border: 1px solid #366870;
+}
+
+button[type="submit"],
+a.btn.btn-primary.action-edit {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: #366870;
+    border: 1px solid #366870!important;
+    transition: .5s all ease-out;
+}
+
+button[type="submit"] i,
+button[type="submit"] span,
+a.btn.btn-primary.action-edit i {
+    color: #ffffff;
+    transition: .5s all ease-out;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus,
+a.btn.btn-primary.action-edit:hover,
+a.btn.btn-primary.action-edit:focus {
+    background: #f6f6f6;
+    color: #366870;
+}
+
+button[type="submit"]:hover i,
+button[type="submit"]:focus i,
+button[type="submit"]:hover span,
+button[type="submit"]:focus span,
+a.btn.btn-primary.action-edit:hover i,
+a.btn.btn-primary.action-edit:focus i,
+a.btn.btn-primary.action-edit:hover span,
+a.btn.btn-primary.action-edit:focus span {
+    color: #366870;
+}
+
+div.button-action {
+    padding-left: 20px;
+}
+
+div.button-action a {
+    border: 1px solid #366870;
+    transition: .5s all ease-out;
+}
+
+div.button-action a:hover,
+div.button-action a:focus {
+    background: #f6f6f6;
+    color: #366870;
+    border: 1px solid #366870;
+}
+
+
+section#main {
+    margin: 50px 0;
+}
+
+section#main table th {
+    background: none;
+    border: 1px solid #366870;
+}
+
+section#main table th a,
+section#main table th a i,
+section#main table th span {
+    color: #ffffff;
+    transition: .5s all ease-out;
+}
+
+section#main table th a,
+section#main table th span {
+    background: #366870;
+}
+
+section#main table th a i {
+    padding: 0 10px;
+}
+
+section#main table th a:hover,
+section#main table th a:focus {
+    background: #f6f6f6;
+    color: #366870;
+    opacity: 1;
+}
+
+section#main table th a:hover i,
+section#main table th a:focus i {
+    color: #366870;
+}
+
+section#main table td {
+    padding: 15px;
+}
+
+.toggle-group .toggle-on,
+.toggle-group .toggle-on.btn-xs,
+.toggle-group .toggle-on:hover,
+.toggle-group .toggle-on:active,
+.toggle-group .toggle-on:active:hover {
+    background: #78b26c;
+    border-color: #78b26c;
+}
+
+.toggle-group .toggle-handle,
+.toggle-group .toggle-handle:hover,
+.toggle-group .toggle-handle:active,
+.toggle-group .toggle-handle:active:hover {
+    margin: 0;
+    border-radius: 0;
+    height: 100%;
+}
+
+.toggle-group .toggle-off,
+.toggle-group .toggle-off.btn-xs,
+.toggle-group .toggle-off:hover,
+.toggle-group .toggle-off:active,
+.toggle-group .toggle-off:active:hover {
+    background: #e28989;
+    border-color: #e28989;
+}
+
+a.text-danger {
+    color: #e28989;
+}
+
+a.text-primary {
+    color: #366870;
+    opacity: .5;
+    transition: .5s all ease-out;
+}
+
+a.text-primary:hover,
+a.text-primary:focus {
+    opacity: 1;
+    color: #366870;
+}
+
+.label-danger {
+    background: #e28989!important;
+    padding: 8px;
+}
+
+.label {
+    padding: 8px;
+}
+
+.badge {
+    padding: 6px 10px;
+    border-radius: 50%;
+}
+
+.form-horizontal .form-group {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.form-horizontal input,
+.form-horizontal label {
+    display: block;
+    width: 100%;
+}
+
+.form-horizontal input,
+.form-horizontal textarea {
+    border: none;
+    border-bottom: 2px solid #366870;
+}
+
+.form-horizontal label.control-label {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+a.action-list {
+    font-size: 20px;
+    color: #73959d;
+    opacity: .7;
+    transition: .5s all ease-out;
+    text-decoration: none;
+}
+
+a.action-list:hover,
+a.action-list:focus,
+a.action-list:active,
+a.action-list:active:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+
+.navbar-custom-menu {
+    position: relative;
+}
+
+.backoffice-profile-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.form-control {
+    padding: 15px;
+}
+
+a.btn.btn-default.action-delete {
+    border: 1px solid #e28989;
+    transition: .5s all ease-out;
+    background: #e28989;
+    color: #ffffff;
+}
+
+a.btn.btn-default.action-delete:hover {
+    background: none;
+    border: 1px solid #e28989;
+    color: #e28989;
+}
+
+.form-group.field-checkbox .col-sm-2 {
+    display: none;
+}
+
+.new-form .form-group.field-checkbox label input[type="checkbox"],
+.edit-form .form-group.field-checkbox label input[type="checkbox"],
+.new-form .form-group.field-collection label,
+.edit-form .form-group.field-collection label,
+.new-form .form-group.field-datetime label input[type="checkbox"],
+.edit-form .form-group.field-datetime label input[type="checkbox"],
+.new-form .form-group.field-datetime label,
+.edit-form .form-group.field-datetime label {
+    display: inline;
+    width: initial;
+}
+
+.form-group.field-collection .form-group.field-text {
+    margin-top: 0;
+}
+
+.text-right.field-collection-action {
+    width: 50%;
+    margin: -15px auto 0!important;
+    text-align: center;
+}
+
+#new-user-form .form-group.field-datetime,
+#edit-user-form .form-group.field-datetime {
+    margin-top: 30px;
+}
+
+.form-group.field-datetime .nullable-control {
+    padding-top: 8px;
+}
+
+.form-group.field-datetime .nullable-control input {
+    margin-right: 10px;
+}

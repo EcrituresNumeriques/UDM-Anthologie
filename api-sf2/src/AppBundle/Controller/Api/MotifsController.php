@@ -4,19 +4,64 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Motifs;
 use AppBundle\Entity\MotifsTranslations;
+use AppBundle\Form\MotifsTranslationsType;
 use AppBundle\Form\MotifsType;
-use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MotifsController extends BaseApiController
 {
     /**
+     * @see BaseApiController::getParams()
+     *
+     * @return Object[]
+     */
+    public function getParams ()
+    {
+        return array(
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Motifs') ,
+            "repositoryTranslation" => $this->getDoctrine()->getManager()->getRepository('AppBundle:MotifsTranslations') ,
+            "entity"                => new Motifs() ,
+            "entityName"            => "Motifs" ,
+            "entitySetter"          => "setMotif" ,
+            "entityForm"            => new MotifsType() ,
+            "entityTranslation"     => new MotifsTranslations() ,
+            "entityTranslationName" => "MotifsTranslations" ,
+            "entityTranslationForm" => new MotifsTranslationsType() ,
+        );
+    }
+
+    /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a list of motifs and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          }
+     *     },
+     *     filters={
+     *         {"name"="offset", "dataType"="integer"},
+     *         {"name"="limit", "dataType"="integer"},
+     *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
+     *         {"name"="groupId", "dataType"="integer"},
+     *         {"name"="userId", "dataType"="integer"},
+     *         {"name"="lang", "dataType"="integer"}
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
      *
      * @Get("/motif/")
      *
@@ -31,6 +76,30 @@ class MotifsController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a Motif and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif identifier"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         204="Returned when no content",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Get("/motif/{id}")
      *
@@ -47,6 +116,23 @@ class MotifsController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Create a new Motif",
+     *     requirements={
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\MotifsType",
+     *     output="AppBundle\Entity\Motifs",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *     }
+     * )
      *
      * @Post("/motif/")
      *
@@ -60,11 +146,35 @@ class MotifsController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Edit a Motif",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\MotifsType",
+     *     output="AppBundle\Entity\Motifs",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Put("/motif/{id}")
      *
-     * @param Request $request
-     * @param         $id
+     * @param Request      $request
+     * @param              $id
      *
      * @return Response
      */
@@ -74,7 +184,28 @@ class MotifsController extends BaseApiController
     }
 
     /**
-     *
+     * @ApiDoc(
+     *     description="Edit a Motif",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      * @Delete("/motif/{id}")
      *
      * @param Request      $request
@@ -85,47 +216,134 @@ class MotifsController extends BaseApiController
      */
     public function deleteMotifAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
-        return BaseApiController::updateAction($request , $paramFetcher , $id);
+        return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
     /**
-     * @see BaseApiController::getRepository()
+     * @ApiDoc(
+     *     description="Create a new Motif translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\MotifsTranslationsType",
+     *     output="AppBundle\Entity\MotifsTranslations",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         400="Returned when a parameter is not found",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
      *
-     * @return EntityRepository
+     * @Post("/motif/{id}/translation/")
+     *
+     * @param Request $request
+     * @param         $id
+     *
+     * @return Response
      */
-    public function getRepository ()
+    public function postMotifTranslationAction (Request $request , $id)
     {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Motifs');
+        return BaseApiController::createTranslationAction($request , $id);
     }
 
     /**
-     * @see BaseApiController::getNewEntity()
+     * @ApiDoc(
+     *     description="Edit a Motif translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif translation id"
+     *          }
+     *     },
+     *     input="AppBundle\Form\MotifsTranslationsType",
+     *     output="AppBundle\Entity\MotifsTranslations",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         403="Returned when the user is not modify datas",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
-     * @return Object
+     * @Put("/motif/{id}/translation/{idTranslation}")
+     *
+     * @param Request $request
+     * @param         $id
+     * @param         $idTranslation
+     *
+     * @return Response
      */
-    public function getNewEntity ()
+    public function putMotifTranslationAction (Request $request , $id , $idTranslation)
     {
-        return new Motifs();
+        return BaseApiController::updateTranslationAction($request , $idTranslation);
     }
 
     /**
-     * @see BaseApiController::getNewEntity()
+     * @ApiDoc(
+     *     description="Delete a Motif translation",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif translation id"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="motif translation id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
+     * @Delete("/motif/{id}/translation/{idTranslation}")
      *
-     * @return Object
-     */
-    public function getEntityTranslation ()
-    {
-        return new MotifsTranslations();
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
+     * @param Request      $request
+     * @param ParamFetcher $paramFetcher
+     * @param              $id
+     * @param              $idTranslation
      *
-     * @return Object
+     * @return Response
      */
-    public function getFormType ()
+    public function deleteMotifTranslationAction (Request $request , ParamFetcher $paramFetcher , $id , $idTranslation)
     {
-        return MotifsType::class;
+        return BaseApiController::deleteTranslationAction($request , $paramFetcher , $idTranslation);
     }
 
 }

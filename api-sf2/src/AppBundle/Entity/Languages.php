@@ -98,4 +98,9 @@ class Languages
         return $this->family;
     }
 
+    public function __toString()
+    {
+        return $this->getId()." ".$this->getName();
+    }
+
 }

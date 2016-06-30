@@ -23,8 +23,8 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-
+            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            
             new AppBundle\AppBundle(),
         );
 

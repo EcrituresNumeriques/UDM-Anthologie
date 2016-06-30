@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use Symfony\Component\DependencyInjection\Tests\A;
+
 
 /**
  * Authors
@@ -18,6 +19,9 @@ use Symfony\Component\DependencyInjection\Tests\A;
  * @ORM\Table(name="authors")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Authors
 {
@@ -77,35 +81,47 @@ class Authors
     private $activityRange;
 
     /**
-     * @OneToMany(targetEntity="AuthorsTranslations", mappedBy="author")
-     */
-    private $authorTranslations;
-
-    /**
-     * @ManyToOne(targetEntity="Cities")
+     * @ManyToOne(targetEntity="Cities", cascade={"persist"})
      * @JoinColumn(name="city_born_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $bornCity;
 
     /**
-     * @ManyToOne(targetEntity="Cities")
+     * @ManyToOne(targetEntity="Cities", cascade={"persist"})
      * @JoinColumn(name="city_died_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $diedCity;
 
     /**
-     * @ManyToOne(targetEntity="Eras")
+     * @ManyToOne(targetEntity="Eras", cascade={"persist"})
      * @JoinColumn(name="era_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $era;
 
     /**
-     * @ManyToMany(targetEntity="Entities", mappedBy="authors")
+     * @ManyToOne(targetEntity="User", inversedBy="authors")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="authors")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @OneToMany(targetEntity="AuthorsTranslations", mappedBy="author", cascade={"persist"})
+     */
+    private $authorTranslations;
+
+    /**
+     * @ManyToMany(targetEntity="Entities", mappedBy="authors", cascade={"persist"})
      */
     private $entities;
 
     /**
-     * @ManyToMany(targetEntity="Images")
+     * @ManyToMany(targetEntity="Images", cascade={"persist"})
      * @JoinTable(name="authors_images_assoc",
      *      joinColumns={@JoinColumn(name="author_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
@@ -121,15 +137,24 @@ class Authors
     }
 
 
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * Get born
+     *
+     * @return integer
+     */
+    public function getBorn ()
+    {
+        return $this->born;
     }
 
     /**
@@ -139,33 +164,9 @@ class Authors
      *
      * @return Authors
      */
-    public function setBorn($born)
+    public function setBorn ($born)
     {
         $this->born = $born;
-
-        return $this;
-    }
-
-    /**
-     * Get born
-     *
-     * @return integer
-     */
-    public function getBorn()
-    {
-        return $this->born;
-    }
-
-    /**
-     * Set bornRange
-     *
-     * @param integer $bornRange
-     *
-     * @return Authors
-     */
-    public function setBornRange($bornRange)
-    {
-        $this->bornRange = $bornRange;
 
         return $this;
     }
@@ -175,21 +176,21 @@ class Authors
      *
      * @return integer
      */
-    public function getBornRange()
+    public function getBornRange ()
     {
         return $this->bornRange;
     }
 
     /**
-     * Set died
+     * Set bornRange
      *
-     * @param integer $died
+     * @param integer $bornRange
      *
      * @return Authors
      */
-    public function setDied($died)
+    public function setBornRange ($bornRange)
     {
-        $this->died = $died;
+        $this->bornRange = $bornRange;
 
         return $this;
     }
@@ -199,21 +200,21 @@ class Authors
      *
      * @return integer
      */
-    public function getDied()
+    public function getDied ()
     {
         return $this->died;
     }
 
     /**
-     * Set diedRange
+     * Set died
      *
-     * @param integer $diedRange
+     * @param integer $died
      *
      * @return Authors
      */
-    public function setDiedRange($diedRange)
+    public function setDied ($died)
     {
-        $this->diedRange = $diedRange;
+        $this->died = $died;
 
         return $this;
     }
@@ -223,21 +224,21 @@ class Authors
      *
      * @return integer
      */
-    public function getDiedRange()
+    public function getDiedRange ()
     {
         return $this->diedRange;
     }
 
     /**
-     * Set activity
+     * Set diedRange
      *
-     * @param integer $activity
+     * @param integer $diedRange
      *
      * @return Authors
      */
-    public function setActivity($activity)
+    public function setDiedRange ($diedRange)
     {
-        $this->activity = $activity;
+        $this->diedRange = $diedRange;
 
         return $this;
     }
@@ -247,21 +248,21 @@ class Authors
      *
      * @return integer
      */
-    public function getActivity()
+    public function getActivity ()
     {
         return $this->activity;
     }
 
     /**
-     * Set activityRange
+     * Set activity
      *
-     * @param integer $activityRange
+     * @param integer $activity
      *
      * @return Authors
      */
-    public function setActivityRange($activityRange)
+    public function setActivity ($activity)
     {
-        $this->activityRange = $activityRange;
+        $this->activity = $activity;
 
         return $this;
     }
@@ -271,9 +272,23 @@ class Authors
      *
      * @return integer
      */
-    public function getActivityRange()
+    public function getActivityRange ()
     {
         return $this->activityRange;
+    }
+
+    /**
+     * Set activityRange
+     *
+     * @param integer $activityRange
+     *
+     * @return Authors
+     */
+    public function setActivityRange ($activityRange)
+    {
+        $this->activityRange = $activityRange;
+
+        return $this;
     }
 
     /**
@@ -283,8 +298,13 @@ class Authors
      *
      * @return Authors
      */
-    public function addAuthorTranslation(\AppBundle\Entity\AuthorsTranslations $authorTranslation)
+    public function addAuthorTranslation (\AppBundle\Entity\AuthorsTranslations $authorTranslation)
     {
+
+        if (empty($authorTranslation->getUser())) {
+            $authorTranslation->setUser($this->getUser());
+        }
+        $authorTranslation->setAuthor($this);
         $this->authorTranslations[] = $authorTranslation;
 
         return $this;
@@ -295,7 +315,7 @@ class Authors
      *
      * @param \AppBundle\Entity\AuthorsTranslations $authorTranslation
      */
-    public function removeAuthorTranslation(\AppBundle\Entity\AuthorsTranslations $authorTranslation)
+    public function removeAuthorTranslation (\AppBundle\Entity\AuthorsTranslations $authorTranslation)
     {
         $this->authorTranslations->removeElement($authorTranslation);
     }
@@ -305,9 +325,19 @@ class Authors
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAuthorTranslations()
+    public function getAuthorTranslations ()
     {
         return $this->authorTranslations;
+    }
+
+    /**
+     * Get bornCity
+     *
+     * @return \AppBundle\Entity\Cities
+     */
+    public function getBornCity ()
+    {
+        return $this->bornCity;
     }
 
     /**
@@ -317,33 +347,12 @@ class Authors
      *
      * @return Authors
      */
-    public function setBornCity(\AppBundle\Entity\Cities $bornCity = null)
+    public function setBornCity (\AppBundle\Entity\Cities $bornCity = null)
     {
+        if (empty($bornCity->getUser())) {
+            $bornCity->setUser($this->getUser());
+        }
         $this->bornCity = $bornCity;
-
-        return $this;
-    }
-
-    /**
-     * Get bornCity
-     *
-     * @return \AppBundle\Entity\Cities
-     */
-    public function getBornCity()
-    {
-        return $this->bornCity;
-    }
-
-    /**
-     * Set diedCity
-     *
-     * @param \AppBundle\Entity\Cities $diedCity
-     *
-     * @return Authors
-     */
-    public function setDiedCity(\AppBundle\Entity\Cities $diedCity = null)
-    {
-        $this->diedCity = $diedCity;
 
         return $this;
     }
@@ -353,21 +362,24 @@ class Authors
      *
      * @return \AppBundle\Entity\Cities
      */
-    public function getDiedCity()
+    public function getDiedCity ()
     {
         return $this->diedCity;
     }
 
     /**
-     * Set era
+     * Set diedCity
      *
-     * @param \AppBundle\Entity\Eras $era
+     * @param \AppBundle\Entity\Cities $diedCity
      *
      * @return Authors
      */
-    public function setEra(\AppBundle\Entity\Eras $era = null)
+    public function setDiedCity (\AppBundle\Entity\Cities $diedCity = null)
     {
-        $this->era = $era;
+        if (empty($diedCity->getUser())) {
+            $diedCity->setUser($this->getUser());
+        }
+        $this->diedCity = $diedCity;
 
         return $this;
     }
@@ -377,9 +389,26 @@ class Authors
      *
      * @return \AppBundle\Entity\Eras
      */
-    public function getEra()
+    public function getEra ()
     {
         return $this->era;
+    }
+
+    /**
+     * Set era
+     *
+     * @param \AppBundle\Entity\Eras $era
+     *
+     * @return Authors
+     */
+    public function setEra (\AppBundle\Entity\Eras $era = null)
+    {
+        if (empty($era->getUser())) {
+            $era->setUser($this->getUser());
+        }
+        $this->era = $era;
+
+        return $this;
     }
 
     /**
@@ -389,8 +418,12 @@ class Authors
      *
      * @return Authors
      */
-    public function addEntity(\AppBundle\Entity\Entities $entity)
+    public function addEntity (\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->addAuthor($this);
         $this->entities[] = $entity;
 
         return $this;
@@ -401,7 +434,7 @@ class Authors
      *
      * @param \AppBundle\Entity\Entities $entity
      */
-    public function removeEntity(\AppBundle\Entity\Entities $entity)
+    public function removeEntity (\AppBundle\Entity\Entities $entity)
     {
         $this->entities->removeElement($entity);
     }
@@ -411,7 +444,7 @@ class Authors
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntities()
+    public function getEntities ()
     {
         return $this->entities;
     }
@@ -423,8 +456,11 @@ class Authors
      *
      * @return Authors
      */
-    public function addImage(\AppBundle\Entity\Images $image)
+    public function addImage (\AppBundle\Entity\Images $image)
     {
+        if (empty($image->getUser())) {
+            $image->setUser($this->getUser());
+        }
         $this->images[] = $image;
 
         return $this;
@@ -435,7 +471,7 @@ class Authors
      *
      * @param \AppBundle\Entity\Images $image
      */
-    public function removeImage(\AppBundle\Entity\Images $image)
+    public function removeImage (\AppBundle\Entity\Images $image)
     {
         $this->images->removeElement($image);
     }
@@ -445,8 +481,62 @@ class Authors
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getImages()
+    public function getImages ()
     {
         return $this->images;
     }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser ()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Authors
+     */
+    public function setUser (\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup ()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Authors
+     */
+    public function setGroup (\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return "Author ".$this->getId();
+    }
+
 }

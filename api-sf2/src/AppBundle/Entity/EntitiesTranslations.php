@@ -2,9 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JMS\Serializer\Annotation\Exclude;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -12,6 +14,10 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="entities_translations")
  * @ORM\Entity
+ * @AppAnnotations\TranslatableMeta(languageTable="language_id")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class EntitiesTranslations
 {
@@ -30,21 +36,36 @@ class EntitiesTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="text_translated", type="string", length=45, nullable=true)
+     * @ORM\Column(name="text_translated", type="text", length=65535, nullable=true)
      */
     private $textTranslated;
 
     /**
      * @ManyToOne(targetEntity="Entities", inversedBy="entityTranslations")
      * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
+     * @Exclude
      */
     private $entity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Group")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
 
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
+
+   
 
     /**
      * Get id
@@ -105,6 +126,54 @@ class EntitiesTranslations
     }
 
     /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return EntitiesTranslations
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return EntitiesTranslations
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
      * Set language
      *
      * @param \AppBundle\Entity\Languages $language
@@ -127,4 +196,10 @@ class EntitiesTranslations
     {
         return $this->language;
     }
+
+    public function __toString()
+    {
+        return "Text ".$this->getId();
+    }
+
 }

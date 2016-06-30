@@ -2,9 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JMS\Serializer\Annotation\Exclude;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -12,6 +14,10 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="genres_translations")
  * @ORM\Entity
+ * @AppAnnotations\TranslatableMeta(languageTable="language_id")
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class GenresTranslations
 {
@@ -29,9 +35,9 @@ class GenresTranslations
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=45, nullable=false, unique=true)
+     * @ORM\Column(name="title", type="string", length=45, nullable=false)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var string
@@ -43,15 +49,28 @@ class GenresTranslations
     /**
      * @ManyToOne(targetEntity="Genres", inversedBy="genreTranslations")
      * @JoinColumn(name="genre_id", referencedColumnName="id", onDelete="CASCADE")
+     * @Exclude
      */
     private $genre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Group")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+    
     /**
      * @ManyToOne(targetEntity="Languages")
      * @JoinColumn(name="language_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $language;
-
+    
 
     /**
      * Get id
@@ -64,27 +83,27 @@ class GenresTranslations
     }
 
     /**
-     * Set titre
+     * Set title
      *
-     * @param string $titre
+     * @param string $title
      *
      * @return GenresTranslations
      */
-    public function setTitre($titre)
+    public function setTitle($title)
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get titre
+     * Get title
      *
      * @return string
      */
-    public function getTitre()
+    public function getTitle()
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
@@ -136,6 +155,54 @@ class GenresTranslations
     }
 
     /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return GenresTranslations
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return GenresTranslations
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
      * Set language
      *
      * @param \AppBundle\Entity\Languages $language
@@ -157,5 +224,10 @@ class GenresTranslations
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    public function __toString()
+    {
+        return $this->getId()." ".$this->getTitle();
     }
 }

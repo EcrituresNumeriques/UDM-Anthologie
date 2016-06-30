@@ -1,4 +1,5 @@
 services:
-#    acme_api.example:
-#        class: Acme\ApiBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }

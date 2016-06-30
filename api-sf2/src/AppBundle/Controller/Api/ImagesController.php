@@ -2,23 +2,60 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Genres;
-use AppBundle\Entity\GenresTranslations;
 use AppBundle\Entity\Images;
-use AppBundle\Form\GenresType;
 use AppBundle\Form\ImagesType;
-use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Request\ParamFetcher;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ImagesController extends BaseApiController
 {
     /**
+     * @see BaseApiController::getParams()
+     *
+     * @return Object[]
+     */
+    public function getParams ()
+    {
+        return array(
+            "repository"            => $this->getDoctrine()->getManager()->getRepository('AppBundle:Images') ,
+            "entity"                => new Images() ,
+            "entityName"            => "Images" ,
+            "entitySetter"          => "setImage" ,
+            "entityForm"            => new ImagesType() ,
+        );
+    }
+
+    /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a list of images and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          }
+     *     },
+     *     filters={
+     *         {"name"="offset", "dataType"="integer"},
+     *         {"name"="limit", "dataType"="integer"},
+     *         {"name"="deleted", "dataType"="integer", "pattern"="0|1"},
+     *         {"name"="groupId", "dataType"="integer"},
+     *         {"name"="userId", "dataType"="integer"},
+     *         {"name"="lang", "dataType"="integer"}
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello"
+     *     }
+     * )
      *
      * @Get("/image/")
      *
@@ -33,6 +70,30 @@ class ImagesController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     resource=true,
+     *     description="Get a Image and related datas",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="image identifier"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         204="Returned when no content",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Get("/image/{id}")
      *
@@ -49,6 +110,23 @@ class ImagesController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Create a new Image",
+     *     requirements={
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="image identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\ImagesType",
+     *     output="AppBundle\Entity\Images",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *     }
+     * )
      *
      * @Post("/image/")
      *
@@ -62,11 +140,35 @@ class ImagesController extends BaseApiController
     }
 
     /**
+     * @ApiDoc(
+     *     description="Edit a Image",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="image identifier"
+     *          }
+     *     },
+     *     input="AppBundle\Form\ImagesType",
+     *     output="AppBundle\Entity\Images",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      *
      * @Put("/image/{id}")
      *
-     * @param Request $request
-     * @param         $id
+     * @param Request      $request
+     * @param              $id
      *
      * @return Response
      */
@@ -76,7 +178,28 @@ class ImagesController extends BaseApiController
     }
 
     /**
-     *
+     * @ApiDoc(
+     *     description="Edit a Image",
+     *     requirements={
+     *          {
+     *              "name"="access_token",
+     *              "dataType"="String",
+     *              "requirement"="\d+",
+     *              "description"="OAuth token is needed for security"
+     *          },
+     *          {
+     *              "name"="id",
+     *              "dataType"="Integer",
+     *              "requirement"="\d+",
+     *              "description"="image id"
+     *          }
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         401="Returned when the user is not authorized to say hello",
+     *         404="Returned when a parameter is not found"
+     *     }
+     * )
      * @Delete("/image/{id}")
      *
      * @param Request      $request
@@ -87,47 +210,7 @@ class ImagesController extends BaseApiController
      */
     public function deleteImageAction (Request $request , ParamFetcher $paramFetcher , $id)
     {
-        return BaseApiController::updateAction($request , $paramFetcher , $id);
-    }
-
-    /**
-     * @see BaseApiController::getRepository()
-     *
-     * @return EntityRepository
-     */
-    public function getRepository ()
-    {
-        return $this->getDoctrine()->getManager()->getRepository('AppBundle:Images');
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
-     *
-     * @return Object
-     */
-    public function getNewEntity ()
-    {
-        return new Images();
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
-     *
-     * @return Object
-     */
-    public function getEntityTranslation ()
-    {
-        return null;
-    }
-
-    /**
-     * @see BaseApiController::getNewEntity()
-     *
-     * @return Object
-     */
-    public function getFormType ()
-    {
-        return ImagesType::class;
+        return BaseApiController::deleteAction($request , $paramFetcher , $id);
     }
 
 }

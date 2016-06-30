@@ -2,9 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -13,6 +16,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="notes")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Notes
 {
@@ -28,7 +34,19 @@ class Notes
     private $id;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\NotesTranslations", mappedBy="note")
+     * @ManyToOne(targetEntity="User", inversedBy="notes")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="notes")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
+
+    /**
+     * @OneToMany(targetEntity="AppBundle\Entity\NotesTranslations", mappedBy="note", cascade={"persist"})
      */
     private $noteTranslations;
 
@@ -44,6 +62,7 @@ class Notes
     }
 
 
+
     /**
      * Get id
      *
@@ -55,6 +74,54 @@ class Notes
     }
 
     /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Notes
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Notes
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
      * Add noteTranslation
      *
      * @param \AppBundle\Entity\NotesTranslations $noteTranslation
@@ -63,6 +130,10 @@ class Notes
      */
     public function addNoteTranslation(\AppBundle\Entity\NotesTranslations $noteTranslation)
     {
+        if (empty($noteTranslation->getUser())) {
+            $noteTranslation->setUser($this->getUser());
+        }
+        $noteTranslation->setNote($this);
         $this->noteTranslations[] = $noteTranslation;
 
         return $this;
@@ -97,6 +168,10 @@ class Notes
      */
     public function addEntity(\AppBundle\Entity\Entities $entity)
     {
+        if (empty($entity->getUser())) {
+            $entity->setUser($this->getUser());
+        }
+        $entity->setNote($this);
         $this->entities[] = $entity;
 
         return $this;

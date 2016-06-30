@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        KeywordsCategoriesTranslations:
+            class: AppBundle\Entity\KeywordsCategoriesTranslations
+            label: 'Keywords categories translations'
+            list:
+                fields: ['id', 'keywordCategory', 'label']
+                title: "All the Keywords categories translations"
+
+            form:
+                fields:
+                    - { property: 'label', type: 'text', label: 'Label' }
+                    - { property: 'description', type: 'textarea', label: 'Description' }
+                    - { property: 'language', label: 'Language' }
+                    - { property: 'keywordCategory', label: 'Keyword category ID' }

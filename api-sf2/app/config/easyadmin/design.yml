@@ -1,0 +1,13 @@
+easy_admin:
+    design:
+        color_scheme: 'light'
+        brand_color: '#366870'
+        assets:
+            css:
+                - 'backoffice/css/backoffice.css'
+            js:
+                - 'backoffice/js/backoffice.js'
+    list:
+        actions:
+            - { name: 'show', icon: 'search', label: '' }
+            - { name: 'edit', icon: 'pencil', label: '' }

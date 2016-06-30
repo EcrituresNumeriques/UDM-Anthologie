@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation as AppAnnotations;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -12,6 +13,9 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table(name="images")
  * @ORM\Entity
+ * @AppAnnotations\UserMeta(userTable="user_id")
+ * @AppAnnotations\GroupMeta(groupTable="group_id")
+ * @AppAnnotations\SoftDeleteMeta(deleteFlagTable="deleted_at")
  */
 class Images
 {
@@ -53,17 +57,21 @@ class Images
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=45, nullable=true)
+     * @ORM\Column(name="credit", type="string", length=45, nullable=true)
      */
-    private $author;
+    private $credit;
 
     /**
-     * @ManyToOne(targetEntity="Eras")
-     * @JoinColumn(name="era_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ManyToOne(targetEntity="User", inversedBy="images")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $era;
+    private $user;
 
-
+    /**
+     * @ManyToOne(targetEntity="Group", inversedBy="images")
+     * @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $group;
 
     /**
      * Get id
@@ -193,5 +201,77 @@ class Images
     public function getEra()
     {
         return $this->era;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Images
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Images
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Set credit
+     *
+     * @param string $credit
+     *
+     * @return Images
+     */
+    public function setCredit($credit)
+    {
+        $this->credit = $credit;
+
+        return $this;
+    }
+
+    /**
+     * Get credit
+     *
+     * @return string
+     */
+    public function getCredit()
+    {
+        return $this->credit;
     }
 }
