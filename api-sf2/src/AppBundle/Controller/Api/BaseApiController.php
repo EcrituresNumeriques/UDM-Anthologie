@@ -387,10 +387,9 @@ abstract class BaseApiController extends FOSRestController
 
 
         $em = $this->getDoctrine()->getManager();
-        if ($paramFetcher->get('safeDelete')) {
+        if ($paramFetcher->get('safeDelete') == 1) {
             //loop to get listener => dirty but not fixed yet
             $originalEventListeners = array();
-            $eventManager = $this->getDoctrine()->getManager()->getEventManager();
             foreach ($em->getEventManager()->getListeners() as $eventName => $listeners) {
                 foreach ($listeners as $listener) {
                     if ($listener instanceof \Knp\DoctrineBehaviors\ORM\SoftDeletable\SoftDeletableSubscriber) {
@@ -405,11 +404,13 @@ abstract class BaseApiController extends FOSRestController
             foreach ($originalEventListeners as $eventName => $listener) {
                 $em->getEventManager()->addEventListener($eventName, $listener);
             }
+            $view = $this->view("" , 200);
         } else {
             $em->remove($entity);
             $em->flush();
+            $view = $this->view($entity , 200);
         }
-        $view = $this->view($entity->getDeletedAt() , 200);
+
 
         return $this->handleView($view);
     }
