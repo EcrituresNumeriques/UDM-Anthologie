@@ -15,11 +15,11 @@
           <div class="dropdown-text-wrapper">
             <div
               v-for="note in data.notes"
-              id="note{{ note.id }}"
+              id="note{{ note.note_translations[0].id }}"
               class="dropdown-text"
             >
               <div class="dropdown-desc">
-                <q>{{{ note.content }}}</q>
+                <q>{{{ note.note_translations[0].text }}}</q>
               </div>
             </div>
           </div>

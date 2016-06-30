@@ -38,10 +38,6 @@
           {{{ data.themes[theme].epigrams[epigram].texts[0].content }}}
         </p>
       </div>
-      <div class="text-author">
-        <span class="dash"></span>
-        <p>Méléagre</p>
-      </div>
     </div>
   </div>
 </template>

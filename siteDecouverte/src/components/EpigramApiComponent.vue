@@ -37,8 +37,8 @@
           <div class="popin-cross"></div>
         </div>
         <img
-          :src="dataEpigrams[epigram].imageUrl"
-          alt="{{ dataEpigrams[epigram].title }}"
+          :src="dataEpigrams[epigram].images[0].url"
+          alt="{{ dataEpigrams[epigram].authors[0].author_translations[0].name }}"
         >
       </div>
     </div>
@@ -114,6 +114,15 @@ export default {
       }, function (response) {
         console.log('global error: ' + response.status)
       })
+    },
+    showPopin: function () {
+      $('.manuscript-popin').fadeIn(function () {
+        $('.manuscript-popin img').addClass('big')
+      }).css('display', 'flex').focus()
+    },
+    hidePopin: function () {
+      $('.manuscript-popin img').removeClass('big')
+      $('.manuscript-popin').fadeOut()
     }
   }
 }
@@ -390,7 +399,11 @@ $(document).ready(function () {
     img
       transform: scale(0.5)
       transition: .5s
+      max-width: 80%
+      max-height: 80%
 
       &.big
         transform: scale(1)
+        max-width: 80%
+        max-height: 80%
 </style>

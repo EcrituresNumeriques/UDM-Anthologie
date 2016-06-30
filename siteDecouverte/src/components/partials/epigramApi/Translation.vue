@@ -27,7 +27,7 @@
       </div>
       <div class="text-author">
         <span class="dash"></span>
-        <p>Méléagre</p>
+        <p>{{ data.authors[0].author_translations[0].name }}</p>
       </div>
     </div>
   </div>

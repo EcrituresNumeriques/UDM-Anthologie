@@ -1,9 +1,10 @@
 <template>
   <div class="col-md-5 col-md-offset-2">
     <div
-      v-if="data.characters"
+      v-if="data.keywords.length > 0"
       class="characters dropdown"
     >
+      <div v-if="data.notes.length == 0" style="margin-top: 230px"></div>
       <p @click="onCharactersDropdownClick">
         Les personnages
         <span class="glyphicon glyphicon-chevron-right"></span>
@@ -11,14 +12,14 @@
       </p>
       <div class="dropdown-drop">
         <ul>
-          <li v-for="character in data.characters">
+          <li v-for="character in data.keywords">
             <a
               @click="onCharactersListClick"
-              id="{{ character.name }}-list"
-              data-click="{{ character.name }}"
+              id="{{ character.keywords_translations[0].title }}-list"
+              data-click="{{ character.keywords_translations[0].title }}"
               href="#"
             >
-              <span class="dash"></span>{{ character.name | capitalize }}
+              <span class="dash"></span>{{ character.keywords_translations[0].title | capitalize }}
             </a>
           </li>
         </ul>
@@ -27,15 +28,15 @@
         <span class="glyphicon glyphicon-chevron-left"></span>
         <div class="dropdown-text-wrapper">
           <div
-            v-for="character in data.characters"
-            id="{{ character.name }}"
+            v-for="character in data.keywords"
+            id="{{ character.keywords_translations[0].title }}"
             class="dropdown-text"
           >
             <div class="dropdown-title">
-              <h4>{{ character.name | capitalize }}</h4>
+              <h4>{{ character.keywords_translations[0].title | capitalize }}</h4>
             </div>
             <div class="dropdown-desc">
-              <q>{{{ character.desc }}}</q>
+              <q>{{{ character.keywords_translations[0].description }}}</q>
             </div>
           </div>
         </div>
