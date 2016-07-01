@@ -23,10 +23,6 @@ import $ from 'jquery'
 export default {
   name: 'ScrollProgressBar',
   ready: function () {
-    if ($('.scroll')[0].scrollWidth <= $('.scroll').width()) {
-      $('.scroll-progress-bar').hide()
-      $('.scroll-arrows').hide()
-    }
     this.onScrollProgressBar()
     this.onDotClick()
   },

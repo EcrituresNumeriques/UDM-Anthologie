@@ -15,8 +15,8 @@
           <li v-for="character in data.keywords">
             <a
               @click="onCharactersListClick"
-              id="{{ character.keywords_translations[0].title }}-list"
-              data-click="{{ character.keywords_translations[0].title }}"
+              id="character-{{ character.keywords_translations[0].title }}-list"
+              data-click="character-{{ character.keywords_translations[0].title }}"
               href="#"
             >
               <span class="dash"></span>{{ character.keywords_translations[0].title | capitalize }}
@@ -29,7 +29,7 @@
         <div class="dropdown-text-wrapper">
           <div
             v-for="character in data.keywords"
-            id="{{ character.keywords_translations[0].title }}"
+            id="character-{{ character.keywords_translations[0].title }}"
             class="dropdown-text"
           >
             <div class="dropdown-title">

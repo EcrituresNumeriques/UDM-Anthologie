@@ -14,8 +14,8 @@
           <li v-for="character in data.themes[theme].epigrams[epigram].characters">
             <a
               @click="onCharactersListClick"
-              id="{{ character.name }}-list"
-              data-click="{{ character.name }}"
+              id="character-{{ character.id }}-list"
+              data-click="character-{{ character.id }}"
               href="#"
             >
               <span class="dash"></span>{{ character.name | capitalize }}
@@ -28,7 +28,7 @@
         <div class="dropdown-text-wrapper">
           <div
             v-for="character in data.themes[theme].epigrams[epigram].characters"
-            id="{{ character.name }}"
+            id="character-{{ character.id }}"
             class="dropdown-text"
           >
             <div class="dropdown-title">

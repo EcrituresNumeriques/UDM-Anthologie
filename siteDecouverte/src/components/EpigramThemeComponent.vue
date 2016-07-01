@@ -134,7 +134,7 @@ $(document).ready(function () {
     var selfDropTextLength = selfDropText.length
     var selfDropTextVisible = selfDropWrapper.children('.dropdown-text.visible')
     var selfDropTextVisibleIndex = selfDropTextVisible.index()
-
+    console.log(selfDropTextVisibleIndex)
     self.show()
     self.siblings('.glyphicon').show()
     if (arrow.hasClass('glyphicon-chevron-left')) {
@@ -150,12 +150,18 @@ $(document).ready(function () {
     }
   }
 
-  body.on('click', '.glyphicon-chevron-left', function (e) {
+  body.on('click', '.glyphicon-chevron-left', function () {
     onTextArrowClick($(this))
   })
 
   body.on('click', '.glyphicon-chevron-right', function () {
     onTextArrowClick($(this))
+  })
+
+  body.on('click', '.pagination-partial .glyphicon-chevron-left', function () {
+    $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+//    $('.notes').removeClass('droped')
+//    $('.notes .dropdown-drop').removeClass('active')
   })
 })
 </script>
@@ -262,53 +268,54 @@ $hover: .5s all ease-out
       &:hover
         opacity: 1
 
-    .dropdown-text-wrapper
-      display: inline-block
-      width: 250px
-      height: 150px
-      overflow-y: auto
-      position: relative
-      scrollbar-face-color: #2c2c2c
-      scrollbar-track-color: #fff
-      scrollbar-arrow-color: #fff
+  .dropdown-text-wrapper,
+  .dropdown-drop ul
+    display: inline-block
+    width: 250px
+    height: 150px
+    overflow-y: auto
+    position: relative
+    scrollbar-face-color: #2c2c2c
+    scrollbar-track-color: #fff
+    scrollbar-arrow-color: #fff
+
+    &:hover
+      &::-webkit-scrollbar-thumb,
+      &::-webkit-scrollbar-track
+        visibility: visible
+
+    &::-webkit-scrollbar
+      background: #fff
+      width: 3px
+
+    &::-webkit-scrollbar-button
+      display: none
+
+    &::-webkit-scrollbar-thumb
+      background: rgba(44, 44, 44, .3)
+      visibility: hidden
 
       &:hover
-        &::-webkit-scrollbar-thumb,
-        &::-webkit-scrollbar-track
-          visibility: visible
+        background: rgba(44, 44, 44, .8)
 
-      &::-webkit-scrollbar
-        background: #fff
-        width: 3px
+      &:active
+        background: rgba(44, 44, 44, 1)
 
-      &::-webkit-scrollbar-button
-        display: none
+    &::-webkit-scrollbar-track
+      border-bottom: 1px solid #2c2c2c
+      border-top: 1px solid #2c2c2c
+      visibility: hidden
 
-      &::-webkit-scrollbar-thumb
-        background: rgba(44, 44, 44, .3)
-        visibility: hidden
+    .dropdown-text
+      font-size: 14px
+      margin-left: 20px
+      position: absolute
+      display: none
 
-        &:hover
-          background: rgba(44, 44, 44, .8)
-
-        &:active
-          background: rgba(44, 44, 44, 1)
-
-      &::-webkit-scrollbar-track
-        border-bottom: 1px solid #2c2c2c
-        border-top: 1px solid #2c2c2c
-        visibility: hidden
-
-      .dropdown-text
-        font-size: 14px
-        margin-left: 20px
-        position: absolute
-        display: none
-
-        .dropdown-title
-          h4
-            font-weight: 700
-            font-size: 14px
+      .dropdown-title
+        h4
+          font-weight: 700
+          font-size: 14px
 
 .manuscript-image
   margin-top: 25px
