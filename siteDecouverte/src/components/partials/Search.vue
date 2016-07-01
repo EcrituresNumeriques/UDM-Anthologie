@@ -256,7 +256,7 @@ $hover: .5s all ease-out
         position: absolute
 
   .search-list
-    columns: 29em
+    columns: 20em
     height: 100%
 
   ul

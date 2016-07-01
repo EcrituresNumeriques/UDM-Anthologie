@@ -178,7 +178,7 @@ $hover: .5s all linear
     .dash
       width: 100%
       height: 1px
-      display: inline-table
+      display: block
       position: relative
       background: none
       vertical-align: top

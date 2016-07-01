@@ -64,10 +64,6 @@ export default {
         self.$http.get(api + 'keyword/family/1' + filterFr + 'access_token=' + self.token, {progress () {
           $('.loader').fadeIn()
         }}).then(function (response) {
-          if ($('.scroll')[0].scrollWidth <= $('.scroll').width()) {
-            $('.scroll-progress-bar').hide()
-            $('.scroll-arrows').hide()
-          }
           $('.loader').fadeOut()
           self.$set('dataCharacters', response.data)
         }, function (response) {

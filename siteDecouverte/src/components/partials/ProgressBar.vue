@@ -23,58 +23,73 @@ import $ from 'jquery'
 export default {
   name: 'ScrollProgressBar',
   ready: function () {
+    setTimeout(function () {
+      if ($('.row.scroll')[0].scrollWidth > $('.row.scroll').width()) {
+        $('.scroll-progress-bar').show()
+        $('.scroll-arrows').show()
+      }
+      if ($('.search-partial.scroll')[0].scrollWidth > $('.search-partial.scroll').width()) {
+        $('.scroll-progress-bar').show()
+        $('.scroll-arrows').show()
+      }
+    }, 1000)
     this.onScrollProgressBar()
     this.onDotClick()
   },
   methods: {
     onScrollProgressBar: function () {
+      var scroll = $('.scroll')
       var self = this
-      $('.scroll').scroll(function () {
+      scroll.scroll(function () {
         self.scrollProgressBar()
       })
     },
     scrollProgressBar: function () {
-      var max = $('.scroll')[0].scrollWidth - $('.scroll').width()
-      var value = $('.scroll').scrollLeft()
+      var scroll = $('.scroll')
+      var max = scroll[0].scrollWidth - scroll.width()
+      var value = scroll.scrollLeft()
       var percentage = value / max * 100
       var dotIndex = Math.ceil(percentage / 10)
       if (dotIndex < 1) dotIndex = 0
-      var dot = $('.scroll').find('.scroll-dot')
+      var dot = scroll.find('.scroll-dot')
       dot.eq(dotIndex).addClass('active')
       dot.eq(dotIndex).prevAll().addClass('active')
       dot.eq(dotIndex).nextAll().removeClass('active')
     },
     onDotClick: function () {
+      var scroll = $('.scroll')
       $('body').on('click', '.scroll-dot', function () {
         $(this).addClass('active')
         var thisIndex = $(this).index()
         var percentage = thisIndex + '0'
-        var max = $('.scroll')[0].scrollWidth - $('.scroll').width()
+        var max = scroll[0].scrollWidth - scroll.width()
         var value = percentage * max / 100
-        $('.scroll').animate({
+        scroll.animate({
           scrollLeft: value
         })
       })
     },
     onScrollLeftArrowClick: function () {
+      var scroll = $('.scroll')
       var lastActiveIndex = $('.scroll-dot.active').last().index()
       var prevIndex = $('.scroll-dot').eq(lastActiveIndex - 1)
       prevIndex.addClass('active')
       var percentage = prevIndex.index() + '0'
-      var max = $('.scroll')[0].scrollWidth - $('.scroll').width()
+      var max = scroll[0].scrollWidth - scroll.width()
       var value = percentage * max / 100
-      $('.scroll').animate({
+      scroll.animate({
         scrollLeft: value
       })
     },
     onScrollRightArrowClick: function () {
+      var scroll = $('.scroll')
       var lastActiveIndex = $('.scroll-dot.active').last().index()
       var nextIndex = $('.scroll-dot').eq(lastActiveIndex + 1)
       nextIndex.addClass('active')
       var percentage = nextIndex.index() + '0'
-      var max = $('.scroll')[0].scrollWidth - $('.scroll').width()
+      var max = scroll[0].scrollWidth - scroll.width()
       var value = percentage * max / 100
-      $('.scroll').animate({
+      scroll.animate({
         scrollLeft: value
       })
     }
@@ -89,7 +104,7 @@ $hover: .5s all linear
   position: fixed
   right: 300px
   top: 44px
-  display: inline-block
+  display: none
   z-index: 15
 
   .scroll-dot
@@ -122,33 +137,37 @@ $hover: .5s all linear
       cursor: default
 
 .scroll-arrows
-  position: fixed
-  right: 300px
-  bottom: 64px
-  display: inline-block
-  z-index: 25
   color: #2c2c2c
   font-size: 10px
-  width: 50px
+  display: none
 
   .glyphicon
     cursor: pointer
     transition: $hover
-    display: inline-block
-    width: 46%
     opacity: .3
+    position: absolute
+    top: 50%
+    transform: translate3d(0, -50%, 0)
+    z-index: 25
+    width: 50px
+    height: 50px
+    display: flex
+    justify-content: center
+    align-items: center
 
     &:hover
        opacity: 1
 
     &:first-child
+      left: 20px
+
       &:hover
-        transform: translateX(-5px)
+        transform: translate3d(-5px, -50%, 0)
 
     &:last-child
-      text-align: right
+      right: 20px
 
       &:hover
-        transform: translateX(5px)
+        transform: translate3d(5px, -50%, 0)
 
 </style>

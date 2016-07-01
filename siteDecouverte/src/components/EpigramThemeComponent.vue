@@ -134,7 +134,6 @@ $(document).ready(function () {
     var selfDropTextLength = selfDropText.length
     var selfDropTextVisible = selfDropWrapper.children('.dropdown-text.visible')
     var selfDropTextVisibleIndex = selfDropTextVisible.index()
-    console.log(selfDropTextVisibleIndex)
     self.show()
     self.siblings('.glyphicon').show()
     if (arrow.hasClass('glyphicon-chevron-left')) {
