@@ -167,10 +167,6 @@ export default {
     this.onScrollProgressBar()
     this.onDotClick()
     this.getGlobalData()
-    var i = 0
-    for (i; i < $('.search-list li').length; i++) {
-      console.log(i)
-    }
   },
   methods: {
     closeSearchPartial: function () {

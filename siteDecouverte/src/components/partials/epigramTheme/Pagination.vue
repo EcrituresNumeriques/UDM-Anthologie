@@ -12,6 +12,7 @@
     <div class="arrows">
       <span>
         <a
+          @click="onPaginationClick"
           v-show="!(epigram == 0)"
           v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}"
         >
@@ -21,6 +22,7 @@
       <span class="separator"></span>
       <span>
         <a
+          @click="onPaginationClick"
           v-show="!(epigram+1 == data.themes[theme].epigrams.length)"
           v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}"
         >
@@ -32,11 +34,20 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   props: {
     data: Object,
     theme: Number,
     epigram: Number
+  },
+  methods: {
+    onPaginationClick: function () {
+      $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+      $('.notes').removeClass('droped')
+      $('.notes .dropdown-drop').removeClass('visible')
+    }
   }
 }
 </script>

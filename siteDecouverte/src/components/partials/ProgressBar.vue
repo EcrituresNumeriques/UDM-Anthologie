@@ -78,7 +78,6 @@ export default {
       })
     },
     onScrollRightArrowClick: function () {
-      console.log('right row')
       var scroll = $('.row.scroll')
       var lastActiveIndex = $('.scroll-progress-bar .scroll-dot.active').last().index()
       var nextIndex = $('.scroll-progress-bar .scroll-dot').eq(lastActiveIndex + 1)

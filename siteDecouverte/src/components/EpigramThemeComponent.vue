@@ -156,12 +156,6 @@ $(document).ready(function () {
   body.on('click', '.glyphicon-chevron-right', function () {
     onTextArrowClick($(this))
   })
-
-  body.on('click', '.pagination-partial .glyphicon-chevron-left', function () {
-    $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
-//    $('.notes').removeClass('droped')
-//    $('.notes .dropdown-drop').removeClass('active')
-  })
 })
 </script>
 
