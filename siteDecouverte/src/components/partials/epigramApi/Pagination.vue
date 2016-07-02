@@ -6,12 +6,13 @@
       </p>
       <span class="separator"></span>
       <p class="current">
-        {{ data.id | numberize }}
+        {{ epigram + 1 | numberize }}
       </p>
     </div>
     <div class="arrows">
       <span>
         <a
+          @click="onPaginationClick"
           v-show="!(data.id == 1)"
           v-link="{ name: 'epigram', params: { id: data.id - 1 }}"
         >
@@ -21,6 +22,7 @@
       <span class="separator"></span>
       <span>
         <a
+          @click="onPaginationClick"
           v-show="!(data.id == length)"
           v-link="{ name: 'epigram', params: { id: data.id + 1  }}"
         >
@@ -32,10 +34,20 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   props: {
     data: Object,
+    epigram: Number,
     length: Number
+  },
+  methods: {
+    onPaginationClick: function () {
+      $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+      $('.notes').removeClass('droped')
+      $('.notes .dropdown-drop').removeClass('visible')
+    }
   }
 }
 </script>

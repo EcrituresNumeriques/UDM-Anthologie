@@ -6,7 +6,7 @@
         <h1>{{ dataEpigrams[epigram].title }}</h1>
       </div>
       <div class="row epigram-row">
-        <pagination :data="dataEpigrams[epigram]" :length="dataEpigrams.length"></pagination>
+        <pagination :data="dataEpigrams[epigram]" :length="dataEpigrams.length" :epigram="epigram"></pagination>
         <player :data="dataEpigrams[epigram]"></player>
         <translation :data="dataEpigrams[epigram]"></translation>
         <greek-text :data="dataEpigrams[epigram]"></greek-text>
