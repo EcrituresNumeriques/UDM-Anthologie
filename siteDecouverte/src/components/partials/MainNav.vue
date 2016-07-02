@@ -93,6 +93,12 @@ export default {
   methods: {
     onSearchFocus: function () {
       $('.search-partial').fadeIn(1000).css('display', 'flex')
+      setTimeout(function () {
+        if ($('.search-partial.scroll')[0].scrollWidth > $('.search-partial.scroll').width()) {
+          $('.search-scroll-progress-bar').show()
+          $('.search-scroll-arrows').show()
+        }
+      }, 1000)
     },
     closeSearchPartial: function () {
       $('.search-partial').fadeOut(1000)

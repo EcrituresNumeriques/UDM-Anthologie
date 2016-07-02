@@ -28,24 +28,20 @@ export default {
         $('.scroll-progress-bar').show()
         $('.scroll-arrows').show()
       }
-      if ($('.search-partial.scroll')[0].scrollWidth > $('.search-partial.scroll').width()) {
-        $('.scroll-progress-bar').show()
-        $('.scroll-arrows').show()
-      }
     }, 1000)
     this.onScrollProgressBar()
     this.onDotClick()
   },
   methods: {
     onScrollProgressBar: function () {
-      var scroll = $('.scroll')
+      var scroll = $('.row.scroll')
       var self = this
       scroll.scroll(function () {
         self.scrollProgressBar()
       })
     },
     scrollProgressBar: function () {
-      var scroll = $('.scroll')
+      var scroll = $('.row.scroll')
       var max = scroll[0].scrollWidth - scroll.width()
       var value = scroll.scrollLeft()
       var percentage = value / max * 100
@@ -57,8 +53,8 @@ export default {
       dot.eq(dotIndex).nextAll().removeClass('active')
     },
     onDotClick: function () {
-      var scroll = $('.scroll')
-      $('body').on('click', '.scroll-dot', function () {
+      var scroll = $('.row.scroll')
+      $('body').on('click', '.scroll-progress-bar .scroll-dot', function () {
         $(this).addClass('active')
         var thisIndex = $(this).index()
         var percentage = thisIndex + '0'
@@ -70,9 +66,9 @@ export default {
       })
     },
     onScrollLeftArrowClick: function () {
-      var scroll = $('.scroll')
-      var lastActiveIndex = $('.scroll-dot.active').last().index()
-      var prevIndex = $('.scroll-dot').eq(lastActiveIndex - 1)
+      var scroll = $('.row.scroll')
+      var lastActiveIndex = $('.scroll-progress-bar .scroll-dot.active').last().index()
+      var prevIndex = $('.scroll-progress-bar .scroll-dot').eq(lastActiveIndex - 1)
       prevIndex.addClass('active')
       var percentage = prevIndex.index() + '0'
       var max = scroll[0].scrollWidth - scroll.width()
@@ -82,9 +78,10 @@ export default {
       })
     },
     onScrollRightArrowClick: function () {
-      var scroll = $('.scroll')
-      var lastActiveIndex = $('.scroll-dot.active').last().index()
-      var nextIndex = $('.scroll-dot').eq(lastActiveIndex + 1)
+      console.log('right row')
+      var scroll = $('.row.scroll')
+      var lastActiveIndex = $('.scroll-progress-bar .scroll-dot.active').last().index()
+      var nextIndex = $('.scroll-progress-bar .scroll-dot').eq(lastActiveIndex + 1)
       nextIndex.addClass('active')
       var percentage = nextIndex.index() + '0'
       var max = scroll[0].scrollWidth - scroll.width()
@@ -148,12 +145,13 @@ $hover: .5s all linear
     position: absolute
     top: 50%
     transform: translate3d(0, -50%, 0)
-    z-index: 25
+    z-index: 15
     width: 50px
     height: 50px
     display: flex
     justify-content: center
     align-items: center
+    background: #ffffff
 
     &:hover
        opacity: 1
