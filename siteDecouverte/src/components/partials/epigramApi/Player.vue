@@ -8,6 +8,7 @@
         @click="onControlClick"
         class="control"
       >
+        <span class="no-play-button-border"></span>
         <a
           @click="ePreventDefault"
           class="play-button paused"
@@ -147,6 +148,19 @@ $hover: .5s all ease-out
   border: 1px solid #2c2c2c
   justify-content: center
   align-items: center
+  position: relative
+
+  .no-play-button-border
+    position: absolute
+    background: transparent
+    width: 11px
+    height: 13px
+    top: 50%
+    left: 50%
+    transform: translate3d(-50%, -50%, 0)
+    border-bottom: 2px solid #fff
+    border-top: 2px solid #fff
+    z-index: 2
 
   .play-button
     height: 10px
