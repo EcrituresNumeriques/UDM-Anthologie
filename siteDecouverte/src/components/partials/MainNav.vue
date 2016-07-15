@@ -58,7 +58,7 @@
                 class="form-control"
                 placeholder="Recherche"
               >
-              <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+              <div class="search-icon"><span class="glyphicon glyphicon-search"></span></div>
               <button
                 @click="closeSearchPartial"
                 @click="onResetClick"
@@ -271,17 +271,17 @@ form
       opacity: 1
       box-shadow: none
 
-      ~button[type="submit"]
+      ~.search-icon
         opacity: 1
 
       ~button[type="reset"]
         visibility: visible
 
-  button[type="submit"]
+  .search-icon
     transform: translate3d(0, -50%, 0)
     position: absolute
     top: 50%
-    left: 9px
+    left: 15px
     border: none
     background: none
     opacity: .3
@@ -290,6 +290,7 @@ form
     height: 100%
 
     span
+      padding: 11px 0
       transform: rotateZ(90deg)
       font-size: 12px
       color: #555

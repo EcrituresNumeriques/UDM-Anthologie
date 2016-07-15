@@ -8,7 +8,11 @@
         @click="onControlClick"
         class="control"
       >
-        <a class="play-button paused" href="#">
+        <a
+          @click="ePreventDefault"
+          class="play-button paused"
+          href="#"
+        >
           <div class="left"></div>
           <div class="right"></div>
           <div class="triangle-1"></div>
@@ -118,6 +122,9 @@ export default {
       playBtn.addClass('paused')
       muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       greekSound.volume = 1
+    },
+    ePreventDefault: function (e) {
+      e.preventDefault()
     }
   }
 }
