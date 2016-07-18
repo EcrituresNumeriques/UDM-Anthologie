@@ -1,6 +1,21 @@
 <template>
   <div class="search-partial scroll">
-    <scroll-progress-bar></scroll-progress-bar>
+    <span class="search-scroll-progress-bar">
+      <span class="scroll-dot active"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+    </span>
+    <span class="search-scroll-arrows">
+      <span @click="onScrollLeftArrowClick" class="glyphicon glyphicon-chevron-left"></span>
+      <span @click="onScrollRightArrowClick" class="glyphicon glyphicon-chevron-right"></span>
+    </span>
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
         <div
@@ -149,15 +164,70 @@ export default {
     search: String
   },
   ready: function () {
+    this.onScrollProgressBar()
+    this.onDotClick()
     this.getGlobalData()
-    var i = 0
-    for (i; i < $('.search-list li').length; i++) {
-      console.log(i)
-    }
   },
   methods: {
     closeSearchPartial: function () {
       $('.search-partial').fadeOut(1000)
+      this.$off()
+    },
+    onScrollProgressBar: function () {
+      var scroll = $('.search-partial.scroll')
+      var self = this
+      scroll.scroll(function () {
+        self.scrollProgressBar()
+      })
+    },
+    scrollProgressBar: function () {
+      var scroll = $('.search-partial.scroll')
+      var max = scroll[0].scrollWidth - scroll.width()
+      var value = scroll.scrollLeft()
+      var percentage = value / max * 100
+      var dotIndex = Math.ceil(percentage / 10)
+      if (dotIndex < 1) dotIndex = 0
+      var dot = scroll.find('.scroll-dot')
+      dot.eq(dotIndex).addClass('active')
+      dot.eq(dotIndex).prevAll().addClass('active')
+      dot.eq(dotIndex).nextAll().removeClass('active')
+    },
+    onDotClick: function () {
+      var scroll = $('.search-partial.scroll')
+      $('body').on('click', '.scroll-dot', function () {
+        $(this).addClass('active')
+        var thisIndex = $(this).index()
+        var percentage = thisIndex + '0'
+        var max = scroll[0].scrollWidth - scroll.width()
+        var value = percentage * max / 100
+        scroll.animate({
+          scrollLeft: value
+        })
+      })
+    },
+    onScrollLeftArrowClick: function () {
+      var scroll = $('.search-partial.scroll')
+      var lastActiveIndex = $('.search-scroll-progress-bar .scroll-dot.active').last().index()
+      var prevIndex = $('.search-scroll-progress-bar .scroll-dot').eq(lastActiveIndex - 1)
+      prevIndex.addClass('active')
+      var percentage = prevIndex.index() + '0'
+      var max = scroll[0].scrollWidth - scroll.width()
+      var value = percentage * max / 100
+      scroll.animate({
+        scrollLeft: value
+      })
+    },
+    onScrollRightArrowClick: function () {
+      var scroll = $('.search-partial.scroll')
+      var lastActiveIndex = $('.search-scroll-progress-bar .scroll-dot.active').last().index()
+      var nextIndex = $('.search-scroll-progress-bar .scroll-dot').eq(lastActiveIndex + 1)
+      nextIndex.addClass('active')
+      var percentage = nextIndex.index() + '0'
+      var max = scroll[0].scrollWidth - scroll.width()
+      var value = percentage * max / 100
+      scroll.animate({
+        scrollLeft: value
+      })
     },
     getGlobalData: function () {
       var self = this
@@ -205,6 +275,77 @@ export default {
 <style lang="sass" scoped>
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $hover: .5s all ease-out
+
+.search-scroll-progress-bar
+  position: fixed
+  right: 300px
+  top: 44px
+  display: none
+  z-index: 15
+
+  .scroll-dot
+    width: 4px
+    height: 4px
+    display: inline-block
+    padding: 0 10px
+    cursor: pointer
+    position: relative
+
+    &:after
+      content: ''
+      position: absolute
+      width: 4px
+      height: 4px
+      background: #d4d4d4
+      left: 50%
+      top: 50%
+      border-radius: 50%
+      transition: $hover
+      opacity: .5
+      transform: translate3d(-50%, -50%, 0)
+
+    &.active
+      &:after
+        background: #2c2c2c
+        opacity: 1
+
+    &.disable
+      cursor: default
+
+.search-scroll-arrows
+  color: #2c2c2c
+  font-size: 10px
+  display: none
+
+  .glyphicon
+    cursor: pointer
+    transition: $hover
+    opacity: .3
+    position: absolute
+    top: 50%
+    transform: translate3d(0, -50%, 0)
+    z-index: 25
+    width: 50px
+    height: 50px
+    display: flex
+    justify-content: center
+    align-items: center
+    background: #ffffff
+
+    &:hover
+      opacity: 1
+
+    &:first-child
+      left: 20px
+
+      &:hover
+        transform: translate3d(-5px, -50%, 0)
+
+    &:last-child
+      right: 20px
+
+      &:hover
+        transform: translate3d(5px, -50%, 0)
 
 .search-partial
   position: absolute
@@ -256,7 +397,7 @@ $hover: .5s all ease-out
         position: absolute
 
   .search-list
-    columns: 29em
+    columns: 20em
     height: 100%
 
   ul

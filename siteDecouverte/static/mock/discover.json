@@ -10,6 +10,7 @@
         {
           "id": 1,
           "title": "AP 12.132b",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
@@ -20,46 +21,17 @@
               "content": "ἆ ψυχὴ βαρύμοχθε, σὺ δ' ἄρτι μὲν ἐκ πυρὸς αἴθῃ,<br>ἄρτι δ' ἀναψύχεις πνεῦμ' ἀναλεξαμένη.<br>τί κλαίεις; τὸν ἄτεγκτον ὅτ' ἐν κόλποισιν Ἔρωτα<br>ἔτρεφες, οὐκ ᾔδεις, ὡς ἐπὶ σοὶ τρέφετο;<br>οὐκ ᾔδεις; νῦν γνῶθι καλῶν ἄλλαγμα τροφείων,<br>πῦρ ἅμα καὶ ψυχρὰν δεξαμένη χιόνα.<br>αὐτὴ ταῦθ' εἵλου· φέρε τὸν πόνον. ἄξια πάσχεις,<br>ὧν ἔδρας, ὀπτῷ καιομένη μέλιτι."
             }
           ],
-          "sounds": {
-            "french": "/static/sounds/french-sound.mp3",
-            "greek": "/static/sounds/epitaphes/1.mp3"
-          },
-          "imageUrl": "/static/img/popin/les-serments-trahis/1.png",
           "notes": [
             {
               "id": 1,
               "content": "Méléagre parle à son âme et la réprimande d’avoir fait confiance à Érôs. Érôs est un personnage fréquent dans les épigrammes, en particulier celles de Méléagre...."
-            },
-            {
-              "id": 2,
-              "content": "Note 2"
-            },
-            {
-              "id": 3,
-              "content": "Note 3"
-            }
-          ],
-          "characters": [
-            {
-              "id": 1,
-              "name": "eros",
-              "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
-            },
-            {
-              "id": 2,
-              "name": "ulysse",
-              "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
-            },
-            {
-              "id": 3,
-              "name": "odyssey",
-              "desc": "Dieu de l’Amour, dans la mythologie grecque. Le personnage d'Éros est souvent utilisé comme figure allégorique représentant le désir ou le plaisir sexuels, ou plus généralement la pulsion de vie, et souvent opposé à Thanatos, dieu de la Mort."
             }
           ]
         },
         {
           "id": 2,
           "title": "AP 5.177",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
@@ -74,6 +46,7 @@
         {
           "id": 3,
           "title": "AP 5.152",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
@@ -88,6 +61,7 @@
         {
           "id": 4,
           "title": "AP 7.196",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
@@ -102,10 +76,11 @@
         {
           "id": 5,
           "title": "AP 7.417 : Méléagre, un Grec d’Orient",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
-              "content": "L’île de Tyr fut ma nourrice. La patrie qui m’a engendré, attique bien que se trouvant en Syrie, est Gadara.<br>D’Eucratès que je suis né, moi Méléagre, qui avec les Muses ai d’abord couru auprès des Grâces ménipéennes*.<br>Si je suis syrien, quoi d’étonnant ? Étranger, nous vivons dans un seul pays, l’univers ; seul, Chaos engendra tous les mortels.<br>Fort âgé, j’ai inscrit ces mots sur des tablettes, avant mon enterrement, car la vieillesse est proche voisine de l’Hadès.<br>Mais toi, salue-moi, qui suis un vieux bavard, et puisses-tu ensuite toi aussi atteindre la vieillesse bavarde."
+              "content": "L’île de Tyr fut ma nourrice. La patrie qui m’a engendré, attique bien que se trouvant en Syrie, est Gadara.<br>D’Eucratès que je suis né, moi Méléagre, qui avec les Muses ai d’abord couru auprès des Grâces ménipéennes.<br>Si je suis syrien, quoi d’étonnant ? Étranger, nous vivons dans un seul pays, l’univers ; seul, Chaos engendra tous les mortels.<br>Fort âgé, j’ai inscrit ces mots sur des tablettes, avant mon enterrement, car la vieillesse est proche voisine de l’Hadès.<br>Mais toi, salue-moi, qui suis un vieux bavard, et puisses-tu ensuite toi aussi atteindre la vieillesse bavarde."
             },
             {
               "lang": "greek",
@@ -116,10 +91,11 @@
         {
           "id": 6,
           "title": "AP 7.418",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
-              "content": "Ma première patrie fut l’illustre cité des Gadaréens, puis la sainte Tyr me reçut et fit de moi un homme.<br>Lorsque j’ai atteint la vieillesse, Côs, qui a aussi élevé Zeus**, soigna mon vieil âge comme citoyen admis des Méropiens***. Parmi peu d’autres, moi Méléagre fils d’Eucratès, les Muses m’ont gratifié des Grâces ménipéennes."
+              "content": "Ma première patrie fut l’illustre cité des Gadaréens, puis la sainte Tyr me reçut et fit de moi un homme.<br>Lorsque j’ai atteint la vieillesse, Côs, qui a aussi élevé Zeus*, soigna mon vieil âge comme citoyen admis des Méropiens. Parmi peu d’autres, moi Méléagre fils d’Eucratès, les Muses m’ont gratifié des Grâces ménipéennes."
             },
             {
               "lang": "greek",
@@ -129,7 +105,7 @@
           "notes": [
             {
               "id": 1,
-              "content": "Entendre : Ptolémée Philadelphe…"
+              "content": "* Entendre : Ptolémée Philadelphe…"
             }
           ],
           "characters": [
@@ -143,6 +119,7 @@
         {
           "id": 7,
           "title": "AP 7.419",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
@@ -157,6 +134,7 @@
         {
           "id": 8,
           "title": "AP 7.421 : Épitaphe « logogriphique »",
+          "author": "Méléagre",
           "texts": [
             {
               "lang": "fr",
@@ -770,7 +748,7 @@
             }
           ],
           "sounds": {
-            "greek": "/static/sounds/epitaphes/1.mp3"
+            "greek": "/static/sounds/epitaphes/1_greek.mp3"
           }
         },
         {
@@ -801,7 +779,7 @@
             }
           ],
           "sounds": {
-            "greek": "/static/sounds/epitaphes/3.mp3"
+            "greek": "/static/sounds/epitaphes/3_greek.mp3"
           }
         }
       ]
@@ -864,7 +842,7 @@
             }
           ],
           "sounds": {
-            "greek": "/static/sounds/erotiques-ou-funeraires/1.mp3"
+            "greek": "/static/sounds/erotiques-ou-funeraires/1_greek.mp3"
           }
         },
         {

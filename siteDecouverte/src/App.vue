@@ -188,6 +188,8 @@ span.bg
     margin: 0
     text-transform: uppercase
     letter-spacing: 0.1em
+    height: 50px
+    line-height: 50px
 
     sup
         font-family: initial
@@ -197,7 +199,7 @@ span.bg
   ul
     list-style: none
     padding: 0
-    margin: 30px 0 50px
+    margin: 15px 0
     height: 100%
 
     li

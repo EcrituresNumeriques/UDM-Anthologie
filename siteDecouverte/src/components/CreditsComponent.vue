@@ -4,18 +4,18 @@
       <h1>Crédits</h1>
     </div>
     <div class="row content-container">
-      <div class="col-md-4 col-md-offset-1">
+      <div class="col-md-5 col-md-offset-1">
         <div class="desc-container">
           <h3>Un projet collaboratif</h3>
           <q>
             L’Anthologie Palatine est un recueil byzantin d’épigrammes grecques dont l’ancêtre remonte à l’époque hellénistique (323-30 av. J.-C). Le manuscrit de l’Anthologie (le Codex Palatinus 23) a été retrouvé en 1606 par Claude Saumaise à Heidelberg. Ces poèmes ont dès lors exercé une influence majeure sur la littérature de la Renaissance jusqu’à aujourd’hui. Plus de détails sur Wikipedia.
             Le manuscrit est aujourd’hui conservé à la bibliothèque de l’université d’Heidelberg, où il a été numérisé et rendu disponible dans la collection numérique de la bibliothèque.
-            Le texte grec de l’Anthologie est disponible sur le site du projet Perseus – superbe projet de numérisation hébergé par la Tufts University, dirigé par Gregory Crane. C’est là que nous l’avons pris. On peut consulter la traduction anglaise de W.R. Paton, disponible sur <a href="https://archive.org/" target="_blank">archive.org</a>.
+            Le texte grec de l’Anthologie est disponible sur le site du projet Perseus – superbe projet de numérisation hébergé par la Tufts University, dirigé par Gregory Crane. C’est là que nous l’avons pris. On peut consulter la traduction anglaise de W.R. Paton, disponible sur <a href="https://archive.org/" target="_blank"><span class="dash">archive.org</span></a>.
             Notre site propose d’ouvrir un petit chantier de traduction de l’anthologie en Français - et en d’autres langues - auquel vous êtes invités à participer.
           </q>
         </div>
       </div>
-      <div class="col-md-6 col-md-offset-1">
+      <div class="col-md-5 col-md-offset-1">
         <div class="team-container">
           <h4><span class="bg"></span>Notre équipe <sup>V</sup></h4>
           <ul>
@@ -124,8 +124,51 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
     &:after
       content: no-close-quote
 
-    p
-     padding-left: 20px
+    a
+      .dash
+        height: 1px
+        display: inline-table
+        position: relative
+        background: none
+
+        &:before
+          content: ''
+          display: block
+          position: absolute
+          left: 0
+          bottom: 0
+          height: 1px
+          width: 0
+          transition: width 0s ease, background .5s ease
+
+        &:after
+          content: ''
+          display: block
+          position: absolute
+          right: 0
+          bottom: 0
+          height: 1px
+          width: 0
+          background: #337ab7
+          transition: width .5s ease
+
+
+      &:hover,
+      &:focus
+        text-decoration: none
+        color: #337ab7
+
+        .dash
+          &:before
+            width: 100%
+            background: #337ab7
+            transition: width .5s ease
+
+          &:after
+            width: 100%
+            background: transparent
+            transition: all 0s ease
+
 
 .team-container
   margin-top: 64px

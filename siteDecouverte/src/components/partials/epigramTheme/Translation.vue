@@ -38,6 +38,10 @@
           {{{ data.themes[theme].epigrams[epigram].texts[0].content }}}
         </p>
       </div>
+      <div class="text-author" v-if="data.themes[theme].epigrams[epigram].author">
+        <span class="dash"></span>
+        <p>{{ data.themes[theme].epigrams[epigram].author }}</p>
+      </div>
     </div>
   </div>
 </template>

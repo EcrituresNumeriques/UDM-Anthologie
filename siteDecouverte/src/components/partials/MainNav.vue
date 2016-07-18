@@ -58,7 +58,7 @@
                 class="form-control"
                 placeholder="Recherche"
               >
-              <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+              <div class="search-icon"><span class="glyphicon glyphicon-search"></span></div>
               <button
                 @click="closeSearchPartial"
                 @click="onResetClick"
@@ -93,6 +93,12 @@ export default {
   methods: {
     onSearchFocus: function () {
       $('.search-partial').fadeIn(1000).css('display', 'flex')
+      setTimeout(function () {
+        if ($('.search-partial.scroll')[0].scrollWidth > $('.search-partial.scroll').width()) {
+          $('.search-scroll-progress-bar').show()
+          $('.search-scroll-arrows').show()
+        }
+      }, 1000)
     },
     closeSearchPartial: function () {
       $('.search-partial').fadeOut(1000)
@@ -178,7 +184,7 @@ $hover: .5s all linear
     .dash
       width: 100%
       height: 1px
-      display: inline-table
+      display: block
       position: relative
       background: none
       vertical-align: top
@@ -265,17 +271,17 @@ form
       opacity: 1
       box-shadow: none
 
-      ~button[type="submit"]
+      ~.search-icon
         opacity: 1
 
       ~button[type="reset"]
         visibility: visible
 
-  button[type="submit"]
+  .search-icon
     transform: translate3d(0, -50%, 0)
     position: absolute
     top: 50%
-    left: 9px
+    left: 15px
     border: none
     background: none
     opacity: .3
@@ -284,6 +290,7 @@ form
     height: 100%
 
     span
+      padding: 11px 0
       transform: rotateZ(90deg)
       font-size: 12px
       color: #555

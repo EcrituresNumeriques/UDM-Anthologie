@@ -8,7 +8,12 @@
         @click="onControlClick"
         class="control"
       >
-        <a class="play-button paused" href="#">
+        <span class="no-play-button-border"></span>
+        <a
+          @click="ePreventDefault"
+          class="play-button paused"
+          href="#"
+        >
           <div class="left"></div>
           <div class="right"></div>
           <div class="triangle-1"></div>
@@ -131,6 +136,9 @@ export default {
       playBtn.addClass('paused')
       muteBtn.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up')
       greekSound.volume = 1
+    },
+    ePreventDefault: function (e) {
+      e.preventDefault()
     }
   }
 }
@@ -153,6 +161,19 @@ $hover: .5s all ease-out
   border: 1px solid #2c2c2c
   justify-content: center
   align-items: center
+  position: relative
+
+  .no-play-button-border
+    position: absolute
+    background: transparent
+    width: 11px
+    height: 13px
+    top: 50%
+    left: 50%
+    transform: translate3d(-50%, -50%, 0)
+    border-bottom: 2px solid #fff
+    border-top: 2px solid #fff
+    z-index: 2
 
   .play-button
     height: 10px
