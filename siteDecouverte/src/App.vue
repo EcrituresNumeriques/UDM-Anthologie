@@ -61,6 +61,9 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 html
   height: 100%
 
+[v-cloak]
+  display: none
+
 body
   display: flex
   height: 100%

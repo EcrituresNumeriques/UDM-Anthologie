@@ -1,20 +1,21 @@
 <template>
   <div class="epigram-api" :epigram="epigram">
     <loader></loader>
-    <div v-if="dataEpigrams[epigram]">
+    <div>
       <div class="page-title-container">
-        <h1>{{ dataEpigrams[epigram].title }}</h1>
+        <h1>{{ epigram.title }}</h1>
       </div>
       <div class="row epigram-row">
-        <pagination :data="dataEpigrams[epigram]" :length="dataEpigrams.length" :epigram="epigram"></pagination>
-        <player :data="dataEpigrams[epigram]"></player>
-        <translation :data="dataEpigrams[epigram]"></translation>
-        <greek-text :data="dataEpigrams[epigram]"></greek-text>
-        <notes :data="dataEpigrams[epigram]"></notes>
-        <characters :data="dataEpigrams[epigram]"></characters>
+        <pagination :data="epigram" :length="dataEpigrams.length" :epigram="epigram"></pagination>
+        <player :data="epigram"></player>
+        <!-- WIP: translation component not working, crashes the page -->
+<!--        <translation :data="epigram"></translation>-->
+        <greek-text :data="epigram"></greek-text>
+        <notes :data="epigram"></notes>
+        <characters :data="epigram"></characters>
         <div class="col-md-9 col-md-offset-3">
           <div
-            v-if="dataEpigrams[epigram].images[0].url"
+            v-if="epigram.images[0].url"
             class="manuscript-image"
           >
             <p @click="showPopin">
@@ -27,7 +28,7 @@
         tabindex="0"
         @click="hidePopin"
         @keyup.esc="hidePopin"
-        v-if="dataEpigrams[epigram].images[0].url"
+        v-if="epigram.images[0].url"
         class="manuscript-popin"
       >
         <div
@@ -37,10 +38,19 @@
           <div class="popin-cross"></div>
         </div>
         <img
-          :src="dataEpigrams[epigram].images[0].url"
-          alt="{{ dataEpigrams[epigram].authors[0].author_translations[0].name }}"
+          :src="epigram.images[0].url"
+          alt="{{ epigram.authors[0].author_translations[0].name }}"
         >
       </div>
+    </div>
+
+    <div v-else class="notExist" v-show="false">
+        <p>L'épigramme que vous cherchez n'existe pas</p>
+        <back-btn></back-btn>
+    </div>
+    <div v-else class="problem" v-show="false">
+        <p>Un problème est survenu.</p>
+        <back-btn></back-btn>
     </div>
   </div>
 </template>
@@ -87,8 +97,7 @@ export default {
   },
   data () {
     return {
-      dataEpigrams: {},
-      epigram: this.epigram
+      epigram: {}
     }
   },
   ready: function () {
@@ -100,18 +109,21 @@ export default {
   methods: {
     getEpigramData: function () {
       var self = this
-
 //      this.$http.get(apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
-      self.$http.get(api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token*/, {progerss () {
+      self.$http.get(api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token */, {progerss () {
         $('.loader').fadeIn()
       }}).then(function (response) {
         console.log('Successfully retrieved entity', response)
-        $('.loader').fadeOut()
-        self.$set('dataEpigrams', response.data)
+        self.$set('epigram', response.data)
       }, function (response) {
-        $('.notExist').show()
-        console.log('[EpigramApiComponent] Error retrieving Epigram', response)
+        if (response.status === 404) {
+          $('.notExist').show()
+        }
+        $('.problem').show()
+        console.error('[EpigramApiComponent] Error retrieving Epigram', response)
+      }).finally(function () {
+        $('.loader').fadeOut()
       })
 //      }, function (response) {
 //        console.log('global error: ' + response.status)
