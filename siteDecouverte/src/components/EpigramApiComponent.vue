@@ -100,20 +100,22 @@ export default {
   methods: {
     getEpigramData: function () {
       var self = this
-      this.$http.get(apiAuth).then(function (response) {
-        self.$set('token', response.data.access_token)
-        self.$http.get(api + 'entity' + filterFr + 'access_token=' + self.token, {progerss () {
-          $('.loader').fadeIn()
-        }}).then(function (response) {
-          $('.loader').fadeOut()
-          self.$set('dataEpigrams', response.data)
-        }, function (response) {
-          $('.notExist').show()
-          console.log('error: ' + response)
-        })
+
+//      this.$http.get(apiAuth).then(function (response) {
+//        self.$set('token', response.data.access_token)
+      self.$http.get(api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token*/, {progerss () {
+        $('.loader').fadeIn()
+      }}).then(function (response) {
+        console.log('Successfully retrieved entity', response)
+        $('.loader').fadeOut()
+        self.$set('dataEpigrams', response.data)
       }, function (response) {
-        console.log('global error: ' + response.status)
+        $('.notExist').show()
+        console.log('[EpigramApiComponent] Error retrieving Epigram', response)
       })
+//      }, function (response) {
+//        console.log('global error: ' + response.status)
+//      })
     },
     showPopin: function () {
       $('.manuscript-popin').fadeIn(function () {

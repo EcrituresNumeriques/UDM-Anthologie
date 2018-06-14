@@ -72,19 +72,19 @@ export default {
   methods: {
     getCitiesData: function () {
       var self = this
-      this.$http.get(apiAuth).then(function (response) {
-        self.$set('token', response.data.access_token)
-        self.$http.get(api + 'city' + filterFr + 'access_token=' + self.token, {progress () {
-          $('.loader').fadeIn()
-        }}).then(function (response) {
-          $('.loader').fadeOut()
-          self.$set('dataCity', response.data)
-        }, function (response) {
-          console.log('error: ' + response)
-        })
+//      this.$http.get(apiAuth).then(function (response) {
+//        self.$set('token', response.data.access_token)
+      self.$http.get(api + 'city'/* + filterFr + 'access_token=' + self.token*/, {progress () {
+        $('.loader').fadeIn()
+      }}).then(function (response) {
+        $('.loader').fadeOut()
+        self.$set('dataCity', response.data)
       }, function (response) {
-        console.log('global error: ' + response.status)
+        console.log('error: ' + response)
       })
+//      }, function (response) {
+//        console.log('global error: ' + response.status)
+//      })
     }
   }
 }

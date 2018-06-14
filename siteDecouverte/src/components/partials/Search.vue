@@ -231,42 +231,42 @@ export default {
     },
     getGlobalData: function () {
       var self = this
-      this.$http.get(apiAuth).then(function (response) {
-        self.$set('token', response.data.access_token)
-        self.$http.get(api + 'entity' + filterFr + 'access_token=' + self.token).then(function (response) {
-          self.$set('dataEpigram', response.data)
-        }, function (response) {
-          console.log('error: ' + response)
-        })
-        self.$http.get(api + 'genre' + filterFr + 'access_token=' + self.token).then(function (response) {
-          self.$set('dataGenre', response.data)
-        }, function (response) {
-          console.log('error: ' + response)
-        })
-        self.$http.get(api + 'author' + filterFr + 'access_token=' + self.token).then(function (response) {
-          self.$set('dataAuthor', response.data)
-        }, function (response) {
-          console.log('error: ' + response)
-        })
-        self.$http.get(api + 'era' + filterFr + 'access_token=' + self.token).then(function (response) {
-          self.$set('dataEra', response.data)
-        }, function (response) {
-          console.log('error: ' + response)
-        })
-        self.$http.get(api + 'city' + filterFr + 'access_token=' + self.token).then(function (response) {
-          self.$set('dataCity', response.data)
-        }, function (response) {
-          console.log('error: ' + response)
-        })
-        self.$http.get(api + 'keyword/family/1' + filterFr + 'access_token=' + self.token).then(function (response) {
-          self.$set('dataCharacter', response.data)
-        }, function (response) {
-          console.log('error: ' + response)
-        })
+//      this.$http.get(apiAuth).then(function (response) {
+//        self.$set('token', response.data.access_token)
+      self.$http.get(api + 'entity'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+        self.$set('dataEpigram', response.data)
       }, function (response) {
-        console.log('global error: ' + response.status)
-        throw (response)
+        console.log('error: ' + response)
       })
+      self.$http.get(api + 'genre'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+        self.$set('dataGenre', response.data)
+      }, function (response) {
+        console.log('error: ' + response)
+      })
+      self.$http.get(api + 'author'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+        self.$set('dataAuthor', response.data)
+      }, function (response) {
+        console.log('error: ' + response)
+      })
+      self.$http.get(api + 'era'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+        self.$set('dataEra', response.data)
+      }, function (response) {
+        console.log('error: ' + response)
+      })
+      self.$http.get(api + 'city'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+        self.$set('dataCity', response.data)
+      }, function (response) {
+        console.log('error: ' + response)
+      })
+      self.$http.get(api + 'keyword/family/1'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+        self.$set('dataCharacter', response.data)
+      }, function (response) {
+        console.log('error: ' + response)
+      })
+//      }, function (response) {
+//        console.log('global error: ' + response.status)
+//        throw (response)
+//      })
     }
   }
 }

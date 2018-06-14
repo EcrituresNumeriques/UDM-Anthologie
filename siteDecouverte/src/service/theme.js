@@ -4,3 +4,5 @@ import Vue from 'vue'
 const hostTheme = 'localhost:8080/static/'
 
 exports.dataDiscover = Vue.resource(hostTheme + 'mock/discover.json')
+
+exports.entities = Vue.resource(global.api + 'entities')
