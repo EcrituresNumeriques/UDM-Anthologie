@@ -15,8 +15,7 @@
           >
             <span class="glyphicon glyphicon-volume-up"></span>
           </div>
-          <p>
-            {{{ data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].texts.length - 1].content }}}
+          <p v-html="data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].texts.length - 1].content">
           </p>
         </div>
       </div>
@@ -28,7 +27,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object,
     theme: Number,
     epigram: Number

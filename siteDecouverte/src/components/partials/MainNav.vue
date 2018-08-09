@@ -1,52 +1,46 @@
 <template>
+  <div>
     <search :search="search"></search>
     <div class="main-nav col-md-6 col-md-offset-1">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header col-md-2">
-            <a
+            <router-link to="{ path : '/accueil' }"
               @click="closeSearchPartial"
               class="navbar-brand"
-              v-link="{ path : '/accueil' }"
+
             >
               <h1>Antho<span>logie</span></h1>
-            </a>
+            </router-link>
           </div>
           <div class="navbar-link col-md-2">
-            <a
-              @click="closeSearchPartial"
-              v-link="{ name: 'credits' }"
-            >
+            <router-link to="{ name: 'credits' }"
+              @click="closeSearchPartial">
               Crédits<span class="dash"></span>
-            </a>
+            </router-link>
           </div>
           <div class="navbar-list col-md-2">
             <p>Listes :</p>
             <ul>
-              <li>
-                <a
-                  @click="closeSearchPartial"
-                  v-link="{ name: 'genres' }"
-                >
-                  Genres<span class="dash"></span>
-                </a>
-              </li>
-              <li>
-                <a
-                  @click="closeSearchPartial"
-                  v-link="{ name: 'authors' }"
-                >
+              <router-link to="{ name: 'genres' }"
+                           tag="li"
+                           @click="closeSearchPartial"
+              >
+                Genres<span class="dash"></span>
+              </router-link>
+
+              <router-link to="{ name: 'authors' }"
+                           tag="li"
+                           @click="closeSearchPartial"
+              >
                   Auteurs<span class="dash"></span>
-                </a>
-              </li>
-              <li>
-                <a
-                  @click="closeSearchPartial"
-                  v-link="{ name: 'characters' }"
-                >
+              </router-link>
+              <router-link to="{ name: 'characters' }"
+                           tag="li"
+                           @click="closeSearchPartial"
+              >
                   Personnages<span class="dash"></span>
-                </a>
-              </li>
+              </router-link>
             </ul>
           </div>
           <form class="navbar-form navbar-left col-md-4" role="search">
@@ -60,8 +54,7 @@
               >
               <div class="search-icon"><span class="glyphicon glyphicon-search"></span></div>
               <button
-                @click="closeSearchPartial"
-                @click="onResetClick"
+                @click="closeSearchPartial && onResetClick"
                 type="reset"
                 class="reset"
               >
@@ -72,6 +65,7 @@
         </div>
       </nav>
     </div>
+  </div>
 </template>
 
 <script>
@@ -88,7 +82,7 @@ export default {
       search: ''
     }
   },
-  ready: function () {
+  mounted: function () {
   },
   methods: {
     onSearchFocus: function () {
@@ -116,7 +110,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $nav-color: #2c2c2c
 $hover: .5s all linear
 
-.v-link-active
+.router-link-active
   &:hover
     cursor: default
 
@@ -148,7 +142,7 @@ $hover: .5s all linear
       span
         font-weight: 300
 
-    &.v-link-active
+    &.router-link-active
       opacity: .3
 
       &:hover
@@ -174,10 +168,10 @@ $hover: .5s all linear
     height: 20px
 
     &:hover,
-    &.v-link-active
+    &.router-link-active
       opacity: 1
 
-    &.v-link-active
+    &.router-link-active
       .dash
         background: #000
 

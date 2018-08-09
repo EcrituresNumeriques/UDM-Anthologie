@@ -1,20 +1,22 @@
 <template>
-  <span class="scroll-progress-bar">
-    <span class="scroll-dot active"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-    <span class="scroll-dot"></span>
-  </span>
-  <span class="scroll-arrows">
-    <span @click="onScrollLeftArrowClick" class="glyphicon glyphicon-chevron-left"></span>
-    <span @click="onScrollRightArrowClick" class="glyphicon glyphicon-chevron-right"></span>
-  </span>
+  <div>
+    <span class="scroll-progress-bar">
+      <span class="scroll-dot active"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+      <span class="scroll-dot"></span>
+    </span>
+    <span class="scroll-arrows">
+      <span @click="onScrollLeftArrowClick" class="glyphicon glyphicon-chevron-left"></span>
+      <span @click="onScrollRightArrowClick" class="glyphicon glyphicon-chevron-right"></span>
+    </span>
+  </div>
 </template>
 
 <script>
@@ -22,7 +24,7 @@ import $ from 'jquery'
 
 export default {
   name: 'ScrollProgressBar',
-  ready: function () {
+  mounted: function () {
     setTimeout(function () {
       if ($('.row.scroll')[0].scrollWidth > $('.row.scroll').width()) {
         $('.scroll-progress-bar').show()

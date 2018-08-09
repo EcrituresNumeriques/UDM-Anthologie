@@ -15,11 +15,11 @@
           <li v-for="character in data.keywords">
             <a
               @click="onCharactersListClick"
-              id="character-{{ character.keywords_translations[0].title }}-list"
-              data-click="character-{{ character.keywords_translations[0].title }}"
+              v-bind:id="'character-' + character.keywords_translations[0].title + '-list'"
+              v-bind:data-click="'character-' + character.keywords_translations[0].title"
               href="#"
             >
-              <span class="dash"></span>{{ character.keywords_translations[0].title | capitalize }}
+              <span class="dash"></span>{{ character.keywords_translations[0].title | cglobal.apitalize }}
             </a>
           </li>
         </ul>
@@ -27,16 +27,15 @@
       <div class="dropdown-text-container">
         <span class="glyphicon glyphicon-chevron-left"></span>
         <div class="dropdown-text-wrapper">
-          <div
-            v-for="character in data.keywords"
-            id="character-{{ character.keywords_translations[0].title }}"
-            class="dropdown-text"
+          <div v-for="character in data.keywords"
+               v-bind:id="'character-' + character.keywords_translations[0].title"
+               class="dropdown-text"
           >
             <div class="dropdown-title">
-              <h4>{{ character.keywords_translations[0].title | capitalize }}</h4>
+              <h4>{{ character.keywords_translations[0].title | cglobal.apitalize }}</h4>
             </div>
             <div class="dropdown-desc">
-              <q>{{{ character.keywords_translations[0].description }}}</q>
+              <q v-html="character.keywords_translations[0].description"></q>
             </div>
           </div>
         </div>
@@ -50,7 +49,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object
   },
   methods: {

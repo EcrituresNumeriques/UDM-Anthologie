@@ -15,11 +15,11 @@
           <div class="dropdown-text-wrapper">
             <div
               v-for="note in data.notes"
-              id="note{{ note.note_translations[0].id }}"
+              v-bind:id="'note' + note.note_translations[0].id"
               class="dropdown-text"
             >
               <div class="dropdown-desc">
-                <q>{{{ note.note_translations[0].text }}}</q>
+                <q v-html="note.note_translations[0].text"></q>
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object
   },
   methods: {

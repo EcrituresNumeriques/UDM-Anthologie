@@ -39,7 +39,7 @@
               </h4>
               <ul>
                 <li v-for="epigram in dataAuthor[author].entities">
-                  <a v-link="{ name: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</a>
+                  <router-link to="{ name: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</router-link>
                 </li>
               </ul>
             </div>
@@ -49,7 +49,7 @@
           <img
             v-if="dataAuthor[author].images[0].url"
             :src="dataAuthor[author].images[0].url"
-            alt="{{ dataAuthor[author].author_translations[0].name }}"
+            v-bind:alt="dataAuthor[author].author_translations[0].name"
           >
         </div>
       </div>
@@ -82,15 +82,15 @@ export default {
       })
     }
   },
-  ready: function () {
+  mounted: function () {
     this.getAuthorsData()
   },
   methods: {
     getAuthorsData: function () {
       var self = this
-//      this.$http.get(apiAuth).then(function (response) {
+//      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
-      self.$http.get(api + 'author'/* + filterFr + 'access_token=' + self.token*/, {progress () {
+      self.$http.get(global.api + 'author'/* + filterFr + 'access_token=' + self.token*/, {progress () {
         $('.loader').fadeIn()
       }}).then(function (response) {
         $('.loader').fadeOut()

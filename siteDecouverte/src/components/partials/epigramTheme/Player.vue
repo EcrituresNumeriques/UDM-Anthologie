@@ -58,7 +58,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object,
     theme: Number,
     epigram: Number

@@ -47,7 +47,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object
   },
   methods: {

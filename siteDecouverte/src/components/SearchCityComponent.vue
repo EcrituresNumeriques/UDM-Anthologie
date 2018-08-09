@@ -33,7 +33,7 @@
           <img
             v-if="dataCity[city].images[0].url"
             :src="dataCity[city].images[0].url"
-            alt="{{ dataCity[city].city_translations[0].name }}"
+            v-bind:alt="dataCity[city].city_translations[0].name"
           >
         </div>
       </div>
@@ -66,15 +66,15 @@ export default {
       })
     }
   },
-  ready: function () {
+  mounted: function () {
     this.getCitiesData()
   },
   methods: {
     getCitiesData: function () {
       var self = this
-//      this.$http.get(apiAuth).then(function (response) {
+//      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
-      self.$http.get(api + 'city'/* + filterFr + 'access_token=' + self.token*/, {progress () {
+      self.$http.get(global.api + 'city'/* + filterFr + 'access_token=' + self.token*/, {progress () {
         $('.loader').fadeIn()
       }}).then(function (response) {
         $('.loader').fadeOut()

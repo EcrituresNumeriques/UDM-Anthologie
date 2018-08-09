@@ -11,23 +11,19 @@
     </div>
     <div class="arrows">
       <span>
-        <a
+        <router-link to="{ name: 'epigram', params: { id: data.id - 1 }}"
           @click="onPaginationClick"
-          v-show="!(data.id == 1)"
-          v-link="{ name: 'epigram', params: { id: data.id - 1 }}"
-        >
+          v-show="!(data.id == 1)">
           <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
+        </router-link>
       </span>
       <span class="separator"></span>
       <span>
-        <a
+        <router-link to="{ name: 'epigram', params: { id: data.id + 1  }}"
           @click="onPaginationClick"
-          v-show="!(data.id == length)"
-          v-link="{ name: 'epigram', params: { id: data.id + 1  }}"
-        >
+          v-show="!(data.id == length)">
           <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+        </router-link>
       </span>
     </div>
   </div>
@@ -37,7 +33,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object,
     epigram: Number,
     length: Number

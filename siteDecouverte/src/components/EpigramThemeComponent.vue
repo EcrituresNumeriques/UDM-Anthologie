@@ -7,10 +7,10 @@
           <div class="row epigram-row">
               <div class="col-md-2 col-md-offset-1">
                   <div class="inner-links">
-                      <a v-link="{ name: 'summary' }">
+                      <router-link to="{ name: 'summary' }">
                         <span class="dash"></span>
                         Les thèmes
-                      </a>
+                      </router-link>
                   </div>
               </div>
               <pagination :data="data" :theme="theme" :epigram="epigram"></pagination>
@@ -45,7 +45,7 @@
             </div>
             <img
               :src="data.themes[theme].epigrams[epigram].imageUrl"
-              alt="{{ data.themes[theme].epigrams[epigram].title }}"
+              v-bind:alt="data.themes[theme].epigrams[epigram].title"
             >
           </div>
         </div>
@@ -102,9 +102,9 @@ export default {
       epigram: this.epigram
     }
   },
-  ready: function () {
+  mounted: function () {
     var self = this
-    return theme.dataDiscover.get().then(function (response) {
+    return global.theme.dataDiscover.get().then(function (response) {
       self.$set('data', response.data)
     }, function (response) { console.log(response.status) })
   },

@@ -15,11 +15,11 @@
           <div class="dropdown-text-wrapper">
             <div
               v-for="note in data.themes[theme].epigrams[epigram].notes"
-              id="note{{ note.id }}"
+              v-bind:id="'note' + note.id"
               class="dropdown-text"
             >
               <div class="dropdown-desc">
-                <q>{{{ note.content }}}</q>
+                <q v-html="note.content"></q>
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object,
     theme: Number,
     epigram: Number

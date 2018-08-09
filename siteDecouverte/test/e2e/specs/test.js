@@ -3,12 +3,13 @@
 
 module.exports = {
   'default e2e tests': function (browser) {
+    const devServer = browser.globals.devServerURL
+
     browser
-    .url('http://localhost:8080')
+      .url(devServer)
       .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.logo')
-      .assert.containsText('h1', 'Hello World!')
-      .assert.elementCount('p', 3)
+      .waitForElementPresent('a.title', 5000)
+      .assert.containsText('a.title', 'iPad 4 Mini')
       .end()
   }
 }

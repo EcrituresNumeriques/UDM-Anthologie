@@ -23,7 +23,7 @@
           <select v-model="data.themes[theme].epigrams[epigram].langs.selected">
             <option
               v-for="lang in data.themes[theme].epigrams[epigram].langs.options"
-              value="{{ lang.id - 1 }}"
+              v-bind:value="lang.id - 1"
             >
               {{ lang.text }}
             </option>
@@ -31,12 +31,10 @@
         </div>
       </div>
       <div class="text-content">
-        <p v-if="data.themes[theme].epigrams[epigram].langs">
-          {{{ data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].langs.selected].content }}}
-        </p>
-        <p v-else>
-          {{{ data.themes[theme].epigrams[epigram].texts[0].content }}}
-        </p>
+        <p v-if="data.themes[theme].epigrams[epigram].langs"
+           v-html="data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].langs.selected].content"></p>
+        <p v-if"!data.themes[theme].epigrams[epigram].langs"
+           v-html="data.themes[theme].epigrams[epigram].texts[0].content"></p>
       </div>
       <div class="text-author" v-if="data.themes[theme].epigrams[epigram].author">
         <span class="dash"></span>
@@ -50,7 +48,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object,
     theme: Number,
     epigram: Number
@@ -126,7 +124,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
         font-size: 12px
 
       .text-lang
-        background: url('~assets/img/select-arrow.png') no-repeat right
+        background: url('/assets/img/select-arrow.png') no-repeat right
         width: 34px
         overflow: hidden
         position: absolute

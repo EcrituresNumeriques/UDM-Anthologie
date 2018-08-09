@@ -25,19 +25,18 @@
         </div>
         <div class="search-list vertical-list-container">
           <ul
-            v-if="dataEpigram.length > 0"
+            v-if="filteredDataEpigram.length > 0"
             class="vertical-list-wrapper"
           >
-            <li v-for="epigram in dataEpigram | filterBy search in 'title' ">
-              <a
-                @click="closeSearchPartial"
-                v-link="{ name: 'epigram', params: { id: epigram.id }}">
+            <li v-for="epigram in filteredDataEpigram">
+              <router-link to="{ name: 'epigram', params: { id: epigram.id }}"
+                           @click="closeSearchPartial">
                 <span class="dash">
                   <span class="inner-dash"></span>
                 </span>
                 {{ epigram.title }}
                 <span class="type-text-bg">épigramme</span>
-              </a>
+              </router-link>
             </li>
           </ul>
           <ul
@@ -45,16 +44,15 @@
             v-for="genres in dataGenre"
             class="vertical-list-wrapper"
           >
-            <li v-for="genre in genres.genre_translations | filterBy search in 'title' ">
-              <a
-                @click="closeSearchPartial"
-                v-link="{ name: 'searchGenre', params: { id: genre.id }}">
+            <li v-for="genre in genres.filteredGenreTranslations">
+              <router-link to="{ name: 'searchGenre', params: { id: genre.id }}"
+                           @click="closeSearchPartial">
                 <span class="dash">
                   <span class="inner-dash"></span>
                 </span>
                 {{ genre.title }}
                 <span class="type-text-bg">genre</span>
-              </a>
+              </router-link>
             </li>
           </ul>
           <ul
@@ -62,16 +60,15 @@
             v-for="authors in dataAuthor"
             class="vertical-list-wrapper"
           >
-            <li v-for="author in authors.author_translations | filterBy search in 'name' ">
-              <a
-                @click="closeSearchPartial"
-                v-link="{ name: 'searchAuthor', params: { id: author.id }}">
+            <li v-for="author in authors.filteredAuthorTranslations">
+              <router-link to="{ name: 'searchAuthor', params: { id: author.id }}"
+                           @click="closeSearchPartial">
                 <span class="dash">
                   <span class="inner-dash"></span>
                 </span>
                 {{ author.name }}
                 <span class="type-text-bg">Auteur</span>
-              </a>
+              </router-link>
             </li>
           </ul>
           <ul
@@ -79,16 +76,15 @@
             v-for="eras in dataEra"
             class="vertical-list-wrapper"
           >
-            <li v-for="era in eras.era_translations | filterBy search in 'name' ">
-              <a
-                @click="closeSearchPartial"
-                v-link="{ name: 'searchEra', params: { id: era.id }}">
+            <li v-for="era in filteredEraTranslations">
+              <router-link to="{ name: 'searchEra', params: { id: era.id }}"
+                           @click="closeSearchPartial">
                 <span class="dash">
                   <span class="inner-dash"></span>
                 </span>
                 {{ era.name }}
                 <span class="type-text-bg">ère</span>
-              </a>
+              </router-link>
             </li>
           </ul>
           <ul
@@ -96,16 +92,15 @@
             v-for="cities in dataCity"
             class="vertical-list-wrapper"
           >
-            <li v-for="city in cities.city_translations | filterBy search in 'name' ">
-              <a
-                @click="closeSearchPartial"
-                v-link="{ name: 'searchCity', params: { id: city.id }}">
+            <li v-for="city in filteredCities">
+              <router-link to="{ name: 'searchCity', params: { id: city.id }}"
+                           @click="closeSearchPartial">
                 <span class="dash">
                   <span class="inner-dash"></span>
                 </span>
                 {{ city.name }}
                 <span class="type-text-bg">Ville</span>
-              </a>
+              </router-link>
             </li>
           </ul>
           <ul
@@ -113,16 +108,15 @@
             v-for="characters in dataCharacter.keywords"
             class="vertical-list-wrapper"
           >
-            <li v-for="character in characters.keywords_translations | filterBy search in 'title' ">
-              <a
-                @click="closeSearchPartial"
-                v-link="{ name: 'searchCharacter', params: { id: character.id }}">
+            <li v-for="character in filteredCharactersTranslations">
+              <router-link to="{ name: 'searchCharacter', params: { id: character.id }}"
+                           @click="closeSearchPartial">
                 <span class="dash">
                   <span class="inner-dash"></span>
                 </span>
                 {{ character.title }}
                 <span class="type-text-bg">Personnage</span>
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -150,9 +144,47 @@ export default {
   components: {
     ScrollProgressBar
   },
+  computed: {
+    filteredDataEpigram: function () {
+      var self = this
+      return self.dataEpigram.filter(function (epigram) {
+        return epigram.title.indexOf(self.search) !== -1
+      })
+    },
+    filteredGenreTranslations: function () {
+      var self = this
+      return self.genre_translations.filter(function (genreTranslation) {
+        return genreTranslation.title.indexOf(self.search) !== -1
+      })
+    },
+    filteredAuthorTranslations: function () {
+      var self = this
+      return self.author_translations.filter(function (authorTranslation) {
+        return authorTranslation.name.indexOf(self.search) !== -1
+      })
+    },
+    filteredEraTranslations: function () {
+      var self = this
+      return self.eras.era_translations.filter(function (eraTranslation) {
+        return eraTranslation.name.indexOf(self.search) !== -1
+      })
+    },
+    filteredCityTranslations: function () {
+      var self = this
+      return self.cities.city_translations.filter(function (cityTranslation) {
+        return cityTranslation.name.indexOf(self.search) !== -1
+      })
+    },
+    filteredCharactersTranslations: function () {
+      var self = this
+      return self.characters.keywords_translations.filter(function (characterTranslation) {
+        return characterTranslation.title.indexOf(self.search) !== -1
+      })
+    }
+  },
   data () {
     return {
-      dataEpigram: {},
+      dataEpigram: [],
       dataGenre: {},
       dataAuthor: {},
       dataEra: {},
@@ -160,10 +192,10 @@ export default {
       dataCharacter: {}
     }
   },
-  props: {
+  propsData: {
     search: String
   },
-  ready: function () {
+  mounted: function () {
     this.onScrollProgressBar()
     this.onDotClick()
     this.getGlobalData()
@@ -231,34 +263,34 @@ export default {
     },
     getGlobalData: function () {
       var self = this
-//      this.$http.get(apiAuth).then(function (response) {
+//      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
-      self.$http.get(api + 'entity'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+      self.$http.get(global.api + 'entity' /* + filterFr + 'access_token=' + self.token*/).then(function (response) {
         self.$set('dataEpigram', response.data)
       }, function (response) {
         console.log('error: ' + response)
       })
-      self.$http.get(api + 'genre'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+      self.$http.get(global.api + 'genre' /* + filterFr + 'access_token=' + self.token*/).then(function (response) {
         self.$set('dataGenre', response.data)
       }, function (response) {
         console.log('error: ' + response)
       })
-      self.$http.get(api + 'author'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+      self.$http.get(global.api + 'author' /* + filterFr + 'access_token=' + self.token*/).then(function (response) {
         self.$set('dataAuthor', response.data)
       }, function (response) {
         console.log('error: ' + response)
       })
-      self.$http.get(api + 'era'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+      self.$http.get(global.api + 'era' /* + filterFr + 'access_token=' + self.token*/).then(function (response) {
         self.$set('dataEra', response.data)
       }, function (response) {
         console.log('error: ' + response)
       })
-      self.$http.get(api + 'city'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+      self.$http.get(global.api + 'city' /* + filterFr + 'access_token=' + self.token*/).then(function (response) {
         self.$set('dataCity', response.data)
       }, function (response) {
         console.log('error: ' + response)
       })
-      self.$http.get(api + 'keyword/family/1'/* + filterFr + 'access_token=' + self.token*/).then(function (response) {
+      self.$http.get(global.api + 'keyword/family/1' /* + filterFr + 'access_token=' + self.token*/).then(function (response) {
         self.$set('dataCharacter', response.data)
       }, function (response) {
         console.log('error: ' + response)

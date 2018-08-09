@@ -2,23 +2,22 @@
     <div class="discover-nav">
         <nav class="navbar navbar-default">
             <ul class="nav">
-                <li
-                  class="discover-list"
-                  v-for="theme in data.themes"
-                  v-if="theme.epigrams"
-                >
-                  <a
+                <li class="discover-list"
+                    v-for="theme in data.themes"
+                    v-if="theme.epigrams"
+                    v-track-by="index"
+                    >
+                  <router-link to="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}"
                     @mouseover="addClass"
-                    data-id="{{ theme.id }}"
-                    v-link="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}"
-                    :class="{ 'active': $index === 0 }"
+                    v-bind:data-id="theme.id"
+                    :class="{ 'active': index === 0 }"
                   >
                     <span class="dash">
                       <span class="inner-dash"></span>
                     </span>
                     {{ theme.name }}
                     <sup>{{ theme.id | romanize }}</sup>
-                  </a>
+                  </router-link>
                 </li>
             </ul>
         </nav>
@@ -52,16 +51,21 @@ export default {
       data: {}
     }
   },
-  ready: function () {
-    var self = this
-    return theme.dataDiscover.get().then(function (response) {
-      self.$set('data', response.data)
-    }, function (response) { console.log(response.status) })
+  mounted: function () {
+    this.getThemeData()
   },
   methods: {
     addClass: function (e) {
       $(e.target).addClass('active')
       $(e.target).parent().siblings().children().removeClass('active')
+    },
+    getThemeData: function () {
+      var self = this
+      return theme.dataDiscover.get().then(function (response) {
+        self.$set('data', response.data)
+      }, function (response) {
+        console.error(response.status, response)
+      })
     }
   }
 }

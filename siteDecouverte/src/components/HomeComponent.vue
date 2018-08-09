@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-5 right-column">
           <div class="img-container">
-            <img src="{{ data }}">
+            <img v-bind:src="data" />
           </div>
         </div>
      </div>
@@ -44,7 +44,7 @@ export default {
   created: function () {
     this.hide()
   },
-  ready: function () {
+  mounted: function () {
     this.loader()
     this.getCurrentThemeImg()
   },
@@ -53,7 +53,7 @@ export default {
       var self = this
       $('body').on('mouseenter', '.discover-list a', function () {
         var dataId = $(this).data('id')
-        return theme.dataDiscover.get().then(function (response) {
+        return global.theme.dataDiscover.get().then(function (response) {
           self.$set('data', response.data.themes[dataId - 1].imgUrl)
         }, function (response) { console.log(response.status) })
       })

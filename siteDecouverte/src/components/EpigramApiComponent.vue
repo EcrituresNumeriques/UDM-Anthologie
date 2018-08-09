@@ -1,5 +1,5 @@
 <template>
-  <div class="epigram-api" :epigram="epigram">
+  <div class="epigram-global.api" :epigram="epigram">
     <loader></loader>
     <div>
       <div class="page-title-container">
@@ -39,16 +39,16 @@
         </div>
         <img
           :src="epigram.images[0].url"
-          alt="{{ epigram.authors[0].author_translations[0].name }}"
+          v-bind:alt="epigram.authors[0].author_translations[0].name"
         >
       </div>
     </div>
 
-    <div v-else class="notExist" v-show="false">
+    <div v-if="!epigram.images[0].url.length" class="notExist" v-show="false">
         <p>L'épigramme que vous cherchez n'existe pas</p>
         <back-btn></back-btn>
     </div>
-    <div v-else class="problem" v-show="false">
+    <div v-if="!epigram.images[0].url.length" class="problem" v-show="false">
         <p>Un problème est survenu.</p>
         <back-btn></back-btn>
     </div>
@@ -100,7 +100,7 @@ export default {
       epigram: {}
     }
   },
-  ready: function () {
+  mounted: function () {
     this.getEpigramData()
   },
   destroyed: function () {
@@ -109,9 +109,9 @@ export default {
   methods: {
     getEpigramData: function () {
       var self = this
-//      this.$http.get(apiAuth).then(function (response) {
+//      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
-      self.$http.get(api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token */, {progerss () {
+      self.$http.get(global.api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token */, {progerss () {
         $('.loader').fadeIn()
       }}).then(function (response) {
         console.log('Successfully retrieved entity', response)
@@ -121,7 +121,7 @@ export default {
           $('.notExist').show()
         }
         $('.problem').show()
-        console.error('[EpigramApiComponent] Error retrieving Epigram', response)
+        console.error('[epigramApiComponent] Error retrieving Epigram', response)
       }).finally(function () {
         $('.loader').fadeOut()
       })
@@ -146,7 +146,7 @@ export default {
   $raleway: 'Raleway', Helvetica, Arial, sans-serif
   $hover: .5s all ease-out
 
-  .epigram-api
+  .epigram-global.api
     width: 100%
     height: 100%
 

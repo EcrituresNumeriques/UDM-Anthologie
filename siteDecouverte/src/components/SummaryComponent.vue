@@ -13,16 +13,15 @@
                 <nav class="navbar navbar-default">
                     <ul class="nav">
                         <li v-for="epigram in data.epigrams">
-                          <a
-                            v-link="{ name: 'theme', params: { theme: data.slug, themeId: data.id, id: epigram.id }}"
+                          <router-link to="{ name: 'theme', params: { theme: data.slug, themeId: data.id, id: epigram.id }}"
                           >
                             {{ epigram.title }}
-                          </a>
+                          </router-link>
                         </li>
                     </ul>
                 </nav>
                 <div class="small-img-container">
-                    <img :src="data.summaryImgUrl">
+                    <img v-bind:src="data.summaryImgUrl" />
                 </div>
             </div>
         </div>
@@ -45,10 +44,10 @@ export default {
       data: {}
     }
   },
-  ready: function () {
+  mounted: function () {
     this.getCurrentThemeId()
     var self = this
-    return theme.dataDiscover.get().then(function (response) {
+    return global.theme.dataDiscover.get().then(function (response) {
       self.$set('data', response.data.themes[0])
     }, function (response) { console.log(response.status) })
   },
@@ -57,7 +56,7 @@ export default {
       var self = this
       $('body').on('mouseenter', '.discover-list a', function () {
         var dataId = $(this).data('id')
-        return theme.dataDiscover.get().then(function (response) {
+        return global.theme.dataDiscover.get().then(function (response) {
           self.$set('data', response.data.themes[dataId - 1])
         }, function (response) { console.log(response.status) })
       })

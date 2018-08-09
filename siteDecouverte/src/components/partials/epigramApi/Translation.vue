@@ -3,14 +3,12 @@
     <div class="text-container">
       <div class="text-title">
         <h3>{{ data.title }}</h3>
-        <div
-          v-if="data.entity_translations[0].language > 1"
-          class="text-lang"
-        >
+        <div v-if="data.entity_translations[0].language > 1"
+             class="text-lang">
           <select v-model="selected">
             <option
               v-for="lang in data.entity_translations"
-              value="{{ lang.language.id - 1 }}"
+              v-bind:value="lang.language.id - 1"
             >
               {{ lang.language.name | cut }}
             </option>
@@ -18,12 +16,10 @@
         </div>
       </div>
       <div class="text-content">
-        <p v-if="data.entity_translations[0].language.length > 1">
-          {{{ data.entity_translations[selected].text_translated }}}
-        </p>
-        <p v-else>
-          {{{ data.entity_translations[0].text_translated }}}
-        </p>
+        <p v-if="data.entity_translations[0].language.length > 1"
+           v-html="data.entity_translations[selected].text_translated"></p>
+        <p v-if="data.entity_translations[0].language.length < 2"
+           v-html="data.entity_translations[0].text_translated"></p>
       </div>
       <div class="text-author">
         <span class="dash"></span>
@@ -44,7 +40,7 @@ Vue.filter('cut', function (string) {
 })
 
 export default {
-  props: {
+  propsData: {
     data: Object
   },
   data () {
@@ -123,7 +119,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
         font-size: 12px
 
       .text-lang
-        background: url('~assets/img/select-arrow.png') no-repeat right
+        background: url('/assets/img/select-arrow.png') no-repeat right
         width: 34px
         overflow: hidden
         position: absolute

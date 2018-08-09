@@ -1,8 +1,13 @@
 import Vue from 'vue'
 
 // const hostTheme = 'anthologie.valentin-crochemore.fr/static/'
-const hostTheme = 'localhost:8080/static/'
+const hostTheme = 'localhost:8080/'
 
-exports.dataDiscover = Vue.resource(hostTheme + 'mock/discover.json')
+var dataDiscover = Vue.resource(hostTheme + 'mock/discover.json')
 
-exports.entities = Vue.resource(global.api + 'entities')
+var entities = Vue.resource(global.api + 'entities')
+
+export {
+  dataDiscover,
+  entities
+}

@@ -23,7 +23,7 @@
                     <li
                       v-for="epigram in character.entities"
                     >
-                      <a v-link="{ name: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</a>
+                      <router-link :to="{ path: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</router-link>
                     </li>
                   </ul>
                 </div>
@@ -53,15 +53,15 @@ export default {
       dataCharacters: {}
     }
   },
-  ready: function () {
+  mounted: function () {
     this.getCharactersData()
   },
   methods: {
     getCharactersData: function () {
       var self = this
-//      this.$http.get(apiAuth).then(function (response) {
+//      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
-      self.$http.get(api + 'keyword/family/1'/* + filterFr + 'access_token=' + self.token*/, {progress () {
+      self.$http.get(global.api + 'keyword/family/1'/* + filterFr + 'access_token=' + self.token*/, {progress () {
         $('.loader').fadeIn()
       }}).then(function (response) {
         $('.loader').fadeOut()

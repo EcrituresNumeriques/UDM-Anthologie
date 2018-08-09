@@ -11,23 +11,19 @@
     </div>
     <div class="arrows">
       <span>
-        <a
+        <router-link to="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}"
           @click="onPaginationClick"
-          v-show="!(epigram == 0)"
-          v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}"
-        >
+          v-show="!(epigram == 0)">
           <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
+        </router-link>
       </span>
       <span class="separator"></span>
       <span>
-        <a
+        <router-link to="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}"
           @click="onPaginationClick"
-          v-show="!(epigram+1 == data.themes[theme].epigrams.length)"
-          v-link="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}"
-        >
+          v-show="!(epigram+1 == data.themes[theme].epigrams.length)">
           <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+        </router-link>
       </span>
     </div>
   </div>
@@ -37,7 +33,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object,
     theme: Number,
     epigram: Number

@@ -15,9 +15,7 @@
           >
             <span class="glyphicon glyphicon-volume-up"></span>
           </div>
-          <p>
-            {{{ data.texts[0].text_translations[0].text_translated }}}
-          </p>
+          <p v-bind-html="data.texts[0].text_translations[0].text_translated"></p>
         </div>
       </div>
     </div>
@@ -28,7 +26,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object
   },
   methods: {

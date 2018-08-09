@@ -14,11 +14,11 @@
           <li v-for="character in data.themes[theme].epigrams[epigram].characters">
             <a
               @click="onCharactersListClick"
-              id="character-{{ character.id }}-list"
-              data-click="character-{{ character.id }}"
+              v-bind:id="'character-' + character.id + '-list'"
+              v-bind:data-click="'character-' + character.id"
               href="#"
             >
-              <span class="dash"></span>{{ character.name | capitalize }}
+              <span class="dash"></span>{{ character.name | cglobal.apitalize }}
             </a>
           </li>
         </ul>
@@ -28,14 +28,14 @@
         <div class="dropdown-text-wrapper">
           <div
             v-for="character in data.themes[theme].epigrams[epigram].characters"
-            id="character-{{ character.id }}"
+            v-bind:id="'character-' + character.id"
             class="dropdown-text"
           >
             <div class="dropdown-title">
-              <h4>{{ character.name | capitalize }}</h4>
+              <h4>{{ character.name | cglobal.apitalize }}</h4>
             </div>
             <div class="dropdown-desc">
-              <q>{{{ character.desc }}}</q>
+              <q v-html="character.desc"></q>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
 import $ from 'jquery'
 
 export default {
-  props: {
+  propsData: {
     data: Object,
     theme: Number,
     epigram: Number

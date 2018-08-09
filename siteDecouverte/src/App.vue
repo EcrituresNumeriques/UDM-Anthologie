@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div>
     <div class="hidden-xs hidden-sm">
       <main-nav></main-nav>
       <router-view transition="fade" :data-theme-id="dataThemeId"></router-view>
@@ -56,13 +56,10 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 @font-face
   font-family: 'times'
-  src: url(~assets/fonts/times/Times-Roman.ttf)
+  src: url(assets/fonts/times/Times-Roman.ttf)
 
 html
   height: 100%
-
-[v-cloak]
-  display: none
 
 body
   display: flex
