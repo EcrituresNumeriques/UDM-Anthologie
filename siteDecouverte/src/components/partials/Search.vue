@@ -1,16 +1,10 @@
 <template>
   <div class="search-partial scroll">
     <span class="search-scroll-progress-bar">
+      <!--
       <span class="scroll-dot active"></span>
       <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
-      <span class="scroll-dot"></span>
+      -->
     </span>
     <span class="search-scroll-arrows">
       <span @click="onScrollLeftArrowClick" class="glyphicon glyphicon-chevron-left"></span>

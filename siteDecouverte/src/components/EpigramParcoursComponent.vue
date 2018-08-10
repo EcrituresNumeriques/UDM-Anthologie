@@ -1,8 +1,10 @@
 <template>
-    <div class="epigram-theme" :theme="theme" :epigram="epigram">
-        <div v-if="data.themes[theme].epigrams[epigram]">
+    <div class="epigram-theme"
+         :epigram="epigram">
+        <div v-if="epigram">
+          ys themes
           <div class="page-title-container">
-              <h1>{{ data.themes[theme].epigrams[epigram].title }}</h1>
+              <h1>{{ epigram.title }}</h1>
           </div>
           <div class="row epigram-row">
               <div class="col-md-2 col-md-offset-1">
@@ -21,7 +23,7 @@
               <characters :data="data" :theme="theme" :epigram="epigram"></characters>
               <div class="col-md-9 col-md-offset-3">
                   <div
-                    v-if="data.themes[theme].epigrams[epigram].imageUrl"
+                    v-if="epigram.imageUrl"
                     class="manuscript-image"
                   >
                       <p @click="showPopin">
@@ -34,7 +36,7 @@
             tabindex="0"
             @click="hidePopin"
             @keyup.esc="hidePopin"
-            v-if="data.themes[theme].epigrams[epigram].imageUrl"
+            v-if="epigram.imageUrl"
             class="manuscript-popin"
           >
             <div
@@ -44,8 +46,8 @@
               <div class="popin-cross"></div>
             </div>
             <img
-              :src="data.themes[theme].epigrams[epigram].imageUrl"
-              v-bind:alt="data.themes[theme].epigrams[epigram].title"
+              :src="epigram.imageUrl"
+              v-bind:alt="epigram.title"
             >
           </div>
         </div>
@@ -98,15 +100,23 @@ export default {
   data () {
     return {
       data: {},
-      theme: this.theme,
-      epigram: this.epigram
+      theme: this.$route.params.theme,
+      epigram: {},
+      themes: []
     }
   },
   mounted: function () {
     var self = this
+    self.getTheme()
+    console.log('this.params.theme', this.$route.params.theme)
     return global.theme.dataDiscover.get().then(function (response) {
-      self.$set('data', response.data)
-    }, function (response) { console.log(response.status) })
+      var themes = JSON.parse(response.bodyText)
+      console.log('themes', themes)
+      console.log()
+      self.themes = themes
+    }, function (response) {
+      console.error('Error retrieving dataDiscover', response)
+    })
   },
   destroyed: function () {
     this.$off()
@@ -120,6 +130,13 @@ export default {
     hidePopin: function () {
       $('.manuscript-popin img').removeClass('big')
       $('.manuscript-popin').fadeOut()
+    },
+    getTheme () {
+      var self = this
+
+      self.themes.forEach(function (theme) {
+        console.log('each theme', theme)
+      })
     }
   }
 }

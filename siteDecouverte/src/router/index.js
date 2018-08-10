@@ -9,13 +9,13 @@ import Summary from '../components/SummaryComponent'
 import Genres from '../components/GenresComponent'
 import Authors from '../components/AuthorsComponent'
 import Characters from '../components/CharactersComponent'
-import EpigramTheme from '../components/EpigramThemeComponent'
+import EpigramParcoursComponent from '../components/EpigramParcoursComponent'
 import EpigramApi from '../components/EpigramApiComponent'
-import SearchGenreComponent from '../components/SearchGenreComponent'
-import SearchAuthorComponent from '../components/SearchAuthorComponent'
-import SearchEraComponent from '../components/SearchEraComponent'
-import SearchCityComponent from '../components/SearchCityComponent'
-import SearchCharacterComponent from '../components/SearchCharacterComponent'
+//import SearchGenreComponent from '../components/SearchGenreComponent'
+//import SearchAuthorComponent from '../components/SearchAuthorComponent'
+//import SearchEraComponent from '../components/SearchEraComponent'
+//import SearchCityComponent from '../components/SearchCityComponent'
+//import SearchCharacterComponent from '../components/SearchCharacterComponent'
 import NotFound from '../components/404Component'
 
 Vue.use(VueRouter)
@@ -62,35 +62,35 @@ export default new VueRouter({
       name: 'epigram'
     },
     {
-      path: 'theme/:themeId/:theme/:id',
-      component: EpigramTheme,
-      name: 'theme'
+      path: '/parcours/:themeId/:theme',
+      component: EpigramParcoursComponent,
+      name: 'parcours'
     },
-    {
-      path: 'recherche/genre/:id',
-      component: SearchGenreComponent,
-      name: 'searchGenre'
-    },
-    {
-      path: 'recherche/auteur/:id',
-      component: SearchAuthorComponent,
-      name: 'searchAuthor'
-    },
-    {
-      path: 'recherche/ere/:id',
-      component: SearchEraComponent,
-      name: 'searchEra'
-    },
-    {
-      path: 'recherche/ville/:id',
-      component: SearchCityComponent,
-      name: 'searchCity'
-    },
-    {
-      path: 'recherche/personnage/:id',
-      component: SearchCharacterComponent,
-      name: 'searchCharacter'
-    },
+//    {
+//      path: '/recherche/genre/:id',
+//      component: SearchGenreComponent,
+//      name: 'searchGenre'
+//    },
+//    {
+//      path: '/recherche/auteur/:id',
+//      component: SearchAuthorComponent,
+//      name: 'searchAuthor'
+//    },
+//    {
+//      path: '/recherche/ere/:id',
+//      component: SearchEraComponent,
+//      name: 'searchEra'
+//    },
+//    {
+//      path: '/recherche/ville/:id',
+//      component: SearchCityComponent,
+//      name: 'searchCity'
+//    },
+//    {
+//      path: '/recherche/personnage/:id',
+//      component: SearchCharacterComponent,
+//      name: 'searchCharacter'
+//    },
     {
       path: '/404',
       component: NotFound,

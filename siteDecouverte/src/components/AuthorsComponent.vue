@@ -20,9 +20,7 @@
                     class="vertical-list-wrapper">
                     <h3><span class="bg"></span>{{ author.author_translations[0].name }} <sup>{{ author.id | romanize }}</sup></h3>
                     <ul>
-                      <li
-                        v-for="epigram in author.entities"
-                      >
+                      <li v-for="epigram in author.entities">
                         <router-link :to="{ path: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</router-link>
                       </li>
                     </ul>
@@ -61,13 +59,15 @@ export default {
       var self = this
 //      this.$http.get(global.apiAuth).then(function (response) {
 //      self.$set('token', response.data.access_token)
-      self.$http.get(global.api + 'author'/* + filterFr + 'access_token=' + self.token*/, {progress () {
+      self.$http.get(global.api + 'authors'/* + filterFr + 'access_token=' + self.token*/, {progress () {
         $('.loader').fadeIn()
       }}).then(function (response) {
         $('.loader').fadeOut()
-        self.$set('dataAuthors', response.data)
+        var authors = JSON.parse(response.bodyText)
+        console.log('authors', authors)
+        self.$set('dataAuthors', authors)
       }, function (response) {
-        console.log('error: ' + response)
+        console.log('Error retrieving authors', response)
       })
 //      }, function (response) {
 //        console.log('global error: ' + response.status)

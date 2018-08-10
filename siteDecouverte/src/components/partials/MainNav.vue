@@ -1,6 +1,6 @@
 <template>
   <div>
-    <search :search="search"></search>
+<!--    <search :search="search"></search>-->
     <div class="main-nav col-md-6 col-md-offset-1">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -72,13 +72,13 @@
 </template>
 
 <script>
-import Search from './Search'
+//import Search from './Search'
 
 import $ from 'jquery'
 
 export default {
   components: {
-    Search
+//    Search
   },
   data () {
     return {

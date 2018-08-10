@@ -20,8 +20,7 @@ import Summary from './components/SummaryComponent'
 import Keywords from './components/GenresComponent'
 import Authors from './components/AuthorsComponent'
 import Characters from './components/CharactersComponent'
-import EpigramTheme from './components/EpigramThemeComponent'
-import SearchComponent from './components/SearchGenreComponent'
+//import SearchComponent from './components/SearchGenreComponent'
 import NotFound from './components/404Component'
 import Copyright from './components/partials/Copyright'
 
@@ -35,8 +34,7 @@ export default {
     Keywords,
     Authors,
     Characters,
-    EpigramTheme,
-    SearchComponent,
+//    SearchComponent,
     NotFound,
     Copyright
   }

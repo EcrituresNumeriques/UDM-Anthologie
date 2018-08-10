@@ -7,12 +7,10 @@
                     v-if="theme.epigrams"
                     v-track-by="index"
                     tag="li"
+                    @mouseover="addClass"
                     >
                   <router-link :to="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id }}"
-                    @mouseover="addClass"
-                    v-bind:data-id="theme.id"
-                    :class="{ 'active': index === 0 }"
-                  >
+                               v-bind:data-id="theme.id">
                     <span class="dash">
                       <span class="inner-dash"></span>
                     </span>
@@ -118,11 +116,9 @@ ul
           transition: $hover
           animation: activeOut .5s ease-out forwards
 
-
       sup
         font-size: 9px
 
-      &:focus,
       &.active
         color: #2c2c2c
         background: none
