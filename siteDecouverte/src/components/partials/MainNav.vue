@@ -5,7 +5,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header col-md-2">
-            <router-link to="{ path : '/accueil' }"
+            <router-link :to="{ path : '/accueil' }"
               @click="closeSearchPartial"
               class="navbar-brand"
 
@@ -14,7 +14,7 @@
             </router-link>
           </div>
           <div class="navbar-link col-md-2">
-            <router-link to="{ name: 'credits' }"
+            <router-link :to="{ name: 'credits' }"
               @click="closeSearchPartial">
               Crédits<span class="dash"></span>
             </router-link>
@@ -22,24 +22,27 @@
           <div class="navbar-list col-md-2">
             <p>Listes :</p>
             <ul>
-              <router-link to="{ name: 'genres' }"
+              <router-link :to="{ name: 'genres' }"
                            tag="li"
-                           @click="closeSearchPartial"
-              >
-                Genres<span class="dash"></span>
+                           @click="closeSearchPartial">
+                <a>
+                  Genres<span class="dash"></span>
+                </a>
               </router-link>
 
-              <router-link to="{ name: 'authors' }"
+              <router-link :to="{ name: 'authors' }"
                            tag="li"
-                           @click="closeSearchPartial"
-              >
+                           @click="closeSearchPartial">
+                <a>
                   Auteurs<span class="dash"></span>
+                </a>
               </router-link>
-              <router-link to="{ name: 'characters' }"
+              <router-link :to="{ name: 'characters' }"
                            tag="li"
-                           @click="closeSearchPartial"
-              >
+                           @click="closeSearchPartial">
+                <a>
                   Personnages<span class="dash"></span>
+                </a>
               </router-link>
             </ul>
           </div>

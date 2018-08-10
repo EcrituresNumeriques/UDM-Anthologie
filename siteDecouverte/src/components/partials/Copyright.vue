@@ -9,7 +9,7 @@
 <style lang="sass" scoped>
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
-#app > .copyright
+.container-main .copyright
   position: absolute
   left: 0
   bottom: 0

@@ -3,11 +3,12 @@
         <nav class="navbar navbar-default">
             <ul class="nav">
                 <li class="discover-list"
-                    v-for="theme in data.themes"
+                    v-for="theme in themes"
                     v-if="theme.epigrams"
                     v-track-by="index"
+                    tag="li"
                     >
-                  <router-link to="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id, id: '1' }}"
+                  <router-link :to="{ name: 'theme', params: { theme: theme.slug, themeId: theme.id }}"
                     @mouseover="addClass"
                     v-bind:data-id="theme.id"
                     :class="{ 'active': index === 0 }"
@@ -46,12 +47,12 @@ Vue.filter('romanize', function (num) {
 })
 
 export default {
-  data () {
+  data: function () {
     return {
-      data: {}
+      themes: {}
     }
   },
-  mounted: function () {
+  created: function () {
     this.getThemeData()
   },
   methods: {
@@ -62,7 +63,8 @@ export default {
     getThemeData: function () {
       var self = this
       return theme.dataDiscover.get().then(function (response) {
-        self.$set('data', response.data)
+        var data = JSON.parse(response.bodyText)
+        self.themes = data.themes
       }, function (response) {
         console.error(response.status, response)
       })

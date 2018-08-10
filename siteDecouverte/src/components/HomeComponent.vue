@@ -42,21 +42,21 @@ export default {
     }
   },
   created: function () {
+    this.loader()
     this.hide()
   },
   mounted: function () {
-    this.loader()
     this.getCurrentThemeImg()
   },
   methods: {
     getCurrentThemeImg: function () {
-      var self = this
-      $('body').on('mouseenter', '.discover-list a', function () {
-        var dataId = $(this).data('id')
-        return global.theme.dataDiscover.get().then(function (response) {
-          self.$set('data', response.data.themes[dataId - 1].imgUrl)
-        }, function (response) { console.log(response.status) })
-      })
+//      var self = this
+//      $('body').on('mouseenter', '.discover-list a', function () {
+//        var dataId = $(this).data('id')
+//        return global.theme.dataDiscover.get().then(function (response) {
+//          self.$set('data', response.data.themes[dataId - 1].imgUrl)
+//        }, function (response) { console.log(response.status) })
+//      })
     },
     loader: function () {
       $(window).on('load', function () {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main class="container-fluid container-main">
     <div class="hidden-xs hidden-sm">
       <main-nav></main-nav>
       <router-view transition="fade" :data-theme-id="dataThemeId"></router-view>
@@ -8,7 +8,7 @@
       <responsive></responsive>
     </div>
     <copyright></copyright>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -86,7 +86,7 @@ sup
   padding: 0 8px
   font-weight: 700
 
-#app
+.container-main
   width: 100%
   height: 100%
   padding: 19px 17px

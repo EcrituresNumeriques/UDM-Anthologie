@@ -1,5 +1,5 @@
 <template>
-  <div class="epigram-global.api" :epigram="epigram">
+  <div class="epigram-api" :epigram="epigram">
     <loader></loader>
     <div>
       <div class="page-title-container">
@@ -109,6 +109,7 @@ export default {
   methods: {
     getEpigramData: function () {
       var self = this
+      console.log('http get entity', global.api)
 //      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
       self.$http.get(global.api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token */, {progerss () {
@@ -146,7 +147,7 @@ export default {
   $raleway: 'Raleway', Helvetica, Arial, sans-serif
   $hover: .5s all ease-out
 
-  .epigram-global.api
+  .epigram-api
     width: 100%
     height: 100%
 

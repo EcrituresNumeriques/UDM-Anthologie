@@ -76,7 +76,7 @@
             v-for="eras in dataEra"
             class="vertical-list-wrapper"
           >
-            <li v-for="era in filteredEraTranslations">
+            <li v-for="era in eras.filteredEraTranslations">
               <router-link to="{ name: 'searchEra', params: { id: era.id }}"
                            @click="closeSearchPartial">
                 <span class="dash">
@@ -92,7 +92,7 @@
             v-for="cities in dataCity"
             class="vertical-list-wrapper"
           >
-            <li v-for="city in filteredCities">
+            <li v-for="city in filteredCityTranslations">
               <router-link to="{ name: 'searchCity', params: { id: city.id }}"
                            @click="closeSearchPartial">
                 <span class="dash">
