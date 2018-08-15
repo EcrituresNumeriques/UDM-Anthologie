@@ -6,22 +6,22 @@
       </div>
       <div class="row scroll">
           <scroll-progress-bar></scroll-progress-bar>
-          <div class="col-md-5 col-md-offset-1">
+          <div class="col-md-5 col-md-offset-1 flex">
               <back-btn></back-btn>
               <div class="page-subtitle-container">
                   <span class="dash"></span>
                   <h2>Les auteurs de<br> l'Anthologie Palatine</h2>
               </div>
           </div>
-          <div class="col-md-6 pull-right">
+          <div class="col-md-6 pull-right flex">
               <div class="vertical-list-container">
                   <div
                     v-for="author in dataAuthors"
                     class="vertical-list-wrapper">
-                    <h3><span class="bg"></span>{{ author.author_translations[0].name }} <sup>{{ author.id | romanize }}</sup></h3>
+                    <h3><span class="bg"></span>{{ author.versions[0].name }} <sup>{{ author.id_author | romanize }}</sup></h3>
                     <ul>
                       <li v-for="epigram in author.entities">
-                        <router-link :to="{ path: 'epigram', params: { id: epigram.id }}">{{ epigram.title }}</router-link>
+                        <router-link :to="{ name: 'epigram', params: { id: epigram.id_entity }}">{{ epigram.title }}</router-link>
                       </li>
                     </ul>
                   </div>
@@ -51,7 +51,7 @@ export default {
       dataAuthors: {}
     }
   },
-  mounted: function () {
+  created: function () {
     this.getAuthorsData()
   },
   methods: {
@@ -64,8 +64,8 @@ export default {
       }}).then(function (response) {
         $('.loader').fadeOut()
         var authors = JSON.parse(response.bodyText)
-        console.log('authors', authors)
-        self.$set('dataAuthors', authors)
+        console.log('epigram id', authors[0].entities[2].id_entity)
+        self.dataAuthors = authors
       }, function (response) {
         console.log('Error retrieving authors', response)
       })
@@ -88,10 +88,7 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 .row
   height: 100%
 
-  >div:first-child
-    position: initial
-
-  >div
+  >.flex
     height: 100%
     display: flex
 

@@ -5,6 +5,8 @@ import VueResource from 'vue-resource'
 import App from './App'
 // custom router
 import router from './router'
+// custom filters
+import './filters'
 
 // install resource
 Vue.use(VueResource)

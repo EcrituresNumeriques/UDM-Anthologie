@@ -1,54 +1,60 @@
 <template>
-  <div class="epigram-api" :epigram="epigram">
-    <loader></loader>
+  <div class="epigram-api">
+<!--    <loader></loader>-->
     <div>
       <div class="page-title-container">
-        <h1>{{ epigram.title }}</h1>
+        <h1 v-if="epigram.title">{{ backgroundTitle }}</h1>
       </div>
       <div class="row epigram-row">
-        <pagination :data="epigram" :length="dataEpigrams.length" :epigram="epigram"></pagination>
-        <player :data="epigram"></player>
+        <!-- WIP: dataEpigrams? -->
+<!--        <pagination :data="epigram" :length="dataEpigrams.length" :epigram="epigram"></pagination>-->
+<!--        <player :data="epigram"></player>-->
         <!-- WIP: translation component not working, crashes the page -->
-<!--        <translation :data="epigram"></translation>-->
+        <translation :epigram="epigram"></translation>
+<!--
         <greek-text :data="epigram"></greek-text>
         <notes :data="epigram"></notes>
         <characters :data="epigram"></characters>
+-->
+<!--
         <div class="col-md-9 col-md-offset-3">
-          <div
-            v-if="epigram.images[0].url"
-            class="manuscript-image"
-          >
-            <p @click="showPopin">
-              Image du manuscrit
-            </p>
+          <div v-if="epigram.images">
+            <div v-for="image in epigram.images"
+                 class="manuscript-image">
+              <p @click="showPopin">
+                Image du manuscrit
+              </p>
+            </div>
+            <div
+              tabindex="0"
+              @click="hidePopin"
+              @keyup.esc="hidePopin"
+              v-if="epigram.images[0].url"
+              class="manuscript-popin"
+            >
+              <div
+                @click="hidePopin"
+                class="popin-cross-container"
+              >
+                <div class="popin-cross"></div>
+              </div>
+              <img
+                :src="image.url"
+                v-bind:alt="epigram.authors[0].author_translations[0].name"
+              >
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        tabindex="0"
-        @click="hidePopin"
-        @keyup.esc="hidePopin"
-        v-if="epigram.images[0].url"
-        class="manuscript-popin"
-      >
-        <div
-          @click="hidePopin"
-          class="popin-cross-container"
-        >
-          <div class="popin-cross"></div>
-        </div>
-        <img
-          :src="epigram.images[0].url"
-          v-bind:alt="epigram.authors[0].author_translations[0].name"
-        >
+-->
       </div>
     </div>
 
-    <div v-if="!epigram.images[0].url.length" class="notExist" v-show="false">
+
+    <div class="notExist" v-show="false">
         <p>L'épigramme que vous cherchez n'existe pas</p>
         <back-btn></back-btn>
     </div>
-    <div v-if="!epigram.images[0].url.length" class="problem" v-show="false">
+    <div class="problem" v-show="false">
         <p>Un problème est survenu.</p>
         <back-btn></back-btn>
     </div>
@@ -58,13 +64,13 @@
 <script>
 import Vue from 'vue'
 
-import BackBtn from './partials/BackBtn'
-import Pagination from './partials/epigramApi/Pagination'
-import Player from './partials/epigramApi/Player'
+//import BackBtn from './partials/BackBtn'
+//import Pagination from './partials/epigramApi/Pagination'
+//import Player from './partials/epigramApi/Player'
 import Translation from './partials/epigramApi/Translation'
-import GreekText from './partials/epigramApi/GreekText'
-import Notes from './partials/epigramApi/Notes'
-import Characters from './partials/epigramApi/Characters'
+//import GreekText from './partials/epigramApi/GreekText'
+//import Notes from './partials/epigramApi/Notes'
+//import Characters from './partials/epigramApi/Characters'
 import Loader from './partials/Loader'
 
 import $ from 'jquery'
@@ -79,14 +85,23 @@ Vue.filter('numberize', function (value) {
 export default {
   name: 'epigram',
   components: {
-    BackBtn,
-    Pagination,
-    Player,
+//    BackBtn,
+//    Pagination,
+//    Player,
     Translation,
-    GreekText,
-    Notes,
-    Characters,
+//    GreekText,
+//    Notes,
+//    Characters,
     Loader
+  },
+  computed: {
+    backgroundTitle: function () {
+      if (this.epigram && this.epigram.title) {
+        return this.epigram.title.replace(/Greek Anthology/i, 'AP')
+      } else {
+        return 'AP'
+      }
+    }
   },
   route: {
     data: function (transition) {
@@ -95,12 +110,10 @@ export default {
       })
     }
   },
-  data () {
-    return {
-      epigram: {}
-    }
+  props: {
+    epigram: Object
   },
-  mounted: function () {
+  created: function () {
     this.getEpigramData()
   },
   destroyed: function () {
@@ -109,20 +122,22 @@ export default {
   methods: {
     getEpigramData: function () {
       var self = this
-      console.log('http get entity', global.api)
 //      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
       self.$http.get(global.api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token */, {progerss () {
         $('.loader').fadeIn()
       }}).then(function (response) {
-        console.log('Successfully retrieved entity', response)
-        self.$set('epigram', response.data)
+        var epigramData = JSON.parse(response.bodyText)
+        console.log('Successfully retrieved entity', epigramData)
+        self.epigram = epigramData
       }, function (response) {
         if (response.status === 404) {
           $('.notExist').show()
+          console.log('should show not exist')
         }
         $('.problem').show()
         console.error('[epigramApiComponent] Error retrieving Epigram', response)
+        self.epigram = {}
       }).finally(function () {
         $('.loader').fadeOut()
       })

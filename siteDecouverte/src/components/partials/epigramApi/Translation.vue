@@ -1,52 +1,59 @@
 <template>
   <div class="col-md-3 translation">
+    <div
+      @click="onFrenchMuteClick"
+      v-if="epigram.sounds.french"
+      class="mute french-mute"
+    >
+      <span class="glyphicon glyphicon-volume-up"></span>
+    </div>
     <div class="text-container">
+      <div class="text-theme">
+        <h2>
+          <span class="bg"></span>
+          {{ epigram.name }}
+        </h2>
+      </div>
       <div class="text-title">
-        <h3>{{ data.title }}</h3>
-        <div v-if="data.entity_translations[0].language > 1"
-             class="text-lang">
-          <select v-model="selected">
+        <h3>{{ epigram.title }}</h3>
+        <div
+          v-if="epigram.langs"
+          class="text-lang"
+        >
+          <select v-model="epigram.langs.selected">
             <option
-              v-for="lang in data.entity_translations"
-              v-bind:value="lang.language.id - 1"
+              v-for="lang in epigram.langs.options"
+              v-bind:value="lang.id - 1"
             >
-              {{ lang.language.name | cut }}
+              {{ lang.text }}
             </option>
           </select>
         </div>
       </div>
       <div class="text-content">
-        <p v-if="data.entity_translations[0].language.length > 1"
-           v-html="data.entity_translations[selected].text_translated"></p>
-        <p v-if="data.entity_translations[0].language.length < 2"
-           v-html="data.entity_translations[0].text_translated"></p>
+        <p v-if="epigram.langs"
+           v-html="epigram.texts[epigram.langs.selected].content"></p>
+        <p v-if"!epigram.langs"
+           v-html="epigram.texts[0].content"></p>
       </div>
-      <div class="text-author">
+      <div class="text-author" v-if="epigram.author">
         <span class="dash"></span>
-        <p>{{ data.authors[0].author_translations[0].name }}</p>
+        <p>{{ epigram.author }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-
 import $ from 'jquery'
 
-Vue.filter('cut', function (string) {
-  var stringCut = string.substring(0, 2)
-  return stringCut
-})
-
 export default {
-  propsData: {
-    data: Object
+  props: {
+    epigram: Object,
+    theme: Number
   },
-  data () {
-    return {
-      selected: this.data.entity_translations[0].language.id - 1
-    }
+  ready () {
+    console.log(this.epigram)
   },
   methods: {
     onFrenchMuteClick: function () {
