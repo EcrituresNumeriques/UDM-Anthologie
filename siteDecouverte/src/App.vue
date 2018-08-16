@@ -2,7 +2,11 @@
   <main class="container-fluid container-main">
     <div class="hidden-xs hidden-sm">
       <main-nav></main-nav>
-      <router-view transition="fade" :data-theme-id="dataThemeId"></router-view>
+      <transition name="fade"
+                  mode="out-in">
+        <router-view :data-theme-id="dataThemeId">
+        </router-view>
+      </transition>
     </div>
     <div class="hidden-md hidden-lg">
       <responsive></responsive>
@@ -45,8 +49,9 @@ export default {
 $hover: .5s all ease-out
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
-.fade-transition
-  transition: .5s all ease-out
+.fade-enter-active,
+.fade-leave-active
+  transition: opacity .8s ease
 
 .fade-enter,
 .fade-leave

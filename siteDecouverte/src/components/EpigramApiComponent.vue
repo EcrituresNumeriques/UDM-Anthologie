@@ -1,13 +1,22 @@
 <template>
   <div class="epigram-api">
-<!--    <loader></loader>-->
+    <loader></loader>
     <div>
       <div class="page-title-container">
-        <h1 v-if="epigram.title">{{ backgroundTitle }}</h1>
+        <h1 v-if="epigram">{{ backgroundTitle }}</h1>
       </div>
       <div class="row epigram-row">
+        <div class="col-md-2 col-md-offset-1">
+          <div class="inner-links">
+            <a href="#!/sommaire">
+              <span class="dash"></span>
+              Les thèmes
+            </a>
+          </div>
+        </div>
         <!-- WIP: dataEpigrams? -->
-<!--        <pagination :data="epigram" :length="dataEpigrams.length" :epigram="epigram"></pagination>-->
+        <pagination length="3"
+                    epigram="1"></pagination>
 <!--        <player :data="epigram"></player>-->
         <!-- WIP: translation component not working, crashes the page -->
         <translation :epigram="epigram"></translation>
@@ -64,8 +73,8 @@
 <script>
 import Vue from 'vue'
 
-//import BackBtn from './partials/BackBtn'
-//import Pagination from './partials/epigramApi/Pagination'
+import BackBtn from './partials/BackBtn'
+import Pagination from './partials/epigramApi/Pagination'
 //import Player from './partials/epigramApi/Player'
 import Translation from './partials/epigramApi/Translation'
 //import GreekText from './partials/epigramApi/GreekText'
@@ -85,8 +94,8 @@ Vue.filter('numberize', function (value) {
 export default {
   name: 'epigram',
   components: {
-//    BackBtn,
-//    Pagination,
+    BackBtn,
+    Pagination,
 //    Player,
     Translation,
 //    GreekText,
@@ -96,11 +105,11 @@ export default {
   },
   computed: {
     backgroundTitle: function () {
-      if (this.epigram && this.epigram.title) {
-        return this.epigram.title.replace(/Greek Anthology/i, 'AP')
-      } else {
-        return 'AP'
-      }
+//      if (this.epigram && this.epigram.title) {
+//        return this.epigram.title.replace(/Greek Anthology/i, 'AP')
+//      } else {
+//        return 'AP'
+//      }
     }
   },
   route: {
@@ -114,7 +123,11 @@ export default {
     epigram: Object
   },
   created: function () {
-    this.getEpigramData()
+    var self = this
+    self.$nextTick(function () {
+      $('.loader').show()
+      this.getEpigramData()
+    })
   },
   destroyed: function () {
     this.$off()
@@ -125,11 +138,10 @@ export default {
 //      this.$http.get(global.apiAuth).then(function (response) {
 //        self.$set('token', response.data.access_token)
       self.$http.get(global.api + 'entities/' + this.$route.params.id/* + filterFr + 'access_token=' + self.token */, {progerss () {
-        $('.loader').fadeIn()
       }}).then(function (response) {
         var epigramData = JSON.parse(response.bodyText)
         console.log('Successfully retrieved entity', epigramData)
-        self.epigram = epigramData
+        self.$set(self, 'epigram', epigramData)
       }, function (response) {
         if (response.status === 404) {
           $('.notExist').show()

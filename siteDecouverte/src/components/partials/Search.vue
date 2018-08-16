@@ -189,7 +189,7 @@ export default {
   propsData: {
     search: String
   },
-  mounted: function () {
+  created: function () {
     this.onScrollProgressBar()
     this.onDotClick()
     this.getGlobalData()

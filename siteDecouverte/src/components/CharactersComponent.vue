@@ -53,7 +53,7 @@ export default {
       dataCharacters: {}
     }
   },
-  mounted: function () {
+  created: function () {
     this.getCharactersData()
   },
   methods: {

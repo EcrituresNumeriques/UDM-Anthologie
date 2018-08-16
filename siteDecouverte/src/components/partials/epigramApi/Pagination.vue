@@ -6,22 +6,22 @@
       </p>
       <span class="separator"></span>
       <p class="current">
-        {{ epigram + 1 | numberize }}
+        {{ epigram | numberize }}
       </p>
     </div>
     <div class="arrows">
       <span>
-        <router-link to="{ name: 'epigram', params: { id: data.id - 1 }}"
+        <router-link to="{ name: 'epigram', params: { id: epigram - 1 }}"
           @click="onPaginationClick"
-          v-show="!(data.id == 1)">
+          v-show="!(epigram == 1)">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </router-link>
       </span>
       <span class="separator"></span>
       <span>
-        <router-link to="{ name: 'epigram', params: { id: data.id + 1  }}"
+        <router-link to="{ name: 'epigram', params: { id: epigram + 1  }}"
           @click="onPaginationClick"
-          v-show="!(data.id == length)">
+          v-show="!(epigram == length)">
           <span class="glyphicon glyphicon-chevron-right"></span>
         </router-link>
       </span>
@@ -33,7 +33,7 @@
 import $ from 'jquery'
 
 export default {
-  propsData: {
+  props: {
     data: Object,
     epigram: Number,
     length: Number

@@ -24,15 +24,17 @@ import $ from 'jquery'
 
 export default {
   name: 'ScrollProgressBar',
-  mounted: function () {
-    setTimeout(function () {
+  created: function () {
+    var self = this
+    this.$nextTick(function () {
+      // ensure elements are in-document
       if ($('.row.scroll')[0].scrollWidth > $('.row.scroll').width()) {
         $('.scroll-progress-bar').show()
         $('.scroll-arrows').show()
       }
-    }, 1000)
-    this.onScrollProgressBar()
-    this.onDotClick()
+      self.onScrollProgressBar()
+      self.onDotClick()
+    })
   },
   methods: {
     onScrollProgressBar: function () {

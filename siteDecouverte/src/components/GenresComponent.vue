@@ -53,7 +53,7 @@ export default {
       dataAuthors: {}
     }
   },
-  mounted: function () {
+  created: function () {
     this.getGenresData()
   },
   methods: {

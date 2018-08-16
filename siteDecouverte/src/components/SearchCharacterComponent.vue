@@ -82,7 +82,7 @@
         })
       }
     },
-    mounted: function () {
+    created: function () {
       this.getAuthorsData()
     },
     methods: {

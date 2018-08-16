@@ -66,7 +66,7 @@ export default {
       })
     }
   },
-  mounted: function () {
+  created: function () {
     this.getCitiesData()
   },
   methods: {

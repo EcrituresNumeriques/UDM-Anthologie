@@ -5,7 +5,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header col-md-2">
-            <router-link :to="{ path : '/accueil' }"
+            <router-link :to="{ name : 'home' }"
               @click="closeSearchPartial"
               class="navbar-brand"
 
@@ -22,28 +22,25 @@
           <div class="navbar-list col-md-2">
             <p>Listes :</p>
             <ul>
-              <router-link :to="{ name: 'genres' }"
-                           tag="li"
-                           @click="closeSearchPartial">
-                <a>
+              <li>
+                <router-link :to="{ name: 'genres' }"
+                             @click="closeSearchPartial">
                   Genres<span class="dash"></span>
-                </a>
-              </router-link>
+                </router-link>
+              </li>
 
-              <router-link :to="{ name: 'authors' }"
-                           tag="li"
+              <li>
+                <router-link :to="{ name: 'authors' }"
                            @click="closeSearchPartial">
-                <a>
                   Auteurs<span class="dash"></span>
-                </a>
-              </router-link>
-              <router-link :to="{ name: 'characters' }"
-                           tag="li"
+                </router-link>
+              </li>
+              <li>
+                <router-link :to="{ name: 'characters' }"
                            @click="closeSearchPartial">
-                <a>
                   Personnages<span class="dash"></span>
-                </a>
-              </router-link>
+                </router-link>
+              </li>
             </ul>
           </div>
           <form class="navbar-form navbar-left col-md-4" role="search">
@@ -85,7 +82,7 @@ export default {
       search: ''
     }
   },
-  mounted: function () {
+  created: function () {
   },
   methods: {
     onSearchFocus: function () {
@@ -145,14 +142,14 @@ $hover: .5s all linear
       span
         font-weight: 300
 
-    &.router-link-active
-      opacity: .3
-
-      &:hover
-        opacity: .3
+  &.router-link-active
+    opacity: .3
 
     &:hover
-      opacity: 1
+      opacity: .3
+
+  &:hover
+    opacity: 1
 
 .navbar-link,
 .navbar-list

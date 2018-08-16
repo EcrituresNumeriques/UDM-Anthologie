@@ -44,7 +44,7 @@ export default {
       data: {}
     }
   },
-  mounted: function () {
+  created: function () {
     this.getCurrentThemeId()
     var self = this
     return global.theme.dataDiscover.get().then(function (response) {

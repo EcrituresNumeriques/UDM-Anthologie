@@ -105,7 +105,7 @@ export default {
       themes: []
     }
   },
-  mounted: function () {
+  created: function () {
     var self = this
     self.getTheme()
     console.log('this.params.theme', this.$route.params.theme)

@@ -2,16 +2,17 @@
   <div class="col-md-3 translation">
     <div
       @click="onFrenchMuteClick"
-      v-if="epigram.sounds.french"
+      v-if="epigram.sounds"
       class="mute french-mute"
     >
       <span class="glyphicon glyphicon-volume-up"></span>
     </div>
     <div class="text-container">
-      <div class="text-theme">
+      <div class="text-theme"
+           v-show="theme">
         <h2>
           <span class="bg"></span>
-          {{ epigram.name }}
+          {{ theme }}
         </h2>
       </div>
       <div class="text-title">
@@ -31,14 +32,18 @@
         </div>
       </div>
       <div class="text-content">
-        <p v-if="epigram.langs"
+        <p v-if="epigram.texts"
            v-html="epigram.texts[epigram.langs.selected].content"></p>
-        <p v-if"!epigram.langs"
+        <p v-if="epigram.texts"
            v-html="epigram.texts[0].content"></p>
       </div>
-      <div class="text-author" v-if="epigram.author">
+      <div class="text-author" v-if="epigram.authors">
         <span class="dash"></span>
-        <p>{{ epigram.author }}</p>
+        <p v-for="author in authors"
+           v-track-by="index">
+          <span v-show="index !== 0">/</span>
+          {{ author }}
+        </p>
       </div>
     </div>
   </div>
@@ -50,10 +55,10 @@ import $ from 'jquery'
 export default {
   props: {
     epigram: Object,
-    theme: Number
+    authors: Array
   },
-  ready () {
-    console.log(this.epigram)
+  mounted () {
+    console.log('[Translation.vue] this.epigram', this.epigram)
   },
   methods: {
     onFrenchMuteClick: function () {

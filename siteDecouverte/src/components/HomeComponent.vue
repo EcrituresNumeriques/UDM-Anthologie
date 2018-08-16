@@ -44,8 +44,6 @@ export default {
   created: function () {
     this.loader()
     this.hide()
-  },
-  mounted: function () {
     this.getCurrentThemeImg()
   },
   methods: {

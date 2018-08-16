@@ -55,7 +55,7 @@ export default {
     BackBtn
   },
   name: 'credits',
-  mounted: function () {
+  created: function () {
     var count = $('.team-container ul li').length
     var romanized = this.romanize(count)
 

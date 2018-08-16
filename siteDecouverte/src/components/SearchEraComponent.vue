@@ -82,7 +82,7 @@ export default {
       })
     }
   },
-  mounted: function () {
+  created: function () {
     this.getAuthorsData()
   },
   methods: {

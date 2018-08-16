@@ -77,7 +77,7 @@ export default {
       })
     }
   },
-  mounted: function () {
+  created: function () {
     this.getGenresData()
   },
   methods: {

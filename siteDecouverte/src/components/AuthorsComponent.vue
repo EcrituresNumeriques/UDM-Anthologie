@@ -15,9 +15,8 @@
           </div>
           <div class="col-md-6 pull-right flex">
               <div class="vertical-list-container">
-                  <div
-                    v-for="author in dataAuthors"
-                    class="vertical-list-wrapper">
+                  <div v-for="author in dataAuthors"
+                       class="vertical-list-wrapper">
                     <h3><span class="bg"></span>{{ author.versions[0].name }} <sup>{{ author.id_author | romanize }}</sup></h3>
                     <ul>
                       <li v-for="epigram in author.entities">
@@ -47,11 +46,15 @@ export default {
   name: 'Authors',
   data () {
     return {
-      token: '',
       dataAuthors: {}
     }
   },
   created: function () {
+    this.$nextTick(function () {
+      // ensure elements are in-document
+      // immediately show loader
+      $('.loader').fadeIn()
+    })
     this.getAuthorsData()
   },
   methods: {
@@ -60,14 +63,13 @@ export default {
 //      this.$http.get(global.apiAuth).then(function (response) {
 //      self.$set('token', response.data.access_token)
       self.$http.get(global.api + 'authors'/* + filterFr + 'access_token=' + self.token*/, {progress () {
-        $('.loader').fadeIn()
       }}).then(function (response) {
-        $('.loader').fadeOut()
         var authors = JSON.parse(response.bodyText)
-        console.log('epigram id', authors[0].entities[2].id_entity)
-        self.dataAuthors = authors
+        self.$set(this, 'dataAuthors', authors)
       }, function (response) {
         console.log('Error retrieving authors', response)
+      }).finally(function () {
+        $('.loader').fadeOut()
       })
 //      }, function (response) {
 //        console.log('global error: ' + response.status)
