@@ -1,8 +1,6 @@
 <template>
-  <div class="col-md-5 col-md-offset-2">
-    <div
-      v-if="data.keywords.length > 0"
-      class="characters dropdown"
+  <div class="characters"
+       v-if="data.keywords.length > 0"
     >
       <div v-if="data.notes.length == 0" style="margin-top: 230px"></div>
       <p @click="onCharactersDropdownClick">

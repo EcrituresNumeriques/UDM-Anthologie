@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 col-md-offset-4 notes-partial">
+  <div class="notes-partial">
     <div
       v-if="data.notes.length > 0"
       class="notes dropdown"

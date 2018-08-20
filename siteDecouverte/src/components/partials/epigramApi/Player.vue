@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-1 col-md-offset-1 player">
+  <div class="player">
     <div
       v-if="data.texts[0].text_translations[0].sound_url"
       class="player-container"

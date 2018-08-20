@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 translation">
+  <div class="translation">
     <div
       @click="onFrenchMuteClick"
       v-if="epigram.sounds"
@@ -18,31 +18,27 @@
       <div class="text-title">
         <h3>{{ epigram.title }}</h3>
         <div
-          v-if="epigram.langs"
+          v-if="epigram.versions"
           class="text-lang"
         >
-          <select v-model="epigram.langs.selected">
-            <option
-              v-for="lang in epigram.langs.options"
-              v-bind:value="lang.id - 1"
-            >
-              {{ lang.text }}
+          <select v-model="epigram.versions.selected">
+            <option v-for="version in epigram.versions.options"
+                    v-bind:value="version.id_entity - 1"
+                    >
+              {{ version.text_translated }}
             </option>
           </select>
         </div>
       </div>
       <div class="text-content">
-        <p v-if="epigram.texts"
-           v-html="epigram.texts[epigram.langs.selected].content"></p>
-        <p v-if="epigram.texts"
-           v-html="epigram.texts[0].content"></p>
+        <p v-if="epigram.versions"
+           v-html="epigram.versions[4].text_translated"></p>
       </div>
       <div class="text-author" v-if="epigram.authors">
         <span class="dash"></span>
-        <p v-for="author in authors"
-           v-track-by="index">
+        <p v-for="(author, index) in epigram.authors">
           <span v-show="index !== 0">/</span>
-          {{ author }}
+          {{ author.id_author }}
         </p>
       </div>
     </div>
@@ -55,12 +51,26 @@ import $ from 'jquery'
 export default {
   props: {
     epigram: Object,
-    authors: Array
+    authors: Array,
+    languages: Array
   },
-  mounted () {
-    console.log('[Translation.vue] this.epigram', this.epigram)
+  created () {
+    var self = this
+    self.$nextTick(function () {
+      console.log('[Translation.vue] this.epigram', this.epigram)
+      self.getLanguages()
+    })
   },
   methods: {
+    getLanguages: function () {
+      var self = this
+      self.$http.get(global.api + 'languages')
+        .then(function (response) {
+          var languages = JSON.parse(response.bodyText)
+          self.$set(self, 'languages', languages)
+          console.log('self.langs -- ', self.languages)
+        })
+    },
     onFrenchMuteClick: function () {
       var controlBtn, playBtn, frenchSound, greekSound, greekMute
       var frenchMute = $('.french-mute .glyphicon')

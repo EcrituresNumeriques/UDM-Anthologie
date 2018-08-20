@@ -59,7 +59,20 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 @font-face
   font-family: 'times'
-  src: url(assets/fonts/times/Times-Roman.ttf)
+  src: url('/static/fonts/times/Times-Roman.ttf')
+@font-face
+  font-family: 'times'
+  src: url('/static/fonts/times/Times-Italic.ttf')
+  font-style: italic
+@font-face
+  font-family: 'times'
+  src: url('/static/fonts/times/Times-BoldItalic.ttf')
+  font-style: italic
+  font-weight: bold
+@font-face
+  font-family: 'times'
+  src: url('/static/fonts/times/Times-Bold.ttf')
+  font-weight: bold
 
 html
   height: 100%

@@ -1,21 +1,23 @@
 <template>
-  <div class="col-md-6 col-md-offset-1 greek-text">
+  <div class="greek-text">
     <div class="greek-translation dropdown">
       <p @click="onGreekDropdownClick">
-        Traduction grecque
+        Texte grec
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="border-bottom"></span>
       </p>
       <div class="dropdown-drop">
         <div class="dropdown-content">
+<!--
           <div
             @click="onGreekMuteClick"
-            v-if="data.texts[0].text_translations[0].sound_url"
+            v-if="epigram.texts[0].text_translations[0].sound_url"
             class="mute greek-mute"
           >
             <span class="glyphicon glyphicon-volume-up"></span>
+-->
+            <p v-html="epigram.versions[0].text_translated"></p>
           </div>
-          <p v-bind-html="data.texts[0].text_translations[0].text_translated"></p>
         </div>
       </div>
     </div>
@@ -26,8 +28,15 @@
 import $ from 'jquery'
 
 export default {
-  propsData: {
-    data: Object
+  props: {
+    epigram: Object
+  },
+  created () {
+    var self = this
+    self.$nextTick(function () {
+      console.log('[GreekText.vue] self.epigram:', self.epigram)
+//      self.$set(self, 'epigram', this.epigram)
+    })
   },
   methods: {
     onGreekDropdownClick: function () {

@@ -17,16 +17,24 @@
         <!-- WIP: dataEpigrams? -->
         <pagination length="3"
                     epigram="1"></pagination>
-<!--        <player :data="epigram"></player>-->
+        <div class="col-md-1 col-md-offset-1 ">
+          <player :data="epigram"></player>
+        </div>
         <!-- WIP: translation component not working, crashes the page -->
-        <translation :epigram="epigram"></translation>
-<!--
-        <greek-text :data="epigram"></greek-text>
-        <notes :data="epigram"></notes>
-        <characters :data="epigram"></characters>
--->
-<!--
+        <div class="col-md-3">
+          <translation v-bind:epigram="epigram"></translation>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+          <greek-text v-bind:epigram="epigram"></greek-text>
+        </div>
+        <div class="col-md-3 col-md-offset-4">
+          <notes :data="epigram"></notes>
+        </div>
+        <div class="">
+          <characters :data="epigram"></characters>
+        </div>
         <div class="col-md-9 col-md-offset-3">
+<!--
           <div v-if="epigram.images">
             <div v-for="image in epigram.images"
                  class="manuscript-image">
@@ -38,7 +46,7 @@
               tabindex="0"
               @click="hidePopin"
               @keyup.esc="hidePopin"
-              v-if="epigram.images[0].url"
+              v-if="image.url"
               class="manuscript-popin"
             >
               <div
@@ -53,8 +61,8 @@
               >
             </div>
           </div>
-        </div>
 -->
+        </div>
       </div>
     </div>
 
@@ -77,10 +85,11 @@ import BackBtn from './partials/BackBtn'
 import Pagination from './partials/epigramApi/Pagination'
 //import Player from './partials/epigramApi/Player'
 import Translation from './partials/epigramApi/Translation'
-//import GreekText from './partials/epigramApi/GreekText'
+import GreekText from './partials/epigramApi/GreekText'
 //import Notes from './partials/epigramApi/Notes'
 //import Characters from './partials/epigramApi/Characters'
 import Loader from './partials/Loader'
+//import Languages from '../service/languages'
 
 import $ from 'jquery'
 
@@ -98,18 +107,18 @@ export default {
     Pagination,
 //    Player,
     Translation,
-//    GreekText,
+    GreekText,
 //    Notes,
 //    Characters,
     Loader
   },
   computed: {
     backgroundTitle: function () {
-//      if (this.epigram && this.epigram.title) {
-//        return this.epigram.title.replace(/Greek Anthology/i, 'AP')
-//      } else {
-//        return 'AP'
-//      }
+      if (this.epigram && this.epigram.title) {
+        return this.epigram.title.replace(/Greek Anthology/i, 'AP')
+      } else {
+        return 'AP'
+      }
     }
   },
   route: {
@@ -120,17 +129,15 @@ export default {
     }
   },
   props: {
-    epigram: Object
+    epigram: Object,
+    languages: Array
   },
   created: function () {
     var self = this
     self.$nextTick(function () {
       $('.loader').show()
-      this.getEpigramData()
+      self.getEpigramData()
     })
-  },
-  destroyed: function () {
-    this.$off()
   },
   methods: {
     getEpigramData: function () {
