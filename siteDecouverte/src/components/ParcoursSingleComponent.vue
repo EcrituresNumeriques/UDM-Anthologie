@@ -1,73 +1,127 @@
 <template>
-    <div class="epigram-theme"
-         :epigram="epigram">
-        <div v-if="epigram">
-          ys themes
-          <div class="page-title-container">
-              <h1>{{ epigram.title }}</h1>
-          </div>
-          <div class="row epigram-row">
-              <div class="col-md-2 col-md-offset-1">
-                  <div class="inner-links">
-                      <router-link to="{ name: 'summary' }">
-                        <span class="dash"></span>
-                        Les thèmes
-                      </router-link>
-                  </div>
-              </div>
-              <pagination :data="data" :theme="theme" :epigram="epigram"></pagination>
-              <player :data="data" :theme="theme" :epigram="epigram"></player>
-              <translation :data="data" :theme="theme" :epigram="epigram"></translation>
-              <greek-text :data="data" :theme="theme" :epigram="epigram"></greek-text>
-              <notes :data="data" :theme="theme" :epigram="epigram"></notes>
-              <characters :data="data" :theme="theme" :epigram="epigram"></characters>
-              <div class="col-md-9 col-md-offset-3">
-                  <div
-                    v-if="epigram.imageUrl"
-                    class="manuscript-image"
-                  >
-                      <p @click="showPopin">
-                        Image du manuscrit
-                      </p>
-                  </div>
-              </div>
-          </div>
-          <div
-            tabindex="0"
-            @click="hidePopin"
-            @keyup.esc="hidePopin"
-            v-if="epigram.imageUrl"
-            class="manuscript-popin"
-          >
-            <div
-              @click="hidePopin"
-              class="popin-cross-container"
-            >
-              <div class="popin-cross"></div>
-            </div>
-            <img
-              :src="epigram.imageUrl"
-              v-bind:alt="epigram.title"
-            >
-          </div>
-        </div>
-        <div v-else class="notExist">
-            <p>L'épigramme que vous cherchez n'existe pas</p>
-            <back-btn></back-btn>
-        </div>
+  <div class="parcours-single">
+    <div class="page-title-container">
+        <h1>{{ epigram.title }}</h1>
     </div>
+
+    <div class="row epigram-row">
+      <div class="col-md-2 col-md-offset-1">
+        <div class="inner-links">
+            <back-btn></back-btn>
+          </div>
+      </div>
+
+      <div class="col-md-1 col-md-offset-7">
+        <pagination v-if="parcours.entities"
+                    :parcours="parcours"
+                    :length="parcoursLength"
+                    :current="epigramIndex"></pagination>
+      </div>
+      <div class="col-md-1 col-md-offset-1">
+
+      </div>
+
+      <div class="col-md-3">
+        <translation v-bind:epigram="epigram"></translation>
+      </div>
+<!--
+      <div class="col-md-6 col-md-offset-1">
+        <greek-text v-bind:epigram="epigram"></greek-text>
+      </div>
+      <div class="col-md-3 col-md-offset-4">
+        <notes :data="epigram"></notes>
+      </div>
+      <div class="">
+        <characters :data="epigram"></characters>
+      </div>
+-->
+
+      <div class="col-md-9 col-md-offset-3">
+          <div
+            v-if="epigram.imageUrl"
+            class="manuscript-image"
+          >
+              <p @click="showPopin">
+                Image du manuscrit
+              </p>
+          </div>
+      </div>
+    </div>
+    <div class="epigram-carousel scroll">
+      <div class="vertical-list-container">
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+        <div class="vertical-list-wrapper">
+          <div class="carousel__item scroll">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      tabindex="0"
+      @click="hidePopin"
+      @keyup.esc="hidePopin"
+      v-if="epigram.imageUrl"
+      class="manuscript-popin"
+    >
+      <div
+        @click="hidePopin"
+        class="popin-cross-container"
+      >
+        <div class="popin-cross"></div>
+      </div>
+      <img
+        :src="epigram.imageUrl"
+        v-bind:alt="epigram.title"
+      >
+    </div>
+  </div>
 </template>
 
 <script>
 import Vue from 'vue'
 
 import BackBtn from './partials/BackBtn'
-import Pagination from './partials/epigramTheme/Pagination'
-import Player from './partials/epigramTheme/Player'
-import Translation from './partials/epigramTheme/Translation'
-import GreekText from './partials/epigramTheme/GreekText'
-import Notes from './partials/epigramTheme/Notes'
-import Characters from './partials/epigramTheme/Characters'
+import Pagination from './partials/parcours/Pagination'
+import Player from './partials/parcours/Player'
+import Translation from './partials/parcours/Translation'
+import GreekText from './partials/parcours/GreekText'
+import Notes from './partials/parcours/Notes'
+import Characters from './partials/parcours/Characters'
 
 import $ from 'jquery'
 
@@ -79,7 +133,7 @@ Vue.filter('numberize', function (value) {
 })
 
 export default {
-  name: 'theme',
+  name: 'ParcoursSingle',
   components: {
     BackBtn,
     Pagination,
@@ -91,32 +145,33 @@ export default {
   },
   route: {
     data: function (transition) {
+      console.log('route.data', transition)
       transition.next({
-        theme: transition.to.params.themeId - 1,
+        parcours: transition.to.params.themeId - 1,
         epigram: transition.to.params.id - 1
       })
     }
   },
   data () {
     return {
-      data: {},
-      theme: this.$route.params.theme,
       epigram: {},
-      themes: []
+      parcours: {},
+      parcoursId: 0,
+      epigramIndex: 0
+    }
+  },
+  computed: {
+    parcoursLength: function () {
+      return this.parcours.entities.length
     }
   },
   created: function () {
     var self = this
-    self.getTheme()
-    console.log('this.params.theme', this.$route.params.theme)
-    return global.theme.dataDiscover.get().then(function (response) {
-      var themes = JSON.parse(response.bodyText)
-      console.log('themes', themes)
-      console.log()
-      self.themes = themes
-    }, function (response) {
-      console.error('Error retrieving dataDiscover', response)
-    })
+
+    this.$set(this, 'parcoursId', self.$route.params.parcoursId)
+    this.$set(this, 'epigramIndex', self.$route.params.epigramIndex - 1)
+
+    self.getParcours()
   },
   destroyed: function () {
     this.$off()
@@ -131,11 +186,27 @@ export default {
       $('.manuscript-popin img').removeClass('big')
       $('.manuscript-popin').fadeOut()
     },
-    getTheme () {
+    getParcours () {
       var self = this
 
-      self.themes.forEach(function (theme) {
-        console.log('each theme', theme)
+      self.$http.get(global.api + 'keywords/' + self.parcoursId).then(function (response) {
+        var parcoursData = JSON.parse(response.bodyText)
+
+        // Set the full parcours data (for navigation)
+        self.$set(this, 'parcours', parcoursData)
+
+        self.$set(this, 'epigram', self.parcours.entities[self.epigramIndex])
+
+        // We got the basic epigram data; now get the full epigram
+        self.getEpigram()
+      })
+    },
+    getEpigram () {
+      var self = this
+
+      self.$http.get(global.api + 'entities/' + self.epigram.id_entity).then(function (response) {
+        var epigramData = JSON.parse(response.bodyText)
+        self.$set(this, 'epigram', epigramData)
       })
     }
   }
@@ -180,15 +251,17 @@ $(document).ready(function () {
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $hover: .5s all ease-out
 
-.epigram-theme
+.parcours-single
   width: 100%
   height: 100%
+  display: flex
+  flex-direction: column
 
-  .epigram-row
-    position: absolute
-    top: 20%
-    width: 100%
-    z-index: 2
+.epigram-row
+  //position: absolute
+  //top: 100px
+  //width: 100%
+  //z-index: 2
 
 .mute
   display: inline-block
@@ -431,5 +504,21 @@ $hover: .5s all ease-out
 
   .back-btn
     left: 0
+
+.epigram-carousel
+  height: 100px
+  width: 100%
+  overflow: hidden
+  display: flex
+  flex-direction: row
+  &.scroll
+    .vertical-list-container
+      columns: 10em
+
+.carousel__item
+  height: 100px
+  width: 150px
+  background-color: #ddd
+  //margin: 0 20px
 
 </style>

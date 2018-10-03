@@ -8,12 +8,12 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row home-row">
         <div class="col-md-6 col-md-offset-1 left-column">
             <discover-nav></discover-nav>
             <div class="page-subtitle-container">
                 <span class="dash"></span>
-                <h2>L’Anthologie<br> Palatine & découverte.</h2>
+                <h2>L’Anthologie<br> Palatine &amp; découverte.</h2>
             </div>
         </div>
         <div class="col-md-5 right-column">
@@ -125,9 +125,12 @@ $hover: .5s all linear
   height: 100%
   width: 100%
 
+.home-row
+  height: 100%
+
   >.row
-    height: 100%
-    margin-left: -17px
+    //height: 100%
+    //margin-left: -17px
 
   .page-subtitle-container
     transform: translateX(-2%)
@@ -170,7 +173,7 @@ $hover: .5s all linear
   text-align: right
   opacity: 0
   animation: fadeIn 2s linear forwards
-  display: none
+  display: block /* Show by default to avoid waiting for javascript to load */
   justify-content: flex-end
   flex-direction: column
 

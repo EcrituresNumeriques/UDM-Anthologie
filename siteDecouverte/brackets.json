@@ -1,0 +1,19 @@
+{
+  "jwolfe.file-tree-exclude.list": [
+    "node_modules",
+    "bower_components",
+    ".git",
+    "dist",
+    ".sass-cache"
+  ],
+  "fileFilters": [
+    {
+      "name": "Default exclusions",
+      "patterns": [
+        "node_modules",
+        ".sass-cache",
+        "dist"
+      ]
+    }
+  ]
+}

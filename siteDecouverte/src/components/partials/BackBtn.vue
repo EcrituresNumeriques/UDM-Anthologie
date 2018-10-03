@@ -25,8 +25,8 @@ $hover: .5s all linear
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 .back-btn
-  position: absolute
-  top: 140px
+  //position: absolute
+  //top: 140px
   z-index: 2
 
 </style>

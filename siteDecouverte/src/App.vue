@@ -4,8 +4,10 @@
       <main-nav></main-nav>
       <transition name="fade"
                   mode="out-in">
-        <router-view :data-theme-id="dataThemeId">
+        <div class="app-view">
+          <router-view :data-theme-id="dataThemeId">
         </router-view>
+        </div>
       </transition>
     </div>
     <div class="hidden-md hidden-lg">
@@ -19,13 +21,6 @@
 import Responsive from './components/ResponsiveComponent'
 import MainNav from './components/partials/MainNav'
 import Home from './components/HomeComponent'
-import Credits from './components/CreditsComponent'
-import Summary from './components/SummaryComponent'
-import Keywords from './components/GenresComponent'
-import Authors from './components/AuthorsComponent'
-import Characters from './components/CharactersComponent'
-//import SearchComponent from './components/SearchGenreComponent'
-import NotFound from './components/404Component'
 import Copyright from './components/partials/Copyright'
 
 export default {
@@ -33,13 +28,6 @@ export default {
     Responsive,
     MainNav,
     Home,
-    Credits,
-    Summary,
-    Keywords,
-    Authors,
-    Characters,
-//    SearchComponent,
-    NotFound,
     Copyright
   }
 }
@@ -167,10 +155,17 @@ span.bg
     text-overflow: ellipsis
     margin: 0 auto
 
+.app-view
+  width: 100%
+  height: calc(100% - 100px)
+  //top: 100px
+  position: relative
+
 .page-subtitle-container
   display: flex
   align-items: center
-  margin: 0 0 45px
+  margin: 0 0 30px
+  padding: 15px
 
   .dash
     width: 24px
@@ -187,8 +182,8 @@ span.bg
 .vertical-list-container
   columns: 20em
   width: 100%
-  height: 50%
-  align-self: center
+  //height: 50%
+  //align-self: center
 
 .vertical-list-wrapper
   padding-top: 10px

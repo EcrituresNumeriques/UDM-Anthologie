@@ -1,44 +1,48 @@
 <template>
-  <div class="col-md-3 translation">
+  <div class="translation">
+<!--
     <div
       @click="onFrenchMuteClick"
-      v-if="data.themes[theme].epigrams[epigram].sounds.french"
+      v-if="epigram.sounds.french"
       class="mute french-mute"
     >
       <span class="glyphicon glyphicon-volume-up"></span>
     </div>
+-->
     <div class="text-container">
       <div class="text-theme">
         <h2>
           <span class="bg"></span>
-          {{ data.themes[theme].name }}
+          {{ epigram.versions[0].title }}
         </h2>
       </div>
       <div class="text-title">
-        <h3>{{ data.themes[theme].epigrams[epigram].title }}</h3>
+        <h3>{{ epigram.versions[0].title }}</h3>
         <div
-          v-if="data.themes[theme].epigrams[epigram].langs"
+          v-if="epigram.langs"
           class="text-lang"
         >
-          <select v-model="data.themes[theme].epigrams[epigram].langs.selected">
+<!--
+          <select v-model="epigram.langs.selected">
             <option
-              v-for="lang in data.themes[theme].epigrams[epigram].langs.options"
+              v-for="lang in epigram.langs.options"
               v-bind:value="lang.id - 1"
             >
               {{ lang.text }}
             </option>
           </select>
+-->
         </div>
       </div>
       <div class="text-content">
-        <p v-if="data.themes[theme].epigrams[epigram].langs"
-           v-html="data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].langs.selected].content"></p>
-        <p v-if"!data.themes[theme].epigrams[epigram].langs"
-           v-html="data.themes[theme].epigrams[epigram].texts[0].content"></p>
+        <p v-if="epigram.langs"
+           v-html="epigram.texts[epigram.langs.selected].content"></p>
+        <p v-if="!epigram.langs"
+           v-html="epigram.versions[0].text_translated"></p>
       </div>
-      <div class="text-author" v-if="data.themes[theme].epigrams[epigram].author">
+      <div class="text-author" v-if="epigram.author">
         <span class="dash"></span>
-        <p>{{ data.themes[theme].epigrams[epigram].author }}</p>
+        <p>{{ epigram.author }}</p>
       </div>
     </div>
   </div>
@@ -49,9 +53,14 @@ import $ from 'jquery'
 
 export default {
   props: {
-    data: Object,
-    theme: Number,
-    epigram: Number
+    epigram: Object,
+    parcoursTitle: ''
+  },
+  created: function () {
+    var self = this
+    self.$nextTick(function () {
+      console.log('Translation ready', self.epigram.versions[0])
+    })
   },
   methods: {
     onFrenchMuteClick: function () {
@@ -143,8 +152,8 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
 
     .text-content
-      width: 300px
-      height: 300px
+      //width: 300px
+      //height: 300px
       overflow-y: auto
       margin: 0 auto
       scrollbar-face-color: #2c2c2c

@@ -11,7 +11,7 @@
     </div>
     <div class="arrows">
       <span>
-        <router-link to="{ name: 'epigram', params: { id: epigram - 1 }}"
+        <router-link :to="{ name: 'epigram', params: { id: epigram - 1 }}"
           @click="onPaginationClick"
           v-show="!(epigram == 1)">
           <span class="glyphicon glyphicon-chevron-left"></span>
@@ -19,7 +19,7 @@
       </span>
       <span class="separator"></span>
       <span>
-        <router-link to="{ name: 'epigram', params: { id: epigram + 1  }}"
+        <router-link :to="{ name: 'epigram', params: { id: epigram + 1  }}"
           @click="onPaginationClick"
           v-show="!(epigram == length)">
           <span class="glyphicon glyphicon-chevron-right"></span>

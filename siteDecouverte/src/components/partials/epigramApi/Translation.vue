@@ -21,7 +21,7 @@
           v-if="epigram.versions"
           class="text-lang"
         >
-          <select v-model="epigram.versions.selected">
+          <select v-model="selectedEpigram">
             <option v-for="version in epigram.versions.options"
                     v-bind:value="version.id_entity - 1"
                     >
@@ -32,13 +32,13 @@
       </div>
       <div class="text-content">
         <p v-if="epigram.versions"
-           v-html="epigram.versions[4].text_translated"></p>
+           v-html="epigramTranslated"></p>
       </div>
       <div class="text-author" v-if="epigram.authors">
         <span class="dash"></span>
         <p v-for="(author, index) in epigram.authors">
           <span v-show="index !== 0">/</span>
-          {{ author.id_author }}
+          {{ author.name ? author.name : '(Auteur)' }}
         </p>
       </div>
     </div>
@@ -52,7 +52,19 @@ export default {
   props: {
     epigram: Object,
     authors: Array,
-    languages: Array
+    languages: Array,
+    selectedEpigram: Object
+  },
+  computed: {
+    epigramTranslated: function () {
+      var self = this
+      var prefIndex = 0
+
+      // determine which version is our favourite
+      prefIndex = self.getPrefVersion()
+
+      return self.epigram.versions[prefIndex].text_translated
+    }
   },
   created () {
     var self = this
@@ -69,7 +81,38 @@ export default {
           var languages = JSON.parse(response.bodyText)
           self.$set(self, 'languages', languages)
           console.log('self.langs -- ', self.languages)
+//          self.getPrefVersion()
         })
+    },
+    getPrefVersion: function (prefFamily, prefName) {
+      // Get the closest version based on the lang preference
+      // Currently, hard-coded preference is Français Moderne
+      // Falls back to other versions of the same family
+      // Then falls back to other langs if non available
+      var self = this
+      var prefIndex = 0 // defauls to first position in array
+      var preferredFamily = prefFamily || 'Français'
+      var preferredName = prefName || 'moderne'
+
+      if (!self.languages) {
+        // ugh, we can't do much without the languages loaded...
+
+        return prefIndex
+      }
+
+      self.languages.each(function (language, index) {
+        if (language.family === preferredFamily) {
+          // language family match (general)
+          prefIndex = index
+
+          // bonus: language name match (specific in a language family)
+          if (language.name === preferredName) {
+            prefIndex = index
+          }
+        }
+      })
+
+      return prefIndex
     },
     onFrenchMuteClick: function () {
       var controlBtn, playBtn, frenchSound, greekSound, greekMute

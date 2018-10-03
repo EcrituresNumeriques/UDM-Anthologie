@@ -152,7 +152,6 @@ export default {
       }, function (response) {
         if (response.status === 404) {
           $('.notExist').show()
-          console.log('should show not exist')
         }
         $('.problem').show()
         console.error('[epigramApiComponent] Error retrieving Epigram', response)

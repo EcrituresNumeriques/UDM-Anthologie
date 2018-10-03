@@ -1,70 +1,69 @@
 <template>
-  <div>
+  <div class="main-nav">
 <!--    <search :search="search"></search>-->
-    <div class="main-nav col-md-6 col-md-offset-1">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header col-md-2">
-            <router-link :to="{ name : 'home' }"
-              @click="closeSearchPartial"
-              class="navbar-brand"
-
-            >
-              <h1>Antho<span>logie</span></h1>
-            </router-link>
-          </div>
-          <div class="navbar-link col-md-2">
-            <router-link :to="{ name: 'credits' }"
-              @click="closeSearchPartial">
-              Crédits<span class="dash"></span>
-            </router-link>
-          </div>
-          <div class="navbar-list col-md-2">
-            <p>Listes :</p>
-            <ul>
-              <li>
-                <router-link :to="{ name: 'genres' }"
-                             @click="closeSearchPartial">
-                  Genres<span class="dash"></span>
-                </router-link>
-              </li>
-
-              <li>
-                <router-link :to="{ name: 'authors' }"
-                           @click="closeSearchPartial">
-                  Auteurs<span class="dash"></span>
-                </router-link>
-              </li>
-              <li>
-                <router-link :to="{ name: 'characters' }"
-                           @click="closeSearchPartial">
-                  Personnages<span class="dash"></span>
-                </router-link>
-              </li>
-            </ul>
-          </div>
-          <form class="navbar-form navbar-left col-md-4" role="search">
-            <div class="form-group search-container col-md-12">
-              <input
-                v-model="search"
-                @click="onSearchFocus"
-                type="search"
-                class="form-control"
-                placeholder="Recherche"
-              >
-              <div class="search-icon"><span class="glyphicon glyphicon-search"></span></div>
-              <button
-                @click="closeSearchPartial && onResetClick"
-                type="reset"
-                class="reset"
-              >
-                <span class="reset-cross"></span>
-              </button>
-            </div>
-          </form>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <router-link :to="{ name : 'home' }"
+            @click="closeSearchPartial"
+            class="navbar-brand">
+            <h1>Antho<span>logie</span></h1>
+          </router-link>
         </div>
-      </nav>
-    </div>
+
+        <div class="navbar-link">
+          <router-link :to="{ name: 'parcoursAll' }"
+                         @click="closeSearchPartial">
+              Parcours<span class="dash"></span>
+            </router-link>
+        </div>
+
+        <div class="navbar-link">
+          <router-link :to="{ name: 'authors' }"
+                     @click="closeSearchPartial">
+            Auteurs<span class="dash"></span>
+          </router-link>
+        </div>
+
+<!--
+        <div class="navbar-link">
+          <router-link :to="{ name: 'characters' }"
+                     @click="closeSearchPartial">
+            Personnages<span class="dash"></span>
+          </router-link>
+        </div>
+-->
+
+        <div class="navbar-link">
+          <router-link :to="{ name: 'credits' }"
+            @click="closeSearchPartial">
+            Crédits<span class="dash"></span>
+          </router-link>
+        </div>
+<!--
+
+        <form class="navbar-form navbar-left col-md-4" role="search">
+          <div class="form-group search-container col-md-12">
+            <input
+              v-model="search"
+              @click="onSearchFocus"
+              type="search"
+              class="form-control"
+              placeholder="Recherche"
+            >
+            <div class="search-icon"><span class="glyphicon glyphicon-search"></span></div>
+            <button
+              @click="closeSearchPartial && onResetClick"
+              type="reset"
+              class="reset"
+            >
+              <span class="reset-cross"></span>
+            </button>
+          </div>
+        </form>
+-->
+      </div>
+    </nav>
   </div>
 </template>
 
@@ -116,9 +115,10 @@ $hover: .5s all linear
 
 .main-nav
   font-family: $raleway
-  position: fixed
-  top: 40px
-  left: 0
+  //position: fixed
+  margin-top: 20px
+  margin-left: 8.333%
+  margin-bottom: 20px
   z-index: 20
   padding-left: 0
 
@@ -126,6 +126,7 @@ $hover: .5s all linear
   margin: 0
 
 .navbar-header
+  margin-right: 20px
   a
     padding: 0
     opacity: 1
@@ -153,6 +154,7 @@ $hover: .5s all linear
 
 .navbar-link,
 .navbar-list
+  padding: 0 10px
   li
     height: 20px
     margin-bottom: 5px

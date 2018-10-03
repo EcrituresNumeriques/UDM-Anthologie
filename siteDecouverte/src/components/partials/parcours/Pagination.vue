@@ -1,27 +1,27 @@
 <template>
-  <div class="col-md-1 col-md-offset-7 pagination-partial">
+  <div class="pagination-partial">
     <div class="index">
       <p class="total">
-        {{ data.themes[theme].epigrams.length | numberize }}
+        {{ length | numberize }}
       </p>
       <span class="separator"></span>
       <p class="current">
-        {{ data.themes[theme].epigrams[epigram].id | numberize }}
+        {{ current + 1 | numberize }}
       </p>
     </div>
     <div class="arrows">
       <span>
-        <router-link to="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram }}"
+        <router-link :to="{ name: 'parcoursSingle', params: { parcoursIndex: current - 1 }}"
           @click="onPaginationClick"
-          v-show="!(epigram == 0)">
+          v-show="!(current == 0)">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </router-link>
       </span>
       <span class="separator"></span>
       <span>
-        <router-link to="{ name: 'theme', params: { theme: data.themes[theme].slug, themeId: theme+1, id: epigram+2  }}"
+        <router-link :to="{ name: 'parcoursSingle', params: { parcoursIndex: current + 1 }}"
           @click="onPaginationClick"
-          v-show="!(epigram+1 == data.themes[theme].epigrams.length)">
+          v-show="!(current === length -1)">
           <span class="glyphicon glyphicon-chevron-right"></span>
         </router-link>
       </span>
@@ -30,13 +30,24 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import $ from 'jquery'
 
+Vue.filter('numberize', function (value) {
+  if (value < 10) {
+    value = '0' + value
+  }
+  return value
+})
+
 export default {
-  propsData: {
-    data: Object,
-    theme: Number,
-    epigram: Number
+  props: {
+    parcours: {},
+    length: Number,
+    current: Number
+  },
+  created: function () {
+    console.log('Pagination props', this.length)
   },
   methods: {
     onPaginationClick: function () {

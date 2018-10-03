@@ -9,7 +9,9 @@ import Summary from '../components/SummaryComponent'
 import Genres from '../components/GenresComponent'
 import Authors from '../components/AuthorsComponent'
 import Characters from '../components/CharactersComponent'
-import EpigramParcoursComponent from '../components/EpigramParcoursComponent'
+import ParcoursAll from '../components/ParcoursAllComponent'
+import ParcoursIndex from '../components/ParcoursIndexComponent'
+import ParcoursSingle from '../components/ParcoursSingleComponent'
 import EpigramApi from '../components/EpigramApiComponent'
 //import SearchGenreComponent from '../components/SearchGenreComponent'
 //import SearchAuthorComponent from '../components/SearchAuthorComponent'
@@ -52,6 +54,11 @@ export default new VueRouter({
       name: 'authors'
     },
     {
+      path: '/parcours',
+      component: ParcoursAll,
+      name: 'parcoursAll'
+    },
+    {
       path: '/personnages',
       component: Characters,
       name: 'characters'
@@ -62,9 +69,14 @@ export default new VueRouter({
       name: 'epigram'
     },
     {
-      path: '/parcours/:themeId/:theme',
-      component: EpigramParcoursComponent,
-      name: 'parcours'
+      path: '/parcours/:parcoursId-:parcoursName?',
+      component: ParcoursIndex,
+      name: 'parcoursIndex'
+    },
+    {
+      path: '/parcours/:parcoursId-:parcoursSlug?/:epigramIndex',
+      component: ParcoursSingle,
+      name: 'parcoursSingle'
     },
 //    {
 //      path: '/recherche/genre/:id',

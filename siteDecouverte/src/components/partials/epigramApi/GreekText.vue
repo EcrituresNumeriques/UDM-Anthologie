@@ -2,7 +2,7 @@
   <div class="greek-text">
     <div class="greek-translation dropdown">
       <p @click="onGreekDropdownClick">
-        Texte grec
+        Texte source grec
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="border-bottom"></span>
       </p>
@@ -16,7 +16,7 @@
           >
             <span class="glyphicon glyphicon-volume-up"></span>
 -->
-            <p v-html="epigram.versions[0].text_translated"></p>
+            <p v-html="texteGrec"></p>
           </div>
         </div>
       </div>
@@ -37,6 +37,12 @@ export default {
       console.log('[GreekText.vue] self.epigram:', self.epigram)
 //      self.$set(self, 'epigram', this.epigram)
     })
+  },
+  computed: {
+    texteGrec () {
+      var self = this
+      return self.epigram.versions[0].text_translated
+    }
   },
   methods: {
     onGreekDropdownClick: function () {
