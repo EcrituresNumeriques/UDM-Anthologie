@@ -54,11 +54,6 @@ export default new VueRouter({
       name: 'authors'
     },
     {
-      path: '/parcours',
-      component: ParcoursAll,
-      name: 'parcoursAll'
-    },
-    {
       path: '/personnages',
       component: Characters,
       name: 'characters'
@@ -69,12 +64,17 @@ export default new VueRouter({
       name: 'epigram'
     },
     {
-      path: '/parcours/:parcoursId-:parcoursName?',
+      path: '/parcours',
+      component: ParcoursAll,
+      name: 'parcoursAll'
+    },
+    {
+      path: '/parcours/:parcoursId:parcoursSlug?',
       component: ParcoursIndex,
       name: 'parcoursIndex'
     },
     {
-      path: '/parcours/:parcoursId-:parcoursSlug?/:epigramIndex',
+      path: '/parcours/:parcoursId:parcoursSlug?/:epigramIndex',
       component: ParcoursSingle,
       name: 'parcoursSingle'
     },

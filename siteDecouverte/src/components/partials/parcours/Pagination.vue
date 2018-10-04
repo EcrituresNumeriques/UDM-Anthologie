@@ -10,20 +10,14 @@
       </p>
     </div>
     <div class="arrows">
-      <span>
-        <router-link :to="{ name: 'parcoursSingle', params: { parcoursIndex: current - 1 }}"
-          @click="onPaginationClick"
-          v-show="!(current == 0)">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </router-link>
+      <span @click="prev"
+            v-show="!(current == 0)">
+        <span class="glyphicon glyphicon-chevron-left"></span>
       </span>
       <span class="separator"></span>
-      <span>
-        <router-link :to="{ name: 'parcoursSingle', params: { parcoursIndex: current + 1 }}"
-          @click="onPaginationClick"
-          v-show="!(current === length -1)">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </router-link>
+      <span @click="next"
+            v-show="!(current === length - 1)">
+        <span class="glyphicon glyphicon-chevron-right"></span>
       </span>
     </div>
   </div>
@@ -50,6 +44,12 @@ export default {
     console.log('Pagination props', this.length)
   },
   methods: {
+    prev () {
+      this.$emit('prev')
+    },
+    next () {
+      this.$emit('next')
+    },
     onPaginationClick: function () {
       $('.notes.dropdown > p .glyphicon').addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
       $('.notes').removeClass('droped')

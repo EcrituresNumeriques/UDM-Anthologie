@@ -40,9 +40,11 @@
         <p v-if="!epigram.langs"
            v-html="epigram.versions[0].text_translated"></p>
       </div>
-      <div class="text-author" v-if="epigram.author">
-        <span class="dash"></span>
-        <p>{{ epigram.author }}</p>
+      <div class="text-author" v-if="epigram.authors">
+        <div v-for="author in epigram.authors">
+          <span class="dash"></span>
+          <p><router-link :to="{ name: 'authors' }">Auteur {{ author.id_author }}</router-link></p>
+        </div>
       </div>
     </div>
   </div>
@@ -53,7 +55,7 @@ import $ from 'jquery'
 
 export default {
   props: {
-    epigram: Object,
+    epigram: {},
     parcoursTitle: ''
   },
   created: function () {

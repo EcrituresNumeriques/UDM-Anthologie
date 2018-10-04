@@ -15,7 +15,9 @@
         <pagination v-if="parcours.entities"
                     :parcours="parcours"
                     :length="parcoursLength"
-                    :current="epigramIndex"></pagination>
+                    :current="epigramIndex"
+                    v-on:prev="prev()"
+                    v-on:next="next()"></pagination>
       </div>
       <div class="col-md-1 col-md-offset-1">
 
@@ -47,48 +49,25 @@
           </div>
       </div>
     </div>
-    <div class="epigram-carousel scroll">
-      <div class="vertical-list-container">
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
+    <div class="component--carousel"
+         v-if="epigram.externalRef && epigram.externalRef.length">
+      <header class="carousel__header">
+        <div class="text-theme">
+          <h3>
+            Références
+          </h3>
         </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
-        <div class="vertical-list-wrapper">
-          <div class="carousel__item scroll">
-          </div>
-        </div>
+      </header>
+      <div class="scroll">
+
+      <article class="carousel__wrapper">
+        <section v-for="(ref, index) in epigram.externalRef"
+             class="carousel__item">
+          {{ index }}
+          <br>
+          {{ ref.title }}
+        </section>
+      </article>
       </div>
     </div>
     <div
@@ -124,6 +103,7 @@ import Notes from './partials/parcours/Notes'
 import Characters from './partials/parcours/Characters'
 
 import $ from 'jquery'
+//import router from 'vue-router'
 
 Vue.filter('numberize', function (value) {
   if (value < 10) {
@@ -154,7 +134,9 @@ export default {
   },
   data () {
     return {
-      epigram: {},
+      epigram: {
+        versions: [ {} ]
+      },
       parcours: {},
       parcoursId: 0,
       epigramIndex: 0
@@ -208,6 +190,21 @@ export default {
         var epigramData = JSON.parse(response.bodyText)
         self.$set(this, 'epigram', epigramData)
       })
+    },
+    prev () {
+      console.log('call prev')
+      var self = this
+
+      var prevIndex = self.epigramIndex
+
+      self.$router.push({ name: 'parcoursSingle', params: { parcoursId: self.$route.params.parcoursId, parcourSlug: self.$route.params.parcoursSlug, epigramIndex: prevIndex } })
+    },
+    next () {
+      console.log('call next')
+      var self = this
+      var nextIndex = self.epigramIndex + 2
+
+      self.$router.push({ name: 'parcoursSingle', params: { parcoursId: self.$route.params.parcoursId, parcourSlug: self.$route.params.parcoursSlug, epigramIndex: nextIndex } })
     }
   }
 }
@@ -247,7 +244,7 @@ $(document).ready(function () {
 })
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $hover: .5s all ease-out
 
@@ -256,6 +253,7 @@ $hover: .5s all ease-out
   height: 100%
   display: flex
   flex-direction: column
+  justify-content: space-around
 
 .epigram-row
   //position: absolute
@@ -506,18 +504,19 @@ $hover: .5s all ease-out
     left: 0
 
 .epigram-carousel
-  height: 100px
   width: 100%
-  overflow: hidden
+  //overflow: hidden
+
+.carousel__wrapper
   display: flex
   flex-direction: row
-  &.scroll
-    .vertical-list-container
-      columns: 10em
+  flex-wrap: nowrap
 
 .carousel__item
-  height: 100px
   width: 150px
+  margin: 0 5px
+  height: 100px
+  flex-shrink: 0
   background-color: #ddd
   //margin: 0 20px
 

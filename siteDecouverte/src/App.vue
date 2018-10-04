@@ -5,7 +5,7 @@
       <transition name="fade"
                   mode="out-in">
         <div class="app-view">
-          <router-view :data-theme-id="dataThemeId">
+          <router-view :key="$route.fullPath">
         </router-view>
         </div>
       </transition>
@@ -258,7 +258,8 @@ span.bg
       background: #2c2c2c
       transition: width .5s ease
 
-  a
+  a,
+  button
     font-family: $raleway
     font-size: 12px
     font-weight: 600
