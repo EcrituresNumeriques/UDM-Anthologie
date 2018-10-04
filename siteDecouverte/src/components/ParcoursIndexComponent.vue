@@ -14,10 +14,15 @@
         </router-link>
       </div>
 
-      <div class="discover-nav">
-        <index-nav v-bind:epigrams="parcours.entities"
-                   v-bind:parcours-id="parcoursId"
-                   v-bind:parcours-slug="slugify(parcours.versions[0].title)"></index-nav>
+      <h2>{{ parcours.versions[0].title }}</h2>
+      <div class="scroll">
+        <div class="vertical-list-wrapper">
+          <div class="discover-nav">
+            <index-nav v-bind:epigrams="parcours.entities"
+                       v-bind:parcours-id="parcoursId"
+                       v-bind:parcours-slug="'-' + slugify(parcours.versions[0].title)"></index-nav>
+          </div>
+        </div>
       </div>
     </div>
   </div>

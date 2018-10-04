@@ -4,16 +4,18 @@
       <div class="page-title-container">
           <h1>Auteurs</h1>
       </div>
-      <div class="row scroll">
-          <scroll-progress-bar></scroll-progress-bar>
-          <div class="col-md-5 col-md-offset-1 flex">
+
+      <scroll-progress-bar></scroll-progress-bar>
+
+      <div class="row scroll row--all">
+          <div class="col-md-5 col-md-offset-1">
               <back-btn></back-btn>
               <div class="page-subtitle-container">
                   <span class="dash"></span>
                   <h2>Les auteurs de<br> l'Anthologie Palatine</h2>
               </div>
           </div>
-          <div class="col-md-6 pull-right flex">
+          <div class="col-md-6 pull-right">
               <div class="vertical-list-container">
                   <div v-for="author in dataAuthors"
                        class="vertical-list-wrapper">
@@ -86,15 +88,5 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 .authors
   width: 100%
   height: 100%
-
-.row
-  height: 100%
-
-  >.flex
-    height: 100%
-    display: flex
-
-    .page-subtitle-container
-      align-self: flex-end
 
 </style>

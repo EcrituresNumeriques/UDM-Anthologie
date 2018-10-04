@@ -4,32 +4,34 @@
       <div class="page-title-container">
           <h1>Parcours</h1>
       </div>
+
       <scroll-progress-bar></scroll-progress-bar>
-      <div class="row scroll">
-          <div class="col-md-5 col-md-offset-1 flex">
+
+      <div class="row scroll row--all">
+          <div class="col-md-5 col-md-offset-1">
               <back-btn></back-btn>
-            <div class="page-subtitle-container flex-end">
+            <div class="page-subtitle-container">
               <span class="dash"></span>
               <h2>Parcours de lecture</h2>
             </div>
           </div>
-          <div class="col-md-6 pull-right flex">
-              <div class="vertical-list-container">
-                <div v-for="parcours in parcoursAll"
-                     class="vertical-list-wrapper">
-                  <h3>
-                    <router-link :to="{ name: 'parcoursIndex', params: { parcoursId: parcours.id_keyword, parcoursSlug: '-' + slugify(parcours.versions[0].title) } }">
-                      <span class="bg"></span>{{ parcours.versions[0].title }} <sup>{{ parcours.entities.length | romanize }}</sup>
-                    </router-link>
-                    </h3>
-                  <ul>
-                    <li v-for="(epigram, index) in parcours.entities"
-                        v-track-by="index">
-                      <router-link :to="{ name: 'parcoursSingle', params: { parcoursId: parcours.id_keyword, parcoursSlug: '-' + slugify(parcours.versions[0].title), epigramIndex: index + 1 }}">Épigramme {{ index + 1 }}</router-link>
-                    </li>
-                  </ul>
-                </div>
+          <div class="col-md-6 pull-right">
+            <div class="vertical-list-container">
+              <div v-for="parcours in parcoursAll"
+                   class="vertical-list-wrapper">
+                <h3>
+                  <router-link :to="{ name: 'parcoursIndex', params: { parcoursId: parcours.id_keyword, parcoursSlug: '-' + slugify(parcours.versions[0].title) } }">
+                    <span class="bg"></span>{{ parcours.versions[0].title }} <sup>{{ parcours.entities.length | romanize }}</sup>
+                  </router-link>
+                  </h3>
+                <ul>
+                  <li v-for="(epigram, index) in parcours.entities"
+                      v-track-by="index">
+                    <router-link :to="{ name: 'parcoursSingle', params: { parcoursId: parcours.id_keyword, parcoursSlug: '-' + slugify(parcours.versions[0].title), epigramIndex: index + 1 }}">Épigramme {{ index + 1 }}</router-link>
+                  </li>
+                </ul>
               </div>
+            </div>
           </div>
       </div>
   </div>
@@ -117,15 +119,5 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
   height: 100%
   display: flex
   flex-direction: column
-
-.row.scroll
-  height: 100%
-
-  >.flex
-    height: 100%
-    display: flex
-
-.flex-end
-  align-self: flex-end
 
 </style>

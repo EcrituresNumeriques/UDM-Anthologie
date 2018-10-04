@@ -1,13 +1,14 @@
 <template>
-  <div class="col-md-6 col-md-offset-1 greek-text">
+  <div class="greek-text">
     <div class="greek-translation dropdown">
       <p @click="onGreekDropdownClick">
-        Traduction grecque
+        Texte source grec
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="border-bottom"></span>
       </p>
       <div class="dropdown-drop">
         <div class="dropdown-content">
+<!--
           <div
             @click="onGreekMuteClick"
             v-if="data.themes[theme].epigrams[epigram].sounds.greek"
@@ -15,7 +16,8 @@
           >
             <span class="glyphicon glyphicon-volume-up"></span>
           </div>
-          <p v-html="data.themes[theme].epigrams[epigram].texts[data.themes[theme].epigrams[epigram].texts.length - 1].content">
+-->
+          <p v-html="epigram.versions[0].text_translated">
           </p>
         </div>
       </div>
@@ -27,10 +29,8 @@
 import $ from 'jquery'
 
 export default {
-  propsData: {
-    data: Object,
-    theme: Number,
-    epigram: Number
+  props: {
+    epigram: {}
   },
   methods: {
     onGreekDropdownClick: function () {

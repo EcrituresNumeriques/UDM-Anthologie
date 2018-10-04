@@ -42,9 +42,14 @@ export default {
     }
   },
   created: function () {
-    this.loader()
-    this.hide()
-    this.getCurrentThemeImg()
+    var self = this
+
+    // run $nextTick to ensure DOM is available
+    self.$nextTick(function () {
+      this.loader()
+      this.hide()
+      this.getCurrentThemeImg()
+    })
   },
   methods: {
     getCurrentThemeImg: function () {
@@ -57,61 +62,57 @@ export default {
 //      })
     },
     loader: function () {
-      $(window).on('load', function () {
-        setTimeout(function () {
-          var mainNav = $('.main-nav')
-          var homeDiscoverNav = $('.home .discover-nav')
-          var homeImg = $('.home .img-container')
-          var homeSubtitle = $('.home .page-subtitle-container')
-          var copyright = $('.copyright')
-
-          var loaderContainer = $('.fake-loader-container')
-          var loaderPercentage = $('.fake-loader-percentage')
-          var loaderBarContainer = $('.fake-loader-bar-container')
-          var loaderBarContainerWidth = loaderBarContainer.width()
-          var loaderBar = loaderBarContainer.children()
-          var loaderBarHide = loaderBar.children()
-
-          loaderBar.animate({
-            width: '100%'
-          }, 2000, function () {
-            loaderBarHide.addClass('active')
-            loaderPercentage.fadeOut(500, function () {
-              loaderContainer.hide()
-            })
-            clearInterval(loaderInterval)
-            homeSubtitle.fadeIn('2000').addClass('visible')
-            copyright.fadeIn('2000')
-            setTimeout(function () {
-              mainNav.fadeIn(2000)
-              homeDiscoverNav.fadeIn(2000)
-              homeImg.fadeIn(2000)
-            }, 500)
-          })
-          var loaderInterval = setInterval(function () {
-            var loaderWidth = loaderBar.width()
-            var percentage = Math.round(loaderWidth / loaderBarContainerWidth * 100)
-            loaderPercentage.text(percentage + '%')
-          }, 100)
-        }, 500)
-      })
-    },
-    hide: function () {
-      $(window).on('load', function () {
+//      $(window).on('load', function () {
+      setTimeout(function () {
         var mainNav = $('.main-nav')
-        var homeDiscoverNav = $('.home .discover-nav')
-        var homeImg = $('.home .img-container')
-        var loaderContainer = $('.fake-loader-container')
+        var homeRow = $('.home-row')
         var homeSubtitle = $('.home .page-subtitle-container')
         var copyright = $('.copyright')
 
-        mainNav.hide(0)
-        homeDiscoverNav.hide()
-        homeImg.hide()
-        loaderContainer.show().css('display', 'flex')
-        homeSubtitle.hide()
-        copyright.hide()
-      })
+        var loaderContainer = $('.fake-loader-container')
+        var loaderPercentage = $('.fake-loader-percentage')
+        var loaderBarContainer = $('.fake-loader-bar-container')
+        var loaderBarContainerWidth = loaderBarContainer.width()
+        var loaderBar = loaderBarContainer.children()
+        var loaderBarHide = loaderBar.children()
+
+        loaderBar.animate({
+          width: '100%'
+        }, 2000, function () {
+          loaderBarHide.addClass('active')
+          loaderPercentage.fadeOut(500, function () {
+            loaderContainer.hide()
+          })
+          clearInterval(loaderInterval)
+          homeSubtitle.fadeIn('2000').addClass('visible')
+          copyright.fadeIn('2000')
+          setTimeout(function () {
+            homeRow.fadeIn(2000)
+            mainNav.fadeIn(2000)
+          }, 500)
+        })
+        var loaderInterval = setInterval(function () {
+          var loaderWidth = loaderBar.width()
+          var percentage = Math.round(loaderWidth / loaderBarContainerWidth * 100)
+          loaderPercentage.text(percentage + '%')
+        }, 100)
+      }, 500)
+//      })
+    },
+    hide: function () {
+//      $(window).on('load', function () {
+      var mainNav = $('.main-nav')
+      var homeRow = $('.home-row')
+      var loaderContainer = $('.fake-loader-container')
+      var homeSubtitle = $('.home .page-subtitle-container')
+      var copyright = $('.copyright')
+
+      mainNav.hide(0)
+      homeRow.hide(0)
+      loaderContainer.show().css('display', 'flex')
+      homeSubtitle.hide(0)
+      copyright.hide(0)
+//      })
     }
   }
 }

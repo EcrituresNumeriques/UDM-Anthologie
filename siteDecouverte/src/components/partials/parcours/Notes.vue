@@ -1,11 +1,11 @@
 <template>
-  <div class="col-md-3 col-md-offset-4 notes-partial">
+  <div class="notes-partial">
     <div
-      v-if="data.themes[theme].epigrams[epigram].notes"
+      v-if="epigram.notes && epigram.notes.length"
       class="notes dropdown"
     >
       <p @click="onNotesDropdownClick">
-        Les notes
+        Notes
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="border-bottom"></span>
       </p>
@@ -14,7 +14,7 @@
           <span class="glyphicon glyphicon-chevron-left"></span>
           <div class="dropdown-text-wrapper">
             <div
-              v-for="note in data.themes[theme].epigrams[epigram].notes"
+              v-for="note in epigram.notes"
               v-bind:id="'note' + note.id"
               class="dropdown-text"
             >
@@ -34,10 +34,8 @@
 import $ from 'jquery'
 
 export default {
-  propsData: {
-    data: Object,
-    theme: Number,
-    epigram: Number
+  props: {
+    epigram: Object
   },
   methods: {
     onNotesDropdownClick: function () {
@@ -73,7 +71,7 @@ export default {
 <style lang="sass" scoped>
 .notes-partial
   .notes
-    margin-top: 60px
+    margin-top: 40px
 
     .dropdown-drop
       width: 100%

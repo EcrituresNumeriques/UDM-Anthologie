@@ -2,6 +2,7 @@
   <main class="container-fluid container-main">
     <div class="hidden-xs hidden-sm">
       <main-nav></main-nav>
+
       <transition name="fade"
                   mode="out-in">
         <div class="app-view">
@@ -9,11 +10,12 @@
         </router-view>
         </div>
       </transition>
+
+      <copyright></copyright>
     </div>
     <div class="hidden-md hidden-lg">
       <responsive></responsive>
     </div>
-    <copyright></copyright>
   </main>
 </template>
 
@@ -399,4 +401,16 @@ span.bg
 
   .back-btn
     left: 0
+
+// Rows
+.row--all
+  height: 100%
+  > div
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+  .vertical-list-container
+    height: 100%
 </style>

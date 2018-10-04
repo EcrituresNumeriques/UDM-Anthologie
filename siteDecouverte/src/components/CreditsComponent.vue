@@ -89,9 +89,9 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
     position: initial
 
 .content-container
-  position: absolute
-  top: 50%
-  transform: translate3d(0, -50%, 0)
+  //position: absolute
+  //top: 50%
+  //transform: translate3d(0, -50%, 0)
 
 #credits
   width: 100%
@@ -102,7 +102,7 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
 .desc-container
   color: #2c2c2c
-  margin-top: 40px
+  margin-top: 20px
 
   h3
     font-style: italic

@@ -8,13 +8,11 @@
 
 <style lang="sass" scoped>
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
-
-.container-main .copyright
-  position: absolute
-  left: 0
-  bottom: 0
-  height: 25px
-  text-align: center
+.copyright
+  //position: absolute
+  //left: 0
+  //bottom: 0
+  padding: 15px
   margin: 0
 
   @media (min-width: 992px)

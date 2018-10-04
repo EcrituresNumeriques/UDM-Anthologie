@@ -1,73 +1,90 @@
 <template>
   <div class="parcours-single">
+    <loader></loader>
     <div class="page-title-container">
-        <h1>{{ epigram.title }}</h1>
+        <h1>{{ parcours.versions[0].title }}</h1>
     </div>
 
-    <div class="row epigram-row">
-      <div class="col-md-2 col-md-offset-1">
+    <div class="row">
+      <div class="col-md-9 col-md-offset-1">
         <div class="inner-links">
-            <back-btn></back-btn>
+          <back-btn></back-btn>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+          <div class="col-md-3 col-md-offset-1">
+            <translation :epigram="epigram"
+                         :parcours-title="parcours.versions[0].title"
+                         ></translation>
           </div>
+
+          <div class="col-md-3 col-md-offset-1">
+            <greek-text :epigram="epigram"></greek-text>
+          </div>
+
+          <div class="col-md-3">
+              <notes :epigram="epigram"></notes>
+          </div>
+
+          <div
+                v-if="epigram.imageUrl"
+                class="manuscript-image"
+              >
+                  <p @click="showPopin">
+                    Image du manuscrit
+                  </p>
+              </div>
+        </div>
       </div>
 
-      <div class="col-md-1 col-md-offset-7">
+      <div class="col-md-1">
         <pagination v-if="parcours.entities"
-                    :parcours="parcours"
-                    :length="parcoursLength"
+                    :total="parcoursTotal"
                     :current="epigramIndex"
                     v-on:prev="prev()"
                     v-on:next="next()"></pagination>
       </div>
-      <div class="col-md-1 col-md-offset-1">
+    </div>
 
-      </div>
 
-      <div class="col-md-3">
-        <translation v-bind:epigram="epigram"></translation>
-      </div>
 <!--
-      <div class="col-md-6 col-md-offset-1">
-        <greek-text v-bind:epigram="epigram"></greek-text>
-      </div>
-      <div class="col-md-3 col-md-offset-4">
-        <notes :data="epigram"></notes>
-      </div>
       <div class="">
         <characters :data="epigram"></characters>
       </div>
 -->
 
-      <div class="col-md-9 col-md-offset-3">
-          <div
-            v-if="epigram.imageUrl"
-            class="manuscript-image"
-          >
-              <p @click="showPopin">
-                Image du manuscrit
-              </p>
+    <div class="component--carousel">
+      <div v-if="epigram.externalRef && epigram.externalRef.length">
+        <header class="carousel__header">
+          <div class="row">
+            <div class="col-md-4 col-md-offset-1">
+              <div class="text-theme">
+                <h3>
+                  Références
+                </h3>
+              </div>
+            </div>
           </div>
-      </div>
-    </div>
-    <div class="component--carousel"
-         v-if="epigram.externalRef && epigram.externalRef.length">
-      <header class="carousel__header">
-        <div class="text-theme">
-          <h3>
-            Références
-          </h3>
+        </header>
+        <div class="scroll carousel__container">
+          <article class="carousel__wrapper">
+            <section v-for="(ref, index) in epigram.externalRef"
+                 class="carousel__item">
+              <a class="carousel__item-link"
+                 v-bind:href="ref.url"
+                 v-bind:data-src="ref.url"
+                 data-fancybox="iframe"
+                 data-type="iframe"
+                 v-bind:data-caption="ref.title"
+                 >
+                {{ ref.title }}
+              </a>
+            </section>
+          </article>
         </div>
-      </header>
-      <div class="scroll">
-
-      <article class="carousel__wrapper">
-        <section v-for="(ref, index) in epigram.externalRef"
-             class="carousel__item">
-          {{ index }}
-          <br>
-          {{ ref.title }}
-        </section>
-      </article>
       </div>
     </div>
     <div
@@ -143,12 +160,18 @@ export default {
     }
   },
   computed: {
-    parcoursLength: function () {
+    parcoursTotal: function () {
       return this.parcours.entities.length
     }
   },
   created: function () {
     var self = this
+
+    this.$nextTick(function () {
+      // ensure elements are in-document
+      // immediately show loader
+      $('.loader').fadeIn()
+    })
 
     this.$set(this, 'parcoursId', self.$route.params.parcoursId)
     this.$set(this, 'epigramIndex', self.$route.params.epigramIndex - 1)
@@ -157,6 +180,7 @@ export default {
   },
   destroyed: function () {
     this.$off()
+    $.fancybox.destroy()
   },
   methods: {
     showPopin: function () {
@@ -189,6 +213,23 @@ export default {
       self.$http.get(global.api + 'entities/' + self.epigram.id_entity).then(function (response) {
         var epigramData = JSON.parse(response.bodyText)
         self.$set(this, 'epigram', epigramData)
+      })
+      .finally(function () {
+        $('.loader').fadeOut()
+
+        // Init fancybox
+        $('[data-fancybox="iframe"]').fancybox({
+          buttons: [
+            //'zoom',
+            //'share',
+            //'slideShow',
+            //'fullScreen',
+            //'download',
+            'thumbs',
+            'close'
+          ]
+          // Options will go here
+        })
       })
     },
     prev () {
@@ -253,7 +294,7 @@ $hover: .5s all ease-out
   height: 100%
   display: flex
   flex-direction: column
-  justify-content: space-around
+  justify-content: space-between
 
 .epigram-row
   //position: absolute
@@ -503,9 +544,32 @@ $hover: .5s all ease-out
   .back-btn
     left: 0
 
-.epigram-carousel
+.component--carousel
   width: 100%
   //overflow: hidden
+
+.carousel__container
+  position: relative
+  padding-left: 10em
+  padding-right: 10em
+
+  &::before,
+  &::after
+    content: ''
+    position: fixed
+    height: 100%
+    width: 10em
+    //opacity: 0.8
+    top: 0
+    z-index: 3
+    filter: blur(10px)
+    transform: scaleY(1.05)
+  &::before
+    left: -5px
+    background: linear-gradient(-90deg, rgba(255,255,255,0), rgba(255,255,255,1) 80%)
+  &::after
+    right: -5px
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1) 80%)
 
 .carousel__wrapper
   display: flex
@@ -513,11 +577,27 @@ $hover: .5s all ease-out
   flex-wrap: nowrap
 
 .carousel__item
-  width: 150px
+  width: 20em
   margin: 0 5px
   height: 100px
   flex-shrink: 0
-  background-color: #ddd
-  //margin: 0 20px
+  &.-link
+
+.carousel__item-link
+  display: block
+  height: 100%
+  width: 100%
+  background-color: #2c2c2c
+  color: #aaa
+  font-family: $raleway
+  font-size: 11px
+  padding: 10px
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  opacity: 1
+  transition: opacity 0.4s
+  &:hover
+    opacity: 0.8
 
 </style>

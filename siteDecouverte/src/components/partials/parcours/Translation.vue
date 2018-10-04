@@ -10,19 +10,14 @@
     </div>
 -->
     <div class="text-container">
-      <div class="text-theme">
+      <div class="text-title">
         <h2>
           <span class="bg"></span>
-          {{ epigram.versions[0].title }}
+          {{ epigram.title }}
         </h2>
       </div>
-      <div class="text-title">
-        <h3>{{ epigram.versions[0].title }}</h3>
-        <div
-          v-if="epigram.langs"
-          class="text-lang"
-        >
 <!--
+      <div class="text-title">
           <select v-model="epigram.langs.selected">
             <option
               v-for="lang in epigram.langs.options"
@@ -31,19 +26,16 @@
               {{ lang.text }}
             </option>
           </select>
--->
         </div>
+-->
       </div>
       <div class="text-content">
-        <p v-if="epigram.langs"
-           v-html="epigram.texts[epigram.langs.selected].content"></p>
-        <p v-if="!epigram.langs"
-           v-html="epigram.versions[0].text_translated"></p>
+        <p v-html="epigram.versions[0].text_translated"></p>
       </div>
       <div class="text-author" v-if="epigram.authors">
         <div v-for="author in epigram.authors">
           <span class="dash"></span>
-          <p><router-link :to="{ name: 'authors' }">Auteur {{ author.id_author }}</router-link></p>
+          <p><router-link :to="{ name: 'authors' }">{{ author.name ? author.name : '(Auteur)' }}</router-link></p>
         </div>
       </div>
     </div>
@@ -112,6 +104,11 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
     .text-title
       text-align: center
 
+      span.bg
+        left: -0.5em
+        height: 1.5em
+        widht: 1.5em
+
       h2,
       h3,
       select
@@ -119,14 +116,13 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
         font-weight: 600
         color: #5e5e5e
 
-    .text-theme
+    .text-title
+      margin-bottom: 10px
+
       h2
         font-size: 14px
         position: relative
         display: inline-block
-
-        span.bg
-          left: -10px
 
     .text-title
       position: relative
@@ -198,19 +194,19 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
         &::first-letter
           font-size: 36px
 
-    .text-author
-      margin-top: 20px
+  .text-author
+    margin-top: 20px
 
-      .dash
-        width: 10px
-        height: 1px
-        margin-right: 10px
+    .dash
+      width: 10px
+      height: 1px
+      margin-right: 10px
 
-      p
-        display: inline-block
-        margin: 0
-        font-style: italic
-        font-size: 14px
-        color: #2c2c2c
-        font-family: "Times New Roman", sans-serif
+    p
+      display: inline-block
+      margin: 0
+      font-style: italic
+      font-size: 14px
+      color: #2c2c2c
+      font-family: "Times New Roman", sans-serif
 </style>

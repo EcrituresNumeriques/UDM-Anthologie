@@ -17,6 +17,8 @@ Vue.config.silent = true // Supress all Vue.js logs and warnings -> because of s
 // configuration Resource
 global.theme = require('./service/theme.js')
 
+//Vue.http.headers.common['access-control-allow-origin'] = '*'
+
 var clientId = '2_2pbd2c7wctes4oogk844ckc4wsw00g04kggwkwggcg4c8sccw4'
 var clientSecret = '4u08cwjiogmc0sc8ks0wscsww4wck88s08ogg0g04440o44kkk'
 var grantType = 'password'

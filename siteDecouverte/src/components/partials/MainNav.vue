@@ -110,15 +110,12 @@ $nav-color: #2c2c2c
 $hover: .5s all linear
 
 .router-link-active
-  &:hover
-    cursor: default
 
 .main-nav
   font-family: $raleway
   //position: fixed
   margin-top: 20px
   margin-left: 8.333%
-  margin-bottom: 20px
   z-index: 20
   padding-left: 0
 
@@ -126,7 +123,7 @@ $hover: .5s all linear
   margin: 0
 
 .navbar-header
-  margin-right: 20px
+  margin-right: 40px
   a
     padding: 0
     opacity: 1

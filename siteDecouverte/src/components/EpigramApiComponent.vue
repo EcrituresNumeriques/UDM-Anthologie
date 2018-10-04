@@ -8,10 +8,7 @@
       <div class="row epigram-row">
         <div class="col-md-2 col-md-offset-1">
           <div class="inner-links">
-            <a href="#!/sommaire">
-              <span class="dash"></span>
-              Les thèmes
-            </a>
+            <back-btn></back-btn>
           </div>
         </div>
         <!-- WIP: dataEpigrams? -->
