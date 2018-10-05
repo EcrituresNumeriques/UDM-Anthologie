@@ -9,7 +9,13 @@
 
       <div class="row scroll row--all">
           <div class="col-md-5 col-md-offset-1">
-              <back-btn></back-btn>
+            <div class="inner-links">
+              <router-link :to="{ name: 'home' }">
+                <span class="dash"></span>
+                Retour à l’accueil
+              </router-link>
+            </div>
+
             <div class="page-subtitle-container">
               <span class="dash"></span>
               <h2>Parcours de lecture</h2>

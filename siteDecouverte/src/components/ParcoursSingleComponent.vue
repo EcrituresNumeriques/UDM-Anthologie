@@ -8,7 +8,10 @@
     <div class="row">
       <div class="col-md-9 col-md-offset-1">
         <div class="inner-links">
-          <back-btn></back-btn>
+          <router-link :to="{ name: 'parcoursIndex', params: { parcoursId: parcoursId, parcoursName: $route.parcoursName } }">
+            <span class="dash"></span>
+            Sommaire du parcours
+          </router-link>
         </div>
 
         <br>
@@ -219,6 +222,12 @@ export default {
 
         // Init fancybox
         $('[data-fancybox="iframe"]').fancybox({
+          hash: false,
+          share: {
+            url: function (instance, item) {
+              return ''
+            }
+          },
           buttons: [
             //'zoom',
             //'share',
