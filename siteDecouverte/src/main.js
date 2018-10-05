@@ -24,8 +24,8 @@ var clientSecret = '4u08cwjiogmc0sc8ks0wscsww4wck88s08ogg0g04440o44kkk'
 var grantType = 'password'
 var username = 'front'
 var password = 'owiowi'
-global.apiAuth = 'http://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=' + clientId + '&client_secret=' + clientSecret + '&grant_type=' + grantType + '&username=' + username + '&password=' + password
-global.api = 'http://anthologia.ecrituresnumeriques.ca/api/v1/'
+global.apiAuth = 'https://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=' + clientId + '&client_secret=' + clientSecret + '&grant_type=' + grantType + '&username=' + username + '&password=' + password
+global.api = 'https://anthologia.ecrituresnumeriques.ca/api/v1/'
 global.filterFr = '?lang=1&'
 
 Vue.http.options.root = '/'
