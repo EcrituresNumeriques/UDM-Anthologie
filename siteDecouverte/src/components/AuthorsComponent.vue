@@ -9,7 +9,9 @@
 
       <div class="row scroll row--all">
           <div class="col-md-5 col-md-offset-1">
-              <back-btn></back-btn>
+            <div class="inner-links">
+              <router-link :to="{ name: 'home' }">Retour à l’accueil</router-link>
+            </div>
               <div class="page-subtitle-container">
                   <span class="dash"></span>
                   <h2>Les auteurs de<br> l'Anthologie Palatine</h2>
@@ -19,7 +21,11 @@
               <div class="vertical-list-container">
                   <div v-for="author in dataAuthors"
                        class="vertical-list-wrapper">
-                    <h3><span class="bg"></span>{{ author.versions[0].name }} <sup>{{ author.id_author | romanize }}</sup></h3>
+                    <h3><span class="bg"></span>
+                      <router-link :to="{ name: 'authorSingle', params: { id: author.id_author }}">
+                        {{ author.versions[0].name }} <sup>{{ author.id_author | romanize }}</sup>
+                      </router-link>
+                    </h3>
                     <ul>
                       <li v-for="epigram in author.entities">
                         <router-link :to="{ name: 'epigram', params: { id: epigram.id_entity }}">{{ epigram.title }}</router-link>

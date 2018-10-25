@@ -1,5 +1,6 @@
 <template>
-  <div class="translation">
+  <div class="translation"
+       v-if="epigram && epigram.versions">
 <!--
     <div
       @click="onFrenchMuteClick"
@@ -30,12 +31,12 @@
 -->
       </div>
       <div class="text-content">
-        <p v-html="epigram.versions[0].text_translated"></p>
+        <p v-html="versionLanguage(epigram.versions).text_translated"></p>
       </div>
       <div class="text-author" v-if="epigram.authors">
         <div v-for="author in epigram.authors">
           <span class="dash"></span>
-          <p><router-link :to="{ name: 'authors' }">{{ author.name ? author.name : '(Auteur)' }}</router-link></p>
+          <p><router-link :to="{ name: 'authorSingle', params: { id: author.id_author} }">{{ author.name ? author.name : '(Auteur)' }}</router-link></p>
         </div>
       </div>
     </div>
@@ -53,10 +54,13 @@ export default {
   created: function () {
     var self = this
     self.$nextTick(function () {
-      console.log('Translation ready', self.epigram.versions[0])
+//      console.log('Translation ready', self.epigram.versions[0])
     })
   },
   methods: {
+    versionLanguage (versions, options) {
+      return global.versionLanguage(versions, options)
+    },
     onFrenchMuteClick: function () {
       var controlBtn, playBtn, frenchSound, greekSound, greekMute
       var frenchMute = $('.french-mute .glyphicon')

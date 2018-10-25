@@ -1,33 +1,46 @@
 <template>
-<div class="parcours-index" v-bind:parcours="parcours">
-  <div class="page-title-container"
-       v-if="parcours && parcours.versions">
-    <h1>{{ parcours.versions[0].title }}</h1>
+<div class="auteur-single">
+  <div class="page-title-container">
+    <h1 v-if="author && author.versions">{{ author.versions[0].name }}</h1>
   </div>
 
-  <div v-if="parcours && parcours.versions"
-       class="row parcours-row">
+  <div v-if="author && author.versions"
+       class="row autuer-row">
     <div class="col-md-10 col-md-offset-1 column">
       <div class="inner-links">
-        <router-link :to="{ name: 'parcoursAll' }">
+        <router-link :to="{ name: 'authors' }">
           <span class="dash"></span>
-          Retour aux parcours
+          Voir tous les auteurs
         </router-link>
       </div>
 
-      <h2>{{ parcours.versions[0].title }}</h2>
+      <h2>{{ versionLanguage(author.versions).name }}</h2>
+
+      <p>Les épigrames de cet auteur&nbsp;:</p>
 
       <div class="overflow">
-        <index-nav v-bind:list-items="parcours.entities"
-                   v-bind:item-id="parcoursId"
-                   v-bind:item-slug="'-' + slugify(parcours.versions[0].title)"
-                   route-name="parcoursSingle"
-                   ></index-nav>
+        <nav class="navbar navbar-default">
+            <ul class="nav">
+                <li class="index-list"
+                    v-for="(listItem, index) in author.entities"
+                    v-track-by="index"
+                    @mouseover="addClass"
+                    >
+                  <router-link :to="{ name: 'epigram', params: { id: listItem.id_entity }}">
+                    <span class="dash">
+                      <span class="inner-dash"></span>
+                    </span>
+                    {{ listItem.title }}
+                    <sup>{{ index + 1 | romanize }}</sup>
+                  </router-link>
+                </li>
+            </ul>
+        </nav>
       </div>
     </div>
   </div>
   <div v-else class="notExist">
-    <p>Le parcours que vous cherchez n'existe pas</p>
+    <p>L'auteur que vous cherchez n'existe pas</p>
     <back-btn></back-btn>
   </div>
 </div>
@@ -35,56 +48,35 @@
 
 <script>
 import BackBtn from './partials/BackBtn'
-import Pagination from './partials/parcours/Pagination'
-import Player from './partials/parcours/Player'
-import Translation from './partials/parcours/Translation'
-import GreekText from './partials/parcours/GreekText'
-import Notes from './partials/parcours/Notes'
-import Characters from './partials/parcours/Characters'
 import IndexNav from './partials/IndexNav'
 
 import $ from 'jquery'
 
 export default {
-  name: 'ParcoursIndex',
+  name: 'AuthorSingle',
   components: {
     BackBtn,
-    Pagination,
-    Player,
-    Translation,
-    GreekText,
-    Notes,
-    Characters,
     IndexNav
-  },
-  route: {
-    data: function (transition) {
-      console.log('route.data', transition)
-      transition.next({
-        parcours: transition.to.params.themeId - 1,
-        epigram: transition.to.params.id - 1
-      })
-    }
   },
   data () {
     return {
-      parcours: {},
-      parcoursIndex: 0,
-      parcoursId: 0
+      author: {},
+      authorId: 0
     }
   },
   created: function () {
     var self = this
+    self.$set(self, 'authorId', self.$route.params.id)
 
-    self.$set(self, 'epigramIndex', self.$route.params.epigramIndex)
-    self.$set(self, 'parcoursId', self.$route.params.parcoursId)
-
-    self.getParcoursData()
+    self.getAuthorData()
   },
   destroyed: function () {
     this.$off()
   },
   methods: {
+    versionLanguage: function (versions, options) {
+      return global.versionLanguage(versions, options)
+    },
     showPopin: function () {
       $('.manuscript-popin').fadeIn(function () {
         $('.manuscript-popin img').addClass('big')
@@ -94,15 +86,15 @@ export default {
       $('.manuscript-popin img').removeClass('big')
       $('.manuscript-popin').fadeOut()
     },
-    getParcoursData () {
+    getAuthorData () {
       var self = this
 
-      self.$http.get(global.api + 'keywords/' + self.parcoursId).then(function (response) {
-        var parcoursData = JSON.parse(response.bodyText)
+      self.$http.get(global.api + 'authors/' + self.authorId).then(function (response) {
+        var authorData = JSON.parse(response.bodyText)
 
-        self.$set(this, 'parcours', parcoursData)
+        self.$set(this, 'author', authorData)
       }, function (err) {
-        console.error('Error retrieving parcours', err)
+        console.error('Error retrieving author', err)
       })
     },
     slugify: function (text) {
@@ -160,11 +152,11 @@ $(document).ready(function () {
 $raleway: 'Raleway', Helvetica, Arial, sans-serif
 $hover: .5s all ease-out
 
-.parcours-index
+.auteur-single
   width: 100%
   height: 100%
 
-  .parcours-row
+  .auteur-row
     height: 100%
     .column
       height: 100%

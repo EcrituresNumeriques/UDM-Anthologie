@@ -31,6 +31,12 @@ export default {
     MainNav,
     Home,
     Copyright
+  },
+  created: function () {
+    this.$http.get('https://anthologia.ecrituresnumeriques.ca/api/v1/languages').then(function (response) {
+      var languagesData = JSON.parse(response.bodyText)
+      console.log('languages', languagesData)
+    })
   }
 }
 </script>

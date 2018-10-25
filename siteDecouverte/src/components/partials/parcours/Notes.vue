@@ -1,5 +1,6 @@
 <template>
-  <div class="notes-partial">
+  <div class="notes-partial"
+       v-if="epigram && epigram.notes">
     <div
       v-if="epigram.notes && epigram.notes.length"
       class="notes dropdown"
@@ -19,7 +20,7 @@
               class="dropdown-text"
             >
               <div class="dropdown-desc">
-                <q v-html="note.content"></q>
+                <q v-html="note.title"></q>
               </div>
             </div>
           </div>

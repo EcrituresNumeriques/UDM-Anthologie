@@ -73,12 +73,9 @@ export default {
   methods: {
     getParcoursData: function () {
       var self = this
-      // keyword categories for 'Parcours de lecture' is 6
-      // https://anthologia.ecrituresnumeriques.ca/api/v1/keyword_categories/6
-      var parcoursKeywordId = 6
 //      this.$http.get(global.apiAuth).then(function (response) {
 //      self.$set('token', response.data.access_token)
-      self.$http.get(global.api + 'keywords?category=' + parcoursKeywordId /* + filterFr + 'access_token=' + self.token*/, {progress () {
+      self.$http.get(global.api + 'keywords?category=' + global.parcoursKeywordId /* + filterFr + 'access_token=' + self.token*/, {progress () {
       }}).then(function (response) {
         var parcoursAll = JSON.parse(response.bodyText)
         console.log('GET parcours', parcoursAll)
@@ -87,6 +84,11 @@ export default {
           if (!parcours.versions || !parcours.versions.length) {
             parcours.versions.push({title: 'Sans titre'})
           }
+        })
+
+        // Sort Parcours by most epigrams first
+        parcoursAll.sort(function (a, b) {
+          return a.entities.length < b.entities.length
         })
 
         self.$set(this, 'parcoursAll', parcoursAll)

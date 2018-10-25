@@ -1,11 +1,14 @@
 <template>
   <div class="parcours-single">
     <loader></loader>
-    <div class="page-title-container">
-        <h1>{{ parcours.versions[0].title }}</h1>
+    <div class="page-title-container"
+         v-if="parcours && parcours.versions">
+        <h1>{{ versionLanguage(parcours.versions).title }}</h1>
     </div>
 
-    <div class="row">
+    <div class="row"
+         v-if="parcours && parcours.versions"
+         >
       <div class="col-md-9 col-md-offset-1">
         <div class="inner-links">
           <router-link :to="{ name: 'parcoursIndex', params: { parcoursId: parcoursId, parcoursName: $route.parcoursName } }">
@@ -33,7 +36,7 @@
           </div>
 
           <div
-                v-if="epigram.imageUrl"
+                v-if="epigram && epigram.imageUrl"
                 class="manuscript-image"
               >
                   <p @click="showPopin">
@@ -60,7 +63,7 @@
 -->
 
     <div class="component--carousel">
-      <div v-if="epigram.externalRef && epigram.externalRef.length">
+      <div v-if="epigram && epigram.externalRef && epigram.externalRef.length">
         <header class="carousel__header">
           <div class="row">
             <div class="col-md-4 col-md-offset-1">
@@ -74,18 +77,16 @@
         </header>
         <div class="scroll carousel__container">
           <article class="carousel__wrapper">
-            <section v-for="(ref, index) in epigram.externalRef"
-                 class="carousel__item">
-              <a class="carousel__item-link"
-                 v-bind:href="ref.url"
-                 v-bind:data-src="ref.url"
-                 data-fancybox="iframe"
-                 data-type="iframe"
-                 v-bind:data-caption="ref.title"
-                 >
-                {{ ref.title }}
-              </a>
-            </section>
+            <a v-if="epigram"
+               v-for="(ref, index) in epigram.externalRef"
+               class="carousel__item -link"
+               v-on:click="openFancybox(index, $event)"
+               v-bind:href="ref.url"
+               v-bind:data-src="ref.url"
+               v-bind:data-caption="ref.title"
+               >
+              {{ ref.title }}
+            </a>
           </article>
         </div>
       </div>
@@ -94,7 +95,7 @@
       tabindex="0"
       @click="hidePopin"
       @keyup.esc="hidePopin"
-      v-if="epigram.imageUrl"
+      v-if="epigram && epigram.imageUrl"
       class="manuscript-popin"
     >
       <div
@@ -103,9 +104,9 @@
       >
         <div class="popin-cross"></div>
       </div>
-      <img
-        :src="epigram.imageUrl"
-        v-bind:alt="epigram.title"
+      <img v-if="epigram && epigram.imageUrl"
+           :src="epigram.imageUrl"
+           v-bind:alt="epigram.title"
       >
     </div>
   </div>
@@ -116,13 +117,18 @@ import Vue from 'vue'
 
 import BackBtn from './partials/BackBtn'
 import Pagination from './partials/parcours/Pagination'
-import Player from './partials/parcours/Player'
+//import Player from './partials/parcours/Player'
 import Translation from './partials/parcours/Translation'
 import GreekText from './partials/parcours/GreekText'
 import Notes from './partials/parcours/Notes'
-import Characters from './partials/parcours/Characters'
 
-import $ from 'jquery'
+/*
+ * NOTE ON JQUERY $
+ * Use global `$` loaded by `<script>`s to pick up $.fancybox
+ * since webpack does not automatically load the jQuery plugins.
+ */
+/* global $ */
+//import $ from 'jquery'
 //import router from 'vue-router'
 
 Vue.filter('numberize', function (value) {
@@ -137,28 +143,17 @@ export default {
   components: {
     BackBtn,
     Pagination,
-    Player,
+//    Player,
     Translation,
     GreekText,
-    Notes,
-    Characters
-  },
-  route: {
-    data: function (transition) {
-      console.log('route.data', transition)
-      transition.next({
-        parcours: transition.to.params.themeId - 1,
-        epigram: transition.to.params.id - 1
-      })
-    }
+    Notes
   },
   data () {
     return {
-      epigram: {
-        versions: [ {} ]
-      },
+      epigram: {},
       parcours: {},
       parcoursId: 0,
+      epigramId: Number,
       epigramIndex: 0
     }
   },
@@ -176,16 +171,29 @@ export default {
       $('.loader').fadeIn()
     })
 
-    this.$set(this, 'parcoursId', self.$route.params.parcoursId)
-    this.$set(this, 'epigramIndex', self.$route.params.epigramIndex - 1)
+    self.parcoursId = self.$route.params.parcoursId
+    self.epigramIndex = self.$route.params.epigramIndex - 1
 
     self.getParcours()
+    .then(function (parcoursData) {
+      // Set the full parcours data (for navigation)
+//      console.log('parcoursData', parcoursData.entities[0])
+      var epigramId = parcoursData.entities[self.epigramIndex].id_entity
+
+      self.epigramId = epigramId
+
+      self.$set(self, 'epigramId', epigramId)
+      self.getEpigram()
+    })
   },
   destroyed: function () {
     this.$off()
     $.fancybox.destroy()
   },
   methods: {
+    versionLanguage (versions, options) {
+      return global.versionLanguage(versions, options)
+    },
     showPopin: function () {
       $('.manuscript-popin').fadeIn(function () {
         $('.manuscript-popin img').addClass('big')
@@ -198,48 +206,107 @@ export default {
     getParcours () {
       var self = this
 
-      self.$http.get(global.api + 'keywords/' + self.parcoursId).then(function (response) {
+      return self.$http.get(global.api + 'keywords/' + self.parcoursId).then(function (response) {
         var parcoursData = JSON.parse(response.bodyText)
 
-        // Set the full parcours data (for navigation)
-        self.$set(this, 'parcours', parcoursData)
-
-        self.$set(this, 'epigram', self.parcours.entities[self.epigramIndex])
+        self.parcours = parcoursData
+        self.$set(self, 'parcours', parcoursData)
 
         // We got the basic epigram data; now get the full epigram
-        self.getEpigram()
+//        self.getEpigram()
+
+        return parcoursData
+      }, function (err) {
+        console.error('Error retrieving parcours (keyword) data', err)
       })
     },
     getEpigram () {
       var self = this
 
-      self.$http.get(global.api + 'entities/' + self.epigram.id_entity).then(function (response) {
+      self.$http.get(global.api + 'entities/' + self.epigramId).then(function (response) {
         var epigramData = JSON.parse(response.bodyText)
-        self.$set(this, 'epigram', epigramData)
+        self.epigram = epigramData
+
+//        console.log('SORTED EPIGRAM', global.versionLanguage(self.epigram.versions).id_entity)
       })
       .finally(function () {
         $('.loader').fadeOut()
-
-        // Init fancybox
-        $('[data-fancybox="iframe"]').fancybox({
-          hash: false,
-          share: {
-            url: function (instance, item) {
-              return ''
-            }
-          },
-          buttons: [
-            //'zoom',
-            //'share',
-            //'slideShow',
-            //'fullScreen',
-            //'download',
-            'thumbs',
-            'close'
-          ]
-          // Options will go here
-        })
       })
+    },
+    openFancybox (index, event) {
+//      var self = this
+      event.preventDefault()
+
+      // Init fancybox
+      var fancyboxInstance = $.fancybox.open(event.currentTarget.parentElement.children, {
+        hash: false,
+        buttons: [
+          //'zoom',
+          //'share',
+          //'slideShow',
+          //'fullScreen',
+          //'download',
+          'thumbs',
+          'close'
+        ],
+        type: 'iframe',
+        iframe: {
+          preload: false
+        },
+        lang: 'fr',
+        i18n: {
+          fr: {
+            CLOSE: 'Fermer',
+            NEXT: 'Suivant',
+            PREV: 'Précédent',
+            ERROR: 'Le contenu demandé ne peut être affiché.<br> Veuillez réessayer plus tard.',
+            PLAY_START: 'Démarrer le diaporama',
+            PLAY_STOP: 'Suspendre le diaporama',
+            FULL_SCREEN: 'Plein écran',
+            THUMBS: 'Vignettes',
+            DOWNLOAD: 'Télécharger',
+            SHARE: 'Partager',
+            ZOOM: 'Agrandir'
+          }
+        },
+        beforeLoad (instance, slide) {
+          console.log('beforeload slide', slide)
+
+          var regexps = {
+            https: /^https:/i,
+            http: /^http:/i,
+            youtube: /^https?:\/\/((www\.|m\.)?youtube\.com|youtu\.be)\/(watch\?v?=|)(.+)$/i
+          }
+
+          // Loading plain HTTP (unsafe) content on a HTTPS page is not allowed
+          // If current location is HTTPS and remote content is HTTP, do not load
+          // in place; open new tab
+          // 1. Are we on HTTPS?
+          if (regexps.https.test(window.location.protocol)) {
+            // 2. Currently on HTTPS; is the target unsafe HTTP?
+            if (regexps.http.test(slide.src)) {
+              // 3. Unsafe HTTP external content; open in new tab
+              console.warn('Not attempting to load unsafe HTTP content on HTTPS page; opening in new tab.')
+              instance.close()
+              window.open(slide.src, '_newtab')
+            }
+          } else {
+            // App is on http page, all is OK
+          }
+
+          if (regexps.youtube.test(slide.src)) {
+            console.log('---', slide.src.replace(regexps.youtube, '$4'))
+            slide.src = slide.src.replace(regexps.youtube, 'https://youtube.com/embed/$4')
+          }
+        },
+        afterClose () {
+          $.fancybox.destroy()
+        }
+      })
+
+      console.log('fancyboxInstance', fancyboxInstance)
+
+      fancyboxInstance.jumpTo(index)
     },
     prev () {
       console.log('call prev')
@@ -556,57 +623,57 @@ $hover: .5s all ease-out
 .component--carousel
   width: 100%
   //overflow: hidden
-
-.carousel__container
   position: relative
-  padding-left: 10em
-  padding-right: 10em
-
   &::before,
   &::after
     content: ''
-    position: fixed
-    height: 100%
-    width: 10em
+    position: absolute
+    width: 8em
     //opacity: 0.8
-    top: 0
+    top: -20px
+    bottom: -20px
     z-index: 3
     filter: blur(10px)
     transform: scaleY(1.05)
   &::before
-    left: -5px
-    background: linear-gradient(-90deg, rgba(255,255,255,0), rgba(255,255,255,1) 80%)
+    left: -20px
+    background: linear-gradient(-90deg, rgba(255,255,255,0), rgba(255,255,255,1) 50%)
   &::after
-    right: -5px
-    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1) 80%)
+    right: -20px
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1) 50%)
+
+.carousel__container
+  padding-left: 8em
+  padding-right: 8em
 
 .carousel__wrapper
   display: flex
   flex-direction: row
   flex-wrap: nowrap
-
-.carousel__item
-  width: 20em
-  margin: 0 5px
-  height: 100px
-  flex-shrink: 0
-  &.-link
-
-.carousel__item-link
-  display: block
-  height: 100%
-  width: 100%
-  background-color: #2c2c2c
-  color: #aaa
-  font-family: $raleway
-  font-size: 11px
-  padding: 10px
-  display: flex
-  flex-direction: column
-  justify-content: flex-end
-  opacity: 1
-  transition: opacity 0.4s
-  &:hover
-    opacity: 0.8
+  // Add an empty transparent element at the end of the container
+  // to create extra scrolling space
+  &::after
+    background-color: transparent !important
+    content: ''
+  &:after,
+  .carousel__item
+    width: 20em
+    margin: 0 5px
+    height: 100px
+    flex-shrink: 0
+    display: block
+    background-color: #2c2c2c
+    font-family: $raleway
+    color: #aaa
+    font-size: 16px
+    justify-content: flex-end
+    flex-direction: column
+    padding: 10px
+    display: flex
+    &.-link
+      opacity: 1
+      transition: opacity 0.4s
+      &:hover
+        opacity: 0.9
 
 </style>

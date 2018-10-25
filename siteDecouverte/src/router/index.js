@@ -13,6 +13,7 @@ import ParcoursAll from '../components/ParcoursAllComponent'
 import ParcoursIndex from '../components/ParcoursIndexComponent'
 import ParcoursSingle from '../components/ParcoursSingleComponent'
 import EpigramApi from '../components/EpigramApiComponent'
+import AuthorSingle from '../components/AuthorSingleComponent'
 //import SearchGenreComponent from '../components/SearchGenreComponent'
 //import SearchAuthorComponent from '../components/SearchAuthorComponent'
 //import SearchEraComponent from '../components/SearchEraComponent'
@@ -52,6 +53,11 @@ export default new VueRouter({
       path: '/auteurs',
       component: Authors,
       name: 'authors'
+    },
+    {
+      path: '/auteurs/:id',
+      component: AuthorSingle,
+      name: 'authorSingle'
     },
     {
       path: '/personnages',

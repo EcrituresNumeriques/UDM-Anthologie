@@ -9,36 +9,55 @@
       </div>
     </div>
     <div class="row home-row">
-        <div class="col-md-6 col-md-offset-1 left-column">
-            <discover-nav></discover-nav>
-            <div class="page-subtitle-container">
-                <span class="dash"></span>
-                <h2>L’Anthologie<br> Palatine &amp; découverte.</h2>
-            </div>
+      <div class="col-md-6 col-md-offset-1 left-column">
+
+        <div class="index-nav">
+          <nav class="navbar navbar-default">
+              <ul class="nav">
+                  <li class="index-list"
+                      v-for="(parcours, index) in selectedParcours"
+                      v-track-by="index"
+                      @mouseover="addClass"
+                      >
+                    <router-link :to="{ name: 'parcoursIndex', params: { parcoursId: parcours.id_keyword }}">
+                      <span class="dash">
+                        <span class="inner-dash"></span>
+                      </span>
+                      {{ parcours.versions[0].title }}
+                      <sup>{{ index + 1 | romanize }}</sup>
+                    </router-link>
+                  </li>
+              </ul>
+          </nav>
         </div>
-        <div class="col-md-5 right-column">
-          <div class="img-container">
-            <img v-bind:src="data" />
-          </div>
+
+        <div class="page-subtitle-container">
+          <span class="dash"></span>
+          <h2>L’Anthologie<br> Palatine &amp; découverte.</h2>
         </div>
+      </div>
+      <div class="col-md-5 right-column">
+        <div class="img-container">
+          <img v-bind:src="data" />
+        </div>
+      </div>
      </div>
   </div>
 </template>
 
 <script>
 import MainNav from './partials/MainNav'
-import DiscoverNav from './partials/DiscoverNav'
 import $ from 'jquery'
 
 export default {
   components: {
-    MainNav,
-    DiscoverNav
+    MainNav
   },
   name: 'home',
   data () {
     return {
-      data: '/static/img/home/meleagre-in-love.png'
+      data: '/static/img/home/meleagre-in-love.png',
+      selectedParcours: []
     }
   },
   created: function () {
@@ -46,12 +65,57 @@ export default {
 
     // run $nextTick to ensure DOM is available
     self.$nextTick(function () {
-      this.loader()
-      this.hide()
-      this.getCurrentThemeImg()
+      self.loader()
+      self.hide()
+      self.getCurrentThemeImg()
+      self.getParcoursData()
     })
   },
   methods: {
+    getParcoursData () {
+      var self = this
+
+      self.$http.get(global.api + 'keywords?category=' + global.parcoursKeywordId).then(function (response) {
+        var parcoursData = JSON.parse(response.bodyText)
+        var selectedParcours = []
+        var selectedParcoursIds = [
+          432, // Bestiaire
+          433, // Banquet
+          435 // Regrets de la vie passée
+        ]
+
+        // Only keep selected parcours
+        parcoursData.forEach(function (parcours) {
+          // If ID is within the selected parcours
+          if (selectedParcoursIds.indexOf(parcours.id_keyword) !== -1) {
+            console.log('selecting parcours', parcours.id_keyword)
+            selectedParcours.push(parcours)
+          }
+        })
+
+        self.$set(self, 'selectedParcours', selectedParcours)
+        console.log('selected parcours is ', selectedParcours)
+      }, function (err) {
+        console.error('Error retrieving parcours', err)
+      })
+    },
+    addClass: function (e) {
+      $(e.target).addClass('active')
+      $(e.target).parent().siblings().children().removeClass('active')
+    },
+    slugify: function (text) {
+      if (!text) return ''
+
+      return text.toString()
+        .toLowerCase()
+        .replace('/[éèê]/g', 'e')
+        .replace('/à/g', 'a')
+        .replace(/\s+/g, '-')         // Replace spaces with -
+        .replace(/[^\w-]+/g, '')      // Remove all non-word chars
+        .replace(/--+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')           // Trim - from start of text
+        .replace(/-+$/, '')           // Trim - from end of text
+    },
     getCurrentThemeImg: function () {
 //      var self = this
 //      $('body').on('mouseenter', '.discover-list a', function () {
@@ -64,7 +128,6 @@ export default {
     loader: function () {
 //      $(window).on('load', function () {
       setTimeout(function () {
-        var mainNav = $('.main-nav')
         var homeRow = $('.home-row')
         var homeSubtitle = $('.home .page-subtitle-container')
         var copyright = $('.copyright')
@@ -88,7 +151,6 @@ export default {
           copyright.fadeIn('2000')
           setTimeout(function () {
             homeRow.fadeIn(2000)
-            mainNav.fadeIn(2000)
           }, 500)
         })
         var loaderInterval = setInterval(function () {
@@ -101,13 +163,11 @@ export default {
     },
     hide: function () {
 //      $(window).on('load', function () {
-      var mainNav = $('.main-nav')
       var homeRow = $('.home-row')
       var loaderContainer = $('.fake-loader-container')
       var homeSubtitle = $('.home .page-subtitle-container')
       var copyright = $('.copyright')
 
-      mainNav.hide(0)
       homeRow.hide(0)
       loaderContainer.show().css('display', 'flex')
       homeSubtitle.hide(0)
@@ -120,7 +180,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$hover: .5s all linear
+$hover: .5s all ease-out
 
 .home
   height: 100%
@@ -213,4 +273,83 @@ $hover: .5s all linear
   to
     opacity: 1
 
+.index-nav
+  margin-top: 15px
+  width: 60%
+  padding-left: 20px
+
+  li
+    margin: 5px 0
+
+.nav>li>a
+  display: flex
+
+ul
+  li
+    a
+      font-size: 17px
+      color: #e0e0e0
+      align-items: center
+      transition: $hover
+      padding: 5px 15px 5px 0
+
+      .dash
+        width: 20px
+        height: 1px
+        transition: $hover
+        background: transparent
+        position: relative
+        margin-right: 0
+        animation: marginRightOut .5s ease-out forwards
+
+        .inner-dash
+          background: #000
+          height: 1px
+          width: 0
+          position: absolute
+          top: 0
+          left: 0
+          transition: $hover
+          animation: activeOut .5s ease-out forwards
+
+      sup
+        font-size: 9px
+
+      &.active
+        color: #2c2c2c
+        background: none
+
+        .dash
+          animation: marginRightIn .5s ease-out .2s forwards
+
+          .inner-dash
+            animation: activeIn .5s ease-out forwards
+
+@keyframes activeIn
+  from
+    width: 0
+
+  to
+    width: 20px
+
+@keyframes activeOut
+  from
+    width: 20px
+
+  to
+    width: 0
+
+@keyframes marginRightIn
+  from
+    margin-right: 0
+
+  to
+    margin-right: 10px
+
+@keyframes marginRightOut
+  from
+    margin-right: 10px
+
+  to
+    margin-right: 0
 </style>

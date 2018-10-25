@@ -1,20 +1,18 @@
 <template>
-    <div class="index-nav"
-         :epigrams="epigrams"
-         :parcours-id="parcoursId">
+    <div class="index-nav">
         <nav class="navbar navbar-default">
             <ul class="nav">
                 <li class="index-list"
-                    v-for="(epigram, index) in epigrams"
+                    v-for="(listItem, index) in listItems"
                     v-track-by="index"
-                    tag="li"
                     @mouseover="addClass"
                     >
-                  <router-link :to="{ name: 'parcoursSingle', params: { parcoursId: parcoursId, parcoursSlug: parcoursSlug, epigramIndex: index + 1 }}">
+                  <router-link :to="{ name: routeName, params: { parcoursId: itemId, parcoursSlug: itemSlug, epigramIndex: index + 1 }}">
                     <span class="dash">
                       <span class="inner-dash"></span>
                     </span>
-                    {{ index + 1 }}
+                    {{ listItem.title }}
+                    <sup>{{ index + 1 | romanize }}</sup>
                   </router-link>
                 </li>
             </ul>
@@ -28,9 +26,10 @@ import $ from 'jquery'
 
 export default {
   props: {
-    epigrams: {},
-    parcoursId: 0,
-    parcoursSlug: ''
+    listItems: {},
+    itemId: 0,
+    itemSlug: '',
+    routeName: ''
   },
   created: function () {
   },

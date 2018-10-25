@@ -1,5 +1,6 @@
 <template>
-  <div class="greek-text">
+  <div class="greek-text"
+       v-if="epigram && epigram.versions">
     <div class="greek-translation dropdown">
       <p @click="onGreekDropdownClick">
         Texte source grec
@@ -17,7 +18,7 @@
             <span class="glyphicon glyphicon-volume-up"></span>
           </div>
 -->
-          <p v-html="epigram.versions[0].text_translated">
+          <p v-html="versionLanguage(epigram.versions, { greekText: true }).text_translated">
           </p>
         </div>
       </div>
@@ -33,6 +34,9 @@ export default {
     epigram: {}
   },
   methods: {
+    versionLanguage (versions, lang, fallback) {
+      return global.versionLanguage(versions, lang, fallback)
+    },
     onGreekDropdownClick: function () {
       var greekContainer = $('.greek-translation')
       var greekDropdown = greekContainer.children('.dropdown-drop')
