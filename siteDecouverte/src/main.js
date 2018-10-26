@@ -72,18 +72,26 @@ global.versionLanguage = function (versions, options) {
     prefLanguageIds = greekPrefLanguageIds
   }
 
+  var found = false
+
   // Iterate over the preferred language order
-  prefLanguageIds.forEach(function (langId) {
-    versions.forEach(function (version) {
-      if (version.id_language === langId) {
-        returnVersion = version
+  for (var i = 0; i < prefLanguageIds.length; i++) {
+    for (var j = 0; j < versions.length; j++) {
+      if (versions[j].id_language === prefLanguageIds[i]) {
+        console.log('found version', prefLanguageIds[i])
+        returnVersion = versions[j]
 
-        return
+        found = true
+        return versions[j]
       }
-    })
-  })
+    }
+    if (found) {
+      console.log('FOUND outside', returnVersion)
+      return
+    }
+  }
 
-  return returnVersion
+  return false
 }
 
 /* eslint-disable no-new */
