@@ -176,14 +176,19 @@ export default {
 
     self.getParcours()
     .then(function (parcoursData) {
+      self.$set(self, 'parcours', parcoursData)
       // Set the full parcours data (for navigation)
 //      console.log('parcoursData', parcoursData.entities[0])
-      var epigramId = parcoursData.entities[self.epigramIndex].id_entity
+      var epigramId
 
-      self.epigramId = epigramId
-
-      self.$set(self, 'epigramId', epigramId)
-      self.getEpigram()
+      if (parcoursData.entities[self.epigramIndex]) {
+        epigramId = parcoursData.entities[self.epigramIndex].id_entity
+        self.epigramId = epigramId
+        self.getEpigram()
+        .then(function (epigramData) {
+          self.$set(self, 'epigram', epigramData)
+        })
+      }
     })
   },
   destroyed: function () {
@@ -209,12 +214,6 @@ export default {
       return self.$http.get(global.api + 'keywords/' + self.parcoursId).then(function (response) {
         var parcoursData = JSON.parse(response.bodyText)
 
-        self.parcours = parcoursData
-        self.$set(self, 'parcours', parcoursData)
-
-        // We got the basic epigram data; now get the full epigram
-//        self.getEpigram()
-
         return parcoursData
       }, function (err) {
         console.error('Error retrieving parcours (keyword) data', err)
@@ -223,15 +222,19 @@ export default {
     getEpigram () {
       var self = this
 
-      self.$http.get(global.api + 'entities/' + self.epigramId).then(function (response) {
-        var epigramData = JSON.parse(response.bodyText)
-        self.epigram = epigramData
+      if (self.epigramId) {
+        return self.$http.get(global.api + 'entities/' + self.epigramId).then(function (response) {
+          var epigramData = JSON.parse(response.bodyText)
 
-//        console.log('SORTED EPIGRAM', global.versionLanguage(self.epigram.versions).id_entity)
-      })
-      .finally(function () {
-        $('.loader').fadeOut()
-      })
+          return epigramData
+  //        console.log('SORTED EPIGRAM', global.versionLanguage(self.epigram.versions).id_entity)
+        })
+        .finally(function () {
+          $('.loader').fadeOut()
+        })
+      } else {
+        self.getEpigram()
+      }
     },
     openFancybox (index, event) {
 //      var self = this

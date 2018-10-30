@@ -21,8 +21,8 @@
       <div class="text-title">
           <select v-model="epigram.langs.selected">
             <option
-              v-for="lang in epigram.langs.options"
-              v-bind:value="lang.id - 1"
+              v-for="lang in preferredLanguageIds"
+              v-bind:value="lang"
             >
               {{ lang.text }}
             </option>
@@ -49,10 +49,14 @@ import $ from 'jquery'
 export default {
   props: {
     epigram: {},
-    parcoursTitle: ''
+    parcoursTitle: '',
+    languages: []
   },
   created: function () {
     var self = this
+
+    self.languages = global.languages
+
     self.$nextTick(function () {
 //      console.log('Translation ready', self.epigram.versions[0])
     })

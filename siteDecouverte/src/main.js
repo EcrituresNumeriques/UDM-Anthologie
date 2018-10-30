@@ -32,6 +32,8 @@ global.apiAuth = 'https://anthologie.raphaelaupee.fr/oauth/v2/token?client_id=' 
 global.api = 'https://anthologia.ecrituresnumeriques.ca/api/v1/'
 global.filterFr = '?lang=1&'
 
+global.languages = []
+
 Vue.http.options.root = '/'
 
 global.versionLanguage = function (versions, options) {
@@ -53,10 +55,10 @@ global.versionLanguage = function (versions, options) {
   ]
 //  var greekLanguageId = 1
   var greekPrefLanguageIds = [
-    4,
-    7,
     8,
-    9
+    7,
+    9,
+    4
   ]
   var returnVersion = {}
 
