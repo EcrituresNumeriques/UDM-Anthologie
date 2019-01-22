@@ -30,12 +30,14 @@
                     <span class="bg"></span>{{ parcours.versions[0].title }} <sup>{{ parcours.entities.length | romanize }}</sup>
                   </router-link>
                   </h3>
+<!--
                 <ul>
                   <li v-for="(epigram, index) in parcours.entities"
                       v-track-by="index">
                     <router-link :to="{ name: 'parcoursSingle', params: { parcoursId: parcours.id_keyword, parcoursSlug: '-' + slugify(parcours.versions[0].title), epigramIndex: index + 1 }}">Épigramme {{ index + 1 }}</router-link>
                   </li>
                 </ul>
+-->
               </div>
             </div>
           </div>

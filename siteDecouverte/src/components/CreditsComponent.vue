@@ -4,32 +4,40 @@
       <h1>Crédits</h1>
     </div>
     <div class="row content-container">
-      <div class="col-md-5 col-md-offset-1">
+      <div class="col-md-6 col-md-offset-1">
         <div class="desc-container">
           <h3>Un projet collaboratif</h3>
           <q>
-            L’Anthologie Palatine est un recueil byzantin d’épigrammes grecques dont l’ancêtre remonte à l’époque hellénistique (323-30 av. J.-C). Le manuscrit de l’Anthologie (le Codex Palatinus 23) a été retrouvé en 1606 par Claude Saumaise à Heidelberg. Ces poèmes ont dès lors exercé une influence majeure sur la littérature de la Renaissance jusqu’à aujourd’hui. Plus de détails sur Wikipedia.
-            Le manuscrit est aujourd’hui conservé à la bibliothèque de l’université d’Heidelberg, où il a été numérisé et rendu disponible dans la collection numérique de la bibliothèque.
-            Le texte grec de l’Anthologie est disponible sur le site du projet Perseus – superbe projet de numérisation hébergé par la Tufts University, dirigé par Gregory Crane. C’est là que nous l’avons pris. On peut consulter la traduction anglaise de W.R. Paton, disponible sur <a href="https://archive.org/" target="_blank"><span class="dash">archive.org</span></a>.
-            Notre site propose d’ouvrir un petit chantier de traduction de l’anthologie en Français - et en d’autres langues - auquel vous êtes invités à participer.
+            La Plateforme Ouverte des Parcours d'imaginaires (la POP) propose une édition numérique collaborative de l'Anthologie Palatine (AP) dirigée par la <a href="https://ecrituresnumeriques.ca/fr/Objets-de-recherche/">Chaire en Recherche du Canada sur les écritures numériques</a> (CRC) et son équipe interdisciplinaire et internationale (dirigée par Marcello Vitali-Rosati) en collaboration avec Elsa Bouchard et l'équipe d'HETIC. L’Anthologie Palatine est un recueil d’épigrammes grecques dont la source remonte à l’époque hellénistique (323-30 av. J.-C) qui a dès lors exercé une influence majeure sur la littérature, de la Renaissance jusqu’à nos jours. La POP propose une visualisation des versions grecques des épigrammes de l'AP et ses traductions, leurs métadonnées (auteur, date, lieu et mots-clefs) sous la forme de parcours de lecture thématiques. L'usager est invité à collaborer à cette édition en proposant directement sur la plateforme <a href="https://anthologia.ecrituresnumeriques.ca/home">Anthologia</a> des liens faibles, soit en associant à l’épigramme une référence (textuelle, iconographique, musicale, cinématographique ou autre) qui témoigne de l’imaginaire collectif suggéré par l’épigramme et vient ainsi ainsi enrichir le matériel anthologique.
+
+             Sur la POP sont disponibles les versions grecques des épigrammes de l'AP et ses traductions (en français, anglais et italien), leurs métadonnées (auteur, date, lieu et mots-clefs) sous la forme de parcours de lecture thématiques. L'usager est invité à collaborer à cette édition en proposant des liens faibles, soit en associant à l’épigramme une référence (textuelle, iconographique, musicale, cinématographique ou autre) qui témoigne de l’imaginaire collectif suggéré par l’épigramme et vient ainsi ainsi enrichir le matériel anthologique. Ce projet invite donc à une appropriation d’un objet littéraire insaisissable soit à comprendre et associer l’AP avec nos propres chimères intérieures.
+
+            <br><br>Pour plus d’informations, consultez le <a href="http://anthologia-doc.ecrituresnumeriques.ca/fr_FR/">site web</a> du projet.
           </q>
         </div>
       </div>
-      <div class="col-md-5 col-md-offset-1">
+      <div class="col-md-4 col-md-offset-1">
         <div class="team-container">
-          <h4><span class="bg"></span>Notre équipe <sup>V</sup></h4>
+          <h4><span class="bg"></span>Équipe Université de Montréal <sup></sup></h4>
+
+          <ul>
+            <li>Marcello Vitali-Rosati</li>
+            <li>Elsa Bouchard</li>
+            <li>Margot Mellet</li>
+            <li>Arthur Juchereau</li>
+            <li>Servanne Monjour</li>
+            <li>Louis-Olivier Brassard</li>
+            <li>Enrico Agostini-Marchese</li>
+          </ul>
+
+          <h4><span class="bg"></span>Équipe HETIC <sup></sup></h4>
+
           <ul>
             <li><a href="https://www.linkedin.com/in/milenatarriere" target="_blank">Miléna Tarrière : Chef de Projet<span class="dash"></span></a></li>
             <li><a href="http://nahelmoussi.com/" target="_blank">Nahel Moussi : UX/UI Designer site web<span class="dash"></span></a></li>
             <li><a href="http://raphaelaupee.fr/" target="_blank">Raphaël Aupée : Développeur Back<span class="dash"></span></a></li>
             <li><a href="http://paulchagnon.fr/" target="_blank">Paul Chagnon : UX/UI Designer documentation et back office<span class="dash"></span></a></li>
             <li><a href="http://valentin-crochemore.fr/" target="_blank">Valentin Crochemore : Développeur Front<span class="dash"></span></a></li>
-          </ul>
-          <ul>
-            <li>Marcello Vitali-Rosati : Professeur à l’Univeristé de Montréal</li>
-            <li>Elsa Bouchard : Professeure à l’Univeristé de Montréal</li>
-            <li>Arthur Juchereau</li>
-            <li>Servanne Monjour</li>
           </ul>
         </div>
       </div>
@@ -102,7 +110,11 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
 .desc-container
   color: #2c2c2c
-  margin-top: 20px
+  margin-top: 20vh
+  padding: 40px 20px
+  max-height: 66vh
+  overflow: scroll
+
 
   h3
     font-style: italic
@@ -113,7 +125,7 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
 
   q
     font-size: 14px
-    margin-top: 80px
+    margin-top: 1.2em
     display: inline-block
     quotes: "\201C""\201D""\2018""\2019"
     line-height: 1.5em
@@ -194,6 +206,7 @@ $raleway: 'Raileway', Helvetica, Arial, sans-serif
     list-style: none
     padding: 0 20px
     margin-top: 30px
+    margin-bottom: 30px
     display: inline-block
     vertical-align: top
 

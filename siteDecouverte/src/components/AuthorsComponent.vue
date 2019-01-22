@@ -26,11 +26,13 @@
                         {{ author.versions[0].name }} <sup>{{ author.id_author | romanize }}</sup>
                       </router-link>
                     </h3>
+<!--
                     <ul>
                       <li v-for="epigram in author.entities">
                         <router-link :to="{ name: 'epigram', params: { id: epigram.id_entity }}">{{ epigram.title }}</router-link>
                       </li>
                     </ul>
+-->
                   </div>
               </div>
           </div>
@@ -70,6 +72,7 @@ export default {
       var self = this
 //      this.$http.get(global.apiAuth).then(function (response) {
 //      self.$set('token', response.data.access_token)
+      //
       self.$http.get(global.api + 'authors'/* + filterFr + 'access_token=' + self.token*/, {progress () {
       }}).then(function (response) {
         var authors = JSON.parse(response.bodyText)

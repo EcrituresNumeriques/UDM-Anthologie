@@ -1,7 +1,9 @@
 <template>
     <div class="copyright row">
       <div class="col-sm-12 col-md-6 col-md-offset-1">
-        <p>&copy Université de Montréal - 2016</p>
+        <a href="http://www.wtfpl.net/"><img
+       src="https://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png"
+       width="80" height="15" alt="WTFPL" /></a>
       </div>
     </div>
 </template>
@@ -20,6 +22,6 @@ $raleway: 'Raleway', Helvetica, Arial, sans-serif
 
   p
     font-family: $raleway
-    font-size: 12px
+    font-size: 15px
 
 </style>
